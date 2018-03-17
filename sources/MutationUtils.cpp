@@ -1,5 +1,15 @@
 #include "MutationUtils.hpp"
 
+vector<int> doubleSwap(vector<int> tour,int currentValue,int iterationValue,int newValueU, 
+int newValueX,int newValueV,int newValueY){
+    vector<int> swappedTour=tour;
+    swappedTour[currentValue]=newValueU;
+    swappedTour[currentValue+1]=newValueX;
+    swappedTour[iterationValue]=newValueV;
+    swappedTour[iterationValue+1]=newValueY;
+    return swappedTour;
+}
+
 bool checkInSameTour(vector<int> Tour, int depotId, int customer1,int customer2){
     vector<vector<int>> tours=explodeSubTours(Tour,depotId);
     bool flag1=false, flag2=false;
@@ -58,4 +68,11 @@ bool validateTour(vector<int> tour, int depositNumber,int depositId){
         }
     }
     return true;
+}
+
+pair<vector<int>,bool> setInitialResult(vector<int> tour){
+    pair<vector<int>,bool> result;
+    result.first=tour;
+    result.second=false;
+    return result;
 }

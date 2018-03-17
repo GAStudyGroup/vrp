@@ -36,7 +36,6 @@ pair<vector<int>,bool> eighthMove(vector<int>,Map&,int,int);
 
 pair<vector<int>,bool> ninethMove(vector<int>,Map&,int,int);
 
-
 vector<int> evaluateMutation(vector<int>,Map&);
 
 vector<pair<vector<int>,bool> (*)(vector<int>,Map&,int,int)> getMoves();

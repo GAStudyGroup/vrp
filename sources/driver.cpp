@@ -16,8 +16,8 @@ using namespace std;
 int iterations{20000};
 long int generation{1};
 double bestFit={-1*numeric_limits<double>::max()};
-ImportData file("libs/P-n20-k2.vrp");
-const int truckNumber=2;
+ImportData file("libs/eilA101.vrp");
+const int truckNumber=20;
 Map customerMap(file.getCustomerList(), file.getCapacity(), truckNumber);
 
 // APENAS PARA DESENVOLVIMENTO BÁSICO
