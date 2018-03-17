@@ -11,59 +11,18 @@ vector<int> evaluateMutation(vector<int> tour,Map& map){
     vector<int> initial = tour;
     int it=0;
     for (auto value: tour){
-       result=firstMove(initial,map,value);
-        if(result.second==true){
-            //cout<<"Melhorou primeiro mov"<<endl;
-           return result.first;
-        }
-       result=secondMove(initial,map,it,value);
-        if(result.second==true){
-            //cout<<"Melhorou segundo mov"<<endl;
-            return result.first;
-        }
-        result=thirdMove(initial,map,it,value);
-        if(result.second==true){
-            //cout<<"Melhorou terceiro mov"<<endl;
-            return result.first;
-        }
-
-        result=fourthMove(initial,map,it,value); //Funfando
-        if(result.second==true){
-            //cout<<"Melhorou quarto mov"<<endl;
-            return result.first;
-        }
-        
-        result=fifthMove(initial,map,it,value);
-        if(result.second==true){
-            //cout<<"Melhor quinto mov"<<endl;
-            return result.first;
-        }
-        result=sixthMove(initial,map,it,value); //Funfando
-        if(result.second==true){
-            //cout<<"Melhor sexto mov"<<endl;
-            return result.first;
-        }
-        result=seventhMove(initial,map,it,value,7);
-        if(result.second==true){
-            //cout<<"Melhor seventh mov"<<endl;
-           return result.first; 
-        }
-        result=seventhMove(initial,map,it,value,8);
-        if(result.second==true){
-            //cout<<"Melhor seventh mov"<<endl;
-           return result.first; 
-        }
-        result=ninethMove(initial,map,it,value);
-        if(result.second==true){
-            //cout<<"Melhor seventh mov"<<endl;
-           return result.first; 
+        for(auto move: getMoves()){
+            result=move(initial,map,it,value);
+            if(result.second){
+                return result.first;
+            }
         }
         it++;
     }  
     return tour;
 }
 //If the node is a client, remove it then insert it after the next
-    pair<vector<int>,bool> firstMove(vector<int> tour,Map& map, int value){
+    pair<vector<int>,bool> firstMove(vector<int> tour,Map& map,int it,int value){
     vector<int> initial=tour; 
     pair<vector<int>,bool> result;
     //cout<<"Fitness antes do movimento "<< iFitness <<endl;
@@ -234,7 +193,7 @@ pair<vector<int>,bool> sixthMove(vector<int> tour,Map& map, int it,int value){
     return result;
 }
 
-pair<vector<int>,bool> seventhMove(vector<int> tour,Map& map, int it,int value, int move){
+pair<vector<int>,bool> seventhAndEighthMove(vector<int> tour,Map& map, int it,int value, int move){
     pair<vector<int>,bool> result;
     result.first=tour;
     result.second=false;
@@ -276,7 +235,12 @@ pair<vector<int>,bool> seventhMove(vector<int> tour,Map& map, int it,int value, 
 
     return result;
 }
-
+pair<vector<int>,bool> seventhMove(vector<int> tour,Map& map, int it,int value){
+    return seventhAndEighthMove(tour,map,it,value,7);
+}
+pair<vector<int>,bool> eighthMove(vector<int> tour,Map& map, int it,int value){
+    return seventhAndEighthMove(tour,map,it,value,8);
+}
 pair<vector<int>,bool> ninethMove(vector<int> tour,Map& map, int it,int value){
     pair<vector<int>,bool> result;
     result.first=tour;
@@ -310,4 +274,18 @@ pair<vector<int>,bool> ninethMove(vector<int> tour,Map& map, int it,int value){
             }
         }
     return result;
+}
+
+vector<pair<vector<int>,bool> (*)(vector<int>,Map&,int,int)> getMoves(){
+    vector<pair<vector<int>,bool> (*)(vector<int>,Map&,int,int)> moves;
+    moves.push_back(&firstMove);
+    moves.push_back(&secondMove);
+    moves.push_back(&thirdMove);
+    moves.push_back(&fourthMove);
+    moves.push_back(&fifthMove);
+    moves.push_back(&sixthMove);
+    moves.push_back(&seventhMove);
+    moves.push_back(&eighthMove);
+    moves.push_back(&ninethMove);
+    return moves;
 }

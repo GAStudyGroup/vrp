@@ -16,8 +16,8 @@ using namespace std;
 int iterations{20000};
 long int generation{1};
 double bestFit={-1*numeric_limits<double>::max()};
-ImportData file("libs/P-n51-k10.vrp");
-const int truckNumber=20;
+ImportData file("libs/P-n20-k2.vrp");
+const int truckNumber=2;
 Map customerMap(file.getCustomerList(), file.getCapacity(), truckNumber);
 
 // APENAS PARA DESENVOLVIMENTO BÁSICO
@@ -130,7 +130,7 @@ Population newGeneration(Population& pop){
         if(!validateTour(newPop.getPop()[i],truckNumber,customerMap.getDepotId())){
             exit(-1);
         }
-        //printVector(newPop.getPop()[i],customerMap);
+       // printVector(newPop.getPop()[i],customerMap);
     }
     generation++;
     if(bestFit < bestFitness(newPop, customerMap)){
