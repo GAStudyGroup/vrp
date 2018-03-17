@@ -28,7 +28,7 @@ pair<vector<int>,bool> fifthMove(vector<int>,Map&, int,int);
 
 pair<vector<int>,bool> sixthMove(vector<int>,Map&, int,int);
 
-pair<vector<int>,bool> seventhAndEighthMove(vector<int>,Map&,int,int,int);
+pair<vector<int>,bool> seventhAndEighthAndNineMove(vector<int>,Map&,int,int,int);
 
 pair<vector<int>,bool> seventhMove(vector<int>,Map&,int,int);
 

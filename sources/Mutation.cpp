@@ -179,7 +179,7 @@ pair<vector<int>,bool> sixthMove(vector<int> tour,Map& map, int it,int value){
     return result;
 }
 
-pair<vector<int>,bool> seventhAndEighthMove(vector<int> tour,Map& map, int it,int value, int move){
+pair<vector<int>,bool> seventhAndEighthAndNineMove(vector<int> tour,Map& map, int it,int value, int move){
     pair<vector<int>,bool> result=setInitialResult(tour);
     int ValU=0,ValX=0,ValV=0,ValY=0;
         if(value==map.getDepotId() || it==(int)tour.size()-1){
@@ -200,12 +200,17 @@ pair<vector<int>,bool> seventhAndEighthMove(vector<int> tour,Map& map, int it,in
                             continue;
                         }
                      }
-                     else{
+                     else if(move==8 || move==9){
                         if(checkInSameTour(tour,map.getDepotId(),ValU,ValV)){
                             continue;
                         }
                     }
-                    result.first=doubleSwap(result.first,it,i,ValU,ValV,ValX,ValY);
+                    if(move==7 || move==8){
+                        result.first=doubleSwap(result.first,it,i,ValU,ValV,ValX,ValY);
+                    }
+                    else if(move==9){
+                        result.first=doubleSwap(result.first,it,i,ValU,ValY,ValX,ValV);
+                    }
                     result=basicFitnessEvaluation(tour,result.first,map);
                     if(result.second){
                         return result;
@@ -217,39 +222,13 @@ pair<vector<int>,bool> seventhAndEighthMove(vector<int> tour,Map& map, int it,in
     return result;
 }
 pair<vector<int>,bool> seventhMove(vector<int> tour,Map& map, int it,int value){
-    return seventhAndEighthMove(tour,map,it,value,7);
+    return seventhAndEighthAndNineMove(tour,map,it,value,7);
 }
 pair<vector<int>,bool> eighthMove(vector<int> tour,Map& map, int it,int value){
-    return seventhAndEighthMove(tour,map,it,value,8);
+    return seventhAndEighthAndNineMove(tour,map,it,value,8);
 }
 pair<vector<int>,bool> ninethMove(vector<int> tour,Map& map, int it,int value){
-    pair<vector<int>,bool> result=setInitialResult(tour);
-     int ValU=0,ValX=0,ValV=0,ValY=0;
-        if(value==map.getDepotId() || it==(int)tour.size()-1){
-            return result;
-        }else{
-            ValU=result.first[it];
-            ValX=result.first[it+1];
-            if(ValX!=ValU && ValX!=map.getDepotId()){
-                for(unsigned int i=0; i<tour.size()-1;i++){
-                    ValV=result.first[i];
-                    ValY=result.first[i+1];
-                    if(ValX==map.getDepotId()||ValV==map.getDepotId() || ValY==map.getDepotId() || ValU==ValV 
-                    ||!(ValU!=ValV && ValU!=ValX && ValU!=ValY && ValX!=ValV && ValX!=ValY && ValY!=ValV)){
-                        continue;
-                    }
-                    if(checkInSameTour(tour,map.getDepotId(),ValU,ValV)){
-                        continue;
-                    }
-                    result.first=doubleSwap(result.first,it,i,ValU,ValY,ValX,ValV);
-                    result=basicFitnessEvaluation(tour,result.first,map);
-                    if(result.second){
-                        return result;
-                    }
-                }
-            }
-        }
-    return result;
+    return seventhAndEighthAndNineMove(tour,map,it,value,9);
 }
 
 vector<pair<vector<int>,bool> (*)(vector<int>,Map&,int,int)> getMoves(){
