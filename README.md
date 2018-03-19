@@ -1,19 +1,27 @@
 # vrp-gpx
 
-## todo
--Refatorar a driver
+## Passos a serem realizados
 
--Colocar os parametros
-
+### Muito Importante
 -Função de balanceamento
 
--Montar o GPX
+-Montar o GPX para o VRP
 
 -Não entrar em desespero
 
+### Necessário
+- ~~Refatorar a driver~~
+
+- Encontrar um método de perturbação mais eficiente (se houver)
+
+- Encontrar uma função de fitness mais eficiente
+
+### Adicional
+-Colocar os parametros
+
 -Colocar Threads quando for rodar a mutação
 
--Ver o que dá pra otimizar na mutação
+-Ver o que dá pra otimizar dentro da  mutação
 
 ### Instâncias de VRP
 http://neo.lcc.uma.es/vrp/vrp-instances/capacitated-vrp-instances/
