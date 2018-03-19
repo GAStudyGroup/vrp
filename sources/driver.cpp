@@ -10,132 +10,96 @@
 #include "Population.hpp"
 #include "Mutation.hpp"
 #include "MutationUtils.hpp"
+#include "GAutils.hpp"
 
 using namespace std;
 
-int iterations{20000};
-long int generation{1};
+int iterations{40};
+long int generation{0};
 double bestFit={-1*numeric_limits<double>::max()};
-ImportData file("libs/eilA101.vrp");
-const int truckNumber=20;
+const int truckNumber{2};
+const int popSize{60};
+const int mutIterations{50};
+const int disturbFactor{5};
+const double elitPercentage{0.25};
+int elitN=(int) popSize*elitPercentage;
+int stuckCount=0;
+
+ImportData file("libs/P-n22-k2.vrp");
 Map customerMap(file.getCustomerList(), file.getCapacity(), truckNumber);
 
-// APENAS PARA DESENVOLVIMENTO BÁSICO
-Population popGen(Map&, int);
-void crossover(vector<int>&, vector<int>&);
+//Funções auxiliares para main
+void startPop(Population &pop, Map &customerMap);
+void iteration(Population &pop,Map &customerMap);
 Population newGeneration(Population&);
+void printBestTourInfo(Population &pop,Map &customerMap);
+void printTourCharges(Population &pop, Map &customerMap);
 
 int main(){   
     srand(time(NULL));
     int count{0};
+    //Inicialização da população
     Population pop;
-    pop = popGen(customerMap, 1);
+    startPop(pop,customerMap);    
+    //Loop do genético
+    while(count < iterations){
+        iteration(pop,customerMap);
+        count ++;
+    }
+    //Imprimindo as informações do melhor tour após todas as iterações
+    printBestTourInfo(pop,customerMap);
+    //Imprime toda a população antes de encerrar o algoritmo
+    cout << "\n\n\nPOPULATION"<<endl<<pop << endl;
+}
+
+
+void startPop(Population &pop, Map &customerMap){
+    pop = popGen(customerMap, popSize);
     cout << "First Population"<<endl;
     cout << pop << endl;
-    /*printVector(pop.getPop()[0],customerMap);
-    pop.getPop()[0]=Mutation(pop.getPop()[0],customerMap);
-    validateTour(pop.getPop()[0],8);
-    printVector(pop.getPop()[0],customerMap);*/
-    while(count < iterations){
-        pop = newGeneration(pop);
-        count++;
-    }
-    pop = newGeneration(pop); 
-    cout << "\nBest " << bestFitness(pop, customerMap)<<endl;
-    vector<int> tour = getBestTour(pop, customerMap);
-    cout << "BestTour"<<endl;
-    for(int i : tour){
-        cout << i << " ";
-    }
-    cout << endl;
-    vector<int> charges = getAllCharges(tour, customerMap);
-    cout << "TourCharges"<<endl;
-    for(int i : charges){
-        cout << i << " ";
-    }
-    cout << endl;
+    initialPopApplyMutation(pop,mutIterations,customerMap);
+    cout<<"Fim da pop inicial"<<endl;   
 }
-
-Population popGen(Map& map, int popSize){
-    int depotId = map.getDepotId();
-    Population pop;
-
-    for(int x=0; x<popSize; x++){
-        vector<int> tour;
-
-        for(auto c : map.getMap()){
-            if(c.getId() != depotId){
-                tour.push_back(c.getId());
-            }
-        }
-
-        std::random_shuffle(tour.begin(), tour.end());
-
-        unsigned tamGambi = tour.size() + map.getNumberTrucks();
-        int i=0, backsGap = (tour.size()+1)/map.getNumberTrucks();
-        while(tour.size() != tamGambi){
-            tour.insert(tour.begin()+i, depotId);
-            i+=backsGap+1;
-        }
-
-        pop.addNewTour(tour);
-    }
-    return (pop);
-}
-
-void crossover(vector<int>& parent1, vector<int>& parent2){
-    vector<int> tmp1{parent1}, tmp2{parent2};
-    vector<int> aux1, aux2;
-    int cutPoint{parent1.size()/2};
-    int infLimit{parent1.size()};
-    int ctrl1{0}, ctrl2{0};
-
-    if(parent1.size() != parent2.size()){
-        cout << "AGORA TUDO FAZ SENTIDO, TODAS AS PEÇAS SE ENCAIXARAM MUAHAAHAHAHAHAH" << endl;
-        cutPoint = ((parent1.size() + parent2.size())/4);
-        if(parent1.size() > parent2.size()){
-            infLimit = parent2.size();
-        }
-        if(infLimit < cutPoint){
-            cutPoint = infLimit;
-        }
-    }
-
-    for(unsigned i=cutPoint; i<infLimit; i++){
-        swap(tmp1, i, findElement(tmp1, parent2[i]));
-        tmp1[i] = parent2[i];
-        swap(tmp2, i, findElement(tmp2, parent1[i]));
-        tmp2[i] = parent1[i];
-    }
-    parent1 = tmp1;
-    parent2 = tmp2;    
+void iteration(Population &pop,Map &customerMap){
+    pop = newGeneration(pop);
+    printTourCharges(pop,customerMap);
+    if(checkStuck(bestFit,bestFitness(pop,customerMap),stuckCount)){
+        stuckCount=0;
+        disturb(pop,customerMap,mutIterations,disturbFactor);           
+   }
 }
 
 Population newGeneration(Population& pop){
     Population newPop{pop};
     if(generation%10 == 0){
         cout << "Generation " << generation << " BestFitnessAll " << bestFit << endl << "BestFitnessNow " << bestFitness(pop, customerMap) << " SmallerDistanceNow " << smallerDistance(pop, customerMap) <<endl;
-    }
-     /*
-    for(unsigned i=0; i<newPop.getPop().size(); i++){
-        if(i==newPop.getPop().size()-1){
-            crossover(newPop.getPop()[i], newPop.getPop()[0]);
-        }else{
-            crossover(newPop.getPop()[i], newPop.getPop()[i+1]);
-        }
-    }*/
-    //Mutação aqui
-    for(unsigned i=0;i<newPop.getPop().size(); i++){
-        newPop.getPop()[i]=Mutation(newPop.getPop()[i],customerMap);
-        if(!validateTour(newPop.getPop()[i],truckNumber,customerMap.getDepotId())){
-            exit(-1);
-        }
-       // printVector(newPop.getPop()[i],customerMap);
-    }
+    }    
+    cout << "Elitism: " << elitN << endl;
+    auto tours = returnEletism(newPop, customerMap, elitN);
+    //Aplicação do crossover
+    applyCrossover(newPop,tours);
+    // Aplicação da mutação
+    applyMutation(newPop,customerMap,truckNumber);
     generation++;
     if(bestFit < bestFitness(newPop, customerMap)){
         cout << "Fitness Increased " << "\nBefore: " << bestFit << " - After: " << bestFitness(newPop, customerMap)<<endl;
         bestFit = bestFitness(newPop, customerMap);
     }
     return(newPop);
+}
+
+void printBestTourInfo(Population &pop, Map &customerMap){
+    vector<int> tour = getBestTour(pop, customerMap).second;
+    cout << "BestTour: "<<endl;
+    coutTour(tour,customerMap);
+    printTourCharges(pop,customerMap);
+    cout<< "Tour distance: "<<getTourDistance(tour,customerMap)<<endl;
+    cout << endl;   
+}
+void printTourCharges(Population &pop, Map &customerMap){
+    vector<int> charges = getAllCharges(getBestTour(pop,customerMap).second, customerMap);
+    cout << "TourCharges"<<endl;
+    for(int i : charges){
+        cout << i << " ";
+    }
 }

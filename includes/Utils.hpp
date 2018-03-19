@@ -5,6 +5,7 @@
 #include <iostream>
 #include <cmath>
 #include <limits>
+#include <utility>
 
 #include "Map.hpp"
 #include "Population.hpp"
@@ -12,6 +13,8 @@
 using std::vector;
 using std::cout;
 using std::endl;
+using std::pair;
+using std::make_pair;
 
 
 // SECTION TO FITNESS CALCULATION
@@ -45,7 +48,11 @@ double bestFitness(Population&, Map&);
 
 double smallerDistance(Population&, Map&);
 
-vector<int> getBestTour(Population&, Map&);
+pair<int, vector<int>> getBestTour(Population&, Map&);
 
 vector<int> getAllCharges(vector<int>, Map&);
+
+vector<vector<int>> returnEletism(Population&, Map&, const unsigned);
+
+void crossover(vector<int>& , vector<int>&);
 #endif
