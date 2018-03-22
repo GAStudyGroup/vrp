@@ -7,7 +7,6 @@ namespace Configs {
     extern unsigned mutIterations;
     extern unsigned disturbFactor;
     extern unsigned elitismNumber;
-
 }
 
 #endif

@@ -18,6 +18,7 @@ all: $(EXE_OUT)
 	#@mkdir -p Logs
 
 $(EXE_OUT): $(SOURCES:.cpp=.o)
+	@mkdir -p bin
 	$(CC) -o $@ $^ $(CFLAGS)
 
 %.o: %.cpp
