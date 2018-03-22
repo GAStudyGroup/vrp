@@ -25,7 +25,7 @@ double Tour::getFitness()
 { 
     switch (Configs::fitnessMode){
         case 1:
-            return getTourFitness(route);
+            return ourFitness(route);
         break;
         case 2:
             return advancedFitness(route);

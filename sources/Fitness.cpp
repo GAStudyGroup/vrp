@@ -1,7 +1,38 @@
+#include "Fitness.hpp"
 #include "Configs.hpp"
 #include "Utils.hpp"
 using std::ceil;
 using std::pow;
+
+//OurFitness
+double ourFitness(vector<int>& tour){ //Buga quando tem dois depósitos no começo
+    //printVector(tour,Configs::customerMap); //Coloquei aqui para ajudar o debug
+    vector<vector<int>> subs = explodeSubTours(tour, Configs::customerMap.getDepotId());
+    double fitness=0;
+    
+    for(vector<int> sub : subs){
+        double chargeUsed = getSubCharge(sub);
+        //cout << "Used " << chargeUsed << " / " << Configs::customerMap.getTruckCapacity() << endl;
+        if(chargeUsed <= Configs::customerMap.getTruckCapacity()){
+            fitness += subFitness(sub, chargeUsed);
+        }else{
+            fitness += 10*subFitnessPenalty(sub, chargeUsed);
+        }
+    }
+    return (fitness*100);
+}
+
+double subFitness(vector<int>& tour, double& chargeUsed){
+    /* cout <<endl << "subFitness("<<tour.size()<<")"<<endl;
+    for(auto t: tour ) cout << t << " "; */
+    return ((1 /getSubDistance(tour)) * (chargeUsed / Configs::customerMap.getTruckCapacity()));
+}
+
+double subFitnessPenalty(vector<int>& tour, double& chargeUsed){
+    return ( (1 / getSubDistance(tour)) * -1 * (chargeUsed / Configs::customerMap.getTruckCapacity()));
+}
+
+//Advanced Fitness
 int calcMnv(){
     double demandSum=0;
     for (auto customer: Configs::customerMap.map){
@@ -18,7 +49,7 @@ double calcAlpha(){
     return alpha;
 }
 
-double calcPenalty(vector<int> tour){
+double calcPenalty(vector<int>& tour){
     double innerSum=0;
     for(auto charge:getAllCharges(tour)){
         if(charge>Configs::customerMap.getTruckCapacity()){
@@ -33,7 +64,7 @@ double calcPenalty(vector<int> tour){
     return 100*penalty;
 }
 
-double advancedFitness(vector<int> tour){
+double advancedFitness(vector<int>& tour){
     double fitness= getTourDistance(tour);
     fitness+=calcPenalty(tour);
     return (1/fitness)*10000;

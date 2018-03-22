@@ -2,22 +2,6 @@
 #include "Configs.hpp"
 
 
-double getTourFitness(vector<int>& tour){ //Buga quando tem dois depósitos no começo
-    //printVector(tour,Configs::customerMap); //Coloquei aqui para ajudar o debug
-    vector<vector<int>> subs = explodeSubTours(tour, Configs::customerMap.getDepotId());
-    double fitness=0;
-    
-    for(vector<int> sub : subs){
-        double chargeUsed = getSubCharge(sub);
-        //cout << "Used " << chargeUsed << " / " << Configs::customerMap.getTruckCapacity() << endl;
-        if(chargeUsed <= Configs::customerMap.getTruckCapacity()){
-            fitness += subFitness(sub, chargeUsed);
-        }else{
-            fitness += 10*subFitnessPenalty(sub, chargeUsed);
-        }
-    }
-    return (fitness*100);
-}
 
 double getTourDistance(vector<int>& tour){
     vector<vector<int>> subs = explodeSubTours(tour, Configs::customerMap.getDepotId());
@@ -29,15 +13,6 @@ double getTourDistance(vector<int>& tour){
     return(distance);
 }
 
-double subFitness(vector<int>& tour, double& chargeUsed){
-    /* cout <<endl << "subFitness("<<tour.size()<<")"<<endl;
-    for(auto t: tour ) cout << t << " "; */
-    return ((1 /getSubDistance(tour)) * (chargeUsed / Configs::customerMap.getTruckCapacity()));
-}
-
-double subFitnessPenalty(vector<int>& tour, double& chargeUsed){
-    return ( (1 / getSubDistance(tour)) * -1 * (chargeUsed / Configs::customerMap.getTruckCapacity()));
-}
 
 double getSubCharge(vector<int>& tour){
     double charge=0;
