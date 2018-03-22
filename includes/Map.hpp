@@ -15,7 +15,8 @@ class Map {
         Customer getCustomer(const int);
         std::vector<Customer>& getMap();
         int getDepotId();
-    
+
+        void setMap(std::vector<Customer>);
         void setNumberTrucks(int);
         void setTruckCapacity(double);
 

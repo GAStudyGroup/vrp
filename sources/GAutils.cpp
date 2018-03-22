@@ -53,9 +53,9 @@ bool checkStuck(double bestFitK, double lastBestFit,int &stuckCount){
 void applyCrossover(Population &pop,vector<vector<int>> &tours){
         for(unsigned i=0; i<pop.getPop().size(); i++){
         if(i==pop.getPop().size()-1){
-            crossover(pop.getPop()[i], pop.getPop()[0]);
+            //crossover(pop.getPop()[i], pop.getPop()[0]);
         }else{
-            crossover(pop.getPop()[i], pop.getPop()[i+1]);
+            //crossover(pop.getPop()[i], pop.getPop()[i+1]);
         }
     }    
     for(vector<int> i : tours){
@@ -93,4 +93,17 @@ void disturb(Population &pop, Map &customerMap, int mutIterations,int disturbFac
             pop.getPop()[i]=Mutation(aux,customerMap);
         }    
     }
+}
+
+
+vector<vector<int>> returnEletism(Population& pop, Map& map, const unsigned elitN){
+    vector<vector<int>> elitismTours;
+
+    while(elitismTours.size() != elitN){
+        int bestPos = getBestTour(pop, map).first;
+        elitismTours.push_back(pop.getPop()[bestPos]);
+        pop.getPop().erase(pop.getPop().begin()+bestPos);
+    }
+
+    return(elitismTours);
 }

@@ -30,7 +30,6 @@ double subFitnessPenalty(vector<int>&, double&, Map&);
 // return a distance used in route 
 double getSubDistance(vector<int>&, Map&);
 
-
 // return the euclidian distance beetween two points in map
 double distance(const int, const int, Map&);
 
@@ -52,7 +51,4 @@ pair<int, vector<int>> getBestTour(Population&, Map&);
 
 vector<int> getAllCharges(vector<int>, Map&);
 
-vector<vector<int>> returnEletism(Population&, Map&, const unsigned);
-
-void crossover(vector<int>& , vector<int>&);
 #endif

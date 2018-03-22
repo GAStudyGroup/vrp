@@ -26,6 +26,10 @@ int Map::getDepotId(){
     }
 }
 
+void Map::setMap(std::vector<Customer> map){
+    this->map = map;
+}
+
 void Map::setNumberTrucks(int trucks){
     nTrucks = trucks;
 }

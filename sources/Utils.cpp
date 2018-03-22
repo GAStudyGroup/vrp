@@ -1,6 +1,6 @@
 #include "Utils.hpp"
 #include "Mutation.hpp"
-double getTourFitness(vector<int>& tour, Map& map){ //Buga quando tem dois depósitos no começo
+double getTourFitness(vector<int>& tour, Map& map){ //
     //printVector(tour,map); //Coloquei aqui para ajudar o debug
     vector<vector<int>> subs = explodeSubTours(tour, map.getDepotId());
     double fitness=0;
@@ -156,43 +156,4 @@ vector<int> getAllCharges(vector<int> tour, Map& map){
         charges.push_back((int)getSubCharge(sub, map));
     }
     return(charges);
-}
-
-vector<vector<int>> returnEletism(Population& pop, Map& map, const unsigned elitN){
-    vector<vector<int>> elitismTours;
-
-    while(elitismTours.size() != elitN){
-        int bestPos = getBestTour(pop, map).first;
-        elitismTours.push_back(pop.getPop()[bestPos]);
-        pop.getPop().erase(pop.getPop().begin()+bestPos);
-    }
-
-    return(elitismTours);
-}
-
-void crossover(vector<int>& parent1, vector<int>& parent2){
-    vector<int> tmp1{parent1}, tmp2{parent2};
-    vector<int> aux1, aux2;
-    int cutPoint{(int) parent1.size()/2};
-    int infLimit{(int) parent1.size()};
-
-    if(parent1.size() != parent2.size()){
-        cout << "AGORA TUDO FAZ SENTIDO, TODAS AS PEÇAS SE ENCAIXARAM MUAHAAHAHAHAHAH" << endl;
-        cutPoint = ((parent1.size() + parent2.size())/4);
-        if(parent1.size() > parent2.size()){
-            infLimit = parent2.size();
-        }
-        if(infLimit < cutPoint){
-            cutPoint = infLimit;
-        }
-    }
-
-    for(int i=cutPoint; i<infLimit; i++){
-        swap(tmp1, i, findElement(tmp1, parent2[i]));
-        tmp1[i] = parent2[i];
-        swap(tmp2, i, findElement(tmp2, parent1[i]));
-        tmp2[i] = parent1[i];
-    }
-    parent1 = tmp1;
-    parent2 = tmp2;    
 }
