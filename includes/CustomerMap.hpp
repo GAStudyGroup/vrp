@@ -3,7 +3,7 @@
 
 #include <vector>
 #include <algorithm>
-
+#include <math.h>
 #include "Customer.hpp"
 
 class CustomerMap {
@@ -22,8 +22,9 @@ class CustomerMap {
 
         int getNumberTrucks();
         double getTruckCapacity();
-    private:
         std::vector<Customer> map;
+    private:
+        
         double truckCapacity;
         int nTrucks;
 };

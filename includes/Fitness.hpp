@@ -5,12 +5,13 @@
 
 using std::vector;
 
-double distFitness();
+double distFitness(vector<int>);
 
-double ourFitness();
+double ourFitness(vector<int>);
 
 double advancedFitness(vector<int>);
-int calcMnv(vector<int>);
+int calcMnv();
+double calcAlpha();
 double calcPenalty(vector<int>);
 
 #endif

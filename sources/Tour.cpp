@@ -1,6 +1,7 @@
 #include "Tour.hpp"
 #include "Utils.hpp"
 #include "Configs.hpp"
+#include "Fitness.hpp"
 #include <iostream>
 
 Tour::Tour() {}
@@ -27,7 +28,7 @@ double Tour::getFitness()
             return getTourFitness(route);
         break;
         case 2:
-            return 0;
+            return advancedFitness(route);
         break;
         default:
             return -1;

@@ -11,6 +11,7 @@ namespace Configs {
     extern unsigned maxIterations;
     extern int fitnessMode;
     extern CustomerMap customerMap;
+    extern double initialBest;
 }
 
 #endif
