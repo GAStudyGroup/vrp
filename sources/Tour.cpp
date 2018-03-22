@@ -1,33 +1,48 @@
 #include "Tour.hpp"
-
+#include "Utils.hpp"
+#include "Configs.hpp"
 #include <iostream>
 
 Tour::Tour() {}
 
-Tour::Tour(vector<Customer> route)
+Tour::Tour(vector<int> route)
     : route(route)
 {
 }
 
-void Tour::setRoute(vector<Customer> route)
+void Tour::setRoute(vector<int> route)
 {
     this->route = route;
 }
 
-vector<Customer>& Tour::getRoute()
+vector<int>& Tour::getRoute()
 {
     return route;
 }
 
-int Tour::getFitness()
-{ // Irá retornar a fitness do Tour específico
-// AINDA PRECISA DA FITNESS
+double Tour::getFitness()
+{ 
+    switch (Configs::fitnessMode){
+        case 1:
+            return getTourFitness(route);
+        break;
+        case 2:
+            return 0;
+        break;
+        default:
+            return -1;
+        break;
+    }
+}
+
+double Tour::getDist(){
+    return getTourDistance(route);
 }
 
 ostream& operator<<(ostream& output, Tour& t)
 { // Overload de operador para impressão da população
 
-    for (Customer c : t.getRoute()) {
+    for (int c : t.getRoute()) {
         output << c << "\n";
     }
     output << "Fitness: " << t.getFitness() << "\n";

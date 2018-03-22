@@ -1,9 +1,9 @@
-#include "Map.hpp"
-Map::Map(){}
+#include "CustomerMap.hpp"
+CustomerMap::CustomerMap(){}
 
-Map::Map(std::vector<Customer> list, int capacity, int trucks):map(list), truckCapacity(capacity), nTrucks(trucks){}
+CustomerMap::CustomerMap(std::vector<Customer> list, int capacity, int trucks):map(list), truckCapacity(capacity), nTrucks(trucks){}
 
-Customer Map::getCustomer(const int id){
+Customer CustomerMap::getCustomer(const int id){
     auto it = std::find_if(map.begin(), map.end(), [&id](const Customer& obj) { return (obj.getId() == id); });
     if (it != map.end()) {
         return (*it);
@@ -13,11 +13,11 @@ Customer Map::getCustomer(const int id){
     }
 }
 
-std::vector<Customer>& Map::getMap(){
+std::vector<Customer>& CustomerMap::getMap(){
     return(map);
 }
 
-int Map::getDepotId(){
+int CustomerMap::getDepotId(){
     auto it = std::find_if(map.begin(), map.end(), [](const Customer& obj) { return (obj.getDemand() == 0); });
     if (it != map.end()) {
         return (*it).getId();
@@ -26,20 +26,20 @@ int Map::getDepotId(){
     }
 }
 
-void Map::setMap(std::vector<Customer> map){
+void CustomerMap::setMap(std::vector<Customer> map){
     this->map = map;
 }
 
-void Map::setNumberTrucks(int trucks){
+void CustomerMap::setNumberTrucks(int trucks){
     nTrucks = trucks;
 }
-void Map::setTruckCapacity(double capacity){
+void CustomerMap::setTruckCapacity(double capacity){
     truckCapacity = capacity;
 }
 
-int Map::getNumberTrucks(){
+int CustomerMap::getNumberTrucks(){
     return (nTrucks);
 }
-double Map::getTruckCapacity(){
+double CustomerMap::getTruckCapacity(){
     return (truckCapacity);
 }

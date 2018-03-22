@@ -5,7 +5,6 @@
 #include <vector>
 
 #include "Customer.hpp"
-#include "Utils.hpp"
 
 using std::ostream;
 using std::round;
@@ -17,15 +16,16 @@ class Tour {
 
 public:
     Tour(); 
-    Tour(vector<Customer>);
+    Tour(vector<int>);
 
-    void setRoute(vector<Customer>);
+    void setRoute(vector<int>);
 
-    vector<Customer>& getRoute();
+    vector<int>& getRoute();
 
-    int getFitness();
+    double getFitness();
+    double getDist();
 private:
-    vector<Customer> route;
+    vector<int> route;
 };
 
 #endif

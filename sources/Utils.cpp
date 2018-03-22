@@ -1,65 +1,67 @@
 #include "Utils.hpp"
-#include "Mutation.hpp"
-double getTourFitness(vector<int>& tour, Map& map){ //
-    //printVector(tour,map); //Coloquei aqui para ajudar o debug
-    vector<vector<int>> subs = explodeSubTours(tour, map.getDepotId());
+#include "Configs.hpp"
+
+
+double getTourFitness(vector<int>& tour){ //Buga quando tem dois depósitos no começo
+    //printVector(tour,Configs::customerMap); //Coloquei aqui para ajudar o debug
+    vector<vector<int>> subs = explodeSubTours(tour, Configs::customerMap.getDepotId());
     double fitness=0;
-    /* cout  << endl << "TourComplete"<<endl;
-    for(auto t : tour) cout << t << " "; */
+    
     for(vector<int> sub : subs){
-        double chargeUsed = getSubCharge(sub, map);
-        //cout << "Used " << chargeUsed << " / " << map.getTruckCapacity() << endl;
-        if(chargeUsed <= map.getTruckCapacity()){
-            fitness += subFitness(sub, chargeUsed, map);
+        double chargeUsed = getSubCharge(sub);
+        //cout << "Used " << chargeUsed << " / " << Configs::customerMap.getTruckCapacity() << endl;
+        if(chargeUsed <= Configs::customerMap.getTruckCapacity()){
+            fitness += subFitness(sub, chargeUsed);
         }else{
-            fitness += 10*subFitnessPenalty(sub, chargeUsed, map);
+            fitness += 10*subFitnessPenalty(sub, chargeUsed);
         }
     }
     return (fitness*100);
 }
 
-double getTourDistance(vector<int>& tour, Map& map){
-    vector<vector<int>> subs = explodeSubTours(tour, map.getDepotId());
+double getTourDistance(vector<int>& tour){
+    vector<vector<int>> subs = explodeSubTours(tour, Configs::customerMap.getDepotId());
     double distance=0;
 
     for(vector<int> sub : subs){
-        distance += getSubDistance(sub, map);
+        distance += getSubDistance(sub);
     }
     return(distance);
 }
 
-double subFitness(vector<int>& tour, double& chargeUsed, Map& map){
+double subFitness(vector<int>& tour, double& chargeUsed){
     /* cout <<endl << "subFitness("<<tour.size()<<")"<<endl;
     for(auto t: tour ) cout << t << " "; */
-    return ((1 /getSubDistance(tour, map)) * (chargeUsed / map.getTruckCapacity()));
+    return ((1 /getSubDistance(tour)) * (chargeUsed / Configs::customerMap.getTruckCapacity()));
 }
 
-double subFitnessPenalty(vector<int>& tour, double& chargeUsed, Map& map){
-    return ( (1 / getSubDistance(tour, map)) * -1 * (chargeUsed / map.getTruckCapacity()));
+double subFitnessPenalty(vector<int>& tour, double& chargeUsed){
+    return ( (1 / getSubDistance(tour)) * -1 * (chargeUsed / Configs::customerMap.getTruckCapacity()));
 }
 
-double getSubCharge(vector<int>& tour, Map& map){
+double getSubCharge(vector<int>& tour){
     double charge=0;
 
     for(int c : tour){
-        charge += map.getCustomer(c).getDemand();
+        charge += Configs::customerMap.getCustomer(c).getDemand();
     }
     return (charge);
 }
 
-double getSubDistance(vector<int>& tour, Map& map){
+double getSubDistance(vector<int>& tour){
     double dist=0;
 
-    dist += distance(tour[0], map.getDepotId(), map); // depot to first customer
-    dist += distance(tour[tour.size()-1], map.getDepotId(), map); // last customer to depot
+    dist += distance(tour[0], Configs::customerMap.getDepotId()); // depot to first customer
+    dist += distance(tour[tour.size()-1], Configs::customerMap.getDepotId()); // last customer to depot
     for(unsigned i=0; i<tour.size()-1; i++){
-        dist += distance(tour[i], tour[i+1], map);
+        dist += distance(tour[i], tour[i+1]);
     }
     return (dist);
 }
 
-double distance(const int a, const int b, Map& map){
-    return(std::round(std::sqrt(std::pow(map.getCustomer(a).getX() - map.getCustomer(b).getX(), 2) + pow(map.getCustomer(a).getY() - map.getCustomer(b).getY(), 2))));
+double distance(const int a, const int b){
+    //return(std::round(std::sqrt(std::pow(Configs::customerMap.getCustomer(a).getX() - Configs::customerMap.getCustomer(b).getX(), 2) + pow(Configs::customerMap.getCustomer(a).getY() - Configs::customerMap.getCustomer(b).getY(), 2))));
+    return(std::sqrt(std::pow(Configs::customerMap.getCustomer(a).getX() - Configs::customerMap.getCustomer(b).getX(), 2) + pow(Configs::customerMap.getCustomer(a).getY() - Configs::customerMap.getCustomer(b).getY(), 2)));
 }
 
 vector<vector<int>> explodeSubTours(vector<int> tour, int depotId){
@@ -99,34 +101,10 @@ vector<vector<int>> explodeSubTours(vector<int> tour, int depotId){
     return(tours);
 }
 
-void swap(vector<int>& vector, const int a, const int b){
-    int tmp = vector[a];
-    vector[a]=vector[b];
-    vector[b]=tmp;
-}
-
-int findElement(vector<int>& vector, const int element){
-    for(unsigned i=0; i<vector.size(); i++){
-        if(vector[i] == element) return (i);
-    }
-    return(-1);
-}
-
-double bestFitness(Population& pop, Map& map){
-    double best{-1*std::numeric_limits<double>::max()};
-    for(auto tour : pop.getPop()){
-        double tourFitness = getTourFitness(tour, map);
-        if(tourFitness > best){
-            best = tourFitness;
-        }
-    }
-    return(best);
-}
-
-double smallerDistance(Population& pop, Map& map){
+double smallerDistance(Population& pop){
     double best{std::numeric_limits<double>::max()};
     for(auto tour : pop.getPop()){
-        double distance = getTourDistance(tour, map);
+        double distance = getTourDistance(tour);
         if(distance < best){
             best = distance;
         }
@@ -134,26 +112,12 @@ double smallerDistance(Population& pop, Map& map){
     return(best);
 }
 
-pair<int, vector<int>> getBestTour(Population& pop, Map& map) {
-    double best{-1*std::numeric_limits<double>::max()};
-    int bestPos=-1;
-
-    for(unsigned int i=0; i<pop.getPop().size(); i++){
-        double fitness = getTourFitness(pop.getPop()[i], map);
-        if(fitness > best){
-            best = fitness;
-            bestPos = i;
-        }
-    }
-    return(make_pair(bestPos, pop.getPop()[bestPos]));
-}
-
-vector<int> getAllCharges(vector<int> tour, Map& map){
-    vector<vector<int>> subs = explodeSubTours(tour, map.getDepotId());
+vector<int> getAllCharges(vector<int> tour){
+    vector<vector<int>> subs = explodeSubTours(tour, Configs::customerMap.getDepotId());
     vector<int> charges;
 
     for(vector<int> sub : subs){
-        charges.push_back((int)getSubCharge(sub, map));
+        charges.push_back((int)getSubCharge(sub));
     }
     return(charges);
 }

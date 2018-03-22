@@ -1,16 +1,16 @@
-#ifndef MAP_HPP
-#define MAP_HPP
+#ifndef CUSTOMERMAP_HPP
+#define CUSTOMERMAP_HPP
 
 #include <vector>
 #include <algorithm>
 
 #include "Customer.hpp"
 
-class Map {
+class CustomerMap {
 
     public:
-        Map();
-        Map(std::vector<Customer>, int, int=8);
+        CustomerMap();
+        CustomerMap(std::vector<Customer>, int, int=8);
 
         Customer getCustomer(const int);
         std::vector<Customer>& getMap();
