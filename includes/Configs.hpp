@@ -2,11 +2,11 @@
 #define CONFIGS_HPP
 
 namespace Configs {
-    unsigned truckNumber;
-    unsigned popSize;
-    unsigned mutIterations;
-    unsigned disturbFactor;
-    unsigned elitismNumber;
+    extern unsigned truckNumber;
+    extern unsigned popSize;
+    extern unsigned mutIterations;
+    extern unsigned disturbFactor;
+    extern unsigned elitismNumber;
 
 }
 
