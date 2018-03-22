@@ -1,5 +1,5 @@
 #include "Tour.hpp"
-#include "Utils.hpp"
+#include "TourUtils.hpp"
 #include "Configs.hpp"
 #include "Fitness.hpp"
 #include <iostream>

@@ -1,5 +1,5 @@
-#ifndef UTILS_HPP
-#define UTILS_HPP
+#ifndef TOURUTILS_HPP
+#define TOURUTILS_HPP
 
 #include <vector>
 #include <iostream>

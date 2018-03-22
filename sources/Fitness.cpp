@@ -1,6 +1,6 @@
 #include "Fitness.hpp"
 #include "Configs.hpp"
-#include "Utils.hpp"
+#include "TourUtils.hpp"
 using std::ceil;
 using std::pow;
 
