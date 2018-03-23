@@ -16,6 +16,7 @@ class Tour {
 
 public:
     Tour(); 
+    Tour(vector<Customer>);
     Tour(vector<int>);
 
     void setRoute(vector<int>);

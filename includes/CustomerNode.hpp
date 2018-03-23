@@ -15,13 +15,7 @@ class CustomerNode {
 
 public:
     CustomerNode();
-    CustomerNode(string, double, double);
-
-    void setId(const string);
-    void setX(const double);
-    void setY(const double);
-    void setAccess(const bool);
-    void setEdges(vector<Node>);
+    CustomerNode(string);
 
     string getId() const;
     double getX() const;
@@ -29,15 +23,16 @@ public:
     bool getAccess() const;
     vector<Node>& getEdges();
 
+    void setId(const string);
+    void setAccess(const bool);
+    void setEdges(vector<Node>);
+
     void addEdge(const Node);
     void deleteEdge(const unsigned);
 
     bool operator==(const CustomerNode&) const;
-
 private:
     string id;
-    double x;
-    double y;
     bool access;
     vector<Node> edges;
 };
