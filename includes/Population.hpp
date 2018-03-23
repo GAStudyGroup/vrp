@@ -6,6 +6,7 @@
 #include <algorithm>
 #include <ctime>
 
+#include "Tour.hpp"
 #include "Customer.hpp"
 
 using std::vector;
