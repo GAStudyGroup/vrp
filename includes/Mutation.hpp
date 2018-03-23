@@ -10,10 +10,7 @@
 using namespace std;
 class Mutation{
 public:
-    double initialBest;
-    int maxIterations;
-    int currentIteration;
-    Mutation(double,int,int);
+
     pair<vector<int>,bool> firstMove(vector<int>, int,int);
 
     pair<vector<int>,bool> secondAndThirdMove(vector<int>, int,int,int);

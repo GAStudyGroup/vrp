@@ -3,15 +3,7 @@
 #include "Tour.hpp"
 #include "TourUtils.hpp"
 #include "Configs.hpp"
- Mutation::Mutation(double InitialBest, int MaxIterations, int currentIteration){    
-     
-     this->initialBest=InitialBest;
-     this->maxIterations=MaxIterations;
-     this->currentIteration=currentIteration;
-     //cout <<"Initial" <<this->initialBest<<endl;
-     //cout <<"Max"<<this->maxIterations<<endl;
-     //cout <<"Current"<<this->currentIteration<<endl;
-}
+
 vector<int> Mutation::evaluateMutation(vector<int> tour){
     pair<vector<int>,bool> result;
     vector<int> initial = tour;
@@ -274,7 +266,7 @@ pair<vector<int>,bool> Mutation::seventhAndEighthAndNineMove(vector<int> tour, i
                     else if(move==9){
                         result.first=doubleSwap(result.first,it,i,ValU,ValY,ValX,ValV);
                     }
-                    result=basicFitnessEvaluation(tour,result.first);
+                    result=basicFitnessEvaluation(Tour(tour),Tour(result.first));
                     if(result.second){
                         return result;
                     }

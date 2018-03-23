@@ -62,7 +62,7 @@ bool validateTour(vector<int> tour, int depositNumber,int depositId){
 
     for(unsigned i=0;i<=((tour.size()+1)-(depositNumber));i++){
         //cout<<"O valor "<<i<< " aparece "<< valuesCont[i] <<"vezes" <<endl;;
-        if((i!=depositId && valuesCont[i]>1) ||(i!=0 && valuesCont[i]==0)){
+        if((i!=(unsigned)depositId && valuesCont[i]>1) ||(i!=0 && valuesCont[i]==0)){
             cout <<"Deu merda"<<endl;
             return false;
         }
