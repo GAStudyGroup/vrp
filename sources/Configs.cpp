@@ -6,7 +6,7 @@ unsigned Configs::mutIterations{0};
 unsigned Configs::disturbFactor{0};
 unsigned Configs::elitismNumber{0};
 unsigned Configs::currentIteration{0};
-unsigned Configs::maxIterations{100};
+unsigned Configs::maxIterations{2000};
 
 CustomerMap Configs::customerMap{CustomerMap()};
 int Configs::fitnessMode{1};

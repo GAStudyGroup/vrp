@@ -3,18 +3,18 @@
 #include "Configs.hpp"
 #include "Tour.hpp"
 #include "Mutation.hpp"
-#include "MutationUtils.hpp"
 vector<int> tourGen();
 
 int main(int argc, char* argv[]){
-    ImportData file("libs/P-n16-k8.vrp");
-    Configs::truckNumber=10;
+    Mutation mut;
+    ImportData file("libs/P-n23-k8.vrp");
+    Configs::truckNumber=8;
     Configs::customerMap=CustomerMap(file.getCustomerList(),file.getCapacity(),Configs::truckNumber);
     Tour teste= tourGen();
     cout << teste<<endl;
     while(Configs::currentIteration<Configs::maxIterations){
-        teste=Mutation().evaluateMutation(teste.getRoute());
-        validateTour(teste.getRoute(),Configs::truckNumber,Configs::customerMap.getDepotId());
+        teste=mut.evaluateMutation(teste.getRoute());
+        mut.validateTour(teste.getRoute(),Configs::truckNumber,Configs::customerMap.getDepotId());
         cout << teste<<endl;
        Configs::currentIteration++; 
     }

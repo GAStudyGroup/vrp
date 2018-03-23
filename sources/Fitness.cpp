@@ -16,7 +16,7 @@ double ourFitness(vector<int>& tour){ //Buga quando tem dois dep√≥sitos no come√
         if(chargeUsed <= Configs::customerMap.getTruckCapacity()){
             fitness += subFitness(sub, chargeUsed);
         }else{
-            fitness += 10*subFitnessPenalty(sub, chargeUsed);
+            fitness += subFitnessPenalty(sub, chargeUsed);
         }
     }
     return (fitness*100);
@@ -61,7 +61,7 @@ double calcPenalty(vector<int>& tour){
     double alpha=calcAlpha();
     double rate=((double)Configs::currentIteration/(double)Configs::maxIterations);
     double penalty=rate*alpha*innerSum;
-    return 100*penalty;
+    return penalty;
 }
 
 double advancedFitness(vector<int>& tour){

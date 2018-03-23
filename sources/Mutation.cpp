@@ -1,5 +1,4 @@
 #include "Mutation.hpp"
-#include "MutationUtils.hpp"
 #include "Tour.hpp"
 #include "TourUtils.hpp"
 #include "Configs.hpp"
@@ -73,7 +72,7 @@ vector<int> Mutation::evaluateMutation(vector<int> tour){
     }  
     return tour;*/
 }
-//If the node is a client, remove it then insert it after the next
+
     pair<vector<int>,bool> Mutation::firstMove(vector<int> tour,int it,int value){
     vector<int> initial=tour; 
     pair<vector<int>,bool> result=setInitialResult(tour);
@@ -101,7 +100,7 @@ vector<int> Mutation::evaluateMutation(vector<int> tour){
     return result;
 }
 
-//Second and third moves move: If u and x are clients, remove them then insert (u; x) after v
+
 
 pair<vector<int>,bool> Mutation::secondAndThirdMove(vector<int> tour, int it,int value,int mode){
     //cout<<"iterator: " <<it <<endl;
@@ -167,7 +166,7 @@ pair<vector<int>,bool> Mutation::fourthMove(vector<int> tour, int it,int value){
     }
         return result;
 }
-// If  u; x and v are clients, swap (u; x) and v,
+
 
 pair<vector<int>,bool> Mutation::fifthMove(vector<int> tour, int it,int value){
     pair<vector<int>,bool> result=setInitialResult(tour);
@@ -285,17 +284,71 @@ pair<vector<int>,bool> Mutation::eighthMove(vector<int> tour, int it,int value){
 pair<vector<int>,bool> Mutation::ninethMove(vector<int> tour, int it,int value){
     return seventhAndEighthAndNineMove(tour,it,value,9);
 }
-/*
-vector<pair<vector<int>,bool> (*)(vector<int>&,int,int)> getMoves(){
-    vector<pair<vector<int>,bool> (*)(vector<int>,Map&,int,int)> moves;
-    moves.push_back(&firstMove);
-    moves.push_back(&secondMove);
-    moves.push_back(&thirdMove);
-    moves.push_back(&fourthMove);
-    moves.push_back(&fifthMove);
-    moves.push_back(&sixthMove);
-    moves.push_back(&seventhMove);
-    moves.push_back(&eighthMove);
-    moves.push_back(&ninethMove);
-    return moves;
-}*/
+
+vector<int> Mutation::doubleSwap(vector<int> tour,int currentValue,int iterationValue,int newValueU, 
+    int newValueX,int newValueV,int newValueY){
+    vector<int> swappedTour=tour;
+    swappedTour[currentValue]=newValueU;
+    swappedTour[currentValue+1]=newValueX;
+    swappedTour[iterationValue]=newValueV;
+    swappedTour[iterationValue+1]=newValueY;
+    return swappedTour;
+}
+
+bool Mutation::checkInSameTour(vector<int> Tour, int depotId, int customer1,int customer2){
+    vector<vector<int>> tours=explodeSubTours(Tour,depotId);
+    bool flag1=false, flag2=false;
+    for(auto tour: tours){
+        for(auto customer:tour){
+            if(customer==customer1){
+                flag1=true;
+            }
+            if(customer==customer2){
+                flag2=true;
+            }
+            if(flag1 && flag2){
+                return true;
+            }
+        }
+        flag1=false;
+        flag2=false;
+    }
+    return false;
+}
+
+pair<vector<int>,bool> Mutation::basicFitnessEvaluation(Tour OldTour,Tour NewTour){
+    pair<vector<int>,bool> result;
+    result.first=OldTour.getRoute();
+    result.second=false;
+    if(NewTour.getFitness()>OldTour.getFitness()){
+        result.first=NewTour.getRoute();
+        result.second=true;
+    }
+    return result;
+}
+
+bool Mutation::validateTour(vector<int> tour, int depositNumber,int depositId){
+    int valuesCont[tour.size()+1];
+    for(unsigned i=0;i<tour.size();i++){
+        valuesCont[i]=0;
+    }
+    for(auto value: tour){
+        valuesCont[value]++;
+    }
+
+    for(unsigned i=0;i<=((tour.size()+1)-(depositNumber));i++){
+        //cout<<"O valor "<<i<< " aparece "<< valuesCont[i] <<"vezes" <<endl;;
+        if((i!=(unsigned)depositId && valuesCont[i]>1) ||(i!=0 && valuesCont[i]==0)){
+            cout <<"Deu merda"<<endl;
+            return false;
+        }
+    }
+    return true;
+}
+
+pair<vector<int>,bool> Mutation::setInitialResult(vector<int> tour){
+    pair<vector<int>,bool> result;
+    result.first=tour;
+    result.second=false;
+    return result;
+}
