@@ -10,10 +10,10 @@ using std::vector;
 
 class CustomerNode {
 
-    // First = NodeID and Second = EdgeWeigth
-    using Node = std::pair<string, double>;
-
 public:
+    // First = NodeID and Second = EdgeWeigth
+    using node = std::pair<string, double>;
+
     CustomerNode();
     CustomerNode(string);
 
@@ -21,20 +21,20 @@ public:
     double getX() const;
     double getY() const;
     bool getAccess() const;
-    vector<Node>& getEdges();
+    vector<node>& getEdges();
 
     void setId(const string);
     void setAccess(const bool);
-    void setEdges(vector<Node>);
+    void setEdges(vector<node>);
 
-    void addEdge(const Node);
+    void addEdge(const node);
     void deleteEdge(const unsigned);
 
     bool operator==(const CustomerNode&) const;
 private:
     string id;
     bool access;
-    vector<Node> edges;
+    vector<node> edges;
 };
 
 #endif

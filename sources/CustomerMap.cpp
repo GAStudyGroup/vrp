@@ -13,6 +13,16 @@ Customer CustomerMap::getCustomer(const int id){
     }
 }
 
+Customer CustomerMap::getCustomer(const string id){
+    auto it = std::find_if(map.begin(), map.end(), [&id](const Customer& obj) { return (obj.getId() == stoi(id)); });
+    if (it != map.end()) {
+        return (*it);
+    }else{
+        // warning...
+        return (Customer());
+    }
+}
+
 std::vector<Customer>& CustomerMap::getMap(){
     return(map);
 }

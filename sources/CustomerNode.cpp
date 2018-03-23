@@ -9,13 +9,13 @@ CustomerNode::CustomerNode(string id)
 
 void CustomerNode::setId(const string id) { this->id = id; }
 void CustomerNode::setAccess(const bool access) { this->access = access; }
-void CustomerNode::setEdges(vector<CustomerNode::Node> edges) { this->edges = edges; }
+void CustomerNode::setEdges(vector<CustomerNode::node> edges) { this->edges = edges; }
 
 string CustomerNode::getId() const { return (id); }
 bool CustomerNode::getAccess() const { return (access); }
-vector<CustomerNode::Node>& CustomerNode::getEdges() { return (edges); }
+vector<CustomerNode::node>& CustomerNode::getEdges() { return (edges); }
 
-void CustomerNode::addEdge(const CustomerNode::Node edge) { this->edges.push_back(edge); }
+void CustomerNode::addEdge(const CustomerNode::node edge) { this->edges.push_back(edge); }
 
 void CustomerNode::deleteEdge(const unsigned i)
 {

@@ -3,7 +3,12 @@
 #include "Configs.hpp"
 #include "Tour.hpp"
 #include "Mutation.hpp"
+#include "GPX2.hpp"
+
+
 vector<int> tourGen();
+
+using namespace std;
 
 int main(int argc, char* argv[]){
     Mutation mut;
@@ -20,6 +25,14 @@ int main(int argc, char* argv[]){
     }
     return 0;
 }
+
+/* int main(){
+    ImportData file("testesManuais/batata1.vrp");
+
+    Configs::truckNumber=3;
+    Configs::customerMap=CustomerMap(file.getCustomerList(),file.getCapacity(),Configs::truckNumber);
+    Tour test1, test2;
+} */
 
 vector<int> tourGen(){
     vector<int> tour;
