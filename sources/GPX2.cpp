@@ -1,12 +1,24 @@
 #include "GPX2.hpp"
 #include "Configs.hpp"
 
-Tour GPX2::crossover(Tour redT, Tour blueT)
+Tour GPX2::crossover(Tour tourRed, Tour tourBlue)
 {
     GPX2 obj;
+
+    /* ---- Adaptation steps ---- */
+
+    // Step 1 - Depot to DepotGhost
+    vector<string> redT = obj.depotToDepotGhosts(tourRed);
+    vector<string> blueT = obj.depotToDepotGhosts(tourBlue);
+
+    // Step 2 - Realizar a sobreposição de maneira efetiva (futuro) 
+
     // Step 1
     obj.red = obj.tourToMap(redT);
     obj.blue = obj.tourToMap(blueT);
+
+    /* obj.printMap(obj.red, cout);
+    obj.printMap(obj.blue, cout); */
 
     // Step 2
     obj.createGhosts();
@@ -26,7 +38,7 @@ Tour GPX2::crossover(Tour redT, Tour blueT)
     }
     // se houver menos de 2 partições o GPX não consegue recombina-las
     if (obj.feasiblePartitions.size() < 2) {
-        return ((redT.getDist() < blueT.getDist()) ? redT : blueT);
+        return ((tourRed.getDist() < tourBlue.getDist()) ? tourRed : tourBlue);
     }
 
     // Step 6
@@ -60,33 +72,49 @@ Tour GPX2::crossover(Tour redT, Tour blueT)
     return t;
 }
 
+
+// PASSOS DA ADAPTAÇÃO PARA O VRP
+
+// STEP 1 - Depot to DepotGhosts
+vector<string> GPX2::depotToDepotGhosts(Tour& t){
+    vector<string> ghostTour;
+    string depotGhostToken{this->depotGhostToken};
+    int depotId{Configs::customerMap.getDepotId()};
+
+    for(int customer : t.getRoute()){
+        if(customer == depotId){
+            ghostTour.push_back(std::to_string(customer)+depotGhostToken);
+            depotGhostToken+=this->depotGhostToken;
+        }else{
+            ghostTour.push_back(std::to_string(customer));
+        }
+    }
+    return(ghostTour);
+}
+
 // -----------------------------------------------------------------------------
 
 // STEP 1 - MAPEAR O TOUR
-GPX2::CityMap GPX2::tourToMap(Tour& t)
+GPX2::CustomerGraph GPX2::tourToMap(vector<string>& t)
 { // Mapear o tour para um grafo com ligações entre os nós
 
-    if (t.getRoute().empty()) {
+    if (t.empty()) {
         exit(EXIT_FAILURE);
     }
 
     map<string, CustomerNode*> aux; // Mapa com as conexões dos nodes 
     double dist = 0;
-    vector<int> citiesId{ t.getRoute() }; 
+    vector<string> citiesId{ t }; 
 
-    CustomerNode* prev = new CustomerNode(to_string(citiesId[0])); // ponto anterior ao atual dentro do for
+    CustomerNode* prev = new CustomerNode(citiesId[0]); // ponto anterior ao atual dentro do for
     CustomerNode* first = prev; // referência do primeiro acesso
 
     aux.insert(make_pair(first->getId(), first)); // gera o mapa e insere o primeiro dentro dele
 
-    for (unsigned i = 1; i < t.getRoute().size(); i++) { // percorre o vetor a partir do segundo elemento, o primeiro já foi transformado
-        CustomerNode* cn = new CustomerNode(to_string(citiesId[i])); // gera um node com o segundo elemento
+    for (unsigned i = 1; i < t.size(); i++) { // percorre o vetor a partir do segundo elemento, o primeiro já foi transformado
+        CustomerNode* cn = new CustomerNode(citiesId[i]); // gera um node com o segundo elemento
 
         aux.insert(make_pair(cn->getId(), cn)); // insere o node dentro do mapa 
-
-        /* double prevX{Configs::customerMap.getCustomer(prev->getId()).getX()}, prevY{Configs::customerMap.getCustomer(prev->getId()).getY()};
-
-        double cnX{Configs::customerMap.getCustomer(cn->getId()).getX()}, cnY{Configs::customerMap.getCustomer(cn->getId()).getY()}; */
 
         dist = distance(stoi(prev->getId()) , stoi(cn->getId()));
 
@@ -96,9 +124,6 @@ GPX2::CityMap GPX2::tourToMap(Tour& t)
 
         prev = cn; // o anterior recebe o atual para continuar o for
     }
-
-    /* double prevX{Configs::customerMap.getCustomer(prev->getId()).getX()}, prevY{Configs::customerMap.getCustomer(prev->getId()).getY()};
-    double firstX{Configs::customerMap.getCustomer(first->getId()).getX()}, firstY{Configs::customerMap.getCustomer(first->getId()).getY()}; */
 
     dist = distance(stoi(prev->getId()), stoi(first->getId()));
     first->addEdge(CustomerNode::node(prev->getId(), dist)); // o primeiro recebe o atual ao sair do for, completando os ligamentos das arestas
@@ -140,7 +165,7 @@ void GPX2::createGhosts()
     }
 }
 
-void GPX2::insertGhost(string& id, CityMap& tour, CustomerNode* ghost)
+void GPX2::insertGhost(string& id, CustomerGraph& tour, CustomerNode* ghost)
 {
     CustomerNode::node edgeFirst = tour[id]->getEdges()[0]; // edge que será mandado para o ghost
     tour[id]->deleteEdge(0); // delete edge
@@ -203,7 +228,7 @@ void GPX2::cutCommonEdges()
 { // executa o processo de "cortar" as arestas iguais
     // entre os pais, a partir do grafo da união,
     // gerando o Gu'
-    for (CityMap::iterator it = unitedGraph.begin();
+    for (CustomerGraph::iterator it = unitedGraph.begin();
          it != unitedGraph.end(); it++) { // percorre todas as entradas do Gu
         vector<CustomerNode::node>& vec = it->second->getEdges(); // Carrega o vetor com as arestas contidas
         // naquela entrada do mapa
@@ -470,7 +495,7 @@ void GPX2::buildOffspring()
     offspringChoosen = ((totalDistance(red) < totalDistance(blue)) ? (Parent::RED) : (Parent::BLUE));
 }
 
-void GPX2::removeGhosts(CityMap& graph)
+void GPX2::removeGhosts(CustomerGraph& graph)
 {
     for (auto node : graph) {
         size_t index = node.first.find(ghostToken);
@@ -528,7 +553,7 @@ void GPX2::removeGhosts(CityMap& graph)
 // -----------------------------------------------------------------------------
 
 // STEP 9 - Linearizar o mapa do filho
-Tour GPX2::mapToTour(CityMap& mapOffspring)
+Tour GPX2::mapToTour(CustomerGraph& mapOffspring)
 { // Map para tour
     Tour offspring;
     deque<string> nextToVisit;
@@ -649,7 +674,7 @@ pair<GPX2::SearchResult, vector<string>> GPX2::DFS_outside(string id, PartitionM
     }
 }
 
-pair<GPX2::SearchResult, vector<string>> GPX2::DFS_inside(string entry, string exit, CityMap father, Partition* partitionPtr)
+pair<GPX2::SearchResult, vector<string>> GPX2::DFS_inside(string entry, string exit, CustomerGraph father, Partition* partitionPtr)
 {
     //fazer uma busca em profundidade dentro da partição
     string now;
@@ -730,7 +755,7 @@ vector<pair<string, string>> GPX2::getEntryAndExitList(Partition* p)
     return (entryAndExit);
 }
 
-int GPX2::partialDistance(string entry, string exit, CityMap father, Partition* partitionPtr)
+int GPX2::partialDistance(string entry, string exit, CustomerGraph father, Partition* partitionPtr)
 { // Distancia do SubTour da partição no pai
     //fazer uma busca em profundidade dentro da partição
     string now;
@@ -767,7 +792,7 @@ int GPX2::partialDistance(string entry, string exit, CityMap father, Partition* 
     return (totalDistance);
 }
 
-void GPX2::printMap(CityMap& graph, std::ostream& stream)
+void GPX2::printMap(CustomerGraph& graph, std::ostream& stream)
 {
     stream << "size: " << graph.size() << endl;
     for (map<string, CustomerNode*>::iterator it = graph.begin(); it != graph.end(); it++) {
@@ -823,7 +848,7 @@ void GPX2::printMap(CityMap& graph, std::ostream& stream)
     stream << "map size " << graph.size() << endl;
 }
 
-int GPX2::totalDistance(CityMap& graph) 
+int GPX2::totalDistance(CustomerGraph& graph) 
 { // Distancia total para percorrer o grafo
     deque<string> nextToVisit;
     vector<string> isAlreadyVisited;
@@ -872,7 +897,7 @@ int GPX2::whichPartition(const string id, PartitionMap feasiblePartitions)
     return (-1);
 }
 
-void GPX2::deleteCityMap(CityMap& m)
+void GPX2::deleteCustomerGraph(CustomerGraph& m)
 { // deletar o mapa completamente,
     // desalocando os ponteiros tb
 
@@ -1191,9 +1216,9 @@ GPX2::GPX2() {}
 
 GPX2::~GPX2()
 {
-    deleteCityMap(red);
-    deleteCityMap(blue);
-    deleteCityMap(unitedGraph);
+    deleteCustomerGraph(red);
+    deleteCustomerGraph(blue);
+    deleteCustomerGraph(unitedGraph);
     deletePartitionMap(feasiblePartitions);
     deletePartitionMap(unfeasiblePartitions);
     partitionsChoosen.clear();

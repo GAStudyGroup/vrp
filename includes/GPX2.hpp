@@ -32,7 +32,7 @@ class GPX2 {
 
     // Definições das principais estruturas utilizadas
     using PartitionMap = map<int, Partition*>;
-    using CityMap = map<string, CustomerNode*>;
+    using CustomerGraph = map<string, CustomerNode*>;
 
     /*
         Estrutura para guardar informações das conexões entre partições unfeasible
@@ -67,6 +67,7 @@ class GPX2 {
     // -------------------------------------------------
 
     const string ghostToken = "-";
+    const string depotGhostToken = "'";
     friend bool operator==(const UnfeasibleConnection&, const UnfeasibleConnection&);
 
 public:
@@ -76,10 +77,23 @@ public:
         Todos os passos executados pelo GPX são executados durante sua execução.
     */
     Tour static crossover(Tour, Tour);
-
 private:
     GPX2();
     ~GPX2();
+
+    /* 
+        Adaptação para o VRP
+
+        Devido a limitação do GPX para funcionar em Grafos Hamiltonianos, é necessário que o Tour gerado para o VRP seja  transformado. 
+        Dessa maneira, o GPX irá tratar todos o depósito como vários pontos separados, que estão no mesmo local.
+
+        Teoria baseada no passo onde o GPX gera os "ghosts" para tentar aumentar as partições geradas. 
+    */
+
+    /*  
+        STEP 1 - Mapear os depósitos como depósitos "ghost"
+    */
+    vector<string> depotToDepotGhosts(Tour&);
 
     /*  
         STEP 1 - Mapeamento do Tour
@@ -89,7 +103,7 @@ private:
 
         O método recebe o Tour como parâmetro e gera um Grafo do mesmo.
     */
-    CityMap tourToMap(Tour&);
+    CustomerGraph tourToMap(vector<string>&);
 
     // -----------------------------------------------------------------------------------------------------
     /*  
@@ -103,7 +117,7 @@ private:
     // O método irá verificar os nós que irão se tornar Ghosts e será criado o nó Ghost
     void createGhosts();
     // O método irá inserir o nó Ghost criado no Grafo do pai
-    void insertGhost(string&, CityMap&, CustomerNode*);
+    void insertGhost(string&, CustomerGraph&, CustomerNode*);
 
     // -----------------------------------------------------------------------------------------------------
     /*  
@@ -181,7 +195,7 @@ private:
     // O método irá montar o Grafo do filho sobre os Grafos dos dois pais, depois irá verificar qual ficou melhor
     void buildOffspring();
     // Irá remover os Ghosts do melhor filho criado
-    void removeGhosts(CityMap&);
+    void removeGhosts(CustomerGraph&);
 
     // -----------------------------------------------------------------------------------------------------
     /*  
@@ -189,7 +203,7 @@ private:
 
         Após terminado, o GPX irá retornar o Grafo filho ao estado original dos pais, forma de um Tour.
     */
-    Tour mapToTour(CityMap&);
+    Tour mapToTour(CustomerGraph&);
 
     /*  
     -------------------------------------------------------------------------------------------------------------
@@ -206,17 +220,17 @@ private:
     // Busca em profundidade fora da partição para encontrar conexões entre partições
     pair<SearchResult, vector<string>> DFS_outside(string, PartitionMap, bool = false);
     // Busca em profundidade dentro da partição para verificar se os AccessNodes estão conectados
-    pair<SearchResult, vector<string>> DFS_inside(string, string, CityMap, Partition*);
+    pair<SearchResult, vector<string>> DFS_inside(string, string, CustomerGraph, Partition*);
     // Apagar subvetor de um vetor
     void eraseSubVector(vector<string>&, vector<string>&);
     //f Função utilizada para obter as entradas e saídas que estão conectadas de uma partição
     vector<pair<string, string>> getEntryAndExitList(Partition*);
     // Distância parcial, usado para medir o melhor pai em cada partição
-    int partialDistance(string, string, CityMap, Partition*);
+    int partialDistance(string, string, CustomerGraph, Partition*);
     // Imprimir o mapa
-    void printMap(CityMap&, std::ostream&);
+    void printMap(CustomerGraph&, std::ostream&);
     // Retorna a distância necessária para percorrer todo o grafo
-    int totalDistance(CityMap&);
+    int totalDistance(CustomerGraph&);
     // Retorna o ID da partição que a cidade está contida
     int whichPartition(const string, PartitionMap);
 
@@ -239,18 +253,18 @@ private:
     bool unfeasiblePartitionsConnected();
     // Gerar uma lista com os IDs das partições que podem ser fundidas
     UnfeasibleConnection whichPartitionToFuseWith(Partition*);
-    void deleteCityMap(CityMap&);
+    void deleteCustomerGraph(CustomerGraph&);
 
     /* 
         VARIÁVEIS
     */
     PartitionMap feasiblePartitions;
     PartitionMap unfeasiblePartitions;
-    CityMap unitedGraph;
+    CustomerGraph unitedGraph;
     vector<UnfeasibleConnection> fuseWith;
 
-    CityMap red;
-    CityMap blue;
+    CustomerGraph red;
+    CustomerGraph blue;
     vector<Parent> partitionsChoosen;
     Parent offspringChoosen;
 };
