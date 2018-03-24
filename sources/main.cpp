@@ -30,10 +30,10 @@ using namespace std;
 
 int main(){
     srand(time(NULL));
-    ImportData file("libs/P-n19-k2.vrp");
+    ImportData file("libs/P-n16-k8.vrp");
     Population pop;
 
-    Configs::popSize=30;
+    Configs::popSize=2;
     Configs::truckNumber=2;
     Configs::customerMap=CustomerMap(file.getCustomerList(),file.getCapacity(),Configs::truckNumber);
 
@@ -43,15 +43,15 @@ int main(){
         pop.addNewTour(t);
     }
 
-    //cout << pop << endl;
+    cout << pop << endl;
 
-    int limit{200}, count{0};
+    int limit{1}, count{0};
     while(limit > count){
-        newGeneration(pop);
+        pop = newGeneration(pop);
         count++;
     }
 
-    //cout << newPop << endl;
+    cout << pop << endl;
 
 }
 

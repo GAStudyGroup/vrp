@@ -13,6 +13,8 @@ Tour GPX2::crossover(Tour tourRed, Tour tourBlue)
 
     // Step 2 - Realizar a sobreposição de maneira efetiva (futuro) 
 
+
+    /* ---- GPX Steps ---- */
     // Step 1
     obj.red = obj.tourToMap(redT);
     obj.blue = obj.tourToMap(blueT);
@@ -567,7 +569,6 @@ Tour GPX2::mapToTour(CustomerGraph& mapOffspring)
     isAlreadyVisited.push_back(mapOffspring.begin()->first);
 
     offspring.getRoute().push_back(stoi(city->getId())); // já foi visitado então entra no filho
-
     nextToVisit.push_back(city->getEdges()[0].first);
 
     while (!nextToVisit.empty()) {
@@ -588,7 +589,6 @@ Tour GPX2::mapToTour(CustomerGraph& mapOffspring)
             }
         } 
     }
-
     return (offspring);
 }
 
