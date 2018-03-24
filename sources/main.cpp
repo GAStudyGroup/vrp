@@ -10,19 +10,27 @@
 
 using namespace std;
 void setParams(){
-ImportData file("libs/P-n16-k8.vrp");
-Configs::truckNumber=8;
+ImportData file("libs/P-n22-k2.vrp");
+Configs::truckNumber=2;
 Configs::customerMap=CustomerMap(file.getCustomerList(),file.getCapacity(),Configs::truckNumber);
-Configs::InitialPopmutIterations=10;
+Configs::InitialPopmutIterations=2 ;
+Configs::InitialPopMutRate=100;
+Configs::mutationRate=100;
+Configs::applyWorst=false;
 }
 
 int main(int argc, char* argv[]){
-    //srand(time(NULL));
+    srand(time(NULL));
     setParams();
-    Population pop=popGen(30);
-    cout<<pop<<endl;
+    Population pop=popGen(20);
     initialPopApplyMutation(pop);
-    cout<<pop<<endl;
+    pop.sortPop();
+
+    for(int count=0;count<1000;count++){
+       // cout<<pop.getPop()[0]<<endl;
+        pop=newGeneration(pop);
+        ///cout <<pop.getPop()[0]<<endl;
+    }
     return 0;
 } 
 

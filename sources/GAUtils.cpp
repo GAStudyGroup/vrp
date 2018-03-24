@@ -56,16 +56,15 @@ void applyMutation(Population &pop){
 Population newGeneration(Population& pop){
     Population newPop;
 
-    for(unsigned i=0; i<Configs::popSize; i++){
+    for(unsigned i=0; i<pop.getPop().size(); i++){
         Tour offs;
-        offs = GPX2::crossover(pop.getPop()[i], pop.getPop()[(i+1)%Configs::popSize]);
+        cout <<"Tour1 Entrando: "<<pop.getPop()[i]<<endl;
+        cout <<"Tour2 Entrando: "<<pop.getPop()[(i+1)%pop.getPop().size()]<<endl;
+        offs = GPX2::crossover(pop.getPop()[i], pop.getPop()[(i+1)%pop.getPop().size()]);
         newPop.addNewTour(offs);
-        if(pop.getPop()[i].getDist() > offs.getDist() && pop.getPop()[(i+1)%Configs::popSize].getDist() > offs.getDist()){
-            cout << "CROSSOVER " << pop.getPop()[i].getDist() << " " << pop.getPop()[(i+1)%Configs::popSize].getDist() << " " << offs.getDist() << " ";
-
-            cout << "FITNESS " << pop.getPop()[i].getFitness() << " " << pop.getPop()[(i+1)%Configs::popSize].getFitness() << " " << offs.getFitness() << " "<< endl;
-        }
     }
-
+    newPop.sortPop();
+    applyMutation(newPop);
+    newPop.sortPop();
     return(newPop);
 }

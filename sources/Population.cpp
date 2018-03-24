@@ -9,12 +9,12 @@ vector<Tour>& Population::getPop(){ return(pop); }
 
 std::ostream& operator<<(std::ostream& output, Population& pop)
 { // Overload de operador para impressão da população
-    int i{ 0 };
+    //int i{ 0 };
     for (Tour t : pop.pop) {
-        output << "Tour " << i << ": ";
+        //output << "Tour " << i << ": ";
         output << t;
-        ++i;
-        output << "\n";
+        //++i;
+       output << "\n";
     }
     return (output);
 }
