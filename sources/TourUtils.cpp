@@ -79,7 +79,7 @@ vector<vector<int>> explodeSubTours(vector<int> tour, int depotId){
 double smallerDistance(Population& pop){
     double best{std::numeric_limits<double>::max()};
     for(auto tour : pop.getPop()){
-        double distance = getTourDistance(tour);
+        double distance = getTourDistance(tour.getRoute());
         if(distance < best){
             best = distance;
         }

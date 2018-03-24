@@ -33,9 +33,9 @@ Tour GPX2::crossover(Tour tourRed, Tour tourBlue)
     obj.findAllPartitions();
     obj.cleanInsideAccess();
 
-    for(auto it : obj.feasiblePartitions){
+    /* for(auto it : obj.feasiblePartitions){
         cout << (*it.second) << endl;
-    }
+    } */
     // se houver menos de 2 partições o GPX não consegue recombina-las
     if (obj.feasiblePartitions.size() < 2) {
         return ((tourRed.getDist() < tourBlue.getDist()) ? tourRed : tourBlue);

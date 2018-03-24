@@ -13,8 +13,6 @@ using std::vector;
 
 class Population {
 
-    using Tour = vector<int>;
-
 public:
     Population();
     Population(vector<Tour>&);

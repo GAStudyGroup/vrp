@@ -1,3 +1,5 @@
+#include <ctime>
+
 #include "ImportData.hpp"
 #include "CustomerMap.hpp"
 #include "Configs.hpp"
@@ -5,7 +7,7 @@
 #include "Mutation.hpp"
 #include "GPX2.hpp"
 
-
+Population newGeneration(Population&);
 vector<int> tourGen();
 
 using namespace std;
@@ -27,46 +29,47 @@ using namespace std;
 } */
 
 int main(){
-    ImportData file("testesManuais/batata1.vrp");
+    srand(time(NULL));
+    ImportData file("libs/P-n19-k2.vrp");
+    Population pop;
 
-    Configs::truckNumber=3;
+    Configs::popSize=30;
+    Configs::truckNumber=2;
     Configs::customerMap=CustomerMap(file.getCustomerList(),file.getCapacity(),Configs::truckNumber);
-    Tour test1, test2;
 
-    test1.getRoute().push_back(0); 
-    test1.getRoute().push_back(9);
-    test1.getRoute().push_back(4);
-    test1.getRoute().push_back(3);
-    test1.getRoute().push_back(2);
-    test1.getRoute().push_back(0);
-    test1.getRoute().push_back(7);
-    test1.getRoute().push_back(6);
-    test1.getRoute().push_back(0);
-    test1.getRoute().push_back(5);
-    test1.getRoute().push_back(10);
-    test1.getRoute().push_back(1);
-    test1.getRoute().push_back(8);
+    for(unsigned i=0; i<Configs::popSize; i++){
+        Tour t;
+        t.getRoute() = tourGen();
+        pop.addNewTour(t);
+    }
 
-    test2.getRoute().push_back(3); 
-    test2.getRoute().push_back(9);
-    test2.getRoute().push_back(0);
-    test2.getRoute().push_back(1);
-    test2.getRoute().push_back(8);
-    test2.getRoute().push_back(10);
-    test2.getRoute().push_back(5);
-    test2.getRoute().push_back(0);
-    test2.getRoute().push_back(7);
-    test2.getRoute().push_back(6);
-    test2.getRoute().push_back(2);
-    test2.getRoute().push_back(4);
-    test2.getRoute().push_back(0);
-    
-    cout << test1<<endl;
-    cout << test2<<endl;
+    //cout << pop << endl;
 
-    Tour t = GPX2::crossover(test1, test2);
+    int limit{200}, count{0};
+    while(limit > count){
+        newGeneration(pop);
+        count++;
+    }
 
-    cout << t;
+    //cout << newPop << endl;
+
+}
+
+Population newGeneration(Population& pop){
+    Population newPop;
+
+    for(int i=0; i<Configs::popSize; i++){
+        Tour offs;
+        offs = GPX2::crossover(pop.getPop()[i], pop.getPop()[(i+1)%Configs::popSize]);
+        newPop.addNewTour(offs);
+        if(pop.getPop()[i].getDist() > offs.getDist() && pop.getPop()[(i+1)%Configs::popSize].getDist() > offs.getDist()){
+            cout << "CROSSOVER " << pop.getPop()[i].getDist() << " " << pop.getPop()[(i+1)%Configs::popSize].getDist() << " " << offs.getDist() << " ";
+
+            cout << "FITNESS " << pop.getPop()[i].getFitness() << " " << pop.getPop()[(i+1)%Configs::popSize].getFitness() << " " << offs.getFitness() << " "<< endl;
+        }
+    }
+
+    return(newPop);
 }
 
 vector<int> tourGen(){
