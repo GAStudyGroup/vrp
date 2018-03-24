@@ -52,7 +52,7 @@ ostream& operator<<(ostream& output, Tour& t)
     for (int c : t.getRoute()) {
         output << c << " ";
     }
-    // output << "\nFitness: " << t.getFitness();
+    output << "\nFitness: " << t.getFitness();
     output << "\nDistance: "<<t.getDist();
     /* output << "\nCharges:";
     for(auto charge:getAllCharges(t.getRoute())){
