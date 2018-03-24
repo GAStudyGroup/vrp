@@ -18,3 +18,10 @@ std::ostream& operator<<(std::ostream& output, Population& pop)
     }
     return (output);
 }
+
+void Population::sortPop(){
+    std::sort(this->getPop().begin(),this->getPop().end(),
+     [](Tour& a, Tour& b) {        
+        return  a.getFitness() > b.getFitness();
+    });
+}

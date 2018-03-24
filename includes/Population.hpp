@@ -20,6 +20,7 @@ public:
     void addNewTour(Tour&);
 
     vector<Tour>& getPop();
+    void sortPop();
 private:
     vector<Tour> pop;
 
