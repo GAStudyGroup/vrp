@@ -23,6 +23,15 @@
 
 - Ver o que dá pra otimizar dentro da  mutação
 
+### Ideias para sobreposição correta de tours
+
+- Fazer a sobreposição de um tour com outro baseado em "ranking"
+    - Entrada e saída (peso alto)
+    - Relação de Customers iguais nos tours
+    - (IDÉIA) Distância de um tour a outro
+        - Nó mais próximo fisicamente de um tour a outro
+            - Não pegar o depósito
+
 ### Instâncias de VRP
 http://neo.lcc.uma.es/vrp/vrp-instances/capacitated-vrp-instances/
 ### Melhores resultados

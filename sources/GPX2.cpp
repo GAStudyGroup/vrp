@@ -5,11 +5,23 @@ Tour GPX2::crossover(Tour tourRed, Tour tourBlue)
 {
     GPX2 obj;
 
+    cout << endl << endl<<"/* -------------- GPX ---------------- */"<<endl;
     /* ---- Adaptation steps ---- */
 
     // Step 1 - Depot to DepotGhost
     vector<string> redT = obj.depotToDepotGhosts(tourRed);
     vector<string> blueT = obj.depotToDepotGhosts(tourBlue);
+
+    cout << "Tours Mapeados para o formato GhostDepot"<<endl;
+    cout << "Red: ";
+    for(string s: redT){
+        cout << s << " ";
+    }
+    cout << endl << "Blue: ";
+    for(string s : blueT){
+        cout << s <<" ";
+    }
+    cout << endl;
 
     // Step 2 - Realizar a sobreposição de maneira efetiva (futuro) 
 
@@ -39,7 +51,9 @@ Tour GPX2::crossover(Tour tourRed, Tour tourBlue)
         cout << (*it.second) << endl;
     } */
     // se houver menos de 2 partições o GPX não consegue recombina-las
-    if (obj.feasiblePartitions.size() < 2) {
+
+    cout << "Quantidade de partições: " << obj.feasiblePartitions.size()<<endl;
+    if (obj.feasiblePartitions.size() < 1) {
         return ((tourRed.getDist() < tourBlue.getDist()) ? tourRed : tourBlue);
     }
 
@@ -47,11 +61,21 @@ Tour GPX2::crossover(Tour tourRed, Tour tourBlue)
     obj.setAllEntryAndExits();
     obj.checkAllPartitions();
 
+    cout << "Quantidade de partiçõesFeasible: " << obj.feasiblePartitions.size()<<endl;
+    cout << "Quantidade de partiçõesUnfeasible: " << obj.unfeasiblePartitions.size()<<endl;
     // Fusion
     // Precisa ter mais de uma partição unfeasible para o fusion poder acontecer
     if (obj.unfeasiblePartitions.size() > 1) {
         obj.fusion();
     }
+
+    if (obj.feasiblePartitions.size() < 1) {
+        return ((tourRed.getDist() < tourBlue.getDist()) ? tourRed : tourBlue);
+    }
+
+    cout << endl << "Após a fusion"<<endl;
+    cout << "Quantidade de partiçõesFeasible: " << obj.feasiblePartitions.size()<<endl;
+    cout << "Quantidade de partiçõesUnfeasible: " << obj.unfeasiblePartitions.size()<<endl;
 
     // Step 7
     obj.choose();
@@ -69,6 +93,8 @@ Tour GPX2::crossover(Tour tourRed, Tour tourBlue)
         // Step 9
         t = obj.mapToTour(obj.blue);
     }
+
+    cout << "/* -------------- GPX ---------------- */" << endl << endl <<endl;
 
     // Deletar as coisas
     return t;

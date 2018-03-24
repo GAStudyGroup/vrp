@@ -1,0 +1,60 @@
+Parte 1: apenas baseada no ranking, sem nenhum sistema de desempate ou validação de resultados iguais 
+
+Caso de teste 1: (Apenas a parte 1 é suficiente, não é preciso de nenhum critério de desempate)
+
+RESULTADO: Sem a sobreposição o código apenas gerou 1 partição, sendo ela Unfeasible, impossibilitando o crossover, com a sobreposição foi possível encontrar 2 partições, ambas feasible, o que gerou uma melhora, pequena, do melhor pai.    
+
+    /* ORIGINAL DO USADO ABAIXO */
+    red.getRoute().push_back(1);
+    red.getRoute().push_back(2);
+    red.getRoute().push_back(3);
+    red.getRoute().push_back(4);
+    red.getRoute().push_back(1);
+    red.getRoute().push_back(5);
+    red.getRoute().push_back(6);
+    red.getRoute().push_back(7);
+    red.getRoute().push_back(1);
+    red.getRoute().push_back(8);
+    red.getRoute().push_back(9);
+    red.getRoute().push_back(10);
+
+    blue.getRoute().push_back(1);
+    blue.getRoute().push_back(5);
+    blue.getRoute().push_back(6);
+    blue.getRoute().push_back(7);
+    blue.getRoute().push_back(1);
+    blue.getRoute().push_back(8);
+    blue.getRoute().push_back(9);
+    blue.getRoute().push_back(2);
+    blue.getRoute().push_back(1);
+    blue.getRoute().push_back(10);
+    blue.getRoute().push_back(3);
+    blue.getRoute().push_back(4);
+
+/* Versão com sobreposição 0.1 */
+    red.getRoute().push_back(1);
+    red.getRoute().push_back(2);
+    red.getRoute().push_back(3);
+    red.getRoute().push_back(4);
+    red.getRoute().push_back(1);
+    red.getRoute().push_back(5);
+    red.getRoute().push_back(6);
+    red.getRoute().push_back(7);
+    red.getRoute().push_back(1);
+    red.getRoute().push_back(8);
+    red.getRoute().push_back(9);
+    red.getRoute().push_back(10);
+    blue.getRoute().push_back(1);
+    blue.getRoute().push_back(10);
+    blue.getRoute().push_back(3);
+    blue.getRoute().push_back(4);
+    blue.getRoute().push_back(1);
+    blue.getRoute().push_back(5);
+    blue.getRoute().push_back(7);
+    blue.getRoute().push_back(6);
+    blue.getRoute().push_back(1);
+    blue.getRoute().push_back(8);
+    blue.getRoute().push_back(9);
+    blue.getRoute().push_back(2);
+
+/* ======================= PARTE X ============================= */
