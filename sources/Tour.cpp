@@ -16,6 +16,11 @@ Tour::Tour(vector<Customer> route){
         this->route.push_back(c.getId());
     }
 }
+Tour::Tour(vector<string> route){
+    for(string c : route){
+        this->route.push_back(stoi(c));
+    }
+}
 
 void Tour::setRoute(vector<int> route)
 {

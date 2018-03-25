@@ -96,3 +96,12 @@ vector<int> getAllCharges(vector<int> tour){
     }
     return(charges);
 }
+
+
+double getDistString(vector<string>& tour){
+    vector<int> tourInt;
+    for(string customer : tour){
+        tourInt.push_back(stoi(customer));
+    }
+    return(getTourDistance(tourInt));
+}

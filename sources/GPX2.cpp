@@ -33,9 +33,9 @@ vector<string> GPX2::crossover(vector<string> redT, vector<string> blueT)
     // se houver menos de 2 partições o GPX não consegue recombina-las
 
     cout << "Quantidade de partições: " << obj.feasiblePartitions.size()<<endl;
-    /* if (obj.feasiblePartitions.size() < 1) {
-        return ((tourRed.getDist() < tourBlue.getDist()) ? tourRed : tourBlue);
-    } */
+    if (obj.feasiblePartitions.size() < 1) {
+        return ((getDistString(redT) < getDistString(blueT)) ? redT : blueT);
+    } 
 
     // Step 6
     obj.setAllEntryAndExits();
@@ -49,13 +49,13 @@ vector<string> GPX2::crossover(vector<string> redT, vector<string> blueT)
         obj.fusion();
     }
 
-    /* if (obj.feasiblePartitions.size() < 1) {
-        return ((tourRed.getDist() < tourBlue.getDist()) ? tourRed : tourBlue);
-    } */
-
     cout << endl << "Após a fusion"<<endl;
     cout << "Quantidade de partiçõesFeasible: " << obj.feasiblePartitions.size()<<endl;
     cout << "Quantidade de partiçõesUnfeasible: " << obj.unfeasiblePartitions.size()<<endl;
+
+    if (obj.feasiblePartitions.size() < 1) {
+        return ((getDistString(redT) < getDistString(blueT)) ? redT : blueT);
+    } 
 
     // Step 7
     obj.choose();
@@ -63,16 +63,16 @@ vector<string> GPX2::crossover(vector<string> redT, vector<string> blueT)
     // Step 8
     obj.buildOffspring();
 
-    Tour t;
+    // Tour t;
     vector<string> offspring;
     if (obj.offspringChoosen == Parent::RED) {
         obj.removeGhosts(obj.red);
         // Step 9
-        t = obj.mapToTour(obj.red);
+        offspring = obj.mapToTour(obj.red);
     } else {
         obj.removeGhosts(obj.blue);
         // Step 9
-        t = obj.mapToTour(obj.blue);
+        offspring = obj.mapToTour(obj.blue);
     }
 
     cout << "/* -------------- GPX ---------------- */" << endl << endl <<endl;
@@ -541,9 +541,10 @@ void GPX2::removeGhosts(CustomerGraph& graph)
 // -----------------------------------------------------------------------------
 
 // STEP 9 - Linearizar o mapa do filho
-Tour GPX2::mapToTour(CustomerGraph& mapOffspring)
+vector<string> GPX2::mapToTour(CustomerGraph& mapOffspring)
 { // Map para tour
-    Tour offspring;
+    //Tour offspring;
+    vector<string> offspring;
     deque<string> nextToVisit;
     vector<string> isAlreadyVisited;
 
@@ -554,7 +555,8 @@ Tour GPX2::mapToTour(CustomerGraph& mapOffspring)
 
     isAlreadyVisited.push_back(mapOffspring.begin()->first);
 
-    offspring.getRoute().push_back(stoi(city->getId())); // já foi visitado então entra no filho
+    // offspring.getRoute().push_back(stoi(city->getId())); // já foi visitado então entra no filho
+    offspring.push_back(city->getId()); // já foi visitado então entra no filho
     nextToVisit.push_back(city->getEdges()[0].first);
 
     while (!nextToVisit.empty()) {
@@ -563,7 +565,8 @@ Tour GPX2::mapToTour(CustomerGraph& mapOffspring)
         city = mapOffspring[nextToVisit.front()];
         nextToVisit.pop_front();
         // Cria um objeto e carrega no Tour filho
-        offspring.getRoute().push_back(stoi(city->getId()));
+        // offspring.getRoute().push_back(stoi(city->getId()));
+        offspring.push_back(city->getId());
 
         for (CustomerNode::node n : city->getEdges()) {
 

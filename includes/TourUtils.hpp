@@ -32,4 +32,7 @@ vector<vector<int>> explodeSubTours(vector<int>, int);
 // Return the charges of all routes contained in a tour
 vector<int> getAllCharges(vector<int>);
 
+// Utility for GPX
+double getDistString(vector<string>&);
+
 #endif

@@ -31,7 +31,7 @@ Tour crossover(Tour&, Tour&);
 }  */
 
 int main(){  // MAIN PARA TESTES, NAO MEXER NESSA MERDA (elcio)
-    //srand(time(NULL));
+    srand(time(NULL));
     ImportData file("testesManuaisDeValidação/mapa1.vrpTest");
     Population pop;
 
@@ -41,39 +41,53 @@ int main(){  // MAIN PARA TESTES, NAO MEXER NESSA MERDA (elcio)
     Tour red, blue;
 
     red.getRoute().push_back(1);
-    red.getRoute().push_back(2);
     red.getRoute().push_back(3);
     red.getRoute().push_back(4);
-    red.getRoute().push_back(1);
-    red.getRoute().push_back(5);
-    red.getRoute().push_back(6);
     red.getRoute().push_back(7);
     red.getRoute().push_back(1);
-    red.getRoute().push_back(8);
+    red.getRoute().push_back(2);
     red.getRoute().push_back(9);
     red.getRoute().push_back(10);
+    red.getRoute().push_back(1);
+    red.getRoute().push_back(6);
+    red.getRoute().push_back(5);
+    red.getRoute().push_back(8);
 
     blue.getRoute().push_back(1);
     blue.getRoute().push_back(5);
-    blue.getRoute().push_back(7);
     blue.getRoute().push_back(6);
+    blue.getRoute().push_back(4);
     blue.getRoute().push_back(1);
-    blue.getRoute().push_back(8);
-    blue.getRoute().push_back(9);
+    blue.getRoute().push_back(3);
+    blue.getRoute().push_back(10);
     blue.getRoute().push_back(2);
     blue.getRoute().push_back(1);
-    blue.getRoute().push_back(10);
-    blue.getRoute().push_back(3);
-    blue.getRoute().push_back(4);
+    blue.getRoute().push_back(9);
+    blue.getRoute().push_back(7);
+    blue.getRoute().push_back(8);
 
-    
+    /* red = tourGen();
+    blue = tourGen(); */
+
     cout << "Red"<< " ";
     cout << red;
     cout << "Blue"<< " ";
     cout << blue;
 
+
+    // Tour offs = crossover(red, blue);
+
+    // cout << offs << endl;
+
+    HamiltonianCycle::parentsHamiltonian parents =  HamiltonianCycle::toHamiltonianCycle(red, blue);
+}
+
+Tour crossover(Tour& red, Tour& blue){
     HamiltonianCycle::parentsHamiltonian parents =  HamiltonianCycle::toHamiltonianCycle(red, blue);
 
+    vector<string> offspring = GPX2::crossover(parents.first, parents.second);
+
+    return(Tour(offspring));
 }
 
 // int main(){

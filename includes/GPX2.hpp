@@ -8,7 +8,6 @@
 #include <map>
 #include <set>
 #include <string>
-
 #include <iostream>
 
 #include "Customer.hpp"
@@ -188,7 +187,7 @@ private:
 
         Após terminado, o GPX irá retornar o Grafo filho ao estado original dos pais, forma de um Tour.
     */
-    Tour mapToTour(CustomerGraph&);
+    vector<string> mapToTour(CustomerGraph&);
 
     /*  
     -------------------------------------------------------------------------------------------------------------

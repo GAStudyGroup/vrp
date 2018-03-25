@@ -3,12 +3,14 @@
 
 #include <cmath>
 #include <vector>
+#include <string>
 
 #include "Customer.hpp"
 
 using std::ostream;
 using std::round;
 using std::vector;
+using std::string;
 
 class Tour {
 
@@ -18,6 +20,7 @@ public:
     Tour(); 
     Tour(vector<Customer>);
     Tour(vector<int>);
+    Tour(vector<string>);
 
     void setRoute(vector<int>);
 
