@@ -67,7 +67,6 @@ class GPX2 {
     // -------------------------------------------------
 
     const string ghostToken = "-";
-    const string depotGhostToken = "'";
     friend bool operator==(const UnfeasibleConnection&, const UnfeasibleConnection&);
 
 public:
@@ -76,24 +75,10 @@ public:
         Recebe duas estruturas Tour, que serão os pais, e retorna um novo Tour que será o filho gerado.
         Todos os passos executados pelo GPX são executados durante sua execução.
     */
-    Tour static crossover(Tour, Tour);
+    vector<string> static crossover(vector<string>, vector<string>);
 private:
     GPX2();
     ~GPX2();
-
-    /* 
-        Adaptação para o VRP
-
-        Devido a limitação do GPX para funcionar em Grafos Hamiltonianos, é necessário que o Tour gerado para o VRP seja  transformado. 
-        Dessa maneira, o GPX irá tratar todos o depósito como vários pontos separados, que estão no mesmo local.
-
-        Teoria baseada no passo onde o GPX gera os "ghosts" para tentar aumentar as partições geradas. 
-    */
-
-    /*  
-        STEP 1 - Mapear os depósitos como depósitos "ghost"
-    */
-    vector<string> depotToDepotGhosts(Tour&);
 
     /*  
         STEP 1 - Mapeamento do Tour

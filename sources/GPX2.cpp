@@ -1,33 +1,13 @@
 #include "GPX2.hpp"
 #include "Configs.hpp"
 
-Tour GPX2::crossover(Tour tourRed, Tour tourBlue)
+vector<string> GPX2::crossover(vector<string> redT, vector<string> blueT)
 {
     GPX2 obj;
 
     cout << endl << endl<<"/* -------------- GPX ---------------- */"<<endl;
-    /* ---- Adaptation steps ---- */
-
-    // Step 1 - Depot to DepotGhost
-    vector<string> redT = obj.depotToDepotGhosts(tourRed);
-    vector<string> blueT = obj.depotToDepotGhosts(tourBlue);
-
-    cout << "Tours Mapeados para o formato GhostDepot"<<endl;
-    cout << "Red: ";
-    for(string s: redT){
-        cout << s << " ";
-    }
-    cout << endl << "Blue: ";
-    for(string s : blueT){
-        cout << s <<" ";
-    }
-    cout << endl;
-
-    // Step 2 - Realizar a sobreposição de maneira efetiva (futuro) 
-
-
-    /* ---- GPX Steps ---- */
     // Step 1
+    
     obj.red = obj.tourToMap(redT);
     obj.blue = obj.tourToMap(blueT);
 
@@ -53,9 +33,9 @@ Tour GPX2::crossover(Tour tourRed, Tour tourBlue)
     // se houver menos de 2 partições o GPX não consegue recombina-las
 
     cout << "Quantidade de partições: " << obj.feasiblePartitions.size()<<endl;
-    if (obj.feasiblePartitions.size() < 1) {
+    /* if (obj.feasiblePartitions.size() < 1) {
         return ((tourRed.getDist() < tourBlue.getDist()) ? tourRed : tourBlue);
-    }
+    } */
 
     // Step 6
     obj.setAllEntryAndExits();
@@ -69,9 +49,9 @@ Tour GPX2::crossover(Tour tourRed, Tour tourBlue)
         obj.fusion();
     }
 
-    if (obj.feasiblePartitions.size() < 1) {
+    /* if (obj.feasiblePartitions.size() < 1) {
         return ((tourRed.getDist() < tourBlue.getDist()) ? tourRed : tourBlue);
-    }
+    } */
 
     cout << endl << "Após a fusion"<<endl;
     cout << "Quantidade de partiçõesFeasible: " << obj.feasiblePartitions.size()<<endl;
@@ -84,6 +64,7 @@ Tour GPX2::crossover(Tour tourRed, Tour tourBlue)
     obj.buildOffspring();
 
     Tour t;
+    vector<string> offspring;
     if (obj.offspringChoosen == Parent::RED) {
         obj.removeGhosts(obj.red);
         // Step 9
@@ -97,30 +78,9 @@ Tour GPX2::crossover(Tour tourRed, Tour tourBlue)
     cout << "/* -------------- GPX ---------------- */" << endl << endl <<endl;
 
     // Deletar as coisas
-    return t;
+    //return t;
+    return(offspring);
 }
-
-
-// PASSOS DA ADAPTAÇÃO PARA O VRP
-
-// STEP 1 - Depot to DepotGhosts
-vector<string> GPX2::depotToDepotGhosts(Tour& t){
-    vector<string> ghostTour;
-    string depotGhostToken{this->depotGhostToken};
-    int depotId{Configs::customerMap.getDepotId()};
-
-    for(int customer : t.getRoute()){
-        if(customer == depotId){
-            ghostTour.push_back(std::to_string(customer)+depotGhostToken);
-            depotGhostToken+=this->depotGhostToken;
-        }else{
-            ghostTour.push_back(std::to_string(customer));
-        }
-    }
-    return(ghostTour);
-}
-
-// -----------------------------------------------------------------------------
 
 // STEP 1 - MAPEAR O TOUR
 GPX2::CustomerGraph GPX2::tourToMap(vector<string>& t)

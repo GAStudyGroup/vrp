@@ -31,7 +31,7 @@ RESULTADO: Sem a sobreposição o código apenas gerou 1 partição, sendo ela U
     blue.getRoute().push_back(3);
     blue.getRoute().push_back(4);
 
-/* Versão com sobreposição 0.1 */
+/* Versão com sobreposição 0.1  feita a mão*/
     red.getRoute().push_back(1);
     red.getRoute().push_back(2);
     red.getRoute().push_back(3);

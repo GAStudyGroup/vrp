@@ -58,7 +58,7 @@ Population newGeneration(Population& pop){
 
     for(unsigned i=0; i<Configs::popSize; i++){
         Tour offs;
-        offs = GPX2::crossover(pop.getPop()[i], pop.getPop()[(i+1)%Configs::popSize]);
+        //offs = GPX2::crossover(pop.getPop()[i], pop.getPop()[(i+1)%Configs::popSize]);
         newPop.addNewTour(offs);
         if(pop.getPop()[i].getDist() > offs.getDist() && pop.getPop()[(i+1)%Configs::popSize].getDist() > offs.getDist()){
             cout << "CROSSOVER " << pop.getPop()[i].getDist() << " " << pop.getPop()[(i+1)%Configs::popSize].getDist() << " " << offs.getDist() << " ";
