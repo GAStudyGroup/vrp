@@ -13,6 +13,8 @@ using std::vector;
 class Tour {
 
     friend ostream& operator<<(ostream&, Tour&);
+    friend bool operator==(Tour&,Tour&);
+    friend bool operator!=(Tour&,Tour&);
 
 public:
     Tour(); 

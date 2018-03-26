@@ -61,3 +61,18 @@ ostream& operator<<(ostream& output, Tour& t)
     output<<"\n";
     return (output);
 }
+
+bool operator==(Tour& t1,Tour& t2){
+    vector<int> routeT1= t1.getRoute();
+    vector<int> routeT2= t2.getRoute();
+    for (unsigned i=0; i<routeT1.size();i++){
+        if(routeT1[i]!=routeT2[i]){
+            return false;
+        }
+    }
+    return true;
+}
+bool operator!=(Tour& t1, Tour& t2){
+    return !(t1==t2);
+}
+
