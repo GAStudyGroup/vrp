@@ -7,70 +7,50 @@ vector<int> Mutation::evaluateMutation(vector<int> tour){
     pair<vector<int>,bool> result;
     vector<int> initial = tour;
     int it=0;
+    if(verifyList(tour)){
+        return tour;
+    }
     for (auto value: tour){
        result=firstMove(initial,it,value);
         if(result.second==true){
-            //cout<<"Melhorou primeiro mov"<<endl;
            return result.first;
         }
        result=secondMove(initial,it,value);
         if(result.second==true){
-            //cout<<"Melhorou segundo mov"<<endl;
             return result.first;
         }
         result=thirdMove(initial,it,value);
         if(result.second==true){
-            //cout<<"Melhorou terceiro mov"<<endl;
             return result.first;
         }
-
-        result=fourthMove(initial,it,value); //Funfando
+        result=fourthMove(initial,it,value);
         if(result.second==true){
-            //cout<<"Melhorou quarto mov"<<endl;
             return result.first;
-        }
-        
+        }        
         result=fifthMove(initial,it,value);
         if(result.second==true){
-            //cout<<"Melhor quinto mov"<<endl;
             return result.first;
         }
-        result=sixthMove(initial,it,value); //Funfando
+        result=sixthMove(initial,it,value); 
         if(result.second==true){
-            //cout<<"Melhor sexto mov"<<endl;
             return result.first;
         }
         result=seventhMove(initial,it,value);
         if(result.second==true){
-            //cout<<"Melhor seventh mov"<<endl;
            return result.first; 
         }
         result=eighthMove(initial,it,value);
         if(result.second==true){
-            //cout<<"Melhor seventh mov"<<endl;
            return result.first; 
         }
         result=ninethMove(initial,it,value);
         if(result.second==true){
-            //cout<<"Melhor seventh mov"<<endl;
            return result.first; 
         }
         it++;
-    }  
+    }
+    addList(tour);  
     return tour;
- /* pair<vector<int>,bool> result;
-    vector<int> initial = tour;
-    int it=0;
-    for (auto value: tour){
-        for(auto move: getMoves()){
-            result=move(initial,it,value);
-            if(result.second){
-                return result.first;
-            }
-        }
-        it++;
-    }  
-    return tour;*/
 }
 
     pair<vector<int>,bool> Mutation::firstMove(vector<int> tour,int it,int value){
@@ -351,4 +331,25 @@ pair<vector<int>,bool> Mutation::setInitialResult(vector<int> tour){
     result.first=tour;
     result.second=false;
     return result;
+}
+
+bool Mutation::verifyList(vector<int>& tour){
+    sortList();
+    Tour objTour= Tour(tour);
+    for(auto listTour : Configs::mutationMaxedList){
+        if(listTour==objTour){
+            return true;
+        }
+    }
+    return false;
+}
+void Mutation::addList(vector<int>& tour){
+    Configs::mutationMaxedList.push_back(Tour(tour));
+}
+
+void Mutation::sortList(){
+    std::sort(Configs::mutationMaxedList.begin(),Configs::mutationMaxedList.end(),
+    [](Tour& a, Tour& b){
+        return a.getFitness() > b.getFitness();
+    });
 }

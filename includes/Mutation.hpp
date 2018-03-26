@@ -41,10 +41,12 @@ private:
     pair<vector<int>,bool> basicFitnessEvaluation(Tour ,Tour);  
     //Creates a empty result pair
     pair<vector<int>,bool> setInitialResult(vector<int>);
-
     vector<int> doubleSwap(vector<int>,int currentValue,int iterationValue,
         int newValueU, int newValueX,int newValueV,int newValueY);
-//vector<pair<vector<int>,bool> (*)(vector<int>,int,int)> getMoves();
+    // Mutation improvements    
+    bool verifyList(vector<int>&);
+    void addList(vector<int>&);
+    void sortList();
 };
 
 
