@@ -1,7 +1,6 @@
 #include <ctime>
 #include <fstream>
 #include <sstream>
-
 #include "ImportData.hpp"
 #include "CustomerMap.hpp"
 #include "Configs.hpp"
@@ -16,10 +15,13 @@ using namespace std;
 
 
 void setParams(){
-ImportData file("libs/P-n16-k8.vrp");
-Configs::truckNumber=8;
+ImportData file("libs/X-n101-k25.vrp");
+Configs::truckNumber=25;
 Configs::customerMap=CustomerMap(file.getCustomerList(),file.getCapacity(),Configs::truckNumber);
-Configs::InitialPopmutIterations=10;
+Configs::InitialPopmutIterations=2;
+Configs::InitialPopMutRate=100;
+Configs::mutationRate=100;
+Configs::applyWorst=false;
 }
 
 Tour crossover(Tour&, Tour&);
@@ -28,10 +30,15 @@ bool validaMerda(vector<string>);
 /* int main(int argc, char* argv[]){
     //srand(time(NULL));
     setParams();
-    Population pop=popGen(30);
-    cout<<pop<<endl;
+    int start_s=clock();
+    Population pop=popGen(20);
+    //Insert code here
     initialPopApplyMutation(pop);
-    cout<<pop<<endl;
+    while(1){
+        pop=newGeneration(pop);
+    }
+    int stop_s=clock();
+    cout << "time: " << (stop_s-start_s)/double(CLOCKS_PER_SEC)*1000<< endl;
     return 0;
 }  */
 

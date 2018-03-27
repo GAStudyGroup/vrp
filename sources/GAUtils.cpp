@@ -55,17 +55,21 @@ void applyMutation(Population &pop){
 
 Population newGeneration(Population& pop){
     Population newPop;
-
-    for(unsigned i=0; i<Configs::popSize; i++){
+    int defaultSize= (Configs::customerMap.getMap().size() + Configs::truckNumber)-1;
+    for(unsigned i=0; i<pop.getPop().size(); i++){
         Tour offs;
-        //offs = GPX2::crossover(pop.getPop()[i], pop.getPop()[(i+1)%Configs::popSize]);
-        newPop.addNewTour(offs);
-        if(pop.getPop()[i].getDist() > offs.getDist() && pop.getPop()[(i+1)%Configs::popSize].getDist() > offs.getDist()){
-            cout << "CROSSOVER " << pop.getPop()[i].getDist() << " " << pop.getPop()[(i+1)%Configs::popSize].getDist() << " " << offs.getDist() << " ";
-
-            cout << "FITNESS " << pop.getPop()[i].getFitness() << " " << pop.getPop()[(i+1)%Configs::popSize].getFitness() << " " << offs.getFitness() << " "<< endl;
+        cout <<"Tour1 Entrando: "<<pop.getPop()[i]<<endl;
+        cout <<"Tour2 Entrando: "<<pop.getPop()[(i+1)%pop.getPop().size()]<<endl;
+        offs = GPX2::crossover(pop.getPop()[i], pop.getPop()[(i+1)%pop.getPop().size()]);
+        if(offs.getRoute().size()>defaultSize){
+            cout <<"merda"<<endl;
+            cout <<"Tour saída: " <<offs<<endl;
+            exit(-1);
         }
+        newPop.addNewTour(offs);
     }
-
+    newPop.sortPop();
+    applyMutation(newPop);
+    newPop.sortPop();
     return(newPop);
 }

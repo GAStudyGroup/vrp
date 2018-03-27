@@ -1,6 +1,7 @@
 #ifndef CONFIGS_HPP
 #define CONFIGS_HPP
 #include "CustomerMap.hpp"
+#include "Tour.hpp"
 namespace Configs {
     extern unsigned truckNumber;
     extern unsigned popSize;
@@ -19,6 +20,9 @@ namespace Configs {
     //Loop Mutation settings
     extern unsigned mutationRate;
     extern bool applyWorst; //true applies mutation to the best, false applies mutation to the worst
+
+    //Mutation improvements settings
+    extern vector<Tour> mutationMaxedList;
 }
 
 #endif

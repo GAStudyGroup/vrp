@@ -53,16 +53,32 @@ double Tour::getDist(){
 
 ostream& operator<<(ostream& output, Tour& t)
 { // Overload de operador para impressão da população
-    // output<<"Tour: \n";
+    //output<<"Tour: \n";
     for (int c : t.getRoute()) {
         output << c << endl;
     }
     output << "\nFitness: " << t.getFitness();
     output << "\nDistance: "<<t.getDist();
-    /* output << "\nCharges:";
+    output << "\nCharges:";
     for(auto charge:getAllCharges(t.getRoute())){
         output<<" "<<charge;
-    } */
+    }
+    output<< "\nSize:"<< t.getRoute().size();
     output<<"\n";
     return (output);
 }
+
+bool operator==(Tour& t1,Tour& t2){
+    vector<int> routeT1= t1.getRoute();
+    vector<int> routeT2= t2.getRoute();
+    for (unsigned i=0; i<routeT1.size();i++){
+        if(routeT1[i]!=routeT2[i]){
+            return false;
+        }
+    }
+    return true;
+}
+bool operator!=(Tour& t1, Tour& t2){
+    return !(t1==t2);
+}
+

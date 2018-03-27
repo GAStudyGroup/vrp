@@ -4,8 +4,7 @@
 vector<string> GPX2::crossover(vector<string> redT, vector<string> blueT)
 {
     GPX2 obj;
-
-    cout << endl << endl<<"/* -------------- GPX ---------------- */"<<endl;
+  
     // Step 1
     
     obj.red = obj.tourToMap(redT);
@@ -32,7 +31,7 @@ vector<string> GPX2::crossover(vector<string> redT, vector<string> blueT)
     } */
     // se houver menos de 2 partições o GPX não consegue recombina-las
 
-    cout << "Quantidade de partições: " << obj.feasiblePartitions.size()<<endl;
+    // cout << "Quantidade de partições: " << obj.feasiblePartitions.size()<<endl;
     if (obj.feasiblePartitions.size() < 1) {
         return ((getDistString(redT) < getDistString(blueT)) ? redT : blueT);
     } 
@@ -41,8 +40,8 @@ vector<string> GPX2::crossover(vector<string> redT, vector<string> blueT)
     obj.setAllEntryAndExits();
     obj.checkAllPartitions();
 
-    cout << "Quantidade de partiçõesFeasible: " << obj.feasiblePartitions.size()<<endl;
-    cout << "Quantidade de partiçõesUnfeasible: " << obj.unfeasiblePartitions.size()<<endl;
+    // cout << "Quantidade de partiçõesFeasible: " << obj.feasiblePartitions.size()<<endl;
+    // cout << "Quantidade de partiçõesUnfeasible: " << obj.unfeasiblePartitions.size()<<endl;
     // Fusion
     // Precisa ter mais de uma partição unfeasible para o fusion poder acontecer
     if (obj.unfeasiblePartitions.size() > 1) {
@@ -75,7 +74,7 @@ vector<string> GPX2::crossover(vector<string> redT, vector<string> blueT)
         offspring = obj.mapToTour(obj.blue);
     }
 
-    cout << "/* -------------- GPX ---------------- */" << endl << endl <<endl;
+    // cout << "/* -------------- GPX ---------------- */" << endl << endl <<endl;
 
     // Deletar as coisas
     //return t;
