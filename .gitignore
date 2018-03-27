@@ -33,4 +33,5 @@
 
 \.vscode/c_cpp_properties\.json
 bin/
+debuglogs/
 .directory

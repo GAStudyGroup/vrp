@@ -48,7 +48,7 @@ double Tour::getDist(){
 
 ostream& operator<<(ostream& output, Tour& t)
 { // Overload de operador para impressão da população
-    output<<"Tour: \n";
+    //output<<"Tour: \n";
     for (int c : t.getRoute()) {
         output << c << " ";
     }
@@ -58,6 +58,7 @@ ostream& operator<<(ostream& output, Tour& t)
     for(auto charge:getAllCharges(t.getRoute())){
         output<<" "<<charge;
     }
+    output<< "\nSize:"<< t.getRoute().size();
     output<<"\n";
     return (output);
 }
