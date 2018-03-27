@@ -38,17 +38,16 @@ bool validaMerda(vector<string>);
 int main(){  // MAIN PARA TESTES, NAO MEXER NESSA MERDA (elcio)
     srand(time(NULL));
     //ImportData file("testesManuaisDeValidação/mapa1.vrpTest");
-    ImportData file("libs/CMT5.vrp");
+    ImportData file("libs/P-n51-k10.vrp");
     Population pop; 
 
-    Configs::truckNumber=25;
+    Configs::truckNumber=6;
     Configs::customerMap=CustomerMap(file.getCustomerList(),file.getCapacity(),Configs::truckNumber);
 
     Tour red, blue;
 
-    while(1){
-        red = tourGen();
-        blue = tourGen();
+        // red = tourGen();
+        // blue = tourGen();
 
         /* blue.getRoute().push_back(1);
         blue.getRoute().push_back(5);
@@ -76,8 +75,16 @@ int main(){  // MAIN PARA TESTES, NAO MEXER NESSA MERDA (elcio)
         red.getRoute().push_back(2);
         red.getRoute().push_back(9); */
 
-        // readFile("tourRed", red);
-        // readFile("tourBlue", blue);
+        readFile("Tours/tour0_red", red);
+        readFile("Tours/tour0_blue", blue);
+
+        /* Arquivo atual saída 
+            0 3
+            1 4
+            2 1
+            3 0
+            4 2
+        */
 
         cout << "Red"<< " ";
         cout << red;
@@ -99,7 +106,6 @@ int main(){  // MAIN PARA TESTES, NAO MEXER NESSA MERDA (elcio)
             cout << "DEU MERDA NOS TOURS"<<endl;
             exit(0);
         }
-    }
 }
 
 Tour crossover(Tour& red, Tour& blue){
