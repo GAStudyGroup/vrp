@@ -1,0 +1,70 @@
+Tour1 Entrando: 1 1 13 14 6 1 16 7 12 1 15 3 1 8 11 1 5 9 1 10 4 1 2 
+Fitness: -0.108125
+Distance: 545.452
+Charges: 31 49 49 23 51 24 19
+Size:23
+
+Tour2 Entrando: 1 6 1 13 12 9 1 7 14 1 3 11 1 10 2 1 5 8 1 15 16 1 4 
+Fitness: -3.37953
+Distance: 586.734
+Charges: 11 49 37 38 27 38 30 16
+Size:23
+
+Tour1 Entrando: 1 6 1 13 12 9 1 7 14 1 3 11 1 10 2 1 5 8 1 15 16 1 4 
+Fitness: -3.37953
+Distance: 586.734
+Charges: 11 49 37 38 27 38 30 16
+Size:23
+
+Tour2 Entrando: 1 15 1 7 6 16 1 3 9 1 2 13 1 12 10 1 4 14 1 8 5 1 11 
+Fitness: -1.40778
+Distance: 578.903
+Charges: 19 53 58 33 15 22 38 8
+Size:23
+
+Tour1 Entrando: 1 15 1 7 6 16 1 3 9 1 2 13 1 12 10 1 4 14 1 8 5 1 11 
+Fitness: -1.40778
+Distance: 578.903
+Charges: 19 53 58 33 15 22 38 8
+Size:23
+
+Tour2 Entrando: 2 1 7 5 3 1 8 16 1 14 6 1 12 13 1 15 10 1 1 4 9 1 11 
+Fitness: 0.472609
+Distance: 498.164
+Charges: 27 84 26 17 21 27 44
+Size:23
+
+ASAN:DEADLYSIGNAL
+=================================================================
+==5333==ERROR: AddressSanitizer: SEGV on unknown address 0x000000000008 (pc 0x55d29bd6d843 bp 0x000000000000 sp 0x7ffc6a10b160 T0)
+==5333==The signal is caused by a READ memory access.
+==5333==Hint: address points to the zero page.
+    #0 0x55d29bd6d842 in std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >::vector(std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > const&) (/home/gabriel/Documentos/vrp-gpx/bin/GA+0x43842)
+    #1 0x55d29bdc365c in GPX2::DFS_outside(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::map<int, Partition*, std::less<int>, std::allocator<std::pair<int const, Partition*> > >, bool) (/home/gabriel/Documentos/vrp-gpx/bin/GA+0x9965c)
+    #2 0x55d29bdd8692 in GPX2::cleanInsideAccess() (/home/gabriel/Documentos/vrp-gpx/bin/GA+0xae692)
+    #3 0x55d29bddb74a in GPX2::crossover(Tour, Tour) (/home/gabriel/Documentos/vrp-gpx/bin/GA+0xb174a)
+    #4 0x55d29be3a2df in newGeneration(Population&) (/home/gabriel/Documentos/vrp-gpx/bin/GA+0x1102df)
+    #5 0x55d29bd34f79 in main (/home/gabriel/Documentos/vrp-gpx/bin/GA+0xaf79)
+    #6 0x7fb9704f1f49 in __libc_start_main (/usr/lib/libc.so.6+0x20f49)
+    #7 0x55d29bd359c9 in _start (/home/gabriel/Documentos/vrp-gpx/bin/GA+0xb9c9)
+
+AddressSanitizer can not provide additional info.
+SUMMARY: AddressSanitizer: SEGV (/home/gabriel/Documentos/vrp-gpx/bin/GA+0x43842) in std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >::vector(std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > const&)
+==5333==ABORTING
+ASAN:DEADLYSIGNAL
+=================================================================
+==5333==ERROR: AddressSanitizer: SEGV on unknown address 0x000000000008 (pc 0x55d29bd6d843 bp 0x000000000000 sp 0x7ffc6a10b160 T0)
+==5333==The signal is caused by a READ memory access.
+==5333==Hint: address points to the zero page.
+    #0 0x55d29bd6d842 in std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >::vector(std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > const&) (/home/gabriel/Documentos/vrp-gpx/bin/GA+0x43842)
+    #1 0x55d29bdc365c in GPX2::DFS_outside(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::map<int, Partition*, std::less<int>, std::allocator<std::pair<int const, Partition*> > >, bool) (/home/gabriel/Documentos/vrp-gpx/bin/GA+0x9965c)
+    #2 0x55d29bdd8692 in GPX2::cleanInsideAccess() (/home/gabriel/Documentos/vrp-gpx/bin/GA+0xae692)
+    #3 0x55d29bddb74a in GPX2::crossover(Tour, Tour) (/home/gabriel/Documentos/vrp-gpx/bin/GA+0xb174a)
+    #4 0x55d29be3a2df in newGeneration(Population&) (/home/gabriel/Documentos/vrp-gpx/bin/GA+0x1102df)
+    #5 0x55d29bd34f79 in main (/home/gabriel/Documentos/vrp-gpx/bin/GA+0xaf79)
+    #6 0x7fb9704f1f49 in __libc_start_main (/usr/lib/libc.so.6+0x20f49)
+    #7 0x55d29bd359c9 in _start (/home/gabriel/Documentos/vrp-gpx/bin/GA+0xb9c9)
+
+AddressSanitizer can not provide additional info.
+SUMMARY: AddressSanitizer: SEGV (/home/gabriel/Documentos/vrp-gpx/bin/GA+0x43842) in std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >::vector(std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > const&)
+==5333==ABORTING
