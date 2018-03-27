@@ -4,7 +4,7 @@
 #include "Configs.hpp"
 #include "TourUtils.hpp"
 
-
+// RETIRAR DEPOIS
 bool validaMerdaChoosen(vector<pair<int,int>> merda){
 
     vector<int> reds;
@@ -28,25 +28,19 @@ HamiltonianCycle::parentsHamiltonian HamiltonianCycle::toHamiltonianCycle(Tour r
     obj.correlationDuplicate = (red.getRoute().size()*0.2);
     obj.correlationIn_Out = obj.correlationDuplicate*3; 
 
-    cout << "EXPLODE"<<endl;
     obj.redSubs = explodeSubTours(red.getRoute(), Configs::customerMap.getDepotId());
     obj.blueSubs = explodeSubTours(blue.getRoute(), Configs::customerMap.getDepotId());
 
-    cout << "GENERATE RANKING"<<endl;
     obj.generateRanking();
 
-    cout << "TOURS_TO_MAP"<<endl;
     obj.choosenToursToMap();
 
-
     std::sort(obj.choosen.begin(), obj.choosen.end(), [](auto &left, auto &right){ return(left.first < right.first); });
-
 
     cout << "FINAL CHOOSEN" << endl;
     for(auto it : obj.choosen){
         cout << it.first << " " << it.second << endl;
     }
-
 
     if(!validaMerdaChoosen(obj.choosen)){
         cout << "DEU MERDA NA CHOOSEN"<<endl;
@@ -58,16 +52,6 @@ HamiltonianCycle::parentsHamiltonian HamiltonianCycle::toHamiltonianCycle(Tour r
     newTours.first = obj.createDepotCopies(newTours.first);
     newTours.second = obj.createDepotCopies(newTours.second);
 
-    cout << "NewRedTour :";
-    for(auto it : newTours.first){
-        cout << it << " ";
-    }
-    cout << endl;
-    cout << "NewBlueTour :";
-    for(auto it : newTours.second){
-        cout << it << " ";
-    }
-    cout << endl;
     return(newTours);
 }
 
@@ -106,9 +90,6 @@ void HamiltonianCycle::generateRanking(){
                }
                cout << endl;
             }
-            cout << "r " << red << " b " << blue << " " << ranking[red].size()<<endl;
-            cout << "SCORE " << ranking[red][blue].score << endl;
-            cout << "N_InOut " << ranking[red][blue].numberInOut << endl;
         }
     }
 }
@@ -130,7 +111,6 @@ void HamiltonianCycle::choosenToursToMap(){
     }
 
     std::sort(resolveScore.begin(), resolveScore.end(), [](auto &left, auto &right){ return(left.score > right.score); });
-
 
     cout << "ResolveScore"<<endl;
     for(auto it : resolveScore){

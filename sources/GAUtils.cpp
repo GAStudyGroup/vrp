@@ -2,6 +2,8 @@
 #include "Configs.hpp"
 #include "Mutation.hpp"
 #include "GPX2.hpp"
+#include "HamiltonianCycle.hpp"
+
 vector<int> tourGen(){
     vector<int> tour;
     int depotId=Configs::customerMap.getDepotId();
@@ -53,23 +55,51 @@ void applyMutation(Population &pop){
     }
 }
 
-Population newGeneration(Population& pop){
+/* Population newGeneration(Population& pop){
     Population newPop;
     int defaultSize= (Configs::customerMap.getMap().size() + Configs::truckNumber)-1;
     for(unsigned i=0; i<pop.getPop().size(); i++){
         Tour offs;
         cout <<"Tour1 Entrando: "<<pop.getPop()[i]<<endl;
         cout <<"Tour2 Entrando: "<<pop.getPop()[(i+1)%pop.getPop().size()]<<endl;
-        offs = GPX2::crossover(pop.getPop()[i], pop.getPop()[(i+1)%pop.getPop().size()]);
-        if(offs.getRoute().size()>defaultSize){
-            cout <<"merda"<<endl;
-            cout <<"Tour saída: " <<offs<<endl;
-            exit(-1);
-        }
-        newPop.addNewTour(offs);
+        // offs = GPX2::crossover(pop.getPop()[i], pop.getPop()[(i+1)%pop.getPop().size()]);
+        // if(offs.getRoute().size()>defaultSize){
+        //     cout <<"merda"<<endl;
+        //     cout <<"Tour saída: " <<offs<<endl;
+        //     exit(-1);
+        // }
+        // newPop.addNewTour(offs);
     }
     newPop.sortPop();
     applyMutation(newPop);
     newPop.sortPop();
     return(newPop);
+} */
+
+Population newGeneration(Population& pop){
+    int defaultSize{Configs::customerMap.getMap().size() + Configs::truckNumber -1};
+    
+    Population newPop{crossoverPopulation(pop)};
+
+    newPop.sortPop();
+    applyMutation(newPop);
+
+    return(newPop);
+}
+
+Population crossoverPopulation(Population& pop){
+    unsigned size{pop.getPop().size()};
+    Population aux;
+
+    for(unsigned i=0; i<size; i++){
+        Tour auxT{crossover(pop.getPop()[i], pop.getPop()[(i+1)%size])};
+        aux.addNewTour(auxT);
+    }
+    return(aux);
+}
+
+Tour crossover(Tour& red, Tour& blue){
+    HamiltonianCycle::parentsHamiltonian parents{HamiltonianCycle::toHamiltonianCycle(red, blue)};
+    Tour offspring{GPX2::crossover(parents.first, parents.second)};
+    return(offspring);
 }

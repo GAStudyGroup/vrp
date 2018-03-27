@@ -484,11 +484,12 @@ void GPX2::buildOffspring()
 
 void GPX2::removeGhosts(CustomerGraph& graph)
 {
-    for (auto node : graph) {
-        size_t index = node.first.find(ghostToken);
+   for(CustomerGraph::iterator node=graph.begin(); node!=graph.end(); ){
+       
+        size_t index = (*node).first.find(ghostToken);
         if (index != string::npos) {
             //pegar o id do nó sem o token de ghost
-            string id = node.first;
+            string id = (*node).first;
             id.erase(index, ghostToken.size());
 
             //pegar os dois nós que estão ligados ao nó normal e ao ghost iterando pelos edges do nó normal
@@ -497,7 +498,7 @@ void GPX2::removeGhosts(CustomerGraph& graph)
             CustomerNode::node prev, next;
             for (unsigned i = 0; i < edges.size(); i++) {
                 //se encontrar a edge ligada ao nó ghost
-                if (!edges[i].first.compare(node.first)) {
+                if (!edges[i].first.compare((*node).first)) {
                     edgeToDelete = i;
                 } else {
                     prev = edges[i];
@@ -505,7 +506,7 @@ void GPX2::removeGhosts(CustomerGraph& graph)
             }
             graph[id]->deleteEdge(edgeToDelete);
 
-            edges = graph[node.first]->getEdges();
+            edges = graph[(*node).first]->getEdges();
 
             for (unsigned i = 0; i < edges.size(); i++) {
                 //encontrar o nó que não é o normal na lista de edges
@@ -522,7 +523,7 @@ void GPX2::removeGhosts(CustomerGraph& graph)
             edges = graph[next.first]->getEdges();
             for (unsigned i = 0; i < edges.size(); i++) {
                 //encontrou a edge que referencia ao ghost
-                if (!edges[i].first.compare(node.first)) {
+                if (!edges[i].first.compare((*node).first)) {
                     edgeToDelete = i;
                     break;
                 }
@@ -531,8 +532,11 @@ void GPX2::removeGhosts(CustomerGraph& graph)
             graph[next.first]->addEdge(make_pair(id, next.second));
 
             //deletar o nó ghost
-            delete graph[node.first];
-            graph.erase(node.first);
+            
+            delete graph[(*node).first];
+            node = graph.erase(node);
+        }else{
+            node++;
         }
     }
 }
