@@ -12,6 +12,7 @@ using std::string;
 using std::pair;
 using std::vector;
 using std::map;
+using std::find;
 /* 
     Adaptação para o VRP
 
@@ -30,6 +31,32 @@ namespace HamiltonianCycle {
         :score(score), 
         numberInOut(numberInOut){};
     };
+
+    using ResolveScore = struct ResolveScore {
+        int posRed;
+        int posBlue;
+        int score;
+
+        ResolveScore(int posRed, int posBlue, int score)
+        :posRed(posRed)
+        ,posBlue(posBlue)
+        ,score(score){}
+    };
+
+    using SecondResolve = struct SecondResolve {
+        int posRed;
+        int posBlue;
+        int subRed;
+        int subBlue;
+        int score;
+
+        SecondResolve(int posRed, int posBlue, int subRed , int subBlue,int score)
+        :posRed(posRed)
+        ,posBlue(posBlue)
+        ,subRed(subRed)
+        ,subBlue(subBlue)
+        ,score(score){}
+    };
     // Id of main subtour (using Red) and all correlations of all subtours blue
     using correlationMap = map<int, vector<Correlation>>;
     using parentsHamiltonian = pair<vector<string>, vector<string>>;
@@ -40,7 +67,9 @@ namespace HamiltonianCycle {
 
     choosenSubs mapDepots(subTours&, subTours&);
 
-    choosenSubs validateChoosenSubs(choosenSubs&);
+    choosenSubs validateChoosenSubs(choosenSubs);
+
+    choosenSubs fillWithSecondOptions(choosenSubs, const unsigned);
 
     parentsHamiltonian rebuildTours(subTours&, subTours&, choosenSubs&);
 
