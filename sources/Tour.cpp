@@ -16,6 +16,11 @@ Tour::Tour(vector<Customer> route){
         this->route.push_back(c.getId());
     }
 }
+Tour::Tour(vector<string> route){
+    for(string c : route){
+        this->route.push_back(stoi(c));
+    }
+}
 
 void Tour::setRoute(vector<int> route)
 {
@@ -50,7 +55,7 @@ ostream& operator<<(ostream& output, Tour& t)
 { // Overload de operador para impressão da população
     //output<<"Tour: \n";
     for (int c : t.getRoute()) {
-        output << c << " ";
+        output << c << endl;
     }
     output << "\nFitness: " << t.getFitness();
     output << "\nDistance: "<<t.getDist();
