@@ -4,6 +4,25 @@
 #include "Configs.hpp"
 #include "TourUtils.hpp"
 
+
+bool validaMerdaChoosen(vector<pair<int,int>> merda){
+
+    vector<int> reds;
+    vector<int> blues;
+
+    for(auto it : merda){
+        reds.push_back(it.first);
+        blues.push_back(it.second);
+    }
+    std::sort(reds.begin(), reds.end());
+    std::sort(blues.begin(), blues.end());
+
+    bool redB{std::adjacent_find(reds.begin(), reds.end())==reds.end()};
+    bool blueB{std::adjacent_find(blues.begin(), blues.end())==blues.end()};
+
+    return(redB && blueB);
+}
+
 HamiltonianCycle::parentsHamiltonian HamiltonianCycle::toHamiltonianCycle(Tour red, Tour blue){
     HamiltonianCycle obj;
     obj.correlationDuplicate = (red.getRoute().size()*0.2);
@@ -29,10 +48,10 @@ HamiltonianCycle::parentsHamiltonian HamiltonianCycle::toHamiltonianCycle(Tour r
     }
 
 
-    /* if(!validaMerdaChoosen(choosen)){
+    if(!validaMerdaChoosen(obj.choosen)){
         cout << "DEU MERDA NA CHOOSEN"<<endl;
         exit(0);
-    } */
+    }
 
     parentsHamiltonian newTours = obj.rebuildTours();
 
