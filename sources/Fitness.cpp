@@ -61,7 +61,7 @@ double calcPenalty(vector<int>& tour){
     double alpha=calcAlpha();
     double rate=((double)Configs::currentIteration/(double)Configs::maxIterations);
     double penalty=rate*alpha*innerSum;
-    return penalty;
+    return 1000*penalty;
 }
 
 double advancedFitness(vector<int>& tour){

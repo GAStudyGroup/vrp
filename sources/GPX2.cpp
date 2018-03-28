@@ -1,8 +1,12 @@
 #include "GPX2.hpp"
 #include "Configs.hpp"
-
 vector<string> GPX2::crossover(vector<string> redT, vector<string> blueT)
 {
+    cout<< "---------------Entrando GPX------------------------"<<endl;
+    Tour red=Tour(redT);
+    Tour blue=Tour(blueT);
+    cout<< "Tour Red: "<<red<<endl;
+    cout<<"Tour Blue: "<<blue<<endl;
     GPX2 obj;
   
     // Step 1
@@ -48,9 +52,9 @@ vector<string> GPX2::crossover(vector<string> redT, vector<string> blueT)
         obj.fusion();
     }
 
-    cout << endl << "Após a fusion"<<endl;
-    cout << "Quantidade de partiçõesFeasible: " << obj.feasiblePartitions.size()<<endl;
-    cout << "Quantidade de partiçõesUnfeasible: " << obj.unfeasiblePartitions.size()<<endl;
+    // cout << endl << "Após a fusion"<<endl;
+    // cout << "Quantidade de partiçõesFeasible: " << obj.feasiblePartitions.size()<<endl;
+    // cout << "Quantidade de partiçõesUnfeasible: " << obj.unfeasiblePartitions.size()<<endl;
 
     if (obj.feasiblePartitions.size() < 1) {
         return ((getDistString(redT) < getDistString(blueT)) ? redT : blueT);

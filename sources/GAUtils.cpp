@@ -41,11 +41,12 @@ void initialPopApplyMutation(Population &pop){
             pop.getPop()[i]=Tour(Mutation().evaluateMutation((pop.getPop()[i].getRoute())));
         }
     }
+    pop.sortPop();
 }
 void applyMutation(Population &pop){
     double Rate=Configs::mutationRate/100;
     if(Configs::applyWorst){
-        for(unsigned i=pop.getPop().size();i>pop.getPop().size()*Rate;i--){
+        for(unsigned i=pop.getPop().size()-1;i>(pop.getPop().size()-(pop.getPop().size()*Rate));i--){
             pop.getPop()[i]=Tour(Mutation().evaluateMutation(pop.getPop()[i].getRoute()));
         }
     }else{
@@ -83,7 +84,7 @@ Population newGeneration(Population& pop){
 
     newPop.sortPop();
     applyMutation(newPop);
-
+    newPop.sortPop();
     return(newPop);
 }
 
@@ -99,6 +100,9 @@ Population crossoverPopulation(Population& pop){
 }
 
 Tour crossover(Tour& red, Tour& blue){
+    cout<<"-------------------Entrando hamiltonian------------------"<<endl;
+    cout<<"Tour red:"<<red<<endl;
+    cout<<"Tour blue:"<<blue<<endl;
     HamiltonianCycle::parentsHamiltonian parents{HamiltonianCycle::toHamiltonianCycle(red, blue)};
     Tour offspring{GPX2::crossover(parents.first, parents.second)};
     return(offspring);

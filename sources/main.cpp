@@ -11,22 +11,23 @@
 using namespace std;
 
 const unsigned limitGen{300};
-const unsigned popSize{30};
+const unsigned popSize{100};
 
 void startGA();
 
 void setParams(){
-    srand(time(NULL));
-    ImportData file("libs/more-libs/E-n101-k14.vrp");
-    Configs::truckNumber=14;
+    ImportData file("libs/more-libs/E-n33-k4.vrp");
+    Configs::truckNumber=4;
     Configs::customerMap=CustomerMap(file.getCustomerList(),file.getCapacity(),Configs::truckNumber)    ;
-    Configs::InitialPopmutIterations=2;
-    Configs::InitialPopMutRate=100;
+    Configs::InitialPopmutIterations=100;
+    Configs::InitialPopMutRate=70;
     Configs::mutationRate=100;
-    Configs::applyWorst=false;
+    Configs::applyWorst=true;
+    Configs::fitnessMode=2;
 }
 
 int main(){
+    srand(time(NULL));
     setParams();
     int start_s=clock();
 
@@ -43,16 +44,20 @@ void startGA(){
     cout << "Generating first population"<<endl;
     Population pop{popGen(popSize)};
     initialPopApplyMutation(pop);
+    Configs::initialBest=pop.getPop()[0].getDist();
 
     cout << "Starting GA"<<endl;
     cout << pop << endl;
 
     while(generation < limitGen){
+        Configs::currentIteration=generation;
+        cout << "Geração: "<< generation<<endl;
         pop = newGeneration(pop);
+        // cout << pop.getPop()[0]<<endl;
         generation++;
 
-        cout << "Generation " << generation<<endl;
-        cout << "Population smaller distance: " << smallerDistance(pop)<<endl;
+        // cout << "Generation " << generation<<endl;
+        // cout << "Population smaller distance: " << smallerDistance(pop)<<endl;
     }
 
     cout << pop << endl;

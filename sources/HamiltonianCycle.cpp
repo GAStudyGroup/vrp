@@ -31,7 +31,7 @@ HamiltonianCycle::parentsHamiltonian HamiltonianCycle::toHamiltonianCycle(Tour r
     obj.redSubs = explodeSubTours(red.getRoute(), Configs::customerMap.getDepotId());
     obj.blueSubs = explodeSubTours(blue.getRoute(), Configs::customerMap.getDepotId());
 
-    obj.generateRanking();
+    obj.generateRanking();  
 
     obj.choosenToursToMap();
 

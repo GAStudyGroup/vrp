@@ -53,15 +53,23 @@ double Tour::getDist(){
 
 ostream& operator<<(ostream& output, Tour& t)
 { // Overload de operador para impressão da população
-    //output<<"Tour: \n";
+    output<<"Tour: \n";
     for (int c : t.getRoute()) {
-        output << c << endl;
+        output << c << " ";
     }
-    output << "\nFitness: " << t.getFitness();
-    output << "\nDistance: "<<t.getDist();
-    output << "\nCharges:";
-    for(auto charge:getAllCharges(t.getRoute())){
-        output<<" "<<charge;
+    // output << "\nFitness: " << t.getFitness();
+    // output << "\nDistance: "<<t.getDist();
+    // output << "\nCharges:";
+    // for(auto charge:getAllCharges(t.getRoute())){
+    //     output<<" "<<charge;
+    // }
+    output<<"\nSubtours: \n";
+    for(auto subtour: explodeSubTours(t.getRoute(),Configs::customerMap.getDepotId())){
+        output<< "| ";
+        for(auto customer:subtour){
+            output<< customer <<" ";
+        }
+        output<<"| \n";
     }
     output<< "\nSize:"<< t.getRoute().size();
     output<<"\n";
