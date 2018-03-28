@@ -37,10 +37,10 @@ HamiltonianCycle::parentsHamiltonian HamiltonianCycle::toHamiltonianCycle(Tour r
 
     std::sort(obj.choosen.begin(), obj.choosen.end(), [](auto &left, auto &right){ return(left.first < right.first); });
 
-    cout << "FINAL CHOOSEN" << endl;
+/*     cout << "FINAL CHOOSEN" << endl;
     for(auto it : obj.choosen){
         cout << it.first << " " << it.second << endl;
-    }
+    } */
 
     if(!validaMerdaChoosen(obj.choosen)){
         cout << "DEU MERDA NA CHOOSEN"<<endl;
@@ -65,14 +65,14 @@ void HamiltonianCycle::generateRanking(){
             unsigned redInsideSize{redSubs[red].size()};
             unsigned blueInsideSize{redSubs[blue].size()};
 
-            cout << "SubRed: ";
+            /* cout << "SubRed: ";
             for(int c : redSubs[red]){
                 cout << c <<" ";
             }cout << endl;
             cout << "SubBlue: ";
             for(int c : blueSubs[blue]){
                 cout << c <<" ";
-            }cout << endl;
+            }cout << endl; */
 
             for(unsigned redElement=0; redElement<redInsideSize; redElement++){
                 //cout << "Procurar " << redSubs[red][redElement] << " ";
@@ -88,7 +88,7 @@ void HamiltonianCycle::generateRanking(){
                     }
                     ranking[red][blue].score+=correlationDuplicate;
                }
-               cout << endl;
+               //cout << endl;
             }
         }
     }
@@ -101,9 +101,7 @@ void HamiltonianCycle::choosenToursToMap(){
         redNotChoosen.push_back(i);
     }
 
-    cout << "Ranking size " << ranking.size() << endl;
     blueNotChoosen = redNotChoosen;
-    cout << "Antes do print"<<endl;
     for(int red : redNotChoosen){
         for(int blue : blueNotChoosen){
             resolveScore.push_back(ResolveScore(red, blue, ranking[red][blue].score));
@@ -111,11 +109,6 @@ void HamiltonianCycle::choosenToursToMap(){
     }
 
     std::sort(resolveScore.begin(), resolveScore.end(), [](auto &left, auto &right){ return(left.score > right.score); });
-
-    cout << "ResolveScore"<<endl;
-    for(auto it : resolveScore){
-        cout << it.subRed << " " << it.subBlue << " Score " << it.score<<endl;
-    }
 
     for(auto it : resolveScore){
         vector<int>::iterator findRedNotChoosen{find(redNotChoosen.begin(), redNotChoosen.end(), it.subRed)};

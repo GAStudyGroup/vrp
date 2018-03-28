@@ -35,4 +35,6 @@ vector<int> getAllCharges(vector<int>);
 // Utility for GPX
 double getDistString(vector<string>&);
 
+double smallerDistance(Population&);
+
 #endif
