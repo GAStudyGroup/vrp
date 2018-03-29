@@ -100,10 +100,33 @@ Population crossoverPopulation(Population& pop){
 }
 
 Tour crossover(Tour& red, Tour& blue){
+    if(!Mutation().validateTour(red.getRoute(),Configs::truckNumber,Configs::customerMap.getDepotId())){
+        cout <<"merda antes da hamiltonian";
+        exit(-1);
+    }
+    if(!Mutation().validateTour(blue.getRoute(),Configs::truckNumber,Configs::customerMap.getDepotId())){
+        cout <<"merda antes da hamiltonian";
+        exit(-1);
+    }
     cout<<"-------------------Entrando hamiltonian------------------"<<endl;
     cout<<"Tour red:"<<red<<endl;
     cout<<"Tour blue:"<<blue<<endl;
+
     HamiltonianCycle::parentsHamiltonian parents{HamiltonianCycle::toHamiltonianCycle(red, blue)};
+    if(!Mutation().validateTour(Tour(parents.first).getRoute(),Configs::truckNumber,Configs::customerMap.getDepotId())){
+        cout <<"merda depois da hamiltonian";
+        exit(-1);
+    }
+    if(!Mutation().validateTour(Tour(parents.second).getRoute(),Configs::truckNumber,Configs::customerMap.getDepotId())){
+        cout <<"merda depois da hamiltonian";
+        exit(-1);
+    }
     Tour offspring{GPX2::crossover(parents.first, parents.second)};
+    
+    if(!Mutation().validateTour(offspring.getRoute(),Configs::truckNumber,Configs::customerMap.getDepotId())){
+        cout <<"merda depois do gpx";
+        exit(-1);
+    }
+    
     return(offspring);
 }
