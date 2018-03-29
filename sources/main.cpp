@@ -14,10 +14,13 @@ const unsigned limitGen{300};
 const unsigned popSize{100};
 
 void startGA();
+Tour readFile(string);
+void debugGA();
 
 void setParams(){
-    ImportData file("libs/more-libs/E-n33-k4.vrp");
-    Configs::truckNumber=4;
+    //ImportData file("libs/more-libs/E-n33-k4.vrp");
+    ImportData file("libs/test-libs/CMT5.vrp");
+    Configs::truckNumber=10;
     Configs::customerMap=CustomerMap(file.getCustomerList(),file.getCapacity(),Configs::truckNumber)    ;
     Configs::InitialPopmutIterations=100;
     Configs::InitialPopMutRate=70;
@@ -31,7 +34,8 @@ int main(){
     setParams();
     int start_s=clock();
 
-    startGA();
+    //startGA();
+    debugGA();
 
     int stop_s=clock();
     cout << "time: " << (stop_s-start_s)/double(CLOCKS_PER_SEC)*1000<< endl;
@@ -61,4 +65,28 @@ void startGA(){
     }
 
     cout << pop << endl;
+}
+
+void debugGA(){
+    Tour red, blue;
+
+    red=readFile("Debug/DFS_crash/tourRed2.tour");
+    blue=readFile("Debug/DFS_crash/tourBlue2.tour");
+
+    Tour offs = crossover(red, blue);
+
+    cout << offs << endl;
+}
+
+Tour readFile(string name){
+    ifstream file;
+
+    file.open(name);
+
+    string customer;
+    Tour t;
+    while(file >> customer){
+        t.getRoute().push_back(stoi(customer));
+    }
+    return(t);
 }

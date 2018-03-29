@@ -129,18 +129,71 @@ void HamiltonianCycle::choosenToursToMap(){
 HamiltonianCycle::parentsHamiltonian HamiltonianCycle::rebuildTours(){
     int depotId{Configs::customerMap.getDepotId()};
     parentsHamiltonian tours;
+    vector<int> alreadyRebuildRed, alreadyRebuildBlue;
+    unsigned limitRed{redSubs.size()};
+    unsigned limitBlue{blueSubs.size()};
+    unsigned choosenSize{choosen.size()};
 
-    for(auto itChoosen : choosen){
-        tours.first.push_back(std::to_string(depotId));
-        tours.second.push_back(std::to_string(depotId));
+    for(unsigned i=0; i<choosenSize; i++){
+        if(i<limitRed){
+            tours.first.push_back(std::to_string(depotId));
+        }
+        if(i<limitBlue){
+            tours.second.push_back(std::to_string(depotId));
+        }
 
-        for(int redC : redSubs[itChoosen.first]){
+        alreadyRebuildRed.push_back(choosen[i].first);
+        for(int redC : redSubs[choosen[i].first]){
             tours.first.push_back(std::to_string(redC));
         }
-        for(int blueC : blueSubs[itChoosen.second]){
+
+        alreadyRebuildBlue.push_back(choosen[i].second);
+        for(int blueC : blueSubs[choosen[i].second]){
             tours.second.push_back(std::to_string(blueC));
         }
     }
+
+    std::sort(alreadyRebuildRed.begin(), alreadyRebuildRed.end(), [](int left, int right) { return(left>right); });
+    std::sort(alreadyRebuildBlue.begin(), alreadyRebuildBlue.end(), [](int left, int right) { return(left>right); });
+
+    for(unsigned i=0; i<alreadyRebuildRed.size(); i++){
+        redSubs.erase(redSubs.begin()+alreadyRebuildRed[i]);
+        blueSubs.erase(blueSubs.begin()+alreadyRebuildBlue[i]);
+    }
+
+    if(!redSubs.empty()){
+        /* vector<string>::iterator it = find(tours.second.begin(), tours.second.end(), std::to_string(depotId));
+        tours.second.emplace(it, std::to_string(depotId)); */
+        tours.second.push_back(std::to_string(depotId));
+        //tours.second.emplace(tours.second.begin(), std::to_string(depotId));
+        for(vector<int> red : redSubs){
+            tours.first.push_back(std::to_string(depotId));
+            for(int redC : red){
+                tours.first.push_back(std::to_string(redC));
+            }
+        }
+    }
+    if(!blueSubs.empty()){
+        //vector<string>::iterator it = find(tours.second.begin(), tours.second.end(), std::to_string(depotId));
+        //tours.first.emplace(it, std::to_string(depotId));
+        tours.first.push_back(std::to_string(depotId));
+        //tours.first.emplace(tours.first.begin(), std::to_string(depotId));
+        for(vector<int> blue : blueSubs){
+            tours.second.push_back(std::to_string(depotId));
+            for(int blueC : blue){
+                tours.second.push_back(std::to_string(blueC));
+            }
+        }
+    }
+
+    /* if(tours.first.size() != tours.second.size()){
+        if(tours.first.size() > tours.second.size()){
+            tours.second.emplace(tours.second.begin(), std::to_string(depotId));
+        }else{
+            tours.first.emplace(tours.first.begin(), std::to_string(depotId));
+        }
+    } */
+
     return(tours);
 }
 
