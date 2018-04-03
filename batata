@@ -1,0 +1,954 @@
+CHAMADA CROSS
+RED
+Tour: 
+82
+56
+1
+1
+85
+4
+59
+48
+1
+47
+2
+38
+79
+1
+77
+31
+55
+21
+1
+95
+22
+12
+19
+1
+52
+15
+76
+83
+1
+33
+42
+72
+3
+1
+94
+90
+44
+28
+1
+54
+88
+60
+73
+1
+32
+100
+9
+92
+1
+37
+14
+24
+62
+1
+5
+36
+29
+41
+1
+17
+6
+26
+10
+1
+81
+97
+96
+66
+1
+69
+50
+11
+7
+1
+23
+8
+99
+89
+43
+46
+1
+58
+65
+61
+63
+1
+75
+51
+67
+13
+1
+71
+78
+39
+35
+1
+45
+80
+57
+27
+1
+25
+40
+49
+91
+1
+68
+93
+74
+64
+1
+53
+84
+18
+30
+1
+87
+34
+20
+101
+1
+16
+86
+70
+98
+
+Fitness: 0.163804
+Distance: 61048.6
+Size:125
+
+BLUE
+Tour: 
+77
+31
+1
+47
+2
+38
+79
+1
+23
+8
+99
+89
+43
+46
+1
+82
+56
+1
+95
+22
+12
+19
+1
+94
+90
+44
+28
+1
+69
+50
+11
+7
+1
+81
+97
+96
+66
+1
+17
+6
+26
+10
+1
+54
+88
+60
+73
+1
+45
+80
+57
+27
+1
+5
+36
+29
+41
+1
+32
+100
+9
+92
+1
+58
+65
+61
+63
+1
+53
+84
+18
+30
+1
+85
+4
+59
+48
+1
+16
+86
+70
+98
+1
+87
+34
+20
+101
+1
+37
+14
+24
+62
+1
+71
+78
+39
+35
+1
+25
+40
+49
+91
+1
+68
+93
+74
+64
+1
+75
+51
+67
+13
+1
+33
+42
+72
+3
+1
+52
+15
+76
+83
+1
+55
+21
+
+Fitness: 0.163142
+Distance: 61296.3
+Size:125
+
+-------------------Entrando hamiltonian------------------
+---------------Entrando GPX------------------------
+red: 1' 16 86 70 98 82 56 1'' 85 4 59 48 1''' 47 2 38 79 1'''' 77 31 55 21 1''''' 95 22 12 19 1'''''' 52 15 76 83 1''''''' 33 42 72 3 1'''''''' 94 90 44 28 1''''''''' 54 88 60 73 1'''''''''' 32 100 9 92 1''''''''''' 37 14 24 62 1'''''''''''' 5 36 29 41 1''''''''''''' 17 6 26 10 1'''''''''''''' 81 97 96 66 1''''''''''''''' 69 50 11 7 1'''''''''''''''' 23 8 99 89 43 46 1''''''''''''''''' 58 65 61 63 1'''''''''''''''''' 75 51 67 13 1''''''''''''''''''' 71 78 39 35 1'''''''''''''''''''' 45 80 57 27 1''''''''''''''''''''' 25 40 49 91 1'''''''''''''''''''''' 68 93 74 64 1''''''''''''''''''''''' 53 84 18 30 1'''''''''''''''''''''''' 87 34 20 101 1''''''''''''''''''''''''' 
+
+blue: 1' 16 86 70 98 1'' 85 4 59 48 1''' 47 2 38 79 1'''' 82 56 1''''' 95 22 12 19 1'''''' 55 21 77 31 1''''''' 33 42 72 3 1'''''''' 94 90 44 28 1''''''''' 54 88 60 73 1'''''''''' 32 100 9 92 1''''''''''' 37 14 24 62 1'''''''''''' 5 36 29 41 1''''''''''''' 17 6 26 10 1'''''''''''''' 81 97 96 66 1''''''''''''''' 69 50 11 7 1'''''''''''''''' 23 8 99 89 43 46 1''''''''''''''''' 58 65 61 63 1'''''''''''''''''' 75 51 67 13 1''''''''''''''''''' 71 78 39 35 1'''''''''''''''''''' 45 80 57 27 1''''''''''''''''''''' 25 40 49 91 1'''''''''''''''''''''' 68 93 74 64 1''''''''''''''''''''''' 53 84 18 30 1'''''''''''''''''''''''' 87 34 20 101 1''''''''''''''''''''''''' 52 15 76 83 
+DFS Outside
+Colocou dois caminhos
+DFS Outside
+IF
+DFS Outside
+DFS Outside
+DFS Outside
+DFS Outside
+DFS Outside
+Colocou dois caminhos
+IF
+DFS Outside
+IF
+DFS Outside
+IF
+DFS Outside
+IF
+DFS Outside
+DFS Outside
+DFS Outside
+UnfeasiblePartitionSize 2
+FeasiblePartitionsSize 0
+FusionWhile
+================== AQUI AONDE ESTÁ O BUG =========================
+Breakpoint 1
+breakpoint for
+DFS OUTSIDE
+DFS Outside
+Colocou dois caminhos
+IF
+To Self
+Passou por
+1' 1''''''''''''''''''''''''' 101 20 34 87 1'''''''''''''''''''''''' 30 18 84 53 1''''''''''''''''''''''' 64 74 93 68 1'''''''''''''''''''''' 91 49 40 25 1''''''''''''''''''''' 27 57 80 45 1'''''''''''''''''''' 35 39 78 71 1''''''''''''''''''' 13 67 51 75 1'''''''''''''''''' 63 61 65 58 1''''''''''''''''' 46 43 89 99 8 23 1'''''''''''''''' 7 11 50 69 1''''''''''''''' 66 96 97 81 1'''''''''''''' 10 26 6 17 1''''''''''''' 41 29 36 5 1'''''''''''' 62 24 14 37 1''''''''''' 92 9 100 32 1'''''''''' 73 60 88 54 1''''''''' 28 44 90 94 1'''''''' 3 72 42 33 1''''''' 16 86 70 98 
+Breakpoint 2 - DFS
+Breakpoint 3 - which
+idPartition 1
+================================================================================
+=====
+ID: 1'
+edges: 
+	id 16 | dist: 0
+	id 1''''''''''''''''''''''''' | dist: 0
+	id 83 | dist: 486.412
+is access: 0
+=====
+ID: 83
+edges: 
+	id 76 | dist: 0
+	id 1''''''' | dist: 486.412
+	id 1' | dist: 486.412
+is access: 0
+=====
+ID: 1'''''''
+edges: 
+	id 83 | dist: 486.412
+	id 33 | dist: 0
+	id 31 | dist: 261.199
+is access: 0
+=====
+ID: 31
+edges: 
+	id 77 | dist: 0
+	id 55 | dist: 851.977
+	id 1''''''' | dist: 261.199
+is access: 1
+=====
+ID: 55
+edges: 
+	id 31 | dist: 851.977
+	id 21 | dist: 0
+	id 1'''''' | dist: 591.396
+is access: 1
+=====
+ID: 1''''''
+edges: 
+	id 19 | dist: 0
+	id 52 | dist: 574.423
+	id 55 | dist: 591.396
+is access: 1
+=====
+ID: 52
+edges: 
+	id 1'''''' | dist: 574.423
+	id 15 | dist: 0
+	id 1''''''''''''''''''''''''' | dist: 574.423
+is access: 0
+=====
+ID: 1'''''''''''''''''''''''''
+edges: 
+	id 101 | dist: 0
+	id 1' | dist: 0
+	id 52 | dist: 574.423
+is access: 0
+=====
+ID: 76
+edges: 
+	id 15 | dist: 0
+	id 83 | dist: 0
+is access: 1
+=====
+ID: 15
+edges: 
+	id 52 | dist: 0
+	id 76 | dist: 0
+is access: 1
+=====
+ID: 1'
+edges: 
+	id 16 | dist: 0
+	id 1''''''''''''''''''''''''' | dist: 0
+	id 83 | dist: 486.412
+is access: 0
+=====
+ID: 16
+edges: 
+	id 1' | dist: 0
+	id 86 | dist: 0
+is access: 1
+=====
+ID: 86
+edges: 
+	id 16 | dist: 0
+	id 70 | dist: 0
+is access: 1
+=====
+ID: 70
+edges: 
+	id 86 | dist: 0
+	id 98 | dist: 0
+is access: 1
+=====
+ID: 98
+edges: 
+	id 70 | dist: 0
+	id 82 | dist: 133.454
+	id 1'' | dist: 359.473
+is access: 0
+=====
+ID: 101
+edges: 
+	id 20 | dist: 0
+	id 1''''''''''''''''''''''''' | dist: 0
+is access: 1
+=====
+ID: 20
+edges: 
+	id 34 | dist: 0
+	id 101 | dist: 0
+is access: 1
+=====
+ID: 34
+edges: 
+	id 87 | dist: 0
+	id 20 | dist: 0
+is access: 1
+=====
+ID: 87
+edges: 
+	id 1'''''''''''''''''''''''' | dist: 0
+	id 34 | dist: 0
+is access: 1
+=====
+ID: 1''''''''''''''''''''''''
+edges: 
+	id 30 | dist: 0
+	id 87 | dist: 0
+is access: 1
+=====
+ID: 30
+edges: 
+	id 18 | dist: 0
+	id 1'''''''''''''''''''''''' | dist: 0
+is access: 1
+=====
+ID: 18
+edges: 
+	id 84 | dist: 0
+	id 30 | dist: 0
+is access: 1
+=====
+ID: 84
+edges: 
+	id 53 | dist: 0
+	id 18 | dist: 0
+is access: 1
+=====
+ID: 53
+edges: 
+	id 1''''''''''''''''''''''' | dist: 0
+	id 84 | dist: 0
+is access: 1
+=====
+ID: 1'''''''''''''''''''''''
+edges: 
+	id 64 | dist: 0
+	id 53 | dist: 0
+is access: 1
+=====
+ID: 64
+edges: 
+	id 74 | dist: 0
+	id 1''''''''''''''''''''''' | dist: 0
+is access: 1
+=====
+ID: 74
+edges: 
+	id 93 | dist: 0
+	id 64 | dist: 0
+is access: 1
+=====
+ID: 93
+edges: 
+	id 68 | dist: 0
+	id 74 | dist: 0
+is access: 1
+=====
+ID: 68
+edges: 
+	id 1'''''''''''''''''''''' | dist: 0
+	id 93 | dist: 0
+is access: 1
+=====
+ID: 1''''''''''''''''''''''
+edges: 
+	id 91 | dist: 0
+	id 68 | dist: 0
+is access: 1
+=====
+ID: 91
+edges: 
+	id 49 | dist: 0
+	id 1'''''''''''''''''''''' | dist: 0
+is access: 1
+=====
+ID: 49
+edges: 
+	id 40 | dist: 0
+	id 91 | dist: 0
+is access: 1
+=====
+ID: 40
+edges: 
+	id 25 | dist: 0
+	id 49 | dist: 0
+is access: 1
+=====
+ID: 25
+edges: 
+	id 1''''''''''''''''''''' | dist: 0
+	id 40 | dist: 0
+is access: 1
+=====
+ID: 1'''''''''''''''''''''
+edges: 
+	id 27 | dist: 0
+	id 25 | dist: 0
+is access: 1
+=====
+ID: 27
+edges: 
+	id 57 | dist: 0
+	id 1''''''''''''''''''''' | dist: 0
+is access: 1
+=====
+ID: 57
+edges: 
+	id 80 | dist: 0
+	id 27 | dist: 0
+is access: 1
+=====
+ID: 80
+edges: 
+	id 45 | dist: 0
+	id 57 | dist: 0
+is access: 1
+=====
+ID: 45
+edges: 
+	id 1'''''''''''''''''''' | dist: 0
+	id 80 | dist: 0
+is access: 1
+=====
+ID: 1''''''''''''''''''''
+edges: 
+	id 35 | dist: 0
+	id 45 | dist: 0
+is access: 1
+=====
+ID: 35
+edges: 
+	id 39 | dist: 0
+	id 1'''''''''''''''''''' | dist: 0
+is access: 1
+=====
+ID: 39
+edges: 
+	id 78 | dist: 0
+	id 35 | dist: 0
+is access: 1
+=====
+ID: 78
+edges: 
+	id 71 | dist: 0
+	id 39 | dist: 0
+is access: 1
+=====
+ID: 71
+edges: 
+	id 1''''''''''''''''''' | dist: 0
+	id 78 | dist: 0
+is access: 1
+=====
+ID: 1'''''''''''''''''''
+edges: 
+	id 13 | dist: 0
+	id 71 | dist: 0
+is access: 1
+=====
+ID: 13
+edges: 
+	id 67 | dist: 0
+	id 1''''''''''''''''''' | dist: 0
+is access: 1
+=====
+ID: 67
+edges: 
+	id 51 | dist: 0
+	id 13 | dist: 0
+is access: 1
+=====
+ID: 51
+edges: 
+	id 75 | dist: 0
+	id 67 | dist: 0
+is access: 1
+=====
+ID: 75
+edges: 
+	id 1'''''''''''''''''' | dist: 0
+	id 51 | dist: 0
+is access: 1
+=====
+ID: 1''''''''''''''''''
+edges: 
+	id 63 | dist: 0
+	id 75 | dist: 0
+is access: 1
+=====
+ID: 63
+edges: 
+	id 61 | dist: 0
+	id 1'''''''''''''''''' | dist: 0
+is access: 1
+=====
+ID: 61
+edges: 
+	id 65 | dist: 0
+	id 63 | dist: 0
+is access: 1
+=====
+ID: 65
+edges: 
+	id 58 | dist: 0
+	id 61 | dist: 0
+is access: 1
+=====
+ID: 58
+edges: 
+	id 1''''''''''''''''' | dist: 0
+	id 65 | dist: 0
+is access: 1
+=====
+ID: 1'''''''''''''''''
+edges: 
+	id 46 | dist: 0
+	id 58 | dist: 0
+is access: 1
+=====
+ID: 46
+edges: 
+	id 43 | dist: 0
+	id 1''''''''''''''''' | dist: 0
+is access: 1
+=====
+ID: 43
+edges: 
+	id 89 | dist: 0
+	id 46 | dist: 0
+is access: 1
+=====
+ID: 89
+edges: 
+	id 99 | dist: 0
+	id 43 | dist: 0
+is access: 1
+=====
+ID: 99
+edges: 
+	id 8 | dist: 0
+	id 89 | dist: 0
+is access: 1
+=====
+ID: 8
+edges: 
+	id 23 | dist: 0
+	id 99 | dist: 0
+is access: 1
+=====
+ID: 23
+edges: 
+	id 1'''''''''''''''' | dist: 0
+	id 8 | dist: 0
+is access: 1
+=====
+ID: 1''''''''''''''''
+edges: 
+	id 7 | dist: 0
+	id 23 | dist: 0
+is access: 1
+=====
+ID: 7
+edges: 
+	id 11 | dist: 0
+	id 1'''''''''''''''' | dist: 0
+is access: 1
+=====
+ID: 11
+edges: 
+	id 50 | dist: 0
+	id 7 | dist: 0
+is access: 1
+=====
+ID: 50
+edges: 
+	id 69 | dist: 0
+	id 11 | dist: 0
+is access: 1
+=====
+ID: 69
+edges: 
+	id 1''''''''''''''' | dist: 0
+	id 50 | dist: 0
+is access: 1
+=====
+ID: 1'''''''''''''''
+edges: 
+	id 66 | dist: 0
+	id 69 | dist: 0
+is access: 1
+=====
+ID: 66
+edges: 
+	id 96 | dist: 0
+	id 1''''''''''''''' | dist: 0
+is access: 1
+=====
+ID: 96
+edges: 
+	id 97 | dist: 0
+	id 66 | dist: 0
+is access: 1
+=====
+ID: 97
+edges: 
+	id 81 | dist: 0
+	id 96 | dist: 0
+is access: 1
+=====
+ID: 81
+edges: 
+	id 1'''''''''''''' | dist: 0
+	id 97 | dist: 0
+is access: 1
+=====
+ID: 1''''''''''''''
+edges: 
+	id 10 | dist: 0
+	id 81 | dist: 0
+is access: 1
+=====
+ID: 10
+edges: 
+	id 26 | dist: 0
+	id 1'''''''''''''' | dist: 0
+is access: 1
+=====
+ID: 26
+edges: 
+	id 6 | dist: 0
+	id 10 | dist: 0
+is access: 1
+=====
+ID: 6
+edges: 
+	id 17 | dist: 0
+	id 26 | dist: 0
+is access: 1
+=====
+ID: 17
+edges: 
+	id 1''''''''''''' | dist: 0
+	id 6 | dist: 0
+is access: 1
+=====
+ID: 1'''''''''''''
+edges: 
+	id 41 | dist: 0
+	id 17 | dist: 0
+is access: 1
+=====
+ID: 41
+edges: 
+	id 29 | dist: 0
+	id 1''''''''''''' | dist: 0
+is access: 1
+=====
+ID: 29
+edges: 
+	id 36 | dist: 0
+	id 41 | dist: 0
+is access: 1
+=====
+ID: 36
+edges: 
+	id 5 | dist: 0
+	id 29 | dist: 0
+is access: 1
+=====
+ID: 5
+edges: 
+	id 1'''''''''''' | dist: 0
+	id 36 | dist: 0
+is access: 1
+=====
+ID: 1''''''''''''
+edges: 
+	id 62 | dist: 0
+	id 5 | dist: 0
+is access: 1
+=====
+ID: 62
+edges: 
+	id 24 | dist: 0
+	id 1'''''''''''' | dist: 0
+is access: 1
+=====
+ID: 24
+edges: 
+	id 14 | dist: 0
+	id 62 | dist: 0
+is access: 1
+=====
+ID: 14
+edges: 
+	id 37 | dist: 0
+	id 24 | dist: 0
+is access: 1
+=====
+ID: 37
+edges: 
+	id 1''''''''''' | dist: 0
+	id 14 | dist: 0
+is access: 1
+=====
+ID: 1'''''''''''
+edges: 
+	id 92 | dist: 0
+	id 37 | dist: 0
+is access: 1
+=====
+ID: 92
+edges: 
+	id 9 | dist: 0
+	id 1''''''''''' | dist: 0
+is access: 1
+=====
+ID: 9
+edges: 
+	id 100 | dist: 0
+	id 92 | dist: 0
+is access: 1
+=====
+ID: 100
+edges: 
+	id 32 | dist: 0
+	id 9 | dist: 0
+is access: 1
+=====
+ID: 32
+edges: 
+	id 1'''''''''' | dist: 0
+	id 100 | dist: 0
+is access: 1
+=====
+ID: 1''''''''''
+edges: 
+	id 73 | dist: 0
+	id 32 | dist: 0
+is access: 1
+=====
+ID: 73
+edges: 
+	id 60 | dist: 0
+	id 1'''''''''' | dist: 0
+is access: 1
+=====
+ID: 60
+edges: 
+	id 88 | dist: 0
+	id 73 | dist: 0
+is access: 1
+=====
+ID: 88
+edges: 
+	id 54 | dist: 0
+	id 60 | dist: 0
+is access: 1
+=====
+ID: 54
+edges: 
+	id 1''''''''' | dist: 0
+	id 88 | dist: 0
+is access: 1
+=====
+ID: 1'''''''''
+edges: 
+	id 28 | dist: 0
+	id 54 | dist: 0
+is access: 1
+=====
+ID: 28
+edges: 
+	id 44 | dist: 0
+	id 1''''''''' | dist: 0
+is access: 1
+=====
+ID: 44
+edges: 
+	id 90 | dist: 0
+	id 28 | dist: 0
+is access: 1
+=====
+ID: 90
+edges: 
+	id 94 | dist: 0
+	id 44 | dist: 0
+is access: 1
+=====
+ID: 94
+edges: 
+	id 1'''''''' | dist: 0
+	id 90 | dist: 0
+is access: 1
+=====
+ID: 1''''''''
+edges: 
+	id 3 | dist: 0
+	id 94 | dist: 0
+is access: 1
+=====
+ID: 3
+edges: 
+	id 72 | dist: 0
+	id 1'''''''' | dist: 0
+is access: 1
+=====
+ID: 72
+edges: 
+	id 42 | dist: 0
+	id 3 | dist: 0
+is access: 1
+=====
+ID: 42
+edges: 
+	id 33 | dist: 0
+	id 72 | dist: 0
+is access: 1
+=====
+ID: 33
+edges: 
+	id 1''''''' | dist: 0
+	id 42 | dist: 0
+is access: 1
+Primeiro get 0

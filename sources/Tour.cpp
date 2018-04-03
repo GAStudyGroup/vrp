@@ -55,7 +55,7 @@ ostream& operator<<(ostream& output, Tour& t)
 { // Overload de operador para impressão da população
     output<<"Tour: \n";
     for (int c : t.getRoute()) {
-        output << c << " " ;
+        output << c << "\n" ;
     }
     output << "\nFitness: " << t.getFitness();
     output << "\nDistance: "<<t.getDist();

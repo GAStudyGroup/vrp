@@ -96,12 +96,14 @@ void HamiltonianCycle::generateRanking(){
 
 void HamiltonianCycle::choosenToursToMap(){
     vector<int> redNotChoosen, blueNotChoosen;
-    redNotChoosen.reserve(redSubs.size());
+
     for(unsigned i=0; i<redSubs.size(); i++){
         redNotChoosen.push_back(i);
     }
+    for(unsigned i=0; i<blueSubs.size(); i++){
+        blueNotChoosen.push_back(i);
+    }
 
-    blueNotChoosen = redNotChoosen;
     for(int red : redNotChoosen){
         for(int blue : blueNotChoosen){
             resolveScore.push_back(ResolveScore(red, blue, ranking[red][blue].score));
@@ -134,34 +136,6 @@ HamiltonianCycle::parentsHamiltonian HamiltonianCycle::rebuildTours(){
     unsigned limitBlue{blueSubs.size()};
     unsigned choosenSize{choosen.size()};
 
-    cout << "ChoosenSize: " << choosen.size() << endl;
-    cout << "LimRed: "<<redSubs.size() << " LimBlue: "<<blueSubs.size()<<endl;
-
-    cout << "SubsRed\n";
-    for(auto red : redSubs){
-        for(int r : red){
-            cout << " " << r;
-        }
-        cout << endl;
-    }
-    cout << "SubsBlue\n";
-    for(auto red : blueSubs){
-        for(int r : red){
-            cout << " " << r;
-        }
-        cout << endl;
-    }
-
-    cout << "Choosen"<<endl;
-    for(auto it : choosen){
-        cout << "r: "<< it.first << " b: " << it.second << endl;
-    }
-
-    cout << "blueSubs";
-    for(int i : blueSubs[9]){
-        cout << i << " ";
-    }
-
     for(unsigned i=0; i<choosenSize; i++){
         if(i<limitRed){
             tours.first.push_back(std::to_string(depotId));
@@ -180,28 +154,14 @@ HamiltonianCycle::parentsHamiltonian HamiltonianCycle::rebuildTours(){
             tours.second.push_back(std::to_string(blueC));
         }
     }
-    cout << "primeiro breakPoint"<<endl;
     std::sort(alreadyRebuildRed.begin(), alreadyRebuildRed.end(), [](int left, int right) { return(left>right); });
     std::sort(alreadyRebuildBlue.begin(), alreadyRebuildBlue.end(), [](int left, int right) { return(left>right); });
 
-    cout << "segundo breakPoint"<<endl;
-
-    cout << "AlreadyRed"<<endl;
-    for(int i : alreadyRebuildRed){
-        cout << i << " ";
-    }cout<<endl;
-    cout << "AlreadyBlue"<<endl;
-    for(int i : alreadyRebuildBlue){
-        cout << i << " ";
-    }cout<<endl;
     for(unsigned i=0; i<alreadyRebuildRed.size(); i++){
-        cout << "red " << alreadyRebuildBlue[i] << " blue "<<alreadyRebuildRed[i]<<endl;
         redSubs.erase(redSubs.begin()+alreadyRebuildRed[i]);
         blueSubs.erase(blueSubs.begin()+alreadyRebuildBlue[i]);
-        cout << "erased"<<endl;
     }
 
-    cout << "terceiro breakpoint"<<endl;
     if(!redSubs.empty()){
         /* vector<string>::iterator it = find(tours.second.begin(), tours.second.end(), std::to_string(depotId));
         tours.second.emplace(it, std::to_string(depotId)); */

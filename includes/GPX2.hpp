@@ -76,6 +76,9 @@ public:
     */
     vector<string> static crossover(vector<string>, vector<string>);
 private:
+    void printPartition(const int);
+    bool validatePartition();
+
     GPX2();
     ~GPX2();
 

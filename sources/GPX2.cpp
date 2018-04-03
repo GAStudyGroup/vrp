@@ -3,10 +3,14 @@
 vector<string> GPX2::crossover(vector<string> redT, vector<string> blueT)
 {
     cout<< "---------------Entrando GPX------------------------"<<endl;
-    Tour aux = Tour(redT);
-    Tour aux2=Tour(blueT);
-    cout<< "Tour red: " << aux<<endl;
-    cout<< "Tour blue: "<< aux2<<endl;
+    cout << "red: ";
+    for(string r : redT){
+        cout << r << " ";
+    }
+    cout << "\n\nblue: ";
+    for(string r : blueT){
+        cout << r << " ";
+    }cout << endl;
     // cout << "Red Size: " << redT.size() << " - ";
     // for(string c : redT){
     //     cout << c << " "; 
@@ -23,6 +27,18 @@ vector<string> GPX2::crossover(vector<string> redT, vector<string> blueT)
     obj.red = obj.tourToMap(redT);
     obj.blue = obj.tourToMap(blueT);
 
+    {
+        std::ofstream map;
+        map.open("red_semGhost.map");
+        obj.printMap(obj.red, map);
+        map.close();   
+    }
+    {
+        std::ofstream map;
+        map.open("blue_semGhost.map");
+        obj.printMap(obj.blue, map);
+        map.close();   
+    }
     /* obj.printMap(obj.red, cout);
     obj.printMap(obj.blue, cout); */
 
@@ -35,14 +51,23 @@ vector<string> GPX2::crossover(vector<string> redT, vector<string> blueT)
     // Step 4
     obj.cutCommonEdges();
 
-    std::ofstream map;
-    map.open("KaprielViado.map");
-    obj.printMap(obj.unitedGraph, map);
-    map.close();
+    {
+        std::ofstream map;
+        map.open("KaprielViado.map");
+        obj.printMap(obj.unitedGraph, map);
+        map.close();
+    }
 
     // Step 5
     obj.findAllPartitions();
     obj.cleanInsideAccess();
+
+    {
+        std::ofstream map;
+        map.open("KaprielViado2.map");
+        obj.printMap(obj.unitedGraph, map);
+        map.close();
+    }
 
     /* for(auto it : obj.feasiblePartitions){
         cout << (*it.second) << endl;
@@ -62,6 +87,8 @@ vector<string> GPX2::crossover(vector<string> redT, vector<string> blueT)
     // cout << "Quantidade de partiçõesUnfeasible: " << obj.unfeasiblePartitions.size()<<endl;
     // Fusion
     // Precisa ter mais de uma partição unfeasible para o fusion poder acontecer
+    cout << "UnfeasiblePartitionSize " <<obj.unfeasiblePartitions.size() << endl;
+    cout << "FeasiblePartitionsSize " << obj.feasiblePartitions.size() << endl;
     if (obj.unfeasiblePartitions.size() > 1) {
         obj.fusion();
     }
@@ -393,17 +420,21 @@ void GPX2::cleanInsideAccess()
                     testedAccessNodes.push_back(node);
                     accessNodesAV.push_back(node);
                 } else {
-                    if(result.second.size()==2){
-                        accessNodesAV.insert(accessNodesAV.end(),result.second.begin(),result.second.end());
-                    }else{
                         accessNodesAV.push_back(result.second.front());
                         accessNodesAV.push_back(result.second.back());
 
                         result.second.erase(result.second.begin());
                         result.second.erase(result.second.end());
 
+                        if(!result.second.empty()){
+                            for(string node : result.second){
+                                for(auto &edge : unitedGraph[node]->getEdges()){
+                                    edge.second = distance(stoi(node), stoi(edge.first));
+                                }
+                            }
+                        }
+
                         p.second->getNodes().insert(p.second->getNodes().end(),result.second.begin(), result.second.end());
-                    }
                 }
             }
         }
@@ -699,38 +730,47 @@ pair<GPX2::SearchResult, vector<string>> GPX2::DFS_outside(string id, PartitionM
     bool cutEdge{ false };
 
     nextToVisit.push_back(id);
-
+    int i{0};
     while (!nextToVisit.empty()) {
         now = nextToVisit.back();
         nextToVisit.pop_back();
 
         alreadyVisited.push_back(now);
 
+        bool endNode{false};
+
         vector<CustomerNode::node> edges = unitedGraph[now]->getEdges();
         for (CustomerNode::node cn : edges) {
             notAlreadyVisited = (find(alreadyVisited.begin(), alreadyVisited.end(), cn.first) == alreadyVisited.end());
             notToVisit = (find(nextToVisit.begin(), nextToVisit.end(), cn.first) == nextToVisit.end());
-            cutEdge = cn.second == 0;
+            cutEdge = (cn.second == 0);
             if (notAlreadyVisited && notToVisit && cutEdge) {
                 nextToVisit.push_back(cn.first);
             }
-       }
+            //se o nó tiver uma aresta não cortada, ele deve ser um nó de ponta
+            if(!cutEdge){
+                endNode = true;
+            }
+        }
+
+        if(endNode){
+            partitionConnected = whichPartition(now, partitions);
+            if(idPartition != partitionConnected){
+                if (unfeasible) {
+                   partitions[idPartition]->getConnectedTo().push_back(Partition::ConnectionNode(partitionConnected, id, alreadyVisited.back()));
+                }
+                return make_pair(SearchResult::CONNECTED_TO_PARTITION, alreadyVisited);
+            }
+            i++;
+        }
     }
 
-    //pegar o id da partition do nó que passou por último
-    partitionConnected = whichPartition(alreadyVisited.back(), partitions);
-    
-    if (idPartition == partitionConnected) {
-        //se conectar em si mesmo, seta o nó de entrada e o ultimo onde chegou como não access
-        unitedGraph[id]->setAccess(false);
-        unitedGraph[alreadyVisited.back()]->setAccess(false);
-        return make_pair(SearchResult::CONNECTED_TO_SELF, alreadyVisited);
-    } else {
-        if (unfeasible) {
-            partitions[idPartition]->getConnectedTo().push_back(Partition::ConnectionNode(partitionConnected, id, alreadyVisited.back()));
-        }
-        return make_pair(SearchResult::CONNECTED_TO_PARTITION, alreadyVisited);
-    }
+    cout<<"Passou por "<<i<<" end nodes"<<endl;
+
+    //se conectar em si mesmo, seta o nó de entrada e o ultimo onde chegou como não access
+    unitedGraph[id]->setAccess(false);
+    unitedGraph[alreadyVisited.back()]->setAccess(false);
+    return make_pair(SearchResult::CONNECTED_TO_SELF, alreadyVisited);
 }
 
 pair<GPX2::SearchResult, vector<string>> GPX2::DFS_inside(string entry, string exit, CustomerGraph father, Partition* partitionPtr)
@@ -1209,42 +1249,47 @@ void GPX2::generateFusionPairs()
 
 bool GPX2::unfeasiblePartitionsConnected()
 { // Verifica as conexões das partições unfeasible
-    vector<string> nodesToCheck;
+
+    // And set the connectionNode in the partition
+    vector<pair<string,int>> nodesToCheck;
+    vector<string> nodesAlreadyChecked;
     bool atLeastOneConnected{ false };
 
     // Pega todos os nós que serão verificados
     for (auto& it : unfeasiblePartitions) {
         for (string id : it.second->getAccessNodes()) {
-            nodesToCheck.push_back(id);
+            nodesToCheck.push_back(make_pair(id,it.first));
         }
     }
 
     // Percorre o vetor para verificar as conexões
-    for (auto it = nodesToCheck.begin(); it != nodesToCheck.end(); it++) {
+    for (pair<string,int> node : nodesToCheck) {
+        //não precisa verificar novamente se já foi encontrado aonde aquele nó chega
+        if(find(nodesAlreadyChecked.begin(),nodesAlreadyChecked.end(),node.first)==nodesAlreadyChecked.end()){
+            nodesAlreadyChecked.push_back(node.first);
 
-        // Percorre fora da partição encontrando onde o nó se liga
-        DFS_outside((*it), unfeasiblePartitions, true);
-        // Verifica em qual partição o nó está
-        int idPartition = whichPartition((*it), unfeasiblePartitions);
+            // Percorre fora da partição encontrando onde o nó se liga, dando push_back no vetor de conexões da partição 
+            DFS_outside(node.first, unfeasiblePartitions, true);
 
-        // Verifica qual partição está conectada
-        int connectedPartition = unfeasiblePartitions[idPartition]->getConnectedTo().back().connectedPartition;
+            //utilizando o back podemos pegar a ultima conexão adicionada
+            // Verifica qual partição está conectada
+            int connectedPartition = unfeasiblePartitions[node.second]->getConnectedTo().back().connectedPartition;
 
-        // Verifica o ID do nó na qual ela está conectada
-        string connectedId = unfeasiblePartitions[idPartition]->getConnectedTo().back().connectedNode;
+            // Verifica o ID do nó na qual ela está conectada
+            string connectedId = unfeasiblePartitions[node.second]->getConnectedTo().back().connectedNode;
 
-        // Caso ele esteja conectado a outra partição unfeasible, caso não seja "-1" (conectado com uma partição feasible)
-        if (connectedPartition != -1) {
-            atLeastOneConnected = true;
+            // Caso ele esteja conectado a outra partição unfeasible, caso não seja "-1"
+            if (connectedPartition != -1) {
+                atLeastOneConnected = true;
 
-            // Insere no vetor de conexões
-            unfeasiblePartitions[connectedPartition]->getConnectedTo().push_back(Partition::ConnectionNode(idPartition, connectedId, (*it)));
+                // Insere no vetor de conexões
+                unfeasiblePartitions[connectedPartition]->getConnectedTo().push_back(Partition::ConnectionNode(node.second, connectedId, node.first));
 
-            // Não precisa verificar os nós que já foram ligados
-            nodesToCheck.erase(remove(nodesToCheck.begin(), nodesToCheck.end(), connectedId), nodesToCheck.end());
-        } else {
-            // Apaga por estar conectado com uma feasible
-            unfeasiblePartitions[idPartition]->getConnectedTo().erase(unfeasiblePartitions[idPartition]->getConnectedTo().end());
+                nodesAlreadyChecked.push_back(connectedId);
+            } else {
+                // Apaga por estar conectado com uma feasible
+                unfeasiblePartitions[node.second]->getConnectedTo().erase(unfeasiblePartitions[node.second]->getConnectedTo().end());
+            }
         }
     }
     return (atLeastOneConnected);
@@ -1282,4 +1327,53 @@ GPX2::~GPX2()
     deletePartitionMap(unfeasiblePartitions);
     partitionsChoosen.clear();
     feasiblePartitions.clear();
+}
+
+void GPX2::printPartition(const int id){
+    cout << "================================================================================"<<endl;
+    for(string node : unfeasiblePartitions[id]->getNodes()){
+        cout << *unitedGraph[node] << endl;
+    }
+}
+
+bool GPX2::validatePartition(){
+    for(auto p : feasiblePartitions){
+        for(string node : p.second->getNodes()){
+            int count{0};
+            for(auto p1 : feasiblePartitions){
+                if(std::find(p1.second->getNodes().begin(), p1.second->getNodes().end(), node)!=p1.second->getNodes().end()){
+                    count++;
+                }
+            }
+            for(auto p1 : unfeasiblePartitions){
+                if(std::find(p1.second->getNodes().begin(), p1.second->getNodes().end(), node)!=p1.second->getNodes().end()){
+                    count++;
+                }
+            }   
+            if(count!=1){
+                return(false);
+            }
+        }
+    }
+
+    for(auto p : unfeasiblePartitions){
+        for(string node : p.second->getNodes()){
+            int count{0};
+            for(auto p1 : feasiblePartitions){
+                if(std::find(p1.second->getNodes().begin(), p1.second->getNodes().end(), node)!=p1.second->getNodes().end()){
+                    count++;
+                }
+            }
+            for(auto p1 : unfeasiblePartitions){
+                if(std::find(p1.second->getNodes().begin(), p1.second->getNodes().end(), node)!=p1.second->getNodes().end()){
+                    count++;
+                }
+            }   
+            if(count!=1){
+                return(false);
+            }
+        }
+    }
+    
+    return(true);
 }

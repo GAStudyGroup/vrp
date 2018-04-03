@@ -30,3 +30,14 @@ bool CustomerNode::operator==(const CustomerNode& c) const
 {
     return ((!c.getId().compare(this->id)) ? true : false);
 }
+
+ostream& operator<<(ostream &output, CustomerNode &cn){
+    output<<"=====\nID: "<<cn.getId()<<"\n";
+    output<<"edges: \n";
+    for(CustomerNode::node n : cn.getEdges()){
+        output<<"\tid "<<n.first<<" | dist: "<<n.second<<"\n";
+    }
+    output<<"is access: "<<cn.getAccess();
+    output.flush();
+    return(output);
+}

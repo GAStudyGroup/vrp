@@ -19,8 +19,8 @@ void debugGA();
 
 void setParams(){
     //ImportData file("libs/more-libs/E-n33-k4.vrp");
-    ImportData file("libs/P-n51-k10.vrp");
-    Configs::truckNumber=10;
+    ImportData file("libs/X-n101-k25.vrp");
+    Configs::truckNumber=25;
     Configs::customerMap=CustomerMap(file.getCustomerList(),file.getCapacity(),Configs::truckNumber)    ;
     Configs::InitialPopmutIterations=100;
     Configs::InitialPopMutRate=70;
@@ -33,8 +33,8 @@ int main(){
     setParams();
     int start_s=clock();
 
-    //startGA();
-    debugGA();
+    startGA();
+    //debugGA();
 
     int stop_s=clock();
     cout << "time: " << (stop_s-start_s)/double(CLOCKS_PER_SEC)*1000<< endl;
@@ -69,8 +69,8 @@ void startGA(){
 void debugGA(){
     Tour red, blue;
 
-    red=readFile("Debug/Hamiltonian/segundaNoite.red.tour");
-    blue=readFile("Debug/Hamiltonian/segundaNoite.blue.tour");
+    red=readFile("Debug/unfeasible/segundaNoite.red.tour");
+    blue=readFile("Debug/unfeasible/segundaNoite.blue.tour");
 
     Tour offs = crossover(red, blue);
 }

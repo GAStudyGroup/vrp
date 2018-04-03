@@ -4,13 +4,16 @@
 #include <string>
 #include <utility>
 #include <vector>
+#include <iostream>
 
 using std::string;
 using std::vector;
+using std::ostream;
 
 class CustomerNode {
 
 public:
+    friend ostream& operator<<(ostream&, CustomerNode&);
     // First = NodeID and Second = EdgeWeigth
     using node = std::pair<string, double>;
 
