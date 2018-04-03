@@ -11,7 +11,7 @@
 using namespace std;
 
 const unsigned limitGen{300};
-const unsigned popSize{2};
+const unsigned popSize{50};
 
 void startGA();
 Tour readFile(string);
@@ -19,7 +19,7 @@ void debugGA();
 
 void setParams(){
     //ImportData file("libs/more-libs/E-n33-k4.vrp");
-    ImportData file("libs/test-libs/CMT5.vrp");
+    ImportData file("libs/P-n51-k10.vrp");
     Configs::truckNumber=10;
     Configs::customerMap=CustomerMap(file.getCustomerList(),file.getCapacity(),Configs::truckNumber)    ;
     Configs::InitialPopmutIterations=100;
@@ -33,8 +33,8 @@ int main(){
     setParams();
     int start_s=clock();
 
-    startGA();
-    //debugGA();
+    //startGA();
+    debugGA();
 
     int stop_s=clock();
     cout << "time: " << (stop_s-start_s)/double(CLOCKS_PER_SEC)*1000<< endl;
@@ -67,19 +67,12 @@ void startGA(){
 }
 
 void debugGA(){
-    /* Tour red, blue;
+    Tour red, blue;
 
-    red=readFile("Debug/DFS_crash/tourRed2.tour");
-    blue=readFile("Debug/DFS_crash/tourBlue2.tour"); */
+    red=readFile("Debug/Hamiltonian/segundaNoite.red.tour");
+    blue=readFile("Debug/Hamiltonian/segundaNoite.blue.tour");
 
-    Population pop{popGen(2)};
-
-    //Tour offs = crossover(red, blue);
-    cout << pop.getPop()[0] << endl;
-    cout << pop.getPop()[1] << endl;
-    Tour offs = crossover(pop.getPop()[0], pop.getPop()[1]);
-
-    cout << offs << endl;
+    Tour offs = crossover(red, blue);
 }
 
 Tour readFile(string name){

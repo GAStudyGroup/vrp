@@ -1,218 +1,191 @@
-size: 410
- 1 | 1
+size: 118
+ 1' | 1'
 Access: 1
 ==================================
 connections: 3
-Edge 0: 1-	#	Distance: 0
-Edge 1: 200'''-	#	Distance: 18.3848
-Edge 2: 43-	#	Distance: 6.7082
+Edge 0: 50	#	Distance: 21.6333
+Edge 1: 1'-	#	Distance: 0
+Edge 2: 24	#	Distance: 22.0227
 ----------------------------------
 
- 1- | 1-
+ 1'' | 1''
 Access: 1
 ==================================
 connections: 3
-Edge 0: 66	#	Distance: 5.09902
-Edge 1: 1	#	Distance: 0
-Edge 2: 186	#	Distance: 7.2111
+Edge 0: 1''-	#	Distance: 0
+Edge 1: 4-	#	Distance: 32.5576
+Edge 2: 28-	#	Distance: 8
+----------------------------------
+
+ 1''' | 1'''
+Access: 1
+==================================
+connections: 3
+Edge 0: 1'''-	#	Distance: 0
+Edge 1: 17-	#	Distance: 22.0227
+Edge 2: 49-	#	Distance: 15.8114
+----------------------------------
+
+ 1'''' | 1''''
+Access: 1
+==================================
+connections: 3
+Edge 0: 1''''-	#	Distance: 0
+Edge 1: 21-	#	Distance: 32.45
+Edge 2: 45-	#	Distance: 25
+----------------------------------
+
+ 1''''' | 1'''''
+Access: 1
+==================================
+connections: 3
+Edge 0: 1'''''-	#	Distance: 0
+Edge 1: 11-	#	Distance: 28.3196
+Edge 2: 19-	#	Distance: 14.7648
+----------------------------------
+
+ 1'''''' | 1''''''
+Access: 1
+==================================
+connections: 3
+Edge 0: 1''''''-	#	Distance: 0
+Edge 1: 45-	#	Distance: 25
+Edge 2: 20-	#	Distance: 31.9061
+----------------------------------
+
+ 1''''''' | 1'''''''
+Access: 1
+==================================
+connections: 3
+Edge 0: 1'''''''-	#	Distance: 0
+Edge 1: 18-	#	Distance: 17.2627
+Edge 2: 37-	#	Distance: 43.9318
+----------------------------------
+
+ 1'''''''' | 1''''''''
+Access: 1
+==================================
+connections: 3
+Edge 0: 1''''''''-	#	Distance: 0
+Edge 1: 9-	#	Distance: 22.0227
+Edge 2: 48-	#	Distance: 9.43398
+----------------------------------
+
+ 1''''''''' | 1'''''''''
+Access: 1
+==================================
+connections: 3
+Edge 0: 1'''''''''-	#	Distance: 0
+Edge 1: 42-	#	Distance: 30.4795
+Edge 2: 51-	#	Distance: 26.1725
+----------------------------------
+
+ 1'''''''''' | 1''''''''''
+Access: 1
+==================================
+connections: 3
+Edge 0: 24	#	Distance: 0
+Edge 1: 6-	#	Distance: 14.1421
+Edge 2: 44	#	Distance: 34.6554
+----------------------------------
+
+ 1'''''''''- | 1'''''''''-
+Access: 1
+==================================
+connections: 3
+Edge 0: 9	#	Distance: 22.0227
+Edge 1: 1'''''''''	#	Distance: 0
+Edge 2: 7	#	Distance: 11.4018
+----------------------------------
+
+ 1''''''''- | 1''''''''-
+Access: 1
+==================================
+connections: 3
+Edge 0: 8	#	Distance: 26.4197
+Edge 1: 1''''''''	#	Distance: 0
+Edge 2: 12	#	Distance: 12.0416
+----------------------------------
+
+ 1'''''''- | 1'''''''-
+Access: 1
+==================================
+connections: 3
+Edge 0: 47	#	Distance: 2.23607
+Edge 1: 1'''''''	#	Distance: 0
+Edge 2: 3	#	Distance: 21.0238
+----------------------------------
+
+ 1''''''- | 1''''''-
+Access: 1
+==================================
+connections: 3
+Edge 0: 19	#	Distance: 14.7648
+Edge 1: 1''''''	#	Distance: 0
+Edge 2: 16	#	Distance: 24.7386
+----------------------------------
+
+ 1'''''- | 1'''''-
+Access: 1
+==================================
+connections: 3
+Edge 0: 10	#	Distance: 23.0868
+Edge 1: 1'''''	#	Distance: 0
+Edge 2: 39	#	Distance: 15.8114
+----------------------------------
+
+ 1''''- | 1''''-
+Access: 1
+==================================
+connections: 3
+Edge 0: 43	#	Distance: 31.3209
+Edge 1: 1''''	#	Distance: 0
+Edge 2: 26	#	Distance: 23.0868
+----------------------------------
+
+ 1'''- | 1'''-
+Access: 1
+==================================
+connections: 3
+Edge 0: 22	#	Distance: 32.0624
+Edge 1: 1'''	#	Distance: 0
+Edge 2: 46	#	Distance: 31.3209
+----------------------------------
+
+ 1''- | 1''-
+Access: 1
+==================================
+connections: 3
+Edge 0: 23	#	Distance: 20.8087
+Edge 1: 1''	#	Distance: 0
+Edge 2: 13	#	Distance: 8.06226
+----------------------------------
+
+ 1'- | 1'-
+Access: 1
+==================================
+connections: 3
+Edge 0: 1'	#	Distance: 0
+Edge 1: 35-	#	Distance: 31.7805
+Edge 2: 11	#	Distance: 28.3196
 ----------------------------------
 
  10 | 10
 Access: 1
 ==================================
 connections: 3
-Edge 0: 10-	#	Distance: 0
-Edge 1: 80-	#	Distance: 4.24264
-Edge 2: 162-	#	Distance: 13.3417
+Edge 0: 1'''''-	#	Distance: 23.0868
+Edge 1: 10-	#	Distance: 0
+Edge 2: 6-	#	Distance: 12.3693
 ----------------------------------
 
  10- | 10-
 Access: 1
 ==================================
 connections: 3
-Edge 0: 200'''''''	#	Distance: 31.4006
+Edge 0: 3	#	Distance: 16.2788
 Edge 1: 10	#	Distance: 0
-Edge 2: 200''	#	Distance: 31.4006
-----------------------------------
-
- 100 | 100
-Access: 1
-==================================
-connections: 3
-Edge 0: 100-	#	Distance: 0
-Edge 1: 186-	#	Distance: 33.6155
-Edge 2: 27-	#	Distance: 20.5183
-----------------------------------
-
- 100- | 100-
-Access: 1
-==================================
-connections: 3
-Edge 0: 140	#	Distance: 42.0119
-Edge 1: 100	#	Distance: 0
-Edge 2: 55	#	Distance: 20.0998
-----------------------------------
-
- 101 | 101
-Access: 1
-==================================
-connections: 3
-Edge 0: 101-	#	Distance: 0
-Edge 1: 43-	#	Distance: 19.105
-Edge 2: 58-	#	Distance: 23.3452
-----------------------------------
-
- 101- | 101-
-Access: 1
-==================================
-connections: 3
-Edge 0: 102	#	Distance: 34.4093
-Edge 1: 101	#	Distance: 0
-Edge 2: 183	#	Distance: 27.7849
-----------------------------------
-
- 102 | 102
-Access: 1
-==================================
-connections: 3
-Edge 0: 101-	#	Distance: 34.4093
-Edge 1: 102-	#	Distance: 0
-Edge 2: 153-	#	Distance: 16.1245
-----------------------------------
-
- 102- | 102-
-Access: 1
-==================================
-connections: 3
-Edge 0: 77	#	Distance: 25.0599
-Edge 1: 102	#	Distance: 0
-Edge 2: 193	#	Distance: 34.1321
-----------------------------------
-
- 103 | 103
-Access: 1
-==================================
-connections: 3
-Edge 0: 103-	#	Distance: 0
-Edge 1: 56-	#	Distance: 57.3847
-Edge 2: 175-	#	Distance: 22.8035
-----------------------------------
-
- 103- | 103-
-Access: 1
-==================================
-connections: 3
-Edge 0: 75	#	Distance: 55.5698
-Edge 1: 103	#	Distance: 0
-Edge 2: 12	#	Distance: 36.8917
-----------------------------------
-
- 104 | 104
-Access: 1
-==================================
-connections: 3
-Edge 0: 104-	#	Distance: 0
-Edge 1: 9-	#	Distance: 31.0161
-Edge 2: 161-	#	Distance: 29.4109
-----------------------------------
-
- 104- | 104-
-Access: 1
-==================================
-connections: 3
-Edge 0: 192	#	Distance: 6.7082
-Edge 1: 104	#	Distance: 0
-Edge 2: 115	#	Distance: 11.1803
-----------------------------------
-
- 105 | 105
-Access: 1
-==================================
-connections: 3
-Edge 0: 105-	#	Distance: 0
-Edge 1: 157-	#	Distance: 11.7047
-Edge 2: 36-	#	Distance: 35.2278
-----------------------------------
-
- 105- | 105-
-Access: 1
-==================================
-connections: 3
-Edge 0: 150	#	Distance: 36.8782
-Edge 1: 105	#	Distance: 0
-Edge 2: 109	#	Distance: 30.4138
-----------------------------------
-
- 106 | 106
-Access: 1
-==================================
-connections: 3
-Edge 0: 106-	#	Distance: 0
-Edge 1: 23-	#	Distance: 23.7697
-Edge 2: 116-	#	Distance: 25
-----------------------------------
-
- 106- | 106-
-Access: 1
-==================================
-connections: 3
-Edge 0: 183	#	Distance: 21.0238
-Edge 1: 106	#	Distance: 0
-Edge 2: 81	#	Distance: 18.4391
-----------------------------------
-
- 107 | 107
-Access: 1
-==================================
-connections: 3
-Edge 0: 107-	#	Distance: 0
-Edge 1: 73-	#	Distance: 9.21954
-Edge 2: 130-	#	Distance: 22.8473
-----------------------------------
-
- 107- | 107-
-Access: 1
-==================================
-connections: 3
-Edge 0: 120	#	Distance: 41.8808
-Edge 1: 107	#	Distance: 0
-Edge 2: 123	#	Distance: 55.5788
-----------------------------------
-
- 108 | 108
-Access: 1
-==================================
-connections: 3
-Edge 0: 108-	#	Distance: 0
-Edge 1: 200''''''''''-	#	Distance: 32.0156
-Edge 2: 51-	#	Distance: 12.53
-----------------------------------
-
- 108- | 108-
-Access: 1
-==================================
-connections: 3
-Edge 0: 22	#	Distance: 55.2268
-Edge 1: 108	#	Distance: 0
-Edge 2: 192	#	Distance: 51.6236
-----------------------------------
-
- 109 | 109
-Access: 1
-==================================
-connections: 3
-Edge 0: 109-	#	Distance: 0
-Edge 1: 172-	#	Distance: 45.2217
-Edge 2: 105-	#	Distance: 30.4138
-----------------------------------
-
- 109- | 109-
-Access: 1
-==================================
-connections: 3
-Edge 0: 161	#	Distance: 6.32456
-Edge 1: 109	#	Distance: 0
-Edge 2: 61	#	Distance: 28.0179
+Edge 2: 35	#	Distance: 9
 ----------------------------------
 
  11 | 11
@@ -220,197 +193,17 @@ Access: 1
 ==================================
 connections: 3
 Edge 0: 11-	#	Distance: 0
-Edge 1: 114-	#	Distance: 65
-Edge 2: 172-	#	Distance: 49.2443
+Edge 1: 51-	#	Distance: 16.7631
+Edge 2: 1'-	#	Distance: 28.3196
 ----------------------------------
 
  11- | 11-
 Access: 1
 ==================================
 connections: 3
-Edge 0: 21	#	Distance: 53.1507
+Edge 0: 1'''''	#	Distance: 28.3196
 Edge 1: 11	#	Distance: 0
-Edge 2: 97	#	Distance: 31.6228
-----------------------------------
-
- 110 | 110
-Access: 1
-==================================
-connections: 3
-Edge 0: 110-	#	Distance: 0
-Edge 1: 152-	#	Distance: 38.0132
-Edge 2: 28-	#	Distance: 51.2445
-----------------------------------
-
- 110- | 110-
-Access: 1
-==================================
-connections: 3
-Edge 0: 200'	#	Distance: 33.541
-Edge 1: 110	#	Distance: 0
-Edge 2: 118	#	Distance: 7.07107
-----------------------------------
-
- 111 | 111
-Access: 1
-==================================
-connections: 3
-Edge 0: 111-	#	Distance: 0
-Edge 1: 22-	#	Distance: 32.5576
-Edge 2: 46-	#	Distance: 7.07107
-----------------------------------
-
- 111- | 111-
-Access: 1
-==================================
-connections: 3
-Edge 0: 114	#	Distance: 36.0555
-Edge 1: 111	#	Distance: 0
-Edge 2: 58	#	Distance: 2.82843
-----------------------------------
-
- 112 | 112
-Access: 1
-==================================
-connections: 3
-Edge 0: 112-	#	Distance: 0
-Edge 1: 200''''''-	#	Distance: 11.1803
-Edge 2: 73-	#	Distance: 34.8281
-----------------------------------
-
- 112- | 112-
-Access: 1
-==================================
-connections: 3
-Edge 0: 199	#	Distance: 13.8924
-Edge 1: 112	#	Distance: 0
-Edge 2: 15	#	Distance: 32.0156
-----------------------------------
-
- 113 | 113
-Access: 1
-==================================
-connections: 3
-Edge 0: 113-	#	Distance: 0
-Edge 1: 123-	#	Distance: 55.9017
-Edge 2: 192-	#	Distance: 14.3178
-----------------------------------
-
- 113- | 113-
-Access: 1
-==================================
-connections: 3
-Edge 0: 83	#	Distance: 51.4296
-Edge 1: 113	#	Distance: 0
-Edge 2: 128	#	Distance: 58.5235
-----------------------------------
-
- 114 | 114
-Access: 1
-==================================
-connections: 3
-Edge 0: 111-	#	Distance: 36.0555
-Edge 1: 114-	#	Distance: 0
-Edge 2: 80-	#	Distance: 64.3817
-----------------------------------
-
- 114- | 114-
-Access: 1
-==================================
-connections: 3
-Edge 0: 11	#	Distance: 65
-Edge 1: 114	#	Distance: 0
-Edge 2: 188	#	Distance: 30.2655
-----------------------------------
-
- 115 | 115
-Access: 1
-==================================
-connections: 3
-Edge 0: 115-	#	Distance: 0
-Edge 1: 137-	#	Distance: 15.8114
-Edge 2: 104-	#	Distance: 11.1803
-----------------------------------
-
- 115- | 115-
-Access: 1
-==================================
-connections: 3
-Edge 0: 177	#	Distance: 60.208
-Edge 1: 115	#	Distance: 0
-Edge 2: 69	#	Distance: 60.4401
-----------------------------------
-
- 116 | 116
-Access: 1
-==================================
-connections: 3
-Edge 0: 116-	#	Distance: 0
-Edge 1: 150-	#	Distance: 52.1536
-Edge 2: 137-	#	Distance: 25
-----------------------------------
-
- 116- | 116-
-Access: 1
-==================================
-connections: 3
-Edge 0: 196	#	Distance: 21.9317
-Edge 1: 116	#	Distance: 0
-Edge 2: 106	#	Distance: 25
-----------------------------------
-
- 117 | 117
-Access: 1
-==================================
-connections: 3
-Edge 0: 117-	#	Distance: 0
-Edge 1: 94-	#	Distance: 35.5106
-Edge 2: 146-	#	Distance: 20
-----------------------------------
-
- 117- | 117-
-Access: 1
-==================================
-connections: 3
-Edge 0: 57	#	Distance: 24.5967
-Edge 1: 117	#	Distance: 0
-Edge 2: 182	#	Distance: 6.7082
-----------------------------------
-
- 118 | 118
-Access: 1
-==================================
-connections: 3
-Edge 0: 118-	#	Distance: 0
-Edge 1: 97-	#	Distance: 11.1803
-Edge 2: 110-	#	Distance: 7.07107
-----------------------------------
-
- 118- | 118-
-Access: 1
-==================================
-connections: 3
-Edge 0: 147	#	Distance: 8.24621
-Edge 1: 118	#	Distance: 0
-Edge 2: 191	#	Distance: 38.6394
-----------------------------------
-
- 119 | 119
-Access: 1
-==================================
-connections: 3
-Edge 0: 119-	#	Distance: 0
-Edge 1: 200''''''''-	#	Distance: 31.6228
-Edge 2: 200''-	#	Distance: 31.6228
-----------------------------------
-
- 119- | 119-
-Access: 1
-==================================
-connections: 3
-Edge 0: 3	#	Distance: 31.241
-Edge 1: 119	#	Distance: 0
-Edge 2: 36	#	Distance: 55.7315
+Edge 2: 33-	#	Distance: 28.178
 ----------------------------------
 
  12 | 12
@@ -418,188 +211,17 @@ Access: 1
 ==================================
 connections: 3
 Edge 0: 12-	#	Distance: 0
-Edge 1: 47-	#	Distance: 39
-Edge 2: 103-	#	Distance: 36.8917
+Edge 1: 43-	#	Distance: 37.4433
+Edge 2: 1''''''''-	#	Distance: 12.0416
 ----------------------------------
 
  12- | 12-
 Access: 1
 ==================================
 connections: 3
-Edge 0: 188	#	Distance: 18.3576
+Edge 0: 32	#	Distance: 28.4429
 Edge 1: 12	#	Distance: 0
-Edge 2: 31	#	Distance: 25.318
-----------------------------------
-
- 120 | 120
-Access: 1
-==================================
-connections: 3
-Edge 0: 107-	#	Distance: 41.8808
-Edge 1: 120-	#	Distance: 0
-Edge 2: 84	#	Distance: 46.2385
-----------------------------------
-
- 120- | 120-
-Access: 1
-==================================
-connections: 3
-Edge 0: 29	#	Distance: 9.21954
-Edge 1: 120	#	Distance: 0
-Edge 2: 133	#	Distance: 40.3113
-----------------------------------
-
- 121 | 121
-Access: 1
-==================================
-connections: 3
-Edge 0: 121-	#	Distance: 0
-Edge 1: 81-	#	Distance: 36.6742
-Edge 2: 168-	#	Distance: 37.855
-----------------------------------
-
- 121- | 121-
-Access: 1
-==================================
-connections: 3
-Edge 0: 40	#	Distance: 42.72
-Edge 1: 121	#	Distance: 0
-Edge 2: 129	#	Distance: 50.2494
-----------------------------------
-
- 122 | 122
-Access: 1
-==================================
-connections: 3
-Edge 0: 122-	#	Distance: 0
-Edge 1: 90-	#	Distance: 46.5725
-Edge 2: 42-	#	Distance: 41
-----------------------------------
-
- 122- | 122-
-Access: 1
-==================================
-connections: 3
-Edge 0: 55	#	Distance: 54.037
-Edge 1: 122	#	Distance: 0
-Edge 2: 171	#	Distance: 13.6015
-----------------------------------
-
- 123 | 123
-Access: 1
-==================================
-connections: 3
-Edge 0: 123-	#	Distance: 0
-Edge 1: 165-	#	Distance: 41.2311
-Edge 2: 107-	#	Distance: 55.5788
-----------------------------------
-
- 123- | 123-
-Access: 1
-==================================
-connections: 3
-Edge 0: 113	#	Distance: 55.9017
-Edge 1: 123	#	Distance: 0
-Edge 2: 72	#	Distance: 53.7122
-----------------------------------
-
- 124 | 124
-Access: 1
-==================================
-connections: 3
-Edge 0: 124-	#	Distance: 0
-Edge 1: 42-	#	Distance: 50.3587
-Edge 2: 65-	#	Distance: 24.6982
-----------------------------------
-
- 124- | 124-
-Access: 1
-==================================
-connections: 3
-Edge 0: 138	#	Distance: 9.43398
-Edge 1: 124	#	Distance: 0
-Edge 2: 157	#	Distance: 29.6142
-----------------------------------
-
- 125 | 125
-Access: 1
-==================================
-connections: 3
-Edge 0: 125-	#	Distance: 0
-Edge 1: 141-	#	Distance: 27.6586
-Edge 2: 182-	#	Distance: 31.7805
-----------------------------------
-
- 125- | 125-
-Access: 1
-==================================
-connections: 3
-Edge 0: 52	#	Distance: 34.7131
-Edge 1: 125	#	Distance: 0
-Edge 2: 200'	#	Distance: 11.1803
-----------------------------------
-
- 126 | 126
-Access: 1
-==================================
-connections: 3
-Edge 0: 126-	#	Distance: 0
-Edge 1: 77-	#	Distance: 28.1603
-Edge 2: 167-	#	Distance: 21.0238
-----------------------------------
-
- 126- | 126-
-Access: 1
-==================================
-connections: 3
-Edge 0: 54	#	Distance: 11.1803
-Edge 1: 126	#	Distance: 0
-Edge 2: 152	#	Distance: 9.21954
-----------------------------------
-
- 127 | 127
-Access: 1
-==================================
-connections: 3
-Edge 0: 134	#	Distance: 0
-Edge 1: 57-	#	Distance: 26.9258
-Edge 2: 181	#	Distance: 27.8568
-----------------------------------
-
- 128 | 128
-Access: 1
-==================================
-connections: 3
-Edge 0: 128-	#	Distance: 0
-Edge 1: 145-	#	Distance: 62.2896
-Edge 2: 113-	#	Distance: 58.5235
-----------------------------------
-
- 128- | 128-
-Access: 1
-==================================
-connections: 3
-Edge 0: 200''	#	Distance: 29.8329
-Edge 1: 128	#	Distance: 0
-Edge 2: 153	#	Distance: 14.7648
-----------------------------------
-
- 129 | 129
-Access: 1
-==================================
-connections: 3
-Edge 0: 129-	#	Distance: 0
-Edge 1: 52-	#	Distance: 12.6491
-Edge 2: 121-	#	Distance: 50.2494
-----------------------------------
-
- 129- | 129-
-Access: 1
-==================================
-connections: 3
-Edge 0: 164	#	Distance: 27.8029
-Edge 1: 129	#	Distance: 0
-Edge 2: 92	#	Distance: 35.2278
+Edge 2: 36	#	Distance: 29.7321
 ----------------------------------
 
  13 | 13
@@ -607,188 +229,17 @@ Access: 1
 ==================================
 connections: 3
 Edge 0: 13-	#	Distance: 0
-Edge 1: 46-	#	Distance: 13.0384
-Edge 2: 149-	#	Distance: 19.2094
+Edge 1: 47-	#	Distance: 7.07107
+Edge 2: 1''-	#	Distance: 8.06226
 ----------------------------------
 
  13- | 13-
 Access: 1
 ==================================
 connections: 3
-Edge 0: 76	#	Distance: 34.5398
+Edge 0: 48	#	Distance: 6
 Edge 1: 13	#	Distance: 0
-Edge 2: 43	#	Distance: 48.7032
-----------------------------------
-
- 130 | 130
-Access: 1
-==================================
-connections: 3
-Edge 0: 130-	#	Distance: 0
-Edge 1: 39-	#	Distance: 8.06226
-Edge 2: 142-	#	Distance: 49.6488
-----------------------------------
-
- 130- | 130-
-Access: 1
-==================================
-connections: 3
-Edge 0: 9	#	Distance: 8.60233
-Edge 1: 130	#	Distance: 0
-Edge 2: 107	#	Distance: 22.8473
-----------------------------------
-
- 131 | 131
-Access: 1
-==================================
-connections: 3
-Edge 0: 131-	#	Distance: 0
-Edge 1: 85-	#	Distance: 28
-Edge 2: 138-	#	Distance: 62.2415
-----------------------------------
-
- 131- | 131-
-Access: 1
-==================================
-connections: 3
-Edge 0: 133	#	Distance: 33.1059
-Edge 1: 131	#	Distance: 0
-Edge 2: 187	#	Distance: 19.2354
-----------------------------------
-
- 132 | 132
-Access: 1
-==================================
-connections: 3
-Edge 0: 132-	#	Distance: 0
-Edge 1: 27-	#	Distance: 18.1108
-Edge 2: 67-	#	Distance: 40.7063
-----------------------------------
-
- 132- | 132-
-Access: 1
-==================================
-connections: 3
-Edge 0: 80	#	Distance: 23.3452
-Edge 1: 132	#	Distance: 0
-Edge 2: 54	#	Distance: 25.5539
-----------------------------------
-
- 133 | 133
-Access: 1
-==================================
-connections: 3
-Edge 0: 131-	#	Distance: 33.1059
-Edge 1: 133-	#	Distance: 0
-Edge 2: 120-	#	Distance: 40.3113
-----------------------------------
-
- 133- | 133-
-Access: 1
-==================================
-connections: 3
-Edge 0: 36	#	Distance: 46.3249
-Edge 1: 133	#	Distance: 0
-Edge 2: 163	#	Distance: 54.626
-----------------------------------
-
- 134 | 134
-Access: 1
-==================================
-connections: 3
-Edge 0: 61	#	Distance: 45.9674
-Edge 1: 127	#	Distance: 0
-Edge 2: 194-	#	Distance: 55.9017
-----------------------------------
-
- 135 | 135
-Access: 1
-==================================
-connections: 3
-Edge 0: 135-	#	Distance: 0
-Edge 1: 159-	#	Distance: 30.0167
-Edge 2: 195-	#	Distance: 38.5876
-----------------------------------
-
- 135- | 135-
-Access: 1
-==================================
-connections: 3
-Edge 0: 144	#	Distance: 22.3607
-Edge 1: 135	#	Distance: 0
-Edge 2: 53	#	Distance: 38.4708
-----------------------------------
-
- 136 | 136
-Access: 1
-==================================
-connections: 3
-Edge 0: 136-	#	Distance: 0
-Edge 1: 180-	#	Distance: 48.7955
-Edge 2: 47-	#	Distance: 30.4138
-----------------------------------
-
- 136- | 136-
-Access: 1
-==================================
-connections: 3
-Edge 0: 93	#	Distance: 11.1803
-Edge 1: 136	#	Distance: 0
-Edge 2: 76	#	Distance: 29.7321
-----------------------------------
-
- 137 | 137
-Access: 1
-==================================
-connections: 3
-Edge 0: 137-	#	Distance: 0
-Edge 1: 138-	#	Distance: 55.4437
-Edge 2: 186-	#	Distance: 26.4197
-----------------------------------
-
- 137- | 137-
-Access: 1
-==================================
-connections: 3
-Edge 0: 115	#	Distance: 15.8114
-Edge 1: 137	#	Distance: 0
-Edge 2: 116	#	Distance: 25
-----------------------------------
-
- 138 | 138
-Access: 1
-==================================
-connections: 3
-Edge 0: 124-	#	Distance: 9.43398
-Edge 1: 138-	#	Distance: 0
-Edge 2: 78-	#	Distance: 36.0555
-----------------------------------
-
- 138- | 138-
-Access: 1
-==================================
-connections: 3
-Edge 0: 137	#	Distance: 55.4437
-Edge 1: 138	#	Distance: 0
-Edge 2: 131	#	Distance: 62.2415
-----------------------------------
-
- 139 | 139
-Access: 1
-==================================
-connections: 3
-Edge 0: 139-	#	Distance: 0
-Edge 1: 143-	#	Distance: 31.0161
-Edge 2: 81-	#	Distance: 21.095
-----------------------------------
-
- 139- | 139-
-Access: 1
-==================================
-connections: 3
-Edge 0: 48	#	Distance: 8.94427
-Edge 1: 139	#	Distance: 0
-Edge 2: 194	#	Distance: 15.0333
+Edge 2: 25	#	Distance: 30.4795
 ----------------------------------
 
  14 | 14
@@ -796,386 +247,35 @@ Access: 1
 ==================================
 connections: 3
 Edge 0: 14-	#	Distance: 0
-Edge 1: 65-	#	Distance: 18.868
-Edge 2: 156-	#	Distance: 54.0833
+Edge 1: 22-	#	Distance: 59.4811
+Edge 2: 50-	#	Distance: 43.1045
 ----------------------------------
 
  14- | 14-
 Access: 1
 ==================================
 connections: 3
-Edge 0: 15	#	Distance: 33
+Edge 0: 29	#	Distance: 56.6392
 Edge 1: 14	#	Distance: 0
-Edge 2: 29	#	Distance: 32.573
-----------------------------------
-
- 140 | 140
-Access: 1
-==================================
-connections: 3
-Edge 0: 100-	#	Distance: 42.0119
-Edge 1: 140-	#	Distance: 0
-Edge 2: 40-	#	Distance: 44.643
-----------------------------------
-
- 140- | 140-
-Access: 1
-==================================
-connections: 3
-Edge 0: 169	#	Distance: 49.2544
-Edge 1: 140	#	Distance: 0
-Edge 2: 49	#	Distance: 43.1393
-----------------------------------
-
- 141 | 141
-Access: 1
-==================================
-connections: 3
-Edge 0: 141-	#	Distance: 0
-Edge 1: 78-	#	Distance: 49.5177
-Edge 2: 77-	#	Distance: 58.1893
-----------------------------------
-
- 141- | 141-
-Access: 1
-==================================
-connections: 3
-Edge 0: 125	#	Distance: 27.6586
-Edge 1: 141	#	Distance: 0
-Edge 2: 200''''	#	Distance: 25.4951
-----------------------------------
-
- 142 | 142
-Access: 1
-==================================
-connections: 3
-Edge 0: 142-	#	Distance: 0
-Edge 1: 25-	#	Distance: 61.2944
-Edge 2: 92-	#	Distance: 63.6003
-----------------------------------
-
- 142- | 142-
-Access: 1
-==================================
-connections: 3
-Edge 0: 98	#	Distance: 35.3553
-Edge 1: 142	#	Distance: 0
-Edge 2: 130	#	Distance: 49.6488
-----------------------------------
-
- 143 | 143
-Access: 1
-==================================
-connections: 3
-Edge 0: 143-	#	Distance: 0
-Edge 1: 173-	#	Distance: 35.0143
-Edge 2: 60-	#	Distance: 41.1096
-----------------------------------
-
- 143- | 143-
-Access: 1
-==================================
-connections: 3
-Edge 0: 139	#	Distance: 31.0161
-Edge 1: 143	#	Distance: 0
-Edge 2: 50	#	Distance: 46.0435
-----------------------------------
-
- 144 | 144
-Access: 1
-==================================
-connections: 3
-Edge 0: 135-	#	Distance: 22.3607
-Edge 1: 144-	#	Distance: 0
-Edge 2: 91-	#	Distance: 31.7648
-----------------------------------
-
- 144- | 144-
-Access: 1
-==================================
-connections: 3
-Edge 0: 92	#	Distance: 26.0192
-Edge 1: 144	#	Distance: 0
-Edge 2: 75	#	Distance: 36.6197
-----------------------------------
-
- 145 | 145
-Access: 1
-==================================
-connections: 3
-Edge 0: 145-	#	Distance: 0
-Edge 1: 151-	#	Distance: 25.4951
-Edge 2: 152-	#	Distance: 38.9102
-----------------------------------
-
- 145- | 145-
-Access: 1
-==================================
-connections: 3
-Edge 0: 128	#	Distance: 62.2896
-Edge 1: 145	#	Distance: 0
-Edge 2: 165	#	Distance: 53.2353
-----------------------------------
-
- 146 | 146
-Access: 1
-==================================
-connections: 3
-Edge 0: 200'''''''''	#	Distance: 34.2053
-Edge 1: 146-	#	Distance: 0
-Edge 2: 191-	#	Distance: 36.7696
-----------------------------------
-
- 146- | 146-
-Access: 1
-==================================
-connections: 3
-Edge 0: 79	#	Distance: 57.8014
-Edge 1: 146	#	Distance: 0
-Edge 2: 117	#	Distance: 20
-----------------------------------
-
- 147 | 147
-Access: 1
-==================================
-connections: 3
-Edge 0: 118-	#	Distance: 8.24621
-Edge 1: 147-	#	Distance: 0
-Edge 2: 6-	#	Distance: 26.9072
-----------------------------------
-
- 147- | 147-
-Access: 1
-==================================
-connections: 3
-Edge 0: 47	#	Distance: 52.3259
-Edge 1: 147	#	Distance: 0
-Edge 2: 45	#	Distance: 43.0465
-----------------------------------
-
- 148 | 148
-Access: 1
-==================================
-connections: 3
-Edge 0: 148-	#	Distance: 0
-Edge 1: 154-	#	Distance: 72.6223
-Edge 2: 76-	#	Distance: 31.241
-----------------------------------
-
- 148- | 148-
-Access: 1
-==================================
-connections: 3
-Edge 0: 191	#	Distance: 48.7032
-Edge 1: 148	#	Distance: 0
-Edge 2: 66	#	Distance: 49.6588
-----------------------------------
-
- 149 | 149
-Access: 1
-==================================
-connections: 3
-Edge 0: 149-	#	Distance: 0
-Edge 1: 50-	#	Distance: 11.1803
-Edge 2: 15-	#	Distance: 27.4591
-----------------------------------
-
- 149- | 149-
-Access: 1
-==================================
-connections: 3
-Edge 0: 45	#	Distance: 17.2627
-Edge 1: 149	#	Distance: 0
-Edge 2: 13	#	Distance: 19.2094
+Edge 2: 28	#	Distance: 33.9706
 ----------------------------------
 
  15 | 15
 Access: 1
 ==================================
 connections: 3
-Edge 0: 14-	#	Distance: 33
+Edge 0: 24	#	Distance: 15.5242
 Edge 1: 15-	#	Distance: 0
-Edge 2: 112-	#	Distance: 32.0156
+Edge 2: 26-	#	Distance: 6.40312
 ----------------------------------
 
  15- | 15-
 Access: 1
 ==================================
 connections: 3
-Edge 0: 157	#	Distance: 26.0768
+Edge 0: 42	#	Distance: 25.0799
 Edge 1: 15	#	Distance: 0
-Edge 2: 149	#	Distance: 27.4591
-----------------------------------
-
- 150 | 150
-Access: 1
-==================================
-connections: 3
-Edge 0: 105-	#	Distance: 36.8782
-Edge 1: 150-	#	Distance: 0
-Edge 2: 55-	#	Distance: 30.0832
-----------------------------------
-
- 150- | 150-
-Access: 1
-==================================
-connections: 3
-Edge 0: 116	#	Distance: 52.1536
-Edge 1: 150	#	Distance: 0
-Edge 2: 60	#	Distance: 18.3848
-----------------------------------
-
- 151 | 151
-Access: 1
-==================================
-connections: 3
-Edge 0: 151-	#	Distance: 0
-Edge 1: 63-	#	Distance: 15.0333
-Edge 2: 190-	#	Distance: 26.8328
-----------------------------------
-
- 151- | 151-
-Access: 1
-==================================
-connections: 3
-Edge 0: 145	#	Distance: 25.4951
-Edge 1: 151	#	Distance: 0
-Edge 2: 162	#	Distance: 26
-----------------------------------
-
- 152 | 152
-Access: 1
-==================================
-connections: 3
-Edge 0: 152-	#	Distance: 0
-Edge 1: 4-	#	Distance: 8.94427
-Edge 2: 126-	#	Distance: 9.21954
-----------------------------------
-
- 152- | 152-
-Access: 1
-==================================
-connections: 3
-Edge 0: 110	#	Distance: 38.0132
-Edge 1: 152	#	Distance: 0
-Edge 2: 145	#	Distance: 38.9102
-----------------------------------
-
- 153 | 153
-Access: 1
-==================================
-connections: 3
-Edge 0: 153-	#	Distance: 0
-Edge 1: 98-	#	Distance: 9.05539
-Edge 2: 128-	#	Distance: 14.7648
-----------------------------------
-
- 153- | 153-
-Access: 1
-==================================
-connections: 3
-Edge 0: 90	#	Distance: 48.5077
-Edge 1: 153	#	Distance: 0
-Edge 2: 102	#	Distance: 16.1245
-----------------------------------
-
- 154 | 154
-Access: 1
-==================================
-connections: 3
-Edge 0: 154-	#	Distance: 0
-Edge 1: 54-	#	Distance: 24.0416
-Edge 2: 18-	#	Distance: 63.2851
-----------------------------------
-
- 154- | 154-
-Access: 1
-==================================
-connections: 3
-Edge 0: 148	#	Distance: 72.6223
-Edge 1: 154	#	Distance: 0
-Edge 2: 197	#	Distance: 44.0454
-----------------------------------
-
- 155 | 155
-Access: 1
-==================================
-connections: 3
-Edge 0: 200'''''''''	#	Distance: 0
-Edge 1: 74-	#	Distance: 52.8394
-Edge 2: 99-	#	Distance: 25.1794
-----------------------------------
-
- 156 | 156
-Access: 1
-==================================
-connections: 3
-Edge 0: 156-	#	Distance: 0
-Edge 1: 89-	#	Distance: 27.6586
-Edge 2: 17-	#	Distance: 32.0156
-----------------------------------
-
- 156- | 156-
-Access: 1
-==================================
-connections: 3
-Edge 0: 71	#	Distance: 46.0977
-Edge 1: 156	#	Distance: 0
-Edge 2: 14	#	Distance: 54.0833
-----------------------------------
-
- 157 | 157
-Access: 1
-==================================
-connections: 3
-Edge 0: 15-	#	Distance: 26.0768
-Edge 1: 157-	#	Distance: 0
-Edge 2: 124-	#	Distance: 29.6142
-----------------------------------
-
- 157- | 157-
-Access: 1
-==================================
-connections: 3
-Edge 0: 105	#	Distance: 11.7047
-Edge 1: 157	#	Distance: 0
-Edge 2: 85	#	Distance: 50.774
-----------------------------------
-
- 158 | 158
-Access: 1
-==================================
-connections: 3
-Edge 0: 158-	#	Distance: 0
-Edge 1: 53-	#	Distance: 2.23607
-Edge 2: 5-	#	Distance: 34.2345
-----------------------------------
-
- 158- | 158-
-Access: 1
-==================================
-connections: 3
-Edge 0: 27	#	Distance: 35.4401
-Edge 1: 158	#	Distance: 0
-Edge 2: 71	#	Distance: 39.1152
-----------------------------------
-
- 159 | 159
-Access: 1
-==================================
-connections: 3
-Edge 0: 159-	#	Distance: 0
-Edge 1: 96-	#	Distance: 8.24621
-Edge 2: 9-	#	Distance: 26.5707
-----------------------------------
-
- 159- | 159-
-Access: 1
-==================================
-connections: 3
-Edge 0: 135	#	Distance: 30.0167
-Edge 1: 159	#	Distance: 0
-Edge 2: 21	#	Distance: 34.2053
+Edge 2: 18	#	Distance: 24.2074
 ----------------------------------
 
  16 | 16
@@ -1183,197 +283,17 @@ Access: 1
 ==================================
 connections: 3
 Edge 0: 16-	#	Distance: 0
-Edge 1: 93-	#	Distance: 22.8473
-Edge 2: 96-	#	Distance: 5.65685
+Edge 1: 40-	#	Distance: 23.0217
+Edge 2: 1''''''-	#	Distance: 24.7386
 ----------------------------------
 
  16- | 16-
 Access: 1
 ==================================
 connections: 3
-Edge 0: 74	#	Distance: 14.1421
+Edge 0: 28	#	Distance: 32.5576
 Edge 1: 16	#	Distance: 0
-Edge 2: 6	#	Distance: 12.1655
-----------------------------------
-
- 160 | 160
-Access: 1
-==================================
-connections: 3
-Edge 0: 160-	#	Distance: 0
-Edge 1: 29-	#	Distance: 40.05
-Edge 2: 165-	#	Distance: 61.4003
-----------------------------------
-
- 160- | 160-
-Access: 1
-==================================
-connections: 3
-Edge 0: 58	#	Distance: 41
-Edge 1: 160	#	Distance: 0
-Edge 2: 28	#	Distance: 24.3516
-----------------------------------
-
- 161 | 161
-Access: 1
-==================================
-connections: 3
-Edge 0: 109-	#	Distance: 6.32456
-Edge 1: 161-	#	Distance: 0
-Edge 2: 25-	#	Distance: 9.21954
-----------------------------------
-
- 161- | 161-
-Access: 1
-==================================
-connections: 3
-Edge 0: 200''''	#	Distance: 25.4951
-Edge 1: 161	#	Distance: 0
-Edge 2: 104	#	Distance: 29.4109
-----------------------------------
-
- 162 | 162
-Access: 1
-==================================
-connections: 3
-Edge 0: 162-	#	Distance: 0
-Edge 1: 75-	#	Distance: 1
-Edge 2: 151-	#	Distance: 26
-----------------------------------
-
- 162- | 162-
-Access: 1
-==================================
-connections: 3
-Edge 0: 65	#	Distance: 37.5366
-Edge 1: 162	#	Distance: 0
-Edge 2: 10	#	Distance: 13.3417
-----------------------------------
-
- 163 | 163
-Access: 1
-==================================
-connections: 3
-Edge 0: 163-	#	Distance: 0
-Edge 1: 182-	#	Distance: 40.0125
-Edge 2: 133-	#	Distance: 54.626
-----------------------------------
-
- 163- | 163-
-Access: 1
-==================================
-connections: 3
-Edge 0: 168	#	Distance: 37.2022
-Edge 1: 163	#	Distance: 0
-Edge 2: 86	#	Distance: 57.5674
-----------------------------------
-
- 164 | 164
-Access: 1
-==================================
-connections: 3
-Edge 0: 129-	#	Distance: 27.8029
-Edge 1: 164-	#	Distance: 0
-Edge 2: 88-	#	Distance: 62.0725
-----------------------------------
-
- 164- | 164-
-Access: 1
-==================================
-connections: 3
-Edge 0: 172	#	Distance: 62.6418
-Edge 1: 164	#	Distance: 0
-Edge 2: 19	#	Distance: 29
-----------------------------------
-
- 165 | 165
-Access: 1
-==================================
-connections: 3
-Edge 0: 165-	#	Distance: 0
-Edge 1: 70-	#	Distance: 33.6155
-Edge 2: 145-	#	Distance: 53.2353
-----------------------------------
-
- 165- | 165-
-Access: 1
-==================================
-connections: 3
-Edge 0: 123	#	Distance: 41.2311
-Edge 1: 165	#	Distance: 0
-Edge 2: 160	#	Distance: 61.4003
-----------------------------------
-
- 166 | 166
-Access: 1
-==================================
-connections: 3
-Edge 0: 166-	#	Distance: 0
-Edge 1: 28-	#	Distance: 33.8378
-Edge 2: 85-	#	Distance: 64.1249
-----------------------------------
-
- 166- | 166-
-Access: 1
-==================================
-connections: 3
-Edge 0: 20	#	Distance: 9.05539
-Edge 1: 166	#	Distance: 0
-Edge 2: 200'''''''	#	Distance: 43.8634
-----------------------------------
-
- 167 | 167
-Access: 1
-==================================
-connections: 3
-Edge 0: 167-	#	Distance: 0
-Edge 1: 45-	#	Distance: 10.8167
-Edge 2: 24-	#	Distance: 49.163
-----------------------------------
-
- 167- | 167-
-Access: 1
-==================================
-connections: 3
-Edge 0: 190	#	Distance: 45.618
-Edge 1: 167	#	Distance: 0
-Edge 2: 126	#	Distance: 21.0238
-----------------------------------
-
- 168 | 168
-Access: 1
-==================================
-connections: 3
-Edge 0: 163-	#	Distance: 37.2022
-Edge 1: 168-	#	Distance: 0
-Edge 2: 63-	#	Distance: 25.4951
-----------------------------------
-
- 168- | 168-
-Access: 1
-==================================
-connections: 3
-Edge 0: 195	#	Distance: 25
-Edge 1: 168	#	Distance: 0
-Edge 2: 121	#	Distance: 37.855
-----------------------------------
-
- 169 | 169
-Access: 1
-==================================
-connections: 3
-Edge 0: 140-	#	Distance: 49.2544
-Edge 1: 169-	#	Distance: 0
-Edge 2: 52-	#	Distance: 17
-----------------------------------
-
- 169- | 169-
-Access: 1
-==================================
-connections: 3
-Edge 0: 171	#	Distance: 41.2311
-Edge 1: 169	#	Distance: 0
-Edge 2: 77	#	Distance: 12.53
+Edge 2: 5	#	Distance: 18.868
 ----------------------------------
 
  17 | 17
@@ -1381,188 +301,17 @@ Access: 1
 ==================================
 connections: 3
 Edge 0: 17-	#	Distance: 0
-Edge 1: 178-	#	Distance: 24.3311
-Edge 2: 189-	#	Distance: 23.0868
+Edge 1: 27-	#	Distance: 36.7967
+Edge 2: 39-	#	Distance: 9.21954
 ----------------------------------
 
  17- | 17-
 Access: 1
 ==================================
 connections: 3
-Edge 0: 43	#	Distance: 30.2324
+Edge 0: 1'''	#	Distance: 22.0227
 Edge 1: 17	#	Distance: 0
-Edge 2: 156	#	Distance: 32.0156
-----------------------------------
-
- 170 | 170
-Access: 1
-==================================
-connections: 3
-Edge 0: 170-	#	Distance: 0
-Edge 1: 64-	#	Distance: 56.0803
-Edge 2: 200'''''-	#	Distance: 39.6611
-----------------------------------
-
- 170- | 170-
-Access: 1
-==================================
-connections: 3
-Edge 0: 63	#	Distance: 51.9711
-Edge 1: 170	#	Distance: 0
-Edge 2: 30	#	Distance: 44.2719
-----------------------------------
-
- 171 | 171
-Access: 1
-==================================
-connections: 3
-Edge 0: 169-	#	Distance: 41.2311
-Edge 1: 171-	#	Distance: 0
-Edge 2: 122-	#	Distance: 13.6015
-----------------------------------
-
- 171- | 171-
-Access: 1
-==================================
-connections: 3
-Edge 0: 99	#	Distance: 22.8473
-Edge 1: 171	#	Distance: 0
-Edge 2: 184	#	Distance: 31.5753
-----------------------------------
-
- 172 | 172
-Access: 1
-==================================
-connections: 3
-Edge 0: 164-	#	Distance: 62.6418
-Edge 1: 172-	#	Distance: 0
-Edge 2: 90-	#	Distance: 34
-----------------------------------
-
- 172- | 172-
-Access: 1
-==================================
-connections: 3
-Edge 0: 109	#	Distance: 45.2217
-Edge 1: 172	#	Distance: 0
-Edge 2: 11	#	Distance: 49.2443
-----------------------------------
-
- 173 | 173
-Access: 1
-==================================
-connections: 3
-Edge 0: 173-	#	Distance: 0
-Edge 1: 200'''''-	#	Distance: 24.5967
-Edge 2: 44-	#	Distance: 43.0116
-----------------------------------
-
- 173- | 173-
-Access: 1
-==================================
-connections: 3
-Edge 0: 143	#	Distance: 35.0143
-Edge 1: 173	#	Distance: 0
-Edge 2: 89	#	Distance: 41.5933
-----------------------------------
-
- 174 | 174
-Access: 1
-==================================
-connections: 3
-Edge 0: 59	#	Distance: 10.198
-Edge 1: 49	#	Distance: 0
-Edge 2: 33	#	Distance: 29.2062
-----------------------------------
-
- 175 | 175
-Access: 1
-==================================
-connections: 3
-Edge 0: 175-	#	Distance: 0
-Edge 1: 48-	#	Distance: 21.0238
-Edge 2: 188-	#	Distance: 24.0416
-----------------------------------
-
- 175- | 175-
-Access: 1
-==================================
-connections: 3
-Edge 0: 39	#	Distance: 26.1725
-Edge 1: 175	#	Distance: 0
-Edge 2: 103	#	Distance: 22.8035
-----------------------------------
-
- 176 | 176
-Access: 1
-==================================
-connections: 3
-Edge 0: 176-	#	Distance: 0
-Edge 1: 37-	#	Distance: 28.8617
-Edge 2: 62-	#	Distance: 51.264
-----------------------------------
-
- 176- | 176-
-Access: 1
-==================================
-connections: 3
-Edge 0: 200''''''''''	#	Distance: 19.6977
-Edge 1: 176	#	Distance: 0
-Edge 2: 70	#	Distance: 9.05539
-----------------------------------
-
- 177 | 177
-Access: 1
-==================================
-connections: 3
-Edge 0: 115-	#	Distance: 60.208
-Edge 1: 177-	#	Distance: 0
-Edge 2: 59-	#	Distance: 32.573
-----------------------------------
-
- 177- | 177-
-Access: 1
-==================================
-connections: 3
-Edge 0: 53	#	Distance: 48.5489
-Edge 1: 177	#	Distance: 0
-Edge 2: 196	#	Distance: 47.5079
-----------------------------------
-
- 178 | 178
-Access: 1
-==================================
-connections: 3
-Edge 0: 178-	#	Distance: 0
-Edge 1: 60-	#	Distance: 16.5529
-Edge 2: 8-	#	Distance: 3.60555
-----------------------------------
-
- 178- | 178-
-Access: 1
-==================================
-connections: 3
-Edge 0: 17	#	Distance: 24.3311
-Edge 1: 178	#	Distance: 0
-Edge 2: 96	#	Distance: 35.7771
-----------------------------------
-
- 179 | 179
-Access: 1
-==================================
-connections: 3
-Edge 0: 179-	#	Distance: 0
-Edge 1: 69-	#	Distance: 21.0238
-Edge 2: 35-	#	Distance: 13.0384
-----------------------------------
-
- 179- | 179-
-Access: 1
-==================================
-connections: 3
-Edge 0: 197	#	Distance: 40.3113
-Edge 1: 179	#	Distance: 0
-Edge 2: 9	#	Distance: 37.2022
+Edge 2: 21	#	Distance: 17.72
 ----------------------------------
 
  18 | 18
@@ -1570,395 +319,35 @@ Access: 1
 ==================================
 connections: 3
 Edge 0: 18-	#	Distance: 0
-Edge 1: 24-	#	Distance: 13.1529
-Edge 2: 75-	#	Distance: 21.6333
+Edge 1: 26-	#	Distance: 25
+Edge 2: 15-	#	Distance: 24.2074
 ----------------------------------
 
  18- | 18-
 Access: 1
 ==================================
 connections: 3
-Edge 0: 37	#	Distance: 65.437
+Edge 0: 1'''''''	#	Distance: 17.2627
 Edge 1: 18	#	Distance: 0
-Edge 2: 154	#	Distance: 63.2851
-----------------------------------
-
- 180 | 180
-Access: 1
-==================================
-connections: 3
-Edge 0: 180-	#	Distance: 0
-Edge 1: 82-	#	Distance: 44.911
-Edge 2: 200''''''''''-	#	Distance: 27.5862
-----------------------------------
-
- 180- | 180-
-Access: 1
-==================================
-connections: 3
-Edge 0: 136	#	Distance: 48.7955
-Edge 1: 180	#	Distance: 0
-Edge 2: 51	#	Distance: 7.81025
-----------------------------------
-
- 181 | 181
-Access: 1
-==================================
-connections: 3
-Edge 0: 181-	#	Distance: 0
-Edge 1: 3-	#	Distance: 6.32456
-Edge 2: 127	#	Distance: 27.8568
-----------------------------------
-
- 181- | 181-
-Access: 1
-==================================
-connections: 3
-Edge 0: 31	#	Distance: 33.121
-Edge 1: 181	#	Distance: 0
-Edge 2: 200''''''	#	Distance: 23.3238
-----------------------------------
-
- 182 | 182
-Access: 1
-==================================
-connections: 3
-Edge 0: 182-	#	Distance: 0
-Edge 1: 200'-	#	Distance: 21.095
-Edge 2: 117-	#	Distance: 6.7082
-----------------------------------
-
- 182- | 182-
-Access: 1
-==================================
-connections: 3
-Edge 0: 163	#	Distance: 40.0125
-Edge 1: 182	#	Distance: 0
-Edge 2: 125	#	Distance: 31.7805
-----------------------------------
-
- 183 | 183
-Access: 1
-==================================
-connections: 3
-Edge 0: 106-	#	Distance: 21.0238
-Edge 1: 183-	#	Distance: 0
-Edge 2: 101-	#	Distance: 27.7849
-----------------------------------
-
- 183- | 183-
-Access: 1
-==================================
-connections: 3
-Edge 0: 81	#	Distance: 30.8869
-Edge 1: 183	#	Distance: 0
-Edge 2: 34	#	Distance: 40.025
-----------------------------------
-
- 184 | 184
-Access: 1
-==================================
-connections: 3
-Edge 0: 184-	#	Distance: 0
-Edge 1: 72-	#	Distance: 35
-Edge 2: 171-	#	Distance: 31.5753
-----------------------------------
-
- 184- | 184-
-Access: 1
-==================================
-connections: 3
-Edge 0: 24	#	Distance: 22.8473
-Edge 1: 184	#	Distance: 0
-Edge 2: 79	#	Distance: 42.2966
-----------------------------------
-
- 185 | 185
-Access: 1
-==================================
-connections: 3
-Edge 0: 185-	#	Distance: 0
-Edge 1: 187-	#	Distance: 40.4969
-Edge 2: 34-	#	Distance: 50.9902
-----------------------------------
-
- 185- | 185-
-Access: 1
-==================================
-connections: 3
-Edge 0: 189	#	Distance: 55.9464
-Edge 1: 185	#	Distance: 0
-Edge 2: 80	#	Distance: 60.7454
-----------------------------------
-
- 186 | 186
-Access: 1
-==================================
-connections: 3
-Edge 0: 186-	#	Distance: 0
-Edge 1: 34-	#	Distance: 31.1127
-Edge 2: 1-	#	Distance: 7.2111
-----------------------------------
-
- 186- | 186-
-Access: 1
-==================================
-connections: 3
-Edge 0: 100	#	Distance: 33.6155
-Edge 1: 186	#	Distance: 0
-Edge 2: 137	#	Distance: 26.4197
-----------------------------------
-
- 187 | 187
-Access: 1
-==================================
-connections: 3
-Edge 0: 187-	#	Distance: 0
-Edge 1: 41-	#	Distance: 37.6962
-Edge 2: 131-	#	Distance: 19.2354
-----------------------------------
-
- 187- | 187-
-Access: 1
-==================================
-connections: 3
-Edge 0: 185	#	Distance: 40.4969
-Edge 1: 187	#	Distance: 0
-Edge 2: 88	#	Distance: 49.5782
-----------------------------------
-
- 188 | 188
-Access: 1
-==================================
-connections: 3
-Edge 0: 12-	#	Distance: 18.3576
-Edge 1: 188-	#	Distance: 0
-Edge 2: 114-	#	Distance: 30.2655
-----------------------------------
-
- 188- | 188-
-Access: 1
-==================================
-connections: 3
-Edge 0: 32	#	Distance: 18.4391
-Edge 1: 188	#	Distance: 0
-Edge 2: 175	#	Distance: 24.0416
-----------------------------------
-
- 189 | 189
-Access: 1
-==================================
-connections: 3
-Edge 0: 185-	#	Distance: 55.9464
-Edge 1: 189-	#	Distance: 0
-Edge 2: 57-	#	Distance: 5
-----------------------------------
-
- 189- | 189-
-Access: 1
-==================================
-connections: 3
-Edge 0: 68	#	Distance: 56.921
-Edge 1: 189	#	Distance: 0
-Edge 2: 17	#	Distance: 23.0868
+Edge 2: 47	#	Distance: 16.7631
 ----------------------------------
 
  19 | 19
 Access: 1
 ==================================
 connections: 3
-Edge 0: 19-	#	Distance: 0
-Edge 1: 38-	#	Distance: 23.4307
-Edge 2: 164-	#	Distance: 29
+Edge 0: 1''''''-	#	Distance: 14.7648
+Edge 1: 19-	#	Distance: 0
+Edge 2: 5-	#	Distance: 7.61577
 ----------------------------------
 
  19- | 19-
 Access: 1
 ==================================
 connections: 3
-Edge 0: 89	#	Distance: 70.8025
+Edge 0: 40	#	Distance: 45.6946
 Edge 1: 19	#	Distance: 0
-Edge 2: 65	#	Distance: 12.2066
-----------------------------------
-
- 190 | 190
-Access: 1
-==================================
-connections: 3
-Edge 0: 167-	#	Distance: 45.618
-Edge 1: 190-	#	Distance: 0
-Edge 2: 82-	#	Distance: 32.28
-----------------------------------
-
- 190- | 190-
-Access: 1
-==================================
-connections: 3
-Edge 0: 97	#	Distance: 37.3631
-Edge 1: 190	#	Distance: 0
-Edge 2: 151	#	Distance: 26.8328
-----------------------------------
-
- 191 | 191
-Access: 1
-==================================
-connections: 3
-Edge 0: 148-	#	Distance: 48.7032
-Edge 1: 191-	#	Distance: 0
-Edge 2: 118-	#	Distance: 38.6394
-----------------------------------
-
- 191- | 191-
-Access: 1
-==================================
-connections: 3
-Edge 0: 96	#	Distance: 10.4403
-Edge 1: 191	#	Distance: 0
-Edge 2: 146	#	Distance: 36.7696
-----------------------------------
-
- 192 | 192
-Access: 1
-==================================
-connections: 3
-Edge 0: 104-	#	Distance: 6.7082
-Edge 1: 192-	#	Distance: 0
-Edge 2: 108-	#	Distance: 51.6236
-----------------------------------
-
- 192- | 192-
-Access: 1
-==================================
-connections: 3
-Edge 0: 67	#	Distance: 9.05539
-Edge 1: 192	#	Distance: 0
-Edge 2: 113	#	Distance: 14.3178
-----------------------------------
-
- 193 | 193
-Access: 1
-==================================
-connections: 3
-Edge 0: 193-	#	Distance: 0
-Edge 1: 5-	#	Distance: 29.8329
-Edge 2: 102-	#	Distance: 34.1321
-----------------------------------
-
- 193- | 193-
-Access: 1
-==================================
-connections: 3
-Edge 0: 85	#	Distance: 55.9732
-Edge 1: 193	#	Distance: 0
-Edge 2: 67	#	Distance: 10.8167
-----------------------------------
-
- 194 | 194
-Access: 1
-==================================
-connections: 3
-Edge 0: 194-	#	Distance: 0
-Edge 1: 200'''''''-	#	Distance: 14.8661
-Edge 2: 139-	#	Distance: 15.0333
-----------------------------------
-
- 194- | 194-
-Access: 1
-==================================
-connections: 3
-Edge 0: 23	#	Distance: 14.5602
-Edge 1: 194	#	Distance: 0
-Edge 2: 134	#	Distance: 55.9017
-----------------------------------
-
- 195 | 195
-Access: 1
-==================================
-connections: 3
-Edge 0: 168-	#	Distance: 25
-Edge 1: 195-	#	Distance: 0
-Edge 2: 32-	#	Distance: 26
-----------------------------------
-
- 195- | 195-
-Access: 1
-==================================
-connections: 3
-Edge 0: 51	#	Distance: 34.8281
-Edge 1: 195	#	Distance: 0
-Edge 2: 135	#	Distance: 38.5876
-----------------------------------
-
- 196 | 196
-Access: 1
-==================================
-connections: 3
-Edge 0: 116-	#	Distance: 21.9317
-Edge 1: 196-	#	Distance: 0
-Edge 2: 177-	#	Distance: 47.5079
-----------------------------------
-
- 196- | 196-
-Access: 1
-==================================
-connections: 3
-Edge 0: 64	#	Distance: 12.083
-Edge 1: 196	#	Distance: 0
-Edge 2: 7	#	Distance: 38.2884
-----------------------------------
-
- 197 | 197
-Access: 1
-==================================
-connections: 3
-Edge 0: 179-	#	Distance: 40.3113
-Edge 1: 197-	#	Distance: 0
-Edge 2: 154-	#	Distance: 44.0454
-----------------------------------
-
- 197- | 197-
-Access: 1
-==================================
-connections: 3
-Edge 0: 8	#	Distance: 43.2666
-Edge 1: 197	#	Distance: 0
-Edge 2: 94	#	Distance: 22.8254
-----------------------------------
-
- 198 | 198
-Access: 1
-==================================
-connections: 3
-Edge 0: 198-	#	Distance: 0
-Edge 1: 71-	#	Distance: 38.0132
-Edge 2: 200'''''''''	#	Distance: 17.4929
-----------------------------------
-
- 198- | 198-
-Access: 1
-==================================
-connections: 3
-Edge 0: 50	#	Distance: 31.0644
-Edge 1: 198	#	Distance: 0
-Edge 2: 83	#	Distance: 41.5933
-----------------------------------
-
- 199 | 199
-Access: 1
-==================================
-connections: 3
-Edge 0: 112-	#	Distance: 13.8924
-Edge 1: 199-	#	Distance: 0
-Edge 2: 56-	#	Distance: 45.0111
-----------------------------------
-
- 199- | 199-
-Access: 1
-==================================
-connections: 3
-Edge 0: 70	#	Distance: 50.1199
-Edge 1: 199	#	Distance: 0
-Edge 2: 82	#	Distance: 29.1204
+Edge 2: 1'''''	#	Distance: 14.7648
 ----------------------------------
 
  2 | 2
@@ -1966,377 +355,206 @@ Access: 1
 ==================================
 connections: 3
 Edge 0: 2-	#	Distance: 0
-Edge 1: 87-	#	Distance: 12.7279
-Edge 2: 98-	#	Distance: 12.1655
+Edge 1: 48-	#	Distance: 23.3238
+Edge 2: 40-	#	Distance: 43.0465
 ----------------------------------
 
  2- | 2-
 Access: 1
 ==================================
 connections: 3
-Edge 0: 88	#	Distance: 25.4951
+Edge 0: 33	#	Distance: 6.08276
 Edge 1: 2	#	Distance: 0
-Edge 2: 91	#	Distance: 21.9317
+Edge 2: 29	#	Distance: 16.1555
 ----------------------------------
 
  20 | 20
 Access: 1
 ==================================
 connections: 3
-Edge 0: 166-	#	Distance: 9.05539
-Edge 1: 20-	#	Distance: 0
-Edge 2: 68-	#	Distance: 53.0094
+Edge 0: 20-	#	Distance: 0
+Edge 1: 41-	#	Distance: 10.6301
+Edge 2: 35-	#	Distance: 52
 ----------------------------------
 
  20- | 20-
 Access: 1
 ==================================
 connections: 3
-Edge 0: 25	#	Distance: 70.0071
+Edge 0: 7	#	Distance: 34.9285
 Edge 1: 20	#	Distance: 0
-Edge 2: 59	#	Distance: 16.5529
-----------------------------------
-
- 200' | 200'
-Access: 1
-==================================
-connections: 3
-Edge 0: 110-	#	Distance: 33.541
-Edge 1: 200'-	#	Distance: 0
-Edge 2: 125-	#	Distance: 11.1803
-----------------------------------
-
- 200'' | 200''
-Access: 1
-==================================
-connections: 3
-Edge 0: 128-	#	Distance: 29.8329
-Edge 1: 200''-	#	Distance: 0
-Edge 2: 10-	#	Distance: 31.4006
-----------------------------------
-
- 200''' | 200'''
-Access: 1
-==================================
-connections: 3
-Edge 0: 200'''-	#	Distance: 0
-Edge 1: 59-	#	Distance: 21.2603
-Edge 2: 87-	#	Distance: 10
-----------------------------------
-
- 200'''' | 200''''
-Access: 1
-==================================
-connections: 3
-Edge 0: 84	#	Distance: 0
-Edge 1: 161-	#	Distance: 25.4951
-Edge 2: 141-	#	Distance: 25.4951
-----------------------------------
-
- 200''''' | 200'''''
-Access: 1
-==================================
-connections: 3
-Edge 0: 200'''''-	#	Distance: 0
-Edge 1: 26-	#	Distance: 12.53
-Edge 2: 50-	#	Distance: 17.1172
-----------------------------------
-
- 200'''''' | 200''''''
-Access: 1
-==================================
-connections: 3
-Edge 0: 200''''''-	#	Distance: 0
-Edge 1: 36-	#	Distance: 31.4006
-Edge 2: 181-	#	Distance: 23.3238
-----------------------------------
-
- 200''''''' | 200'''''''
-Access: 1
-==================================
-connections: 3
-Edge 0: 10-	#	Distance: 31.4006
-Edge 1: 200'''''''-	#	Distance: 0
-Edge 2: 166-	#	Distance: 43.8634
-----------------------------------
-
- 200'''''''' | 200''''''''
-Access: 1
-==================================
-connections: 3
-Edge 0: 200''''''''-	#	Distance: 0
-Edge 1: 32-	#	Distance: 22.2036
-Edge 2: 3-	#	Distance: 17.2047
-----------------------------------
-
- 200''''''''' | 200'''''''''
-Access: 1
-==================================
-connections: 3
-Edge 0: 146	#	Distance: 34.2053
-Edge 1: 155	#	Distance: 0
-Edge 2: 198	#	Distance: 17.4929
-----------------------------------
-
- 200'''''''''' | 200''''''''''
-Access: 1
-==================================
-connections: 3
-Edge 0: 176-	#	Distance: 19.6977
-Edge 1: 200''''''''''-	#	Distance: 0
-Edge 2: 53-	#	Distance: 17.4929
-----------------------------------
-
- 200''''''''''- | 200''''''''''-
-Access: 1
-==================================
-connections: 3
-Edge 0: 108	#	Distance: 32.0156
-Edge 1: 200''''''''''	#	Distance: 0
-Edge 2: 180	#	Distance: 27.5862
-----------------------------------
-
- 200''''''''- | 200''''''''-
-Access: 1
-==================================
-connections: 3
-Edge 0: 119	#	Distance: 31.6228
-Edge 1: 200''''''''	#	Distance: 0
-Edge 2: 25	#	Distance: 34.1321
-----------------------------------
-
- 200'''''''- | 200'''''''-
-Access: 1
-==================================
-connections: 3
-Edge 0: 194	#	Distance: 14.8661
-Edge 1: 200'''''''	#	Distance: 0
-Edge 2: 5	#	Distance: 25
-----------------------------------
-
- 200''''''- | 200''''''-
-Access: 1
-==================================
-connections: 3
-Edge 0: 112	#	Distance: 11.1803
-Edge 1: 200''''''	#	Distance: 0
-Edge 2: 39	#	Distance: 25.4951
-----------------------------------
-
- 200'''''- | 200'''''-
-Access: 1
-==================================
-connections: 3
-Edge 0: 173	#	Distance: 24.5967
-Edge 1: 200'''''	#	Distance: 0
-Edge 2: 170	#	Distance: 39.6611
-----------------------------------
-
- 200'''- | 200'''-
-Access: 1
-==================================
-connections: 3
-Edge 0: 1	#	Distance: 18.3848
-Edge 1: 200'''	#	Distance: 0
-Edge 2: 93	#	Distance: 20.6155
-----------------------------------
-
- 200''- | 200''-
-Access: 1
-==================================
-connections: 3
-Edge 0: 60	#	Distance: 9.21954
-Edge 1: 200''	#	Distance: 0
-Edge 2: 119	#	Distance: 31.6228
-----------------------------------
-
- 200'- | 200'-
-Access: 1
-==================================
-connections: 3
-Edge 0: 182	#	Distance: 21.095
-Edge 1: 200'	#	Distance: 0
-Edge 2: 46	#	Distance: 17.4642
+Edge 2: 1''''''	#	Distance: 31.9061
 ----------------------------------
 
  21 | 21
 Access: 1
 ==================================
 connections: 3
-Edge 0: 11-	#	Distance: 53.1507
-Edge 1: 21-	#	Distance: 0
-Edge 2: 159-	#	Distance: 34.2053
+Edge 0: 21-	#	Distance: 0
+Edge 1: 3-	#	Distance: 12.0416
+Edge 2: 17-	#	Distance: 17.72
 ----------------------------------
 
  21- | 21-
 Access: 1
 ==================================
 connections: 3
-Edge 0: 73	#	Distance: 53.0754
+Edge 0: 1''''	#	Distance: 32.45
 Edge 1: 21	#	Distance: 0
-Edge 2: 52	#	Distance: 51.6236
+Edge 2: 4	#	Distance: 7.81025
 ----------------------------------
 
  22 | 22
 Access: 1
 ==================================
 connections: 3
-Edge 0: 108-	#	Distance: 55.2268
+Edge 0: 1'''-	#	Distance: 32.0624
 Edge 1: 22-	#	Distance: 0
-Edge 2: 64-	#	Distance: 10.4403
+Edge 2: 30-	#	Distance: 7.2111
 ----------------------------------
 
  22- | 22-
 Access: 1
 ==================================
 connections: 3
-Edge 0: 111	#	Distance: 32.5576
+Edge 0: 14	#	Distance: 59.4811
 Edge 1: 22	#	Distance: 0
-Edge 2: 32	#	Distance: 40.1995
+Edge 2: 38	#	Distance: 36.0555
 ----------------------------------
 
  23 | 23
 Access: 1
 ==================================
 connections: 3
-Edge 0: 194-	#	Distance: 14.5602
+Edge 0: 1''-	#	Distance: 20.8087
 Edge 1: 23-	#	Distance: 0
-Edge 2: 74-	#	Distance: 10.7703
+Edge 2: 7-	#	Distance: 23.2594
 ----------------------------------
 
  23- | 23-
 Access: 1
 ==================================
 connections: 3
-Edge 0: 106	#	Distance: 23.7697
+Edge 0: 36	#	Distance: 20.8806
 Edge 1: 23	#	Distance: 0
-Edge 2: 41	#	Distance: 11.0454
+Edge 2: 27	#	Distance: 18.6011
 ----------------------------------
 
  24 | 24
 Access: 1
 ==================================
 connections: 3
-Edge 0: 184-	#	Distance: 22.8473
-Edge 1: 24-	#	Distance: 0
-Edge 2: 61-	#	Distance: 26.4008
-----------------------------------
-
- 24- | 24-
-Access: 1
-==================================
-connections: 3
-Edge 0: 18	#	Distance: 13.1529
-Edge 1: 24	#	Distance: 0
-Edge 2: 167	#	Distance: 49.163
+Edge 0: 15	#	Distance: 15.5242
+Edge 1: 1''''''''''	#	Distance: 0
+Edge 2: 1'	#	Distance: 22.0227
 ----------------------------------
 
  25 | 25
 Access: 1
 ==================================
 connections: 3
-Edge 0: 20-	#	Distance: 70.0071
-Edge 1: 25-	#	Distance: 0
-Edge 2: 200''''''''-	#	Distance: 34.1321
+Edge 0: 25-	#	Distance: 0
+Edge 1: 49-	#	Distance: 17.2627
+Edge 2: 13-	#	Distance: 30.4795
 ----------------------------------
 
  25- | 25-
 Access: 1
 ==================================
 connections: 3
-Edge 0: 142	#	Distance: 61.2944
+Edge 0: 26	#	Distance: 14.0357
 Edge 1: 25	#	Distance: 0
-Edge 2: 161	#	Distance: 9.21954
+Edge 2: 31	#	Distance: 55.9017
 ----------------------------------
 
  26 | 26
 Access: 1
 ==================================
 connections: 3
-Edge 0: 26-	#	Distance: 0
-Edge 1: 86-	#	Distance: 25.632
-Edge 2: 38-	#	Distance: 20.8806
+Edge 0: 25-	#	Distance: 14.0357
+Edge 1: 26-	#	Distance: 0
+Edge 2: 1''''-	#	Distance: 23.0868
 ----------------------------------
 
  26- | 26-
 Access: 1
 ==================================
 connections: 3
-Edge 0: 200'''''	#	Distance: 12.53
+Edge 0: 18	#	Distance: 25
 Edge 1: 26	#	Distance: 0
-Edge 2: 56	#	Distance: 29.4109
+Edge 2: 15	#	Distance: 6.40312
 ----------------------------------
 
  27 | 27
 Access: 1
 ==================================
 connections: 3
-Edge 0: 158-	#	Distance: 35.4401
-Edge 1: 27-	#	Distance: 0
-Edge 2: 95-	#	Distance: 23.5372
+Edge 0: 27-	#	Distance: 0
+Edge 1: 32-	#	Distance: 10.0499
+Edge 2: 23-	#	Distance: 18.6011
 ----------------------------------
 
  27- | 27-
 Access: 1
 ==================================
 connections: 3
-Edge 0: 132	#	Distance: 18.1108
+Edge 0: 17	#	Distance: 36.7967
 Edge 1: 27	#	Distance: 0
-Edge 2: 100	#	Distance: 20.5183
+Edge 2: 30	#	Distance: 36.8917
 ----------------------------------
 
  28 | 28
 Access: 1
 ==================================
 connections: 3
-Edge 0: 84	#	Distance: 54.2033
+Edge 0: 16-	#	Distance: 32.5576
 Edge 1: 28-	#	Distance: 0
-Edge 2: 160-	#	Distance: 24.3516
+Edge 2: 14-	#	Distance: 33.9706
 ----------------------------------
 
  28- | 28-
 Access: 1
 ==================================
 connections: 3
-Edge 0: 166	#	Distance: 33.8378
+Edge 0: 44	#	Distance: 29.6816
 Edge 1: 28	#	Distance: 0
-Edge 2: 110	#	Distance: 51.2445
+Edge 2: 1''	#	Distance: 8
 ----------------------------------
 
  29 | 29
 Access: 1
 ==================================
 connections: 3
-Edge 0: 120-	#	Distance: 9.21954
+Edge 0: 14-	#	Distance: 56.6392
 Edge 1: 29-	#	Distance: 0
-Edge 2: 14-	#	Distance: 32.573
+Edge 2: 2-	#	Distance: 16.1555
 ----------------------------------
 
  29- | 29-
 Access: 1
 ==================================
 connections: 3
-Edge 0: 160	#	Distance: 40.05
+Edge 0: 37	#	Distance: 20.0998
 Edge 1: 29	#	Distance: 0
-Edge 2: 48	#	Distance: 6.40312
+Edge 2: 50	#	Distance: 39.3192
 ----------------------------------
 
  3 | 3
 Access: 1
 ==================================
 connections: 3
-Edge 0: 119-	#	Distance: 31.241
+Edge 0: 10-	#	Distance: 16.2788
 Edge 1: 3-	#	Distance: 0
-Edge 2: 37-	#	Distance: 49.2037
+Edge 2: 1'''''''-	#	Distance: 21.0238
 ----------------------------------
 
  3- | 3-
 Access: 1
 ==================================
 connections: 3
-Edge 0: 181	#	Distance: 6.32456
+Edge 0: 21	#	Distance: 12.0416
 Edge 1: 3	#	Distance: 0
-Edge 2: 200''''''''	#	Distance: 17.2047
+Edge 2: 34	#	Distance: 39.1152
 ----------------------------------
 
  30 | 30
@@ -2344,71 +562,71 @@ Access: 1
 ==================================
 connections: 3
 Edge 0: 30-	#	Distance: 0
-Edge 1: 31-	#	Distance: 51.4198
-Edge 2: 170-	#	Distance: 44.2719
+Edge 1: 33-	#	Distance: 20.0998
+Edge 2: 27-	#	Distance: 36.8917
 ----------------------------------
 
  30- | 30-
 Access: 1
 ==================================
 connections: 3
-Edge 0: 87	#	Distance: 9.21954
+Edge 0: 45	#	Distance: 43.2782
 Edge 1: 30	#	Distance: 0
-Edge 2: 68	#	Distance: 32.6956
+Edge 2: 22	#	Distance: 7.2111
 ----------------------------------
 
  31 | 31
 Access: 1
 ==================================
 connections: 3
-Edge 0: 181-	#	Distance: 33.121
-Edge 1: 31-	#	Distance: 0
-Edge 2: 12-	#	Distance: 25.318
+Edge 0: 31-	#	Distance: 0
+Edge 1: 38-	#	Distance: 26.4764
+Edge 2: 25-	#	Distance: 55.9017
 ----------------------------------
 
  31- | 31-
 Access: 1
 ==================================
 connections: 3
-Edge 0: 30	#	Distance: 51.4198
+Edge 0: 35	#	Distance: 6.7082
 Edge 1: 31	#	Distance: 0
-Edge 2: 64	#	Distance: 60.208
+Edge 2: 33	#	Distance: 27.5862
 ----------------------------------
 
  32 | 32
 Access: 1
 ==================================
 connections: 3
-Edge 0: 188-	#	Distance: 18.4391
+Edge 0: 12-	#	Distance: 28.4429
 Edge 1: 32-	#	Distance: 0
-Edge 2: 22-	#	Distance: 40.1995
+Edge 2: 9-	#	Distance: 9.21954
 ----------------------------------
 
  32- | 32-
 Access: 1
 ==================================
 connections: 3
-Edge 0: 200''''''''	#	Distance: 22.2036
+Edge 0: 27	#	Distance: 10.0499
 Edge 1: 32	#	Distance: 0
-Edge 2: 195	#	Distance: 26
+Edge 2: 37	#	Distance: 26
 ----------------------------------
 
  33 | 33
 Access: 1
 ==================================
 connections: 3
-Edge 0: 33-	#	Distance: 0
-Edge 1: 58-	#	Distance: 26.3059
-Edge 2: 174	#	Distance: 29.2062
+Edge 0: 2-	#	Distance: 6.08276
+Edge 1: 33-	#	Distance: 0
+Edge 2: 31-	#	Distance: 27.5862
 ----------------------------------
 
  33- | 33-
 Access: 1
 ==================================
 connections: 3
-Edge 0: 82	#	Distance: 27.5862
+Edge 0: 30	#	Distance: 20.0998
 Edge 1: 33	#	Distance: 0
-Edge 2: 87	#	Distance: 19.9249
+Edge 2: 11-	#	Distance: 28.178
 ----------------------------------
 
  34 | 34
@@ -2416,143 +634,143 @@ Access: 1
 ==================================
 connections: 3
 Edge 0: 34-	#	Distance: 0
-Edge 1: 62-	#	Distance: 47.4342
-Edge 2: 183-	#	Distance: 40.025
+Edge 1: 46-	#	Distance: 7
+Edge 2: 3-	#	Distance: 39.1152
 ----------------------------------
 
  34- | 34-
 Access: 1
 ==================================
 connections: 3
-Edge 0: 186	#	Distance: 31.1127
+Edge 0: 49	#	Distance: 49.6588
 Edge 1: 34	#	Distance: 0
-Edge 2: 185	#	Distance: 50.9902
+Edge 2: 6	#	Distance: 20.8806
 ----------------------------------
 
  35 | 35
 Access: 1
 ==================================
 connections: 3
-Edge 0: 35-	#	Distance: 0
-Edge 1: 95-	#	Distance: 25.4951
-Edge 2: 89-	#	Distance: 66.6033
+Edge 0: 31-	#	Distance: 6.7082
+Edge 1: 35-	#	Distance: 0
+Edge 2: 10-	#	Distance: 9
 ----------------------------------
 
  35- | 35-
 Access: 1
 ==================================
 connections: 3
-Edge 0: 44	#	Distance: 34.0588
+Edge 0: 1'-	#	Distance: 31.7805
 Edge 1: 35	#	Distance: 0
-Edge 2: 179	#	Distance: 13.0384
+Edge 2: 20	#	Distance: 52
 ----------------------------------
 
  36 | 36
 Access: 1
 ==================================
 connections: 3
-Edge 0: 133-	#	Distance: 46.3249
+Edge 0: 23-	#	Distance: 20.8806
 Edge 1: 36-	#	Distance: 0
-Edge 2: 119-	#	Distance: 55.7315
+Edge 2: 12-	#	Distance: 29.7321
 ----------------------------------
 
  36- | 36-
 Access: 1
 ==================================
 connections: 3
-Edge 0: 200''''''	#	Distance: 31.4006
+Edge 0: 38	#	Distance: 50.8035
 Edge 1: 36	#	Distance: 0
-Edge 2: 105	#	Distance: 35.2278
+Edge 2: 9	#	Distance: 31.0161
 ----------------------------------
 
  37 | 37
 Access: 1
 ==================================
 connections: 3
-Edge 0: 18-	#	Distance: 65.437
+Edge 0: 29-	#	Distance: 20.0998
 Edge 1: 37-	#	Distance: 0
-Edge 2: 45-	#	Distance: 18.0278
+Edge 2: 32-	#	Distance: 26
 ----------------------------------
 
  37- | 37-
 Access: 1
 ==================================
 connections: 3
-Edge 0: 176	#	Distance: 28.8617
+Edge 0: 4	#	Distance: 12.083
 Edge 1: 37	#	Distance: 0
-Edge 2: 3	#	Distance: 49.2037
+Edge 2: 1'''''''	#	Distance: 43.9318
 ----------------------------------
 
  38 | 38
 Access: 1
 ==================================
 connections: 3
-Edge 0: 38-	#	Distance: 0
-Edge 1: 79-	#	Distance: 40.5216
-Edge 2: 72-	#	Distance: 32.28
+Edge 0: 36-	#	Distance: 50.8035
+Edge 1: 38-	#	Distance: 0
+Edge 2: 22-	#	Distance: 36.0555
 ----------------------------------
 
  38- | 38-
 Access: 1
 ==================================
 connections: 3
-Edge 0: 19	#	Distance: 23.4307
+Edge 0: 31	#	Distance: 26.4764
 Edge 1: 38	#	Distance: 0
-Edge 2: 26	#	Distance: 20.8806
+Edge 2: 48	#	Distance: 12.2066
 ----------------------------------
 
  39 | 39
 Access: 1
 ==================================
 connections: 3
-Edge 0: 175-	#	Distance: 26.1725
-Edge 1: 39-	#	Distance: 0
-Edge 2: 200''''''-	#	Distance: 25.4951
+Edge 0: 39-	#	Distance: 0
+Edge 1: 7-	#	Distance: 26.8328
+Edge 2: 1'''''-	#	Distance: 15.8114
 ----------------------------------
 
  39- | 39-
 Access: 1
 ==================================
 connections: 3
-Edge 0: 130	#	Distance: 8.06226
+Edge 0: 6	#	Distance: 7.07107
 Edge 1: 39	#	Distance: 0
-Edge 2: 74	#	Distance: 31.8277
+Edge 2: 17	#	Distance: 9.21954
 ----------------------------------
 
  4 | 4
 Access: 1
 ==================================
 connections: 3
-Edge 0: 4-	#	Distance: 0
-Edge 1: 92-	#	Distance: 49.4065
-Edge 2: 41-	#	Distance: 37.5899
+Edge 0: 37-	#	Distance: 12.083
+Edge 1: 4-	#	Distance: 0
+Edge 2: 21-	#	Distance: 7.81025
 ----------------------------------
 
  4- | 4-
 Access: 1
 ==================================
 connections: 3
-Edge 0: 152	#	Distance: 8.94427
+Edge 0: 1''	#	Distance: 32.5576
 Edge 1: 4	#	Distance: 0
-Edge 2: 57	#	Distance: 30.4138
+Edge 2: 45	#	Distance: 53.7122
 ----------------------------------
 
  40 | 40
 Access: 1
 ==================================
 connections: 3
-Edge 0: 121-	#	Distance: 42.72
+Edge 0: 19-	#	Distance: 45.6946
 Edge 1: 40-	#	Distance: 0
-Edge 2: 94-	#	Distance: 41
+Edge 2: 46-	#	Distance: 20.6155
 ----------------------------------
 
  40- | 40-
 Access: 1
 ==================================
 connections: 3
-Edge 0: 7	#	Distance: 20
+Edge 0: 16	#	Distance: 23.0217
 Edge 1: 40	#	Distance: 0
-Edge 2: 140	#	Distance: 44.643
+Edge 2: 2	#	Distance: 43.0465
 ----------------------------------
 
  41 | 41
@@ -2560,89 +778,89 @@ Access: 1
 ==================================
 connections: 3
 Edge 0: 41-	#	Distance: 0
-Edge 1: 91-	#	Distance: 11.4018
-Edge 2: 23-	#	Distance: 11.0454
+Edge 1: 5-	#	Distance: 25
+Edge 2: 8-	#	Distance: 58.2495
 ----------------------------------
 
  41- | 41-
 Access: 1
 ==================================
 connections: 3
-Edge 0: 187	#	Distance: 37.6962
+Edge 0: 20	#	Distance: 10.6301
 Edge 1: 41	#	Distance: 0
-Edge 2: 4	#	Distance: 37.5899
+Edge 2: 42	#	Distance: 12.083
 ----------------------------------
 
  42 | 42
 Access: 1
 ==================================
 connections: 3
-Edge 0: 42-	#	Distance: 0
-Edge 1: 88-	#	Distance: 44.0114
-Edge 2: 54-	#	Distance: 29.6816
+Edge 0: 15-	#	Distance: 25.0799
+Edge 1: 42-	#	Distance: 0
+Edge 2: 41-	#	Distance: 12.083
 ----------------------------------
 
  42- | 42-
 Access: 1
 ==================================
 connections: 3
-Edge 0: 124	#	Distance: 50.3587
+Edge 0: 1'''''''''	#	Distance: 30.4795
 Edge 1: 42	#	Distance: 0
-Edge 2: 122	#	Distance: 41
+Edge 2: 43	#	Distance: 13.0384
 ----------------------------------
 
  43 | 43
 Access: 1
 ==================================
 connections: 3
-Edge 0: 17-	#	Distance: 30.2324
+Edge 0: 1''''-	#	Distance: 31.3209
 Edge 1: 43-	#	Distance: 0
-Edge 2: 13-	#	Distance: 48.7032
+Edge 2: 42-	#	Distance: 13.0384
 ----------------------------------
 
  43- | 43-
 Access: 1
 ==================================
 connections: 3
-Edge 0: 101	#	Distance: 19.105
+Edge 0: 12	#	Distance: 37.4433
 Edge 1: 43	#	Distance: 0
-Edge 2: 1	#	Distance: 6.7082
+Edge 2: 51	#	Distance: 44.2041
 ----------------------------------
 
  44 | 44
 Access: 1
 ==================================
 connections: 3
-Edge 0: 35-	#	Distance: 34.0588
+Edge 0: 28-	#	Distance: 29.6816
 Edge 1: 44-	#	Distance: 0
-Edge 2: 7-	#	Distance: 29.0689
+Edge 2: 1''''''''''	#	Distance: 34.6554
 ----------------------------------
 
  44- | 44-
 Access: 1
 ==================================
 connections: 3
-Edge 0: 49	#	Distance: 13.4536
+Edge 0: 51	#	Distance: 57.7062
 Edge 1: 44	#	Distance: 0
-Edge 2: 173	#	Distance: 43.0116
+Edge 2: 8	#	Distance: 12.0416
 ----------------------------------
 
  45 | 45
 Access: 1
 ==================================
 connections: 3
-Edge 0: 149-	#	Distance: 17.2627
+Edge 0: 30-	#	Distance: 43.2782
 Edge 1: 45-	#	Distance: 0
-Edge 2: 147-	#	Distance: 43.0465
+Edge 2: 4-	#	Distance: 53.7122
 ----------------------------------
 
  45- | 45-
 Access: 1
 ==================================
 connections: 3
-Edge 0: 167	#	Distance: 10.8167
+Edge 0: 1''''''	#	Distance: 25
 Edge 1: 45	#	Distance: 0
-Edge 2: 37	#	Distance: 18.0278
+Edge 2: 1''''	#	Distance: 25
 ----------------------------------
 
  46 | 46
@@ -2650,62 +868,71 @@ Access: 1
 ==================================
 connections: 3
 Edge 0: 46-	#	Distance: 0
-Edge 1: 55-	#	Distance: 30.4138
-Edge 2: 200'-	#	Distance: 17.4642
+Edge 1: 8-	#	Distance: 57.3847
+Edge 2: 1'''-	#	Distance: 31.3209
 ----------------------------------
 
  46- | 46-
 Access: 1
 ==================================
 connections: 3
-Edge 0: 13	#	Distance: 13.0384
+Edge 0: 34	#	Distance: 7
 Edge 1: 46	#	Distance: 0
-Edge 2: 111	#	Distance: 7.07107
+Edge 2: 40	#	Distance: 20.6155
 ----------------------------------
 
  47 | 47
 Access: 1
 ==================================
 connections: 3
-Edge 0: 147-	#	Distance: 52.3259
+Edge 0: 1'''''''-	#	Distance: 2.23607
 Edge 1: 47-	#	Distance: 0
-Edge 2: 83-	#	Distance: 21.095
+Edge 2: 18-	#	Distance: 16.7631
 ----------------------------------
 
  47- | 47-
 Access: 1
 ==================================
 connections: 3
-Edge 0: 12	#	Distance: 39
+Edge 0: 13	#	Distance: 7.07107
 Edge 1: 47	#	Distance: 0
-Edge 2: 136	#	Distance: 30.4138
+Edge 2: 49	#	Distance: 17.4642
 ----------------------------------
 
  48 | 48
 Access: 1
 ==================================
 connections: 3
-Edge 0: 139-	#	Distance: 8.94427
+Edge 0: 13-	#	Distance: 6
 Edge 1: 48-	#	Distance: 0
-Edge 2: 29-	#	Distance: 6.40312
+Edge 2: 38-	#	Distance: 12.2066
 ----------------------------------
 
  48- | 48-
 Access: 1
 ==================================
 connections: 3
-Edge 0: 175	#	Distance: 21.0238
+Edge 0: 2	#	Distance: 23.3238
 Edge 1: 48	#	Distance: 0
-Edge 2: 95	#	Distance: 24.0832
+Edge 2: 1''''''''	#	Distance: 9.43398
 ----------------------------------
 
  49 | 49
 Access: 1
 ==================================
 connections: 3
-Edge 0: 174	#	Distance: 0
-Edge 1: 44-	#	Distance: 13.4536
-Edge 2: 140-	#	Distance: 43.1393
+Edge 0: 34-	#	Distance: 49.6588
+Edge 1: 49-	#	Distance: 0
+Edge 2: 47-	#	Distance: 17.4642
+----------------------------------
+
+ 49- | 49-
+Access: 1
+==================================
+connections: 3
+Edge 0: 25	#	Distance: 17.2627
+Edge 1: 49	#	Distance: 0
+Edge 2: 1'''	#	Distance: 15.8114
 ----------------------------------
 
  5 | 5
@@ -2713,1392 +940,245 @@ Access: 1
 ==================================
 connections: 3
 Edge 0: 5-	#	Distance: 0
-Edge 1: 61-	#	Distance: 26.8328
-Edge 2: 200'''''''-	#	Distance: 25
+Edge 1: 50-	#	Distance: 28.0713
+Edge 2: 16-	#	Distance: 18.868
 ----------------------------------
 
  5- | 5-
 Access: 1
 ==================================
 connections: 3
-Edge 0: 193	#	Distance: 29.8329
+Edge 0: 41	#	Distance: 25
 Edge 1: 5	#	Distance: 0
-Edge 2: 158	#	Distance: 34.2345
+Edge 2: 19	#	Distance: 7.61577
 ----------------------------------
 
  50 | 50
 Access: 1
 ==================================
 connections: 3
-Edge 0: 198-	#	Distance: 31.0644
+Edge 0: 1'	#	Distance: 21.6333
 Edge 1: 50-	#	Distance: 0
-Edge 2: 143-	#	Distance: 46.0435
+Edge 2: 29-	#	Distance: 39.3192
 ----------------------------------
 
  50- | 50-
 Access: 1
 ==================================
 connections: 3
-Edge 0: 149	#	Distance: 11.1803
+Edge 0: 5	#	Distance: 28.0713
 Edge 1: 50	#	Distance: 0
-Edge 2: 200'''''	#	Distance: 17.1172
+Edge 2: 14	#	Distance: 43.1045
 ----------------------------------
 
  51 | 51
 Access: 1
 ==================================
 connections: 3
-Edge 0: 195-	#	Distance: 34.8281
+Edge 0: 44-	#	Distance: 57.7062
 Edge 1: 51-	#	Distance: 0
-Edge 2: 180-	#	Distance: 7.81025
+Edge 2: 43-	#	Distance: 44.2041
 ----------------------------------
 
  51- | 51-
 Access: 1
 ==================================
 connections: 3
-Edge 0: 62	#	Distance: 50.1199
+Edge 0: 11	#	Distance: 16.7631
 Edge 1: 51	#	Distance: 0
-Edge 2: 108	#	Distance: 12.53
-----------------------------------
-
- 52 | 52
-Access: 1
-==================================
-connections: 3
-Edge 0: 125-	#	Distance: 34.7131
-Edge 1: 52-	#	Distance: 0
-Edge 2: 21-	#	Distance: 51.6236
-----------------------------------
-
- 52- | 52-
-Access: 1
-==================================
-connections: 3
-Edge 0: 129	#	Distance: 12.6491
-Edge 1: 52	#	Distance: 0
-Edge 2: 169	#	Distance: 17
-----------------------------------
-
- 53 | 53
-Access: 1
-==================================
-connections: 3
-Edge 0: 177-	#	Distance: 48.5489
-Edge 1: 53-	#	Distance: 0
-Edge 2: 135-	#	Distance: 38.4708
-----------------------------------
-
- 53- | 53-
-Access: 1
-==================================
-connections: 3
-Edge 0: 158	#	Distance: 2.23607
-Edge 1: 53	#	Distance: 0
-Edge 2: 200''''''''''	#	Distance: 17.4929
-----------------------------------
-
- 54 | 54
-Access: 1
-==================================
-connections: 3
-Edge 0: 126-	#	Distance: 11.1803
-Edge 1: 54-	#	Distance: 0
-Edge 2: 132-	#	Distance: 25.5539
-----------------------------------
-
- 54- | 54-
-Access: 1
-==================================
-connections: 3
-Edge 0: 154	#	Distance: 24.0416
-Edge 1: 54	#	Distance: 0
-Edge 2: 42	#	Distance: 29.6816
-----------------------------------
-
- 55 | 55
-Access: 1
-==================================
-connections: 3
-Edge 0: 122-	#	Distance: 54.037
-Edge 1: 55-	#	Distance: 0
-Edge 2: 100-	#	Distance: 20.0998
-----------------------------------
-
- 55- | 55-
-Access: 1
-==================================
-connections: 3
-Edge 0: 46	#	Distance: 30.4138
-Edge 1: 55	#	Distance: 0
-Edge 2: 150	#	Distance: 30.0832
-----------------------------------
-
- 56 | 56
-Access: 1
-==================================
-connections: 3
-Edge 0: 56-	#	Distance: 0
-Edge 1: 66-	#	Distance: 41.2311
-Edge 2: 26-	#	Distance: 29.4109
-----------------------------------
-
- 56- | 56-
-Access: 1
-==================================
-connections: 3
-Edge 0: 103	#	Distance: 57.3847
-Edge 1: 56	#	Distance: 0
-Edge 2: 199	#	Distance: 45.0111
-----------------------------------
-
- 57 | 57
-Access: 1
-==================================
-connections: 3
-Edge 0: 117-	#	Distance: 24.5967
-Edge 1: 57-	#	Distance: 0
-Edge 2: 4-	#	Distance: 30.4138
-----------------------------------
-
- 57- | 57-
-Access: 1
-==================================
-connections: 3
-Edge 0: 127	#	Distance: 26.9258
-Edge 1: 57	#	Distance: 0
-Edge 2: 189	#	Distance: 5
-----------------------------------
-
- 58 | 58
-Access: 1
-==================================
-connections: 3
-Edge 0: 160-	#	Distance: 41
-Edge 1: 58-	#	Distance: 0
-Edge 2: 111-	#	Distance: 2.82843
-----------------------------------
-
- 58- | 58-
-Access: 1
-==================================
-connections: 3
-Edge 0: 33	#	Distance: 26.3059
-Edge 1: 58	#	Distance: 0
-Edge 2: 101	#	Distance: 23.3452
-----------------------------------
-
- 59 | 59
-Access: 1
-==================================
-connections: 3
-Edge 0: 174	#	Distance: 10.198
-Edge 1: 59-	#	Distance: 0
-Edge 2: 20-	#	Distance: 16.5529
-----------------------------------
-
- 59- | 59-
-Access: 1
-==================================
-connections: 3
-Edge 0: 200'''	#	Distance: 21.2603
-Edge 1: 59	#	Distance: 0
-Edge 2: 177	#	Distance: 32.573
+Edge 2: 1'''''''''	#	Distance: 26.1725
 ----------------------------------
 
  6 | 6
 Access: 1
 ==================================
 connections: 3
-Edge 0: 6-	#	Distance: 0
-Edge 1: 68-	#	Distance: 29
-Edge 2: 16-	#	Distance: 12.1655
+Edge 0: 39-	#	Distance: 7.07107
+Edge 1: 6-	#	Distance: 0
+Edge 2: 34-	#	Distance: 20.8806
 ----------------------------------
 
  6- | 6-
 Access: 1
 ==================================
 connections: 3
-Edge 0: 86	#	Distance: 12.0416
+Edge 0: 1''''''''''	#	Distance: 14.1421
 Edge 1: 6	#	Distance: 0
-Edge 2: 147	#	Distance: 26.9072
-----------------------------------
-
- 60 | 60
-Access: 1
-==================================
-connections: 3
-Edge 0: 200''-	#	Distance: 9.21954
-Edge 1: 60-	#	Distance: 0
-Edge 2: 150-	#	Distance: 18.3848
-----------------------------------
-
- 60- | 60-
-Access: 1
-==================================
-connections: 3
-Edge 0: 178	#	Distance: 16.5529
-Edge 1: 60	#	Distance: 0
-Edge 2: 143	#	Distance: 41.1096
-----------------------------------
-
- 61 | 61
-Access: 1
-==================================
-connections: 3
-Edge 0: 134	#	Distance: 45.9674
-Edge 1: 61-	#	Distance: 0
-Edge 2: 109-	#	Distance: 28.0179
-----------------------------------
-
- 61- | 61-
-Access: 1
-==================================
-connections: 3
-Edge 0: 5	#	Distance: 26.8328
-Edge 1: 61	#	Distance: 0
-Edge 2: 24	#	Distance: 26.4008
-----------------------------------
-
- 62 | 62
-Access: 1
-==================================
-connections: 3
-Edge 0: 51-	#	Distance: 50.1199
-Edge 1: 62-	#	Distance: 0
-Edge 2: 69-	#	Distance: 61.5873
-----------------------------------
-
- 62- | 62-
-Access: 1
-==================================
-connections: 3
-Edge 0: 34	#	Distance: 47.4342
-Edge 1: 62	#	Distance: 0
-Edge 2: 176	#	Distance: 51.264
-----------------------------------
-
- 63 | 63
-Access: 1
-==================================
-connections: 3
-Edge 0: 170-	#	Distance: 51.9711
-Edge 1: 63-	#	Distance: 0
-Edge 2: 93-	#	Distance: 32.45
-----------------------------------
-
- 63- | 63-
-Access: 1
-==================================
-connections: 3
-Edge 0: 151	#	Distance: 15.0333
-Edge 1: 63	#	Distance: 0
-Edge 2: 168	#	Distance: 25.4951
-----------------------------------
-
- 64 | 64
-Access: 1
-==================================
-connections: 3
-Edge 0: 196-	#	Distance: 12.083
-Edge 1: 64-	#	Distance: 0
-Edge 2: 31-	#	Distance: 60.208
-----------------------------------
-
- 64- | 64-
-Access: 1
-==================================
-connections: 3
-Edge 0: 170	#	Distance: 56.0803
-Edge 1: 64	#	Distance: 0
-Edge 2: 22	#	Distance: 10.4403
-----------------------------------
-
- 65 | 65
-Access: 1
-==================================
-connections: 3
-Edge 0: 162-	#	Distance: 37.5366
-Edge 1: 65-	#	Distance: 0
-Edge 2: 19-	#	Distance: 12.2066
-----------------------------------
-
- 65- | 65-
-Access: 1
-==================================
-connections: 3
-Edge 0: 14	#	Distance: 18.868
-Edge 1: 65	#	Distance: 0
-Edge 2: 124	#	Distance: 24.6982
-----------------------------------
-
- 66 | 66
-Access: 1
-==================================
-connections: 3
-Edge 0: 1-	#	Distance: 5.09902
-Edge 1: 66-	#	Distance: 0
-Edge 2: 148-	#	Distance: 49.6588
-----------------------------------
-
- 66- | 66-
-Access: 1
-==================================
-connections: 3
-Edge 0: 56	#	Distance: 41.2311
-Edge 1: 66	#	Distance: 0
-Edge 2: 90	#	Distance: 18.0278
-----------------------------------
-
- 67 | 67
-Access: 1
-==================================
-connections: 3
-Edge 0: 192-	#	Distance: 9.05539
-Edge 1: 67-	#	Distance: 0
-Edge 2: 193-	#	Distance: 10.8167
-----------------------------------
-
- 67- | 67-
-Access: 1
-==================================
-connections: 3
-Edge 0: 78	#	Distance: 43.6578
-Edge 1: 67	#	Distance: 0
-Edge 2: 132	#	Distance: 40.7063
-----------------------------------
-
- 68 | 68
-Access: 1
-==================================
-connections: 3
-Edge 0: 189-	#	Distance: 56.921
-Edge 1: 68-	#	Distance: 0
-Edge 2: 30-	#	Distance: 32.6956
-----------------------------------
-
- 68- | 68-
-Access: 1
-==================================
-connections: 3
-Edge 0: 6	#	Distance: 29
-Edge 1: 68	#	Distance: 0
-Edge 2: 20	#	Distance: 53.0094
-----------------------------------
-
- 69 | 69
-Access: 1
-==================================
-connections: 3
-Edge 0: 69-	#	Distance: 0
-Edge 1: 83-	#	Distance: 25.318
-Edge 2: 115-	#	Distance: 60.4401
-----------------------------------
-
- 69- | 69-
-Access: 1
-==================================
-connections: 3
-Edge 0: 179	#	Distance: 21.0238
-Edge 1: 69	#	Distance: 0
-Edge 2: 62	#	Distance: 61.5873
+Edge 2: 10	#	Distance: 12.3693
 ----------------------------------
 
  7 | 7
 Access: 1
 ==================================
 connections: 3
-Edge 0: 40-	#	Distance: 20
+Edge 0: 20-	#	Distance: 34.9285
 Edge 1: 7-	#	Distance: 0
-Edge 2: 196-	#	Distance: 38.2884
+Edge 2: 1'''''''''-	#	Distance: 11.4018
 ----------------------------------
 
  7- | 7-
 Access: 1
 ==================================
 connections: 3
-Edge 0: 94	#	Distance: 41.4849
+Edge 0: 39	#	Distance: 26.8328
 Edge 1: 7	#	Distance: 0
-Edge 2: 44	#	Distance: 29.0689
-----------------------------------
-
- 70 | 70
-Access: 1
-==================================
-connections: 3
-Edge 0: 199-	#	Distance: 50.1199
-Edge 1: 70-	#	Distance: 0
-Edge 2: 176-	#	Distance: 9.05539
-----------------------------------
-
- 70- | 70-
-Access: 1
-==================================
-connections: 3
-Edge 0: 165	#	Distance: 33.6155
-Edge 1: 70	#	Distance: 0
-Edge 2: 78	#	Distance: 7.2111
-----------------------------------
-
- 71 | 71
-Access: 1
-==================================
-connections: 3
-Edge 0: 156-	#	Distance: 46.0977
-Edge 1: 71-	#	Distance: 0
-Edge 2: 158-	#	Distance: 39.1152
-----------------------------------
-
- 71- | 71-
-Access: 1
-==================================
-connections: 3
-Edge 0: 198	#	Distance: 38.0132
-Edge 1: 71	#	Distance: 0
-Edge 2: 73	#	Distance: 34.3657
-----------------------------------
-
- 72 | 72
-Access: 1
-==================================
-connections: 3
-Edge 0: 72-	#	Distance: 0
-Edge 1: 99-	#	Distance: 44.7214
-Edge 2: 123-	#	Distance: 53.7122
-----------------------------------
-
- 72- | 72-
-Access: 1
-==================================
-connections: 3
-Edge 0: 184	#	Distance: 35
-Edge 1: 72	#	Distance: 0
-Edge 2: 38	#	Distance: 32.28
-----------------------------------
-
- 73 | 73
-Access: 1
-==================================
-connections: 3
-Edge 0: 21-	#	Distance: 53.0754
-Edge 1: 73-	#	Distance: 0
-Edge 2: 71-	#	Distance: 34.3657
-----------------------------------
-
- 73- | 73-
-Access: 1
-==================================
-connections: 3
-Edge 0: 107	#	Distance: 9.21954
-Edge 1: 73	#	Distance: 0
-Edge 2: 112	#	Distance: 34.8281
-----------------------------------
-
- 74 | 74
-Access: 1
-==================================
-connections: 3
-Edge 0: 16-	#	Distance: 14.1421
-Edge 1: 74-	#	Distance: 0
-Edge 2: 39-	#	Distance: 31.8277
-----------------------------------
-
- 74- | 74-
-Access: 1
-==================================
-connections: 3
-Edge 0: 155	#	Distance: 52.8394
-Edge 1: 74	#	Distance: 0
-Edge 2: 23	#	Distance: 10.7703
-----------------------------------
-
- 75 | 75
-Access: 1
-==================================
-connections: 3
-Edge 0: 103-	#	Distance: 55.5698
-Edge 1: 75-	#	Distance: 0
-Edge 2: 144-	#	Distance: 36.6197
-----------------------------------
-
- 75- | 75-
-Access: 1
-==================================
-connections: 3
-Edge 0: 162	#	Distance: 1
-Edge 1: 75	#	Distance: 0
-Edge 2: 18	#	Distance: 21.6333
-----------------------------------
-
- 76 | 76
-Access: 1
-==================================
-connections: 3
-Edge 0: 13-	#	Distance: 34.5398
-Edge 1: 76-	#	Distance: 0
-Edge 2: 136-	#	Distance: 29.7321
-----------------------------------
-
- 76- | 76-
-Access: 1
-==================================
-connections: 3
-Edge 0: 95	#	Distance: 9.21954
-Edge 1: 76	#	Distance: 0
-Edge 2: 148	#	Distance: 31.241
-----------------------------------
-
- 77 | 77
-Access: 1
-==================================
-connections: 3
-Edge 0: 102-	#	Distance: 25.0599
-Edge 1: 77-	#	Distance: 0
-Edge 2: 169-	#	Distance: 12.53
-----------------------------------
-
- 77- | 77-
-Access: 1
-==================================
-connections: 3
-Edge 0: 126	#	Distance: 28.1603
-Edge 1: 77	#	Distance: 0
-Edge 2: 141	#	Distance: 58.1893
-----------------------------------
-
- 78 | 78
-Access: 1
-==================================
-connections: 3
-Edge 0: 67-	#	Distance: 43.6578
-Edge 1: 78-	#	Distance: 0
-Edge 2: 70-	#	Distance: 7.2111
-----------------------------------
-
- 78- | 78-
-Access: 1
-==================================
-connections: 3
-Edge 0: 141	#	Distance: 49.5177
-Edge 1: 78	#	Distance: 0
-Edge 2: 138	#	Distance: 36.0555
-----------------------------------
-
- 79 | 79
-Access: 1
-==================================
-connections: 3
-Edge 0: 146-	#	Distance: 57.8014
-Edge 1: 79-	#	Distance: 0
-Edge 2: 184-	#	Distance: 42.2966
-----------------------------------
-
- 79- | 79-
-Access: 1
-==================================
-connections: 3
-Edge 0: 38	#	Distance: 40.5216
-Edge 1: 79	#	Distance: 0
-Edge 2: 99	#	Distance: 10.198
+Edge 2: 23	#	Distance: 23.2594
 ----------------------------------
 
  8 | 8
 Access: 1
 ==================================
 connections: 3
-Edge 0: 197-	#	Distance: 43.2666
+Edge 0: 1''''''''-	#	Distance: 26.4197
 Edge 1: 8-	#	Distance: 0
-Edge 2: 97-	#	Distance: 31.6228
+Edge 2: 44-	#	Distance: 12.0416
 ----------------------------------
 
  8- | 8-
 Access: 1
 ==================================
 connections: 3
-Edge 0: 91	#	Distance: 48.7955
+Edge 0: 46	#	Distance: 57.3847
 Edge 1: 8	#	Distance: 0
-Edge 2: 178	#	Distance: 3.60555
-----------------------------------
-
- 80 | 80
-Access: 1
-==================================
-connections: 3
-Edge 0: 132-	#	Distance: 23.3452
-Edge 1: 80-	#	Distance: 0
-Edge 2: 185-	#	Distance: 60.7454
-----------------------------------
-
- 80- | 80-
-Access: 1
-==================================
-connections: 3
-Edge 0: 10	#	Distance: 4.24264
-Edge 1: 80	#	Distance: 0
-Edge 2: 114	#	Distance: 64.3817
-----------------------------------
-
- 81 | 81
-Access: 1
-==================================
-connections: 3
-Edge 0: 183-	#	Distance: 30.8869
-Edge 1: 81-	#	Distance: 0
-Edge 2: 106-	#	Distance: 18.4391
-----------------------------------
-
- 81- | 81-
-Access: 1
-==================================
-connections: 3
-Edge 0: 121	#	Distance: 36.6742
-Edge 1: 81	#	Distance: 0
-Edge 2: 139	#	Distance: 21.095
-----------------------------------
-
- 82 | 82
-Access: 1
-==================================
-connections: 3
-Edge 0: 33-	#	Distance: 27.5862
-Edge 1: 82-	#	Distance: 0
-Edge 2: 199-	#	Distance: 29.1204
-----------------------------------
-
- 82- | 82-
-Access: 1
-==================================
-connections: 3
-Edge 0: 180	#	Distance: 44.911
-Edge 1: 82	#	Distance: 0
-Edge 2: 190	#	Distance: 32.28
-----------------------------------
-
- 83 | 83
-Access: 1
-==================================
-connections: 3
-Edge 0: 113-	#	Distance: 51.4296
-Edge 1: 83-	#	Distance: 0
-Edge 2: 198-	#	Distance: 41.5933
-----------------------------------
-
- 83- | 83-
-Access: 1
-==================================
-connections: 3
-Edge 0: 69	#	Distance: 25.318
-Edge 1: 83	#	Distance: 0
-Edge 2: 47	#	Distance: 21.095
-----------------------------------
-
- 84 | 84
-Access: 1
-==================================
-connections: 3
-Edge 0: 28	#	Distance: 54.2033
-Edge 1: 200''''	#	Distance: 0
-Edge 2: 120	#	Distance: 46.2385
-----------------------------------
-
- 85 | 85
-Access: 1
-==================================
-connections: 3
-Edge 0: 193-	#	Distance: 55.9732
-Edge 1: 85-	#	Distance: 0
-Edge 2: 157-	#	Distance: 50.774
-----------------------------------
-
- 85- | 85-
-Access: 1
-==================================
-connections: 3
-Edge 0: 131	#	Distance: 28
-Edge 1: 85	#	Distance: 0
-Edge 2: 166	#	Distance: 64.1249
-----------------------------------
-
- 86 | 86
-Access: 1
-==================================
-connections: 3
-Edge 0: 6-	#	Distance: 12.0416
-Edge 1: 86-	#	Distance: 0
-Edge 2: 163-	#	Distance: 57.5674
-----------------------------------
-
- 86- | 86-
-Access: 1
-==================================
-connections: 3
-Edge 0: 26	#	Distance: 25.632
-Edge 1: 86	#	Distance: 0
-Edge 2: 98	#	Distance: 17.088
-----------------------------------
-
- 87 | 87
-Access: 1
-==================================
-connections: 3
-Edge 0: 30-	#	Distance: 9.21954
-Edge 1: 87-	#	Distance: 0
-Edge 2: 33-	#	Distance: 19.9249
-----------------------------------
-
- 87- | 87-
-Access: 1
-==================================
-connections: 3
-Edge 0: 2	#	Distance: 12.7279
-Edge 1: 87	#	Distance: 0
-Edge 2: 200'''	#	Distance: 10
-----------------------------------
-
- 88 | 88
-Access: 1
-==================================
-connections: 3
-Edge 0: 2-	#	Distance: 25.4951
-Edge 1: 88-	#	Distance: 0
-Edge 2: 187-	#	Distance: 49.5782
-----------------------------------
-
- 88- | 88-
-Access: 1
-==================================
-connections: 3
-Edge 0: 42	#	Distance: 44.0114
-Edge 1: 88	#	Distance: 0
-Edge 2: 164	#	Distance: 62.0725
-----------------------------------
-
- 89 | 89
-Access: 1
-==================================
-connections: 3
-Edge 0: 19-	#	Distance: 70.8025
-Edge 1: 89-	#	Distance: 0
-Edge 2: 173-	#	Distance: 41.5933
-----------------------------------
-
- 89- | 89-
-Access: 1
-==================================
-connections: 3
-Edge 0: 156	#	Distance: 27.6586
-Edge 1: 89	#	Distance: 0
-Edge 2: 35	#	Distance: 66.6033
+Edge 2: 41	#	Distance: 58.2495
 ----------------------------------
 
  9 | 9
 Access: 1
 ==================================
 connections: 3
-Edge 0: 130-	#	Distance: 8.60233
+Edge 0: 1'''''''''-	#	Distance: 22.0227
 Edge 1: 9-	#	Distance: 0
-Edge 2: 179-	#	Distance: 37.2022
+Edge 2: 36-	#	Distance: 31.0161
 ----------------------------------
 
  9- | 9-
 Access: 1
 ==================================
 connections: 3
-Edge 0: 104	#	Distance: 31.0161
+Edge 0: 1''''''''	#	Distance: 22.0227
 Edge 1: 9	#	Distance: 0
-Edge 2: 159	#	Distance: 26.5707
-----------------------------------
-
- 90 | 90
-Access: 1
-==================================
-connections: 3
-Edge 0: 153-	#	Distance: 48.5077
-Edge 1: 90-	#	Distance: 0
-Edge 2: 66-	#	Distance: 18.0278
-----------------------------------
-
- 90- | 90-
-Access: 1
-==================================
-connections: 3
-Edge 0: 122	#	Distance: 46.5725
-Edge 1: 90	#	Distance: 0
-Edge 2: 172	#	Distance: 34
-----------------------------------
-
- 91 | 91
-Access: 1
-==================================
-connections: 3
-Edge 0: 8-	#	Distance: 48.7955
-Edge 1: 91-	#	Distance: 0
-Edge 2: 2-	#	Distance: 21.9317
-----------------------------------
-
- 91- | 91-
-Access: 1
-==================================
-connections: 3
-Edge 0: 41	#	Distance: 11.4018
-Edge 1: 91	#	Distance: 0
-Edge 2: 144	#	Distance: 31.7648
-----------------------------------
-
- 92 | 92
-Access: 1
-==================================
-connections: 3
-Edge 0: 144-	#	Distance: 26.0192
-Edge 1: 92-	#	Distance: 0
-Edge 2: 129-	#	Distance: 35.2278
-----------------------------------
-
- 92- | 92-
-Access: 1
-==================================
-connections: 3
-Edge 0: 4	#	Distance: 49.4065
-Edge 1: 92	#	Distance: 0
-Edge 2: 142	#	Distance: 63.6003
-----------------------------------
-
- 93 | 93
-Access: 1
-==================================
-connections: 3
-Edge 0: 136-	#	Distance: 11.1803
-Edge 1: 93-	#	Distance: 0
-Edge 2: 200'''-	#	Distance: 20.6155
-----------------------------------
-
- 93- | 93-
-Access: 1
-==================================
-connections: 3
-Edge 0: 16	#	Distance: 22.8473
-Edge 1: 93	#	Distance: 0
-Edge 2: 63	#	Distance: 32.45
-----------------------------------
-
- 94 | 94
-Access: 1
-==================================
-connections: 3
-Edge 0: 7-	#	Distance: 41.4849
-Edge 1: 94-	#	Distance: 0
-Edge 2: 197-	#	Distance: 22.8254
-----------------------------------
-
- 94- | 94-
-Access: 1
-==================================
-connections: 3
-Edge 0: 117	#	Distance: 35.5106
-Edge 1: 94	#	Distance: 0
-Edge 2: 40	#	Distance: 41
-----------------------------------
-
- 95 | 95
-Access: 1
-==================================
-connections: 3
-Edge 0: 76-	#	Distance: 9.21954
-Edge 1: 95-	#	Distance: 0
-Edge 2: 48-	#	Distance: 24.0832
-----------------------------------
-
- 95- | 95-
-Access: 1
-==================================
-connections: 3
-Edge 0: 35	#	Distance: 25.4951
-Edge 1: 95	#	Distance: 0
-Edge 2: 27	#	Distance: 23.5372
-----------------------------------
-
- 96 | 96
-Access: 1
-==================================
-connections: 3
-Edge 0: 191-	#	Distance: 10.4403
-Edge 1: 96-	#	Distance: 0
-Edge 2: 178-	#	Distance: 35.7771
-----------------------------------
-
- 96- | 96-
-Access: 1
-==================================
-connections: 3
-Edge 0: 159	#	Distance: 8.24621
-Edge 1: 96	#	Distance: 0
-Edge 2: 16	#	Distance: 5.65685
-----------------------------------
-
- 97 | 97
-Access: 1
-==================================
-connections: 3
-Edge 0: 190-	#	Distance: 37.3631
-Edge 1: 97-	#	Distance: 0
-Edge 2: 11-	#	Distance: 31.6228
-----------------------------------
-
- 97- | 97-
-Access: 1
-==================================
-connections: 3
-Edge 0: 118	#	Distance: 11.1803
-Edge 1: 97	#	Distance: 0
-Edge 2: 8	#	Distance: 31.6228
-----------------------------------
-
- 98 | 98
-Access: 1
-==================================
-connections: 3
-Edge 0: 142-	#	Distance: 35.3553
-Edge 1: 98-	#	Distance: 0
-Edge 2: 86-	#	Distance: 17.088
-----------------------------------
-
- 98- | 98-
-Access: 1
-==================================
-connections: 3
-Edge 0: 153	#	Distance: 9.05539
-Edge 1: 98	#	Distance: 0
-Edge 2: 2	#	Distance: 12.1655
-----------------------------------
-
- 99 | 99
-Access: 1
-==================================
-connections: 3
-Edge 0: 171-	#	Distance: 22.8473
-Edge 1: 99-	#	Distance: 0
-Edge 2: 79-	#	Distance: 10.198
-----------------------------------
-
- 99- | 99-
-Access: 1
-==================================
-connections: 3
-Edge 0: 72	#	Distance: 44.7214
-Edge 1: 99	#	Distance: 0
-Edge 2: 155	#	Distance: 25.1794
+Edge 2: 32	#	Distance: 9.21954
 ----------------------------------
 
 ______________________________________________________________THE DIVISION______________________________________________________________
-1
-1-
-66
-186
-66-
-148-
-186-
-34-
-56
-90
-191
-148
-100
-137
-34
-185
-56-
-26-
-153-
-90-
-191-
-118-
-154-
-76-
-100-
-27-
-137-
-138-
-62-
-183-
-185-
-187-
-103
-199
-200'''''
-26
-153
-102
-122
-172
-96
-146
-147
-118
-154
-197
-95
-76
-140
-55
-132
-27
-115
-116
-138
-131
-62
-176
-81
-183
-189
-80
-187
-88
-103-
-175-
-112-
-199-
-200'''''-
-50-
-86-
-38-
-98-
-128-
-101-
-102-
-122-
-42-
-164-
-172-
-96-
-178-
-200'''''''''
-146-
-147-
-6-
-97-
-110-
-54-
-18-
-179-
-197-
-95-
-48-
-13-
-136-
-140-
-40-
-55-
-132-
-67-
-158-
-115-
-104-
-116-
-150-
-124-
-78-
-131-
-85-
-51-
-69-
-176-
-37-
-81-
-106-
-189-
-57-
-80-
-41-
-2-
-88-
-75
-12
-39
-175
-112
-15
-70
-82
-173
-170
-149
+1'
 50
-86
-98
-19
-38
-2
-200''
-128
-101
-77
-193
-171
-124
-42
-164
-109
-11
-159
-16
-17
-178
-155
-198
-79
-117
-47
-45
-6
-97
-8
-200'
-110
-54
-37
-18
-179
-9
-94
-35
-48
-13
-43
-93
-136
-169
-49
-7
-40
-46
-150
-78
-67
-158
-71
-177
-69
-192
-104
-196
-106
-60
-157
-141
-133
-85
-166
-51
-108
-200''''''''''
-3
-121
-139
-68
-127
-57
-10
-114
-41
-4
-91
-75-
-144-
-12-
-47-
-39-
-200''''''-
-188-
-73-
-14-
-15-
-70-
-33-
-82-
-173-
-44-
-170-
-64-
-149-
-198-
-143-
-163-
-142-
-19-
-79-
-72-
-87-
-200''-
-10-
-145-
-113-
-43-
-58-
-77-
-169-
-193-
-5-
-171-
-65-
-129-
-109-
-105-
-11-
-114-
-159-
-9-
-16-
-93-
-17-
-60-
-8-
-74-
-99-
-71-
-184-
-117-
-94-
-83-
-45-
-68-
-190-
-200'-
-125-
-152-
-28-
-126-
-24-
-35-
-130-
-7-
-89-
-139-
+50-
 29-
-46-
-200'''-
-180-
-52-
-174
-196-
-121-
-192-
-53-
-156-
-177-
-59-
-108-
-161-
-23-
-157-
-141-
-133-
-120-
-166-
-195-
-200''''''''''-
-119-
-3-
-168-
-30-
-134
-181
-4-
-162-
-111-
-91-
-92-
-162
-92
-144
-188
-31
-130
-74
-200''''''
-32
-107
-73
-14
-29
-165
-33
-87
-180
-190
-143
-89
-44
-63
-30
-64
-22
-83
-168
-163
-142
-65
-99
-184
-72
-200'''
-119
-200'''''''
-145
-113
-58
-126
 5
-129
-161
-61
-105
-21
-135
-156
-23
-24
-182
-167
-20
-151
-52
-125
-152
-28
-194
-160
-111
-59
-53
-200''''
-36
-120
-195
-200''''''''
-194-
-181-
-151-
-135-
-31-
-36-
-32-
+14
+37
+29
+5-
+16-
+14-
 22-
-107-
+37-
+32-
+2-
+41
+19
+28
+16
+22
+38
+4
+1'''''''
+27
+32
+33
+2
+41-
+8-
+1''''''-
+19-
+28-
+40-
+1'''-
+30-
+36-
+38-
+4-
 21-
-165-
-167-
-63-
-182-
-25-
-123-
-200''''''''-
-200'''''''-
-160-
-61-
+1'''''''-
+18-
+27-
+23-
+12-
+9-
+33-
+31-
+48-
+20
+42
+46
+8
+1''''''
+40
+1'''''
+44
+1''
+1'''
+45
+30
+36
+9
+31
+48
+1''''
+21
+47
+3
+18
+17
+23
+12
+1''''''''
+11-
+35
 20-
-84
-123
+35-
+15-
+42-
+46-
+1''''''''-
+44-
+45-
+1'''''-
+1''''''''''
+1''-
+17-
+49-
+1'''''''''-
+25-
+13-
+1''''-
+3-
+47-
+10-
+26-
+39-
+7-
+43-
+11
+7
+1'-
+15
+1'''''''''
+43
+34
+51
+10
+39
+24
+6-
+13
 25
-size 410
-map size 410
+49
+26
+6
+51-
+34-
+size 118
+map size 118

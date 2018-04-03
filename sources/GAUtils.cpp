@@ -10,16 +10,14 @@ bool validateTour(vector<int> tour){
 
     it=adjacent_find(tour.begin(), tour.end());
 
-    cout << "BATATA " << *it << endl;
     while(1){
         if(it==tour.end()){
-            cout << "?"<<endl;
             break;
         } else {
             if(*it != Configs::customerMap.getDepotId()){
                 break;
             }else{
-                cout << *it << endl;
+                //cout << *it << endl;
                 it = adjacent_find(++it, tour.end());
             }
     }
@@ -125,8 +123,12 @@ Population crossoverPopulation(Population& pop){
     Population aux;
 
     for(unsigned i=0; i<size; i++){
+        cout << "CROSS"<<endl;
+        cout << "RED\n"<<pop.getPop()[i]<<endl;
+        cout << "BLUE\n"<<pop.getPop()[(i+1)%size]<<endl;
         Tour auxT{crossover(pop.getPop()[i], pop.getPop()[(i+1)%size])};
         aux.addNewTour(auxT);
+        cout << "FILHO\n"<<auxT<<endl;
     }
     return(aux);
 }
@@ -134,10 +136,12 @@ Population crossoverPopulation(Population& pop){
 Tour crossover(Tour& red, Tour& blue){
     validateTour(red.getRoute());
     validateTour(blue.getRoute());
-    cout<<"-------------------Entrando hamiltonian------------------"<<endl;
-    cout<<"Tour red:"<<red<<endl;
-    cout<<"Tour blue:"<<blue<<endl;
 
+    cout << "CHAMADA CROSS"<<endl;
+    cout << "RED\n"<<red<<endl;
+    cout << "BLUE\n"<<blue<<endl;
+
+    cout<<"-------------------Entrando hamiltonian------------------"<<endl;
     HamiltonianCycle::parentsHamiltonian parents{HamiltonianCycle::toHamiltonianCycle(red, blue)};
     if(!Mutation().validateTour(Tour(parents.first).getRoute(),Configs::truckNumber,Configs::customerMap.getDepotId())){
         cout <<"merda depois da hamiltonian";
