@@ -4,6 +4,38 @@
 #include "GPX2.hpp"
 #include "HamiltonianCycle.hpp"
 
+bool validateTour(vector<int> tour){
+    std::sort(tour.begin(),  tour.end());
+    vector<int>::iterator it;
+
+    it=adjacent_find(tour.begin(), tour.end());
+
+    cout << "BATATA " << *it << endl;
+    while(1){
+        if(it==tour.end()){
+            cout << "?"<<endl;
+            break;
+        } else {
+            if(*it != Configs::customerMap.getDepotId()){
+                break;
+            }else{
+                cout << *it << endl;
+                it = adjacent_find(++it, tour.end());
+            }
+    }
+    }
+
+    if(it!=tour.end()){
+        cout << "DEU MERDA"<<endl;
+
+        for(int i : tour){
+            cout << i << " ";
+        }
+        exit(1);
+    }
+}
+
+
 vector<int> tourGen(){
     vector<int> tour;
     int depotId=Configs::customerMap.getDepotId();
@@ -100,6 +132,8 @@ Population crossoverPopulation(Population& pop){
 }
 
 Tour crossover(Tour& red, Tour& blue){
+    validateTour(red.getRoute());
+    validateTour(blue.getRoute());
     cout<<"-------------------Entrando hamiltonian------------------"<<endl;
     cout<<"Tour red:"<<red<<endl;
     cout<<"Tour blue:"<<blue<<endl;

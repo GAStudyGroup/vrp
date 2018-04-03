@@ -11,7 +11,7 @@
 using namespace std;
 
 const unsigned limitGen{300};
-const unsigned popSize{100};
+const unsigned popSize{2};
 
 void startGA();
 Tour readFile(string);
@@ -28,7 +28,6 @@ void setParams(){
     Configs::applyWorst=true;
     Configs::fitnessMode=2;
 }
-
 int main(){
     srand(time(NULL));
     setParams();
@@ -68,12 +67,17 @@ void startGA(){
 }
 
 void debugGA(){
-    Tour red, blue;
+    /* Tour red, blue;
 
     red=readFile("Debug/DFS_crash/tourRed2.tour");
-    blue=readFile("Debug/DFS_crash/tourBlue2.tour");
+    blue=readFile("Debug/DFS_crash/tourBlue2.tour"); */
 
-    Tour offs = crossover(red, blue);
+    Population pop{popGen(2)};
+
+    //Tour offs = crossover(red, blue);
+    cout << pop.getPop()[0] << endl;
+    cout << pop.getPop()[1] << endl;
+    Tour offs = crossover(pop.getPop()[0], pop.getPop()[1]);
 
     cout << offs << endl;
 }

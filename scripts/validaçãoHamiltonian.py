@@ -2,7 +2,7 @@
 import sys
 
 try:
-    file = open("Debug/Hamiltonian/test1.tour","r")
+    file = open("Debug/Hamiltonian/novos..tour","r")
 except OSError:
     pass
 
