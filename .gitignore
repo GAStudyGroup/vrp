@@ -31,7 +31,8 @@
 *.out
 *.app
 
-\.vscode/c_cpp_properties\.json
+\.vscode/
+.vscode/
 bin/
 debuglogs/
 .directory
