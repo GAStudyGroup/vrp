@@ -19,7 +19,7 @@ void debugGA();
 
 void setParams(){
     //ImportData file("libs/more-libs/E-n33-k4.vrp");
-    ImportData file("libs/P-n22-k2.vrp");
+    ImportData file("libs/P-Sets/P-n22-k2.vrp");
     Configs::truckNumber=5;
     Configs::customerMap=CustomerMap(file.getCustomerList(),file.getCapacity(),Configs::truckNumber)    ;
     Configs::InitialPopmutIterations=100;
@@ -34,7 +34,7 @@ int main(){
     int start_s=clock();
 
     //startGA();
-    debugGA();
+    //debugGA();
 
     int stop_s=clock();
     cout << "time: " << (stop_s-start_s)/double(CLOCKS_PER_SEC)*1000<< endl;
