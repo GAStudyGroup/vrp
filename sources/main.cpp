@@ -19,8 +19,8 @@ void debugGA();
 
 void setParams(){
     //ImportData file("libs/more-libs/E-n33-k4.vrp");
-    ImportData file("libs/X-n101-k25.vrp");
-    Configs::truckNumber=25;
+    ImportData file("libs/P-n22-k2.vrp");
+    Configs::truckNumber=5;
     Configs::customerMap=CustomerMap(file.getCustomerList(),file.getCapacity(),Configs::truckNumber)    ;
     Configs::InitialPopmutIterations=100;
     Configs::InitialPopMutRate=70;
@@ -33,8 +33,8 @@ int main(){
     setParams();
     int start_s=clock();
 
-    startGA();
-    //debugGA();
+    //startGA();
+    debugGA();
 
     int stop_s=clock();
     cout << "time: " << (stop_s-start_s)/double(CLOCKS_PER_SEC)*1000<< endl;
@@ -50,15 +50,14 @@ void startGA(){
     Configs::initialBest=pop.getPop()[0].getDist();
 
     cout << "Starting GA"<<endl;
-    cout << pop << endl;
+   // cout << pop << endl;
 
     while(generation < limitGen){
         Configs::currentIteration=generation;
         cout << "Geração: "<< generation<<endl;
         pop = newGeneration(pop);
-        // cout << pop.getPop()[0]<<endl;
+        cout << pop.getPop()[0]<<endl;
         generation++;
-
         // cout << "Generation " << generation<<endl;
         // cout << "Population smaller distance: " << smallerDistance(pop)<<endl;
     }
@@ -69,8 +68,8 @@ void startGA(){
 void debugGA(){
     Tour red, blue;
 
-    red=readFile("Debug/unfeasible/segundaNoite.red.tour");
-    blue=readFile("Debug/unfeasible/segundaNoite.blue.tour");
+    red=readFile("Debug/Hamiltonian/quebra1");
+    blue=readFile("Debug/Hamiltonian/quebra2");
 
     Tour offs = crossover(red, blue);
 }

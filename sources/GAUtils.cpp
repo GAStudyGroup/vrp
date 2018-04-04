@@ -123,12 +123,12 @@ Population crossoverPopulation(Population& pop){
     Population aux;
 
     for(unsigned i=0; i<size; i++){
-        cout << "CROSS"<<endl;
-        cout << "RED\n"<<pop.getPop()[i]<<endl;
-        cout << "BLUE\n"<<pop.getPop()[(i+1)%size]<<endl;
+        // cout << "CROSS"<<endl;
+        // cout << "RED\n"<<pop.getPop()[i]<<endl;
+        // cout << "BLUE\n"<<pop.getPop()[(i+1)%size]<<endl;
         Tour auxT{crossover(pop.getPop()[i], pop.getPop()[(i+1)%size])};
         aux.addNewTour(auxT);
-        cout << "FILHO\n"<<auxT<<endl;
+        // cout << "FILHO\n"<<auxT<<endl;
     }
     return(aux);
 }
@@ -137,26 +137,36 @@ Tour crossover(Tour& red, Tour& blue){
     validateTour(red.getRoute());
     validateTour(blue.getRoute());
 
-    cout << "CHAMADA CROSS"<<endl;
+    // cout << "CHAMADA CROSS"<<endl;
+    cout<<"-------------------Entrando hamiltonian------------------"<<endl;
     cout << "RED\n"<<red<<endl;
     cout << "BLUE\n"<<blue<<endl;
 
-    cout<<"-------------------Entrando hamiltonian------------------"<<endl;
+    
     HamiltonianCycle::parentsHamiltonian parents{HamiltonianCycle::toHamiltonianCycle(red, blue)};
-    if(!Mutation().validateTour(Tour(parents.first).getRoute(),Configs::truckNumber,Configs::customerMap.getDepotId())){
-        cout <<"merda depois da hamiltonian";
-        exit(-1);
-    }
-    if(!Mutation().validateTour(Tour(parents.second).getRoute(),Configs::truckNumber,Configs::customerMap.getDepotId())){
-        cout <<"merda depois da hamiltonian";
-        exit(-1);
-    }
+    cout<<"---------------------Saindo Hamiltonian--------------------"<<endl;
+    Tour first=Tour(parents.first);
+    Tour second=Tour(parents.second);
+    cout <<"First:" << first<<endl;
+    cout <<"Second:" <<second<<endl;
+
+    
+    // if(!Mutation().validateTour(Tour(parents.first).getRoute(),Configs::truckNumber,Configs::customerMap.getDepotId())){
+    //     cout <<"merda depois da hamiltonian\n";
+    //     exit(-1);
+    // }
+    // if(!Mutation().validateTour(Tour(parents.second).getRoute(),Configs::truckNumber,Configs::customerMap.getDepotId())){
+    //     cout <<"merda depois da hamiltonian\n";
+    //     exit(-1);
+    // }
     Tour offspring{GPX2::crossover(parents.first, parents.second)};
     
-    if(!Mutation().validateTour(offspring.getRoute(),Configs::truckNumber,Configs::customerMap.getDepotId())){
-        cout <<"merda depois do gpx";
-        exit(-1);
-    }
-    
+    // if(!Mutation().validateTour(offspring.getRoute(),Configs::truckNumber,Configs::customerMap.getDepotId())){
+    //     cout <<"merda depois do gpx";
+    //     exit(-1);
+    // }
+    cout<<"----------------Saindo GPX-----------------"<<endl;;
+    cout <<offspring<<endl;
+    cin.get();
     return(offspring);
 }

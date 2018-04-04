@@ -2,22 +2,22 @@
 #include "Configs.hpp"
 vector<string> GPX2::crossover(vector<string> redT, vector<string> blueT)
 {
-    cout<< "---------------Entrando GPX------------------------"<<endl;
-    cout << "red: ";
-    for(string r : redT){
-        cout << r << " ";
-    }
-    cout << "\n\nblue: ";
-    for(string r : blueT){
-        cout << r << " ";
-    }cout << endl;
+    // cout<< "---------------Entrando GPX------------------------"<<endl;
+    // cout << "red: ";
+    // for(string r : redT){
+        // cout << r << " ";
+    // }
+    // cout << "\n\nblue: ";
+    // for(string r : blueT){
+        // cout << r << " ";
+    // }cout << endl;
     // cout << "Red Size: " << redT.size() << " - ";
     // for(string c : redT){
-    //     cout << c << " "; 
+        // cout << c << " "; 
     // }cout << endl << endl;
     // cout << "Blue Size: " << blueT.size() << " - ";
     // for(string c : blueT){
-    //     cout << c << " "; 
+        // cout << c << " "; 
     // }cout << endl;
 
     GPX2 obj;
@@ -87,8 +87,8 @@ vector<string> GPX2::crossover(vector<string> redT, vector<string> blueT)
     // cout << "Quantidade de partiçõesUnfeasible: " << obj.unfeasiblePartitions.size()<<endl;
     // Fusion
     // Precisa ter mais de uma partição unfeasible para o fusion poder acontecer
-    cout << "UnfeasiblePartitionSize " <<obj.unfeasiblePartitions.size() << endl;
-    cout << "FeasiblePartitionsSize " << obj.feasiblePartitions.size() << endl;
+    // cout << "UnfeasiblePartitionSize " <<obj.unfeasiblePartitions.size() << endl;
+    // cout << "FeasiblePartitionsSize " << obj.feasiblePartitions.size() << endl;
     if (obj.unfeasiblePartitions.size() > 1) {
         obj.fusion();
     }
@@ -365,38 +365,38 @@ void GPX2::findAllPartitions()
     // Percorre a partição
     for (auto& p : feasiblePartitions) {
         vector<string> tmp;
-        cout<<"Quebrou aqui"<<endl;
-        cout<<(*p.second)<<endl;
+        // cout<<"Quebrou aqui"<<endl;
+        // cout<<(*p.second)<<endl;
 
         vector<string> accessNodes = p.second->getAccessNodes();
         for (auto it = accessNodes.begin(); it != accessNodes.end(); it++) {
-            cout << "FOR"<<endl;
+            // cout << "FOR"<<endl;
             // Verificar se o vértice está ligado a outras partições
             pair<SearchResult, vector<string>> result = DFS_outside((*it), feasiblePartitions);
 
             if (result.first == SearchResult::CONNECTED_TO_PARTITION) {
-                cout << "IF"<<endl;
+                // cout << "IF"<<endl;
                 tmp.push_back((*it));
             } else {
-                cout << "ELSE"<<endl;
+                // cout << "ELSE"<<endl;
                 accessNodes.erase(remove(accessNodes.begin(), accessNodes.end(), result.second.back()), accessNodes.end());
-                cout << "Erase"<<endl;
+                // cout << "Erase"<<endl;
                 if (!result.second.empty()) {
                     result.second.erase(result.second.begin());
-                    cout << "erase1"<<endl;
+                    // cout << "erase1"<<endl;
                 }
                 if (!result.second.empty()) {
                     result.second.erase(result.second.end());
-                    cout << "erase2"<<endl;
+                    // cout << "erase2"<<endl;
                 }
                 // Insere o caminho da ligação na partição
                 p.second->getNodes().insert(p.second->getNodes().end(), result.second.begin(), result.second.end());
-                cout << "Insert"<<endl;
+                // cout << "Insert"<<endl;
             }
         }
-        cout << "SetAccess"<<endl;
+        // cout << "SetAccess"<<endl;
         p.second->setAccessNodes(tmp);
-        cout << "Passou desse for"<<endl;
+        // cout << "Passou desse for"<<endl;
     }
 } */
 void GPX2::cleanInsideAccess()
@@ -426,13 +426,13 @@ void GPX2::cleanInsideAccess()
                         result.second.erase(result.second.begin());
                         result.second.erase(result.second.end());
 
-                        if(!result.second.empty()){
-                            for(string node : result.second){
-                                for(auto &edge : unitedGraph[node]->getEdges()){
-                                    edge.second = distance(stoi(node), stoi(edge.first));
-                                }
-                            }
-                        }
+                        // if(!result.second.empty()){
+                        //     for(string node : result.second){
+                        //         for(auto &edge : unitedGraph[node]->getEdges()){
+                        //             edge.second = distance(stoi(node), stoi(edge.first));
+                        //         }
+                        //     }
+                        // }
 
                         p.second->getNodes().insert(p.second->getNodes().end(),result.second.begin(), result.second.end());
                 }
@@ -765,7 +765,7 @@ pair<GPX2::SearchResult, vector<string>> GPX2::DFS_outside(string id, PartitionM
         }
     }
 
-    cout<<"Passou por "<<i<<" end nodes"<<endl;
+    // cout<<"Passou por "<<i<<" end nodes"<<endl;
 
     //se conectar em si mesmo, seta o nó de entrada e o ultimo onde chegou como não access
     unitedGraph[id]->setAccess(false);
@@ -1224,8 +1224,8 @@ void GPX2::generateFusionPairs()
                         best = uC;
                     }
                 }
-                std::cout<<"escolheu a fusion com mais nodes "<<numberOfNodes<<endl; 
-                std::cout<<"escolheu a fusion com menos nodes "<<numberOfNodes<<endl;
+                // std::cout<<"escolheu a fusion com mais nodes "<<numberOfNodes<<endl; 
+                // std::cout<<"escolheu a fusion com menos nodes "<<numberOfNodes<<endl;
                 tmp.erase(find_if(tmp.begin(),tmp.end(),[&best](UnfeasibleConnection const &uC){return((uC.partitionId1==best.partitionId1) && (uC.partitionId2==best.partitionId2));}));
 
             }else{
@@ -1330,9 +1330,9 @@ GPX2::~GPX2()
 }
 
 void GPX2::printPartition(const int id){
-    cout << "================================================================================"<<endl;
+    // cout << "================================================================================"<<endl;
     for(string node : unfeasiblePartitions[id]->getNodes()){
-        cout << *unitedGraph[node] << endl;
+        // cout << *unitedGraph[node] << endl;
     }
 }
 
