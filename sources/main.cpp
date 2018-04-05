@@ -20,9 +20,9 @@ void debugGA();
 
 void setParams(){
     //ImportData file("libs/more-libs/E-n33-k4.vrp");
-    ImportData file("libs/P-Sets/P-n22-k2.vrp");
-    Configs::truckNumber=5;
-    Configs::customerMap=CustomerMap(file.getCustomerList(),file.getCapacity(),Configs::truckNumber)    ;
+    ImportData file("libs/P-Sets/P-n51-k10.vrp");
+    Configs::truckNumber=10;
+    Configs::customerMap=CustomerMap(file.getCustomerList(),file.getCapacity(),Configs::truckNumber);
     Configs::InitialPopmutIterations=100;
     Configs::InitialPopMutRate=70;
     Configs::mutationRate=100;
@@ -30,13 +30,13 @@ void setParams(){
     Configs::fitnessMode=2;
 }
 int main(){
-    //srand(time(NULL));
+    srand(time(NULL));
     setParams();
     int start_s=clock();
     Tour original= tourGen();
     cout<<original<<endl;
     Tour novoTour=TourRepairer().repairTour(original);
-    //cout<<novoTour<<endl;
+    cout<<novoTour<<endl;
     //startGA();
     //debugGA();
 

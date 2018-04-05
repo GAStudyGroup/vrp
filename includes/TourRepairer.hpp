@@ -14,5 +14,7 @@ class TourRepairer{
     private:
     vector<vector<int>> splitSubTours(vector<int>&);
     void printSubtours(vector<vector<int>>&);
+    int findLastDepotPosition(vector<int>&tour);
+    vector<int> tourRebuilder(vector<vector<int>>&tour);
 };
 #endif 
