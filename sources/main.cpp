@@ -20,8 +20,8 @@ void debugGA();
 
 void setParams(){
     //ImportData file("libs/more-libs/E-n33-k4.vrp");
-    ImportData file("libs/P-Sets/P-n51-k10.vrp");
-    Configs::truckNumber=10;
+    ImportData file("libs/P-Sets/P-n16-k8.vrp");
+    Configs::truckNumber=8;
     Configs::customerMap=CustomerMap(file.getCustomerList(),file.getCapacity(),Configs::truckNumber);
     Configs::InitialPopmutIterations=100;
     Configs::InitialPopMutRate=70;
