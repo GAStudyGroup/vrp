@@ -14,6 +14,7 @@ class TourRepairer{
     //Encontrar um modo em que todos os subtour sejam válidos
     public:
     Tour repairTour(Tour&);
+    
     private:
     vector<vector<int>> splitSubTours(vector<int>&);
     void printSubtours(vector<vector<int>>&);
@@ -21,9 +22,11 @@ class TourRepairer{
     vector<int> tourRebuilder(vector<vector<int>>&tour);
     int getTourCharge(vector<int>&);
     vector<int> getOverloadedSubs(vector<vector<int>>&);
-    int getHeaviestCustomer(vector<int>&);
+    int getHeaviestCustomer(vector<int>,int id);
     void sortSubsByCharge(vector<vector<int>>&);
-    void changeCustomer(vector<vector<int>>&);
+    void changeCustomers(vector<vector<int>>&);
     void eraseElement(vector<int>&,int);
+    bool willOverload(vector<int>&, int);
+    int getCustomerDemand(int);
 };
 #endif 

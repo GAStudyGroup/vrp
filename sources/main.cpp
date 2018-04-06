@@ -30,14 +30,14 @@ void setParams(){
     Configs::fitnessMode=2;
 }
 int main(){
-    srand(time(NULL));
+    //srand(time(NULL));
     setParams();
     int start_s=clock();
-    // Tour original= tourGen();
-    // cout<<original<<endl;
-    // Tour novoTour=TourRepairer().repairTour(original);
-    // cout<<novoTour<<endl;
-    startGA();
+    Tour original= tourGen();
+    cout<<original<<endl;
+    Tour novoTour=TourRepairer().repairTour(original);
+    cout<<novoTour<<endl;
+    // startGA();
     //debugGA();
 
     int stop_s=clock();

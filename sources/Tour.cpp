@@ -59,17 +59,17 @@ ostream& operator<<(ostream& output, Tour& t)
     }
      output << "\nFitness: " << t.getFitness();
      output << "\nDistance: "<<t.getDist();
-     output << "\nCharges:";
-     for(auto charge:getAllCharges(t.getRoute())){
-          output<<" "<<charge;
-    }
+    //  output << "\nCharges:";
+    //  for(auto charge:getAllCharges(t.getRoute())){
+    //       output<<" "<<charge;
+    // }
     output<<"\nSubtours: \n";
     for(auto subtour: explodeSubTours(t.getRoute(),Configs::customerMap.getDepotId())){
         output<< "| ";
         for(auto customer:subtour){
             output<< customer <<" ";
         }
-        output<<"| \n";
+        output<<"| Charge:" << getSubCharge(subtour) << "\n";
     }
     output<< "\nSize:"<< t.getRoute().size();
     output<<"\n";
