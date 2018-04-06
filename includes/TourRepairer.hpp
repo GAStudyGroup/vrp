@@ -9,6 +9,9 @@ class TourRepairer{
     //Step 3- Move this customer to the tour with less load
     //Step 4- Test inside the tour to check which position will impact less on the overral distance
     // Repeat until there is not any overloaded tours
+
+    //Colocar para não alterar caso for estourar
+    //Encontrar um modo em que todos os subtour sejam válidos
     public:
     Tour repairTour(Tour&);
     private:

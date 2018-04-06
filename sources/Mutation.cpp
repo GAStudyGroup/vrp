@@ -50,7 +50,7 @@ vector<int> Mutation::evaluateMutation(vector<int> tour){
         it++;
     }
     addList(tour);  
-    cout << "Tam Lista Mut: "<<sizeof(Configs::mutationMaxedList)<<endl;
+    //cout << "Tam Lista Mut: "<<sizeof(Configs::mutationMaxedList)<<endl;
     return tour;
 }
 

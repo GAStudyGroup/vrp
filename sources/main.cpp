@@ -12,7 +12,7 @@
 using namespace std;
 
 const unsigned limitGen{300};
-const unsigned popSize{50};
+const unsigned popSize{80};
 
 void startGA();
 Tour readFile(string);
@@ -33,11 +33,11 @@ int main(){
     srand(time(NULL));
     setParams();
     int start_s=clock();
-    Tour original= tourGen();
-    cout<<original<<endl;
-    Tour novoTour=TourRepairer().repairTour(original);
-    cout<<novoTour<<endl;
-    //startGA();
+    // Tour original= tourGen();
+    // cout<<original<<endl;
+    // Tour novoTour=TourRepairer().repairTour(original);
+    // cout<<novoTour<<endl;
+    startGA();
     //debugGA();
 
     int stop_s=clock();

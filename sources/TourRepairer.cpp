@@ -11,7 +11,7 @@ using std::cout;
 using std::endl;
 
 Tour TourRepairer::repairTour(Tour& original){
-    cout<<"Iniciando Reparação"<<endl;
+    //cout<<"Iniciando Reparação"<<endl;
     auto subtours= splitSubTours(original.getRoute());
     sortSubsByCharge(subtours);
     //printSubtours(subtours);
