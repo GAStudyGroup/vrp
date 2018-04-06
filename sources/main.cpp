@@ -31,13 +31,13 @@ void setParams(){
     Configs::fitnessMode=2;
 }
 int main(){
-    srand(time(NULL));
+    //srand(time(NULL));
     setParams();
     int start_s=clock();
     
-    startGA();
+    //startGA();
     //debugGA();
-    //debugRepair();
+    debugRepair();
     int stop_s=clock();
     cout << "time: " << (stop_s-start_s)/double(CLOCKS_PER_SEC)*1000<< endl;
     return 0;

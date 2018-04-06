@@ -20,7 +20,6 @@ class TourRepairer{
     void printSubtours(vector<vector<int>>&);
     int findLastDepotPosition(vector<int>&tour);
     vector<int> tourRebuilder(vector<vector<int>>&tour);
-    int getTourCharge(vector<int>&);
     vector<int> getOverloadedSubs(vector<vector<int>>&);
     int getHeaviestCustomer(vector<int>,int id);
     int getLightestCustomer(vector<int>);

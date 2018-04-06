@@ -20,14 +20,6 @@ Tour TourRepairer::repairTour(Tour& original){
     return original;
 }
 
-int TourRepairer::getTourCharge(vector<int>& subtour){
-    int charge=0;
-    for(auto customer: subtour){
-        charge+=getCustomerDemand(customer);
-    }
-    return charge;
-}
-
 void TourRepairer::changeCustomers(vector<vector<int>>& subtours){//Verificar mais tarde
     changeHeaviestCustomers(subtours);
     changeLightestCustomers(subtours);
@@ -111,7 +103,7 @@ void TourRepairer::printSubtours(vector<vector<int>>& subtours){
         for(auto customer: subtour){
             cout<<customer<<" ";
         }
-        cout<<" Charge: "<<getTourCharge(subtour);
+        cout<<" Charge: "<<TourUtils::getSubCharge(subtour);
         cout<<" Heaviest Customer: "<<getHeaviestCustomer(subtour,0);
         it++;
         cout<<endl;
@@ -123,7 +115,7 @@ vector<int> TourRepairer::getOverloadedSubs(vector<vector<int>>& subtours){
     int id=-1;;
     for(auto subtour: subtours){
         id++;
-        if(getTourCharge(subtour)>Configs::customerMap.getTruckCapacity()){
+        if(TourUtils::getSubCharge(subtour)>Configs::customerMap.getTruckCapacity()){
             SubsIds.push_back(id);
         }
     }
@@ -133,7 +125,7 @@ vector<int> TourRepairer::getOverloadedSubs(vector<vector<int>>& subtours){
 void TourRepairer::sortSubsByCharge(vector<vector<int>>& subtours){
     std::sort(subtours.begin(),subtours.end(),
      [this](vector<int>& a, vector<int>& b) {        
-        return  getTourCharge(a) < getTourCharge(b);
+        return  TourUtils::getSubCharge(a) < TourUtils::getSubCharge(b);
     });
     
 }
@@ -162,7 +154,7 @@ int TourRepairer::getCustomerDemand(int id){
 }
 
 bool TourRepairer::willOverload(vector<int>& subtour, int id){
-    int totalCharge= (getTourCharge(subtour) + getCustomerDemand(id));
+    int totalCharge= (TourUtils::getSubCharge(subtour) + getCustomerDemand(id));
     if(totalCharge>Configs::customerMap.getTruckCapacity()){
         // cout<<"Over"<<endl;
         return true;
