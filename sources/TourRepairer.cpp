@@ -1,5 +1,6 @@
 #include<iostream>
 #include<string>
+#include<algorithm>
 
 #include "TourRepairer.hpp"
 #include "Configs.hpp"
@@ -12,11 +13,8 @@ using std::endl;
 Tour TourRepairer::repairTour(Tour& original){
     cout<<"Iniciando Reparação"<<endl;
     auto subtours= splitSubTours(original.getRoute());
-    auto overIds= getOverloadedSubs(subtours);
-    for(auto id:overIds){
-        cout<<"Over: "<<id<<endl;
-    }
-    printSubtours(subtours);
+    sortSubsByCharge(subtours);
+    //printSubtours(subtours);
     original=tourRebuilder(subtours);
     return original;
 }
@@ -29,11 +27,18 @@ int TourRepairer::getTourCharge(vector<int>& subtour){
     return charge;
 }
 
+void TourRepairer::changeCustomer(vector<vector<int>>& subtours){//Verificar mais tarde
+    vector<int> overIds=getOverloadedSubs(subtours);
+    int idHeavier=getHeaviestCustomer(subtours[overIds[0]]);
+    eraseElement(subtours[0],idHeavier);
+    subtours[0].push_back(idHeavier);
+    sortSubsByCharge(subtours);
+    overIds=getOverloadedSubs(subtours);
+}
 vector<vector<int>> TourRepairer::splitSubTours(vector<int>& tour){
     vector<vector<int>> subtours;
     vector<int> aux;
     int it=-1;
-    bool alreadyDep=false;
     //int lastDepotPos=findLastDepotPosition(tour);
     for(auto customer:tour){
         it++;
@@ -63,7 +68,7 @@ vector<int> TourRepairer::tourRebuilder(vector<vector<int>>& subtours){
 }
 int TourRepairer::findLastDepotPosition(vector<int>&tour){
     int lastDepotPos=-1;
-    for(int i=0;i<tour.size();i++){
+    for(unsigned i=0;i<tour.size();i++){
         if(tour[i]==Configs::customerMap.getDepotId()){
             lastDepotPos=i;
         }
@@ -78,6 +83,7 @@ void TourRepairer::printSubtours(vector<vector<int>>& subtours){
             cout<<customer<<" ";
         }
         cout<<" Charge: "<<getTourCharge(subtour);
+        cout<<" Heaviest Customer: "<<getHeaviestCustomer(subtour);
         it++;
         cout<<endl;
     }
@@ -95,7 +101,23 @@ vector<int> TourRepairer::getOverloadedSubs(vector<vector<int>>& subtours){
     return SubsIds;
 }
 
-int TourRepairer::getHeavierCustomer(vector<int>& subtour){
-    int customerId=-1;
+void TourRepairer::sortSubsByCharge(vector<vector<int>>& subtours){
+    std::sort(subtours.begin(),subtours.end(),
+     [](vector<int>& a, vector<int>& b) {        
+        return  getSubCharge(a) < getSubCharge(b);
+    });
+    
+}
+
+int TourRepairer::getHeaviestCustomer(vector<int>& subtour){
+    int customerId= *std::max_element(subtour.begin(),subtour.end(),[](int& a, int&b){
+        return (Configs::customerMap.getCustomer(a).getDemand()
+        <
+        Configs::customerMap.getCustomer(b).getDemand());
+    });
     return customerId;
+}
+
+void TourRepairer::eraseElement(vector<int>& subtour,int element){
+    subtour.erase(find(subtour.begin(),subtour.end(),element));
 }

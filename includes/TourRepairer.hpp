@@ -18,6 +18,9 @@ class TourRepairer{
     vector<int> tourRebuilder(vector<vector<int>>&tour);
     int getTourCharge(vector<int>&);
     vector<int> getOverloadedSubs(vector<vector<int>>&);
-    int getHeavierCustomer(vector<int>&);
+    int getHeaviestCustomer(vector<int>&);
+    void sortSubsByCharge(vector<vector<int>>&);
+    void changeCustomer(vector<vector<int>>&);
+    void eraseElement(vector<int>&,int);
 };
 #endif 
