@@ -3,26 +3,25 @@
 
 #include <vector>
 #include <iostream>
-#include <cmath>
+
 
 
 #include "CustomerMap.hpp"
 #include "Population.hpp"
 
 using std::vector;
+//Remover depois e tratar nas classes
 using std::cout;
 using std::endl;
 using std::pair;
 using std::make_pair;
 
-
-// SECTION TO FITNESS CALCULATION
-// Main function to calculate fitness, will return the value
+// Support function to calculate partial info about Tours
+namespace TourUtils{
 // return the charge used of route inside the tour
 double getSubCharge(vector<int>&);
 // return a distance used in route 
 double getSubDistance(vector<int>&);
-// return the euclidian distance beetween two points in map
-double distance(const int, const int);
+};
 
 #endif

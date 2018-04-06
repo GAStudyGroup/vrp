@@ -51,7 +51,7 @@ double Tour::getDist(){
     vector<vector<int>> subs = this->explodeSubTours();
     double distance=0;
     for(vector<int> sub : subs){
-        distance += getSubDistance(sub);
+        distance += TourUtils::getSubDistance(sub);
     }
     return(distance);
 }
@@ -74,8 +74,8 @@ ostream& operator<<(ostream& output, Tour& t)
         for(auto customer:subtour){
             output<< customer <<" ";
         }
-        output<<"| Charge:" << getSubCharge(subtour) << " ";
-        output<<((getSubCharge(subtour)>Configs::customerMap.getTruckCapacity())?"Estourou":" ");
+        output<<"| Charge:" << TourUtils::getSubCharge(subtour) << " ";
+        output<<((TourUtils::getSubCharge(subtour)>Configs::customerMap.getTruckCapacity())?"Estourou":" ");
         output<<endl;
     }
     output<< "\nSize:"<< t.getRoute().size();
@@ -102,7 +102,7 @@ vector<int> Tour::getAllCharges(){
     vector<int> charges;
 
     for(vector<int> sub : subs){
-        charges.push_back((int)getSubCharge(sub));
+        charges.push_back((int) TourUtils::getSubCharge(sub));
     }
     return(charges);
 }

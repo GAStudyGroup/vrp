@@ -3,7 +3,7 @@
 #include "HamiltonianCycle.hpp"
 #include "Configs.hpp"
 #include "TourUtils.hpp"
-
+#include "Distance.hpp"
 // RETIRAR DEPOIS
 bool validaMerdaChoosen(vector<pair<int,int>> merda){
 

@@ -1,8 +1,8 @@
 #include "TourUtils.hpp"
 #include "Configs.hpp"
+#include "Distance.hpp"
 
-
-double getSubCharge(vector<int>& tour){
+double TourUtils::getSubCharge(vector<int>& tour){
     double charge=0;
 
     for(int c : tour){
@@ -11,7 +11,7 @@ double getSubCharge(vector<int>& tour){
     return (charge);
 }
 
-double getSubDistance(vector<int>& tour){
+double TourUtils::getSubDistance(vector<int>& tour){
     double dist=0;
 
     dist += distance(tour[0], Configs::customerMap.getDepotId()); // depot to first customer
@@ -22,7 +22,3 @@ double getSubDistance(vector<int>& tour){
     return (dist);
 }
 
-double distance(const int a, const int b){
-    //return(std::round(std::sqrt(std::pow(Configs::customerMap.getCustomer(a).getX() - Configs::customerMap.getCustomer(b).getX(), 2) + pow(Configs::customerMap.getCustomer(a).getY() - Configs::customerMap.getCustomer(b).getY(), 2))));
-    return(std::sqrt(std::pow(Configs::customerMap.getCustomer(a).getX() - Configs::customerMap.getCustomer(b).getX(), 2) + pow(Configs::customerMap.getCustomer(a).getY() - Configs::customerMap.getCustomer(b).getY(), 2)));
-}

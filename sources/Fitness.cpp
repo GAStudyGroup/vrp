@@ -11,7 +11,7 @@ double ourFitness(vector<int>& tour){ //Buga quando tem dois dep√≥sitos no come√
     double fitness=0;
     
     for(vector<int> sub : subs){
-        double chargeUsed = getSubCharge(sub);
+        double chargeUsed = TourUtils::getSubCharge(sub);
         //cout << "Used " << chargeUsed << " / " << Configs::customerMap.getTruckCapacity() << endl;
         if(chargeUsed <= Configs::customerMap.getTruckCapacity()){
             fitness += subFitness(sub, chargeUsed);
@@ -25,11 +25,11 @@ double ourFitness(vector<int>& tour){ //Buga quando tem dois dep√≥sitos no come√
 double subFitness(vector<int>& tour, double& chargeUsed){
     /* cout <<endl << "subFitness("<<tour.size()<<")"<<endl;
     for(auto t: tour ) cout << t << " "; */
-    return ((1 /getSubDistance(tour)) * (chargeUsed / Configs::customerMap.getTruckCapacity()));
+    return ((1 /TourUtils::getSubDistance(tour)) * (chargeUsed / Configs::customerMap.getTruckCapacity()));
 }
 
 double subFitnessPenalty(vector<int>& tour, double& chargeUsed){
-    return ( (1 / getSubDistance(tour)) * -1 * (chargeUsed / Configs::customerMap.getTruckCapacity()));
+    return ( (1 /TourUtils::getSubDistance(tour)) * -1 * (chargeUsed / Configs::customerMap.getTruckCapacity()));
 }
 
 //Advanced Fitness

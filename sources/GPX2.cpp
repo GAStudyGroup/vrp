@@ -1,5 +1,6 @@
 #include "GPX2.hpp"
 #include "Configs.hpp"
+#include "Distance.hpp"
 vector<string> GPX2::crossover(vector<string> redT, vector<string> blueT)
 {
     // cout<< "---------------Entrando GPX------------------------"<<endl;
