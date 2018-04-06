@@ -108,7 +108,7 @@ void applyMutation(Population &pop){
 } */
 
 Population newGeneration(Population& pop){
-    //crossoverPopulation(pop);
+    crossoverPopulation(pop);
     pop.sortPop();
     for(auto tour:pop.getPop()){
             tour=TourRepairer().repairTour(tour);

@@ -4,8 +4,7 @@
 #include <vector>
 #include <iostream>
 #include <cmath>
-#include <limits>
-#include <utility>
+
 
 #include "CustomerMap.hpp"
 #include "Population.hpp"
@@ -25,7 +24,5 @@ double getSubCharge(vector<int>&);
 double getSubDistance(vector<int>&);
 // return the euclidian distance beetween two points in map
 double distance(const int, const int);
-// Utility for GPX
-double getDistString(vector<string>&);
 
 #endif
