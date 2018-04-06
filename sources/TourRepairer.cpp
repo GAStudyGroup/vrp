@@ -123,7 +123,7 @@ vector<int> TourRepairer::getOverloadedSubs(vector<vector<int>>& subtours){
     int id=-1;;
     for(auto subtour: subtours){
         id++;
-        if(getSubCharge(subtour)>Configs::customerMap.getTruckCapacity()){
+        if(getTourCharge(subtour)>Configs::customerMap.getTruckCapacity()){
             SubsIds.push_back(id);
         }
     }

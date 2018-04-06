@@ -276,8 +276,8 @@ vector<int> Mutation::doubleSwap(vector<int> tour,int currentValue,int iteration
     return swappedTour;
 }
 
-bool Mutation::checkInSameTour(vector<int> Tour, int depotId, int customer1,int customer2){
-    vector<vector<int>> tours=explodeSubTours(Tour,depotId);
+bool Mutation::checkInSameTour(vector<int> tour, int depotId, int customer1,int customer2){
+    vector<vector<int>> tours=Tour(tour).explodeSubTours();
     bool flag1=false, flag2=false;
     for(auto tour: tours){
         for(auto customer:tour){

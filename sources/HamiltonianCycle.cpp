@@ -28,8 +28,9 @@ HamiltonianCycle::parentsHamiltonian HamiltonianCycle::toHamiltonianCycle(Tour r
     obj.correlationDuplicate = (red.getRoute().size()*0.2);
     obj.correlationIn_Out = obj.correlationDuplicate*3; 
 
-    obj.redSubs = explodeSubTours(red.getRoute(), Configs::customerMap.getDepotId());
-    obj.blueSubs = explodeSubTours(blue.getRoute(), Configs::customerMap.getDepotId());
+    //obj.redSubs = explodeSubTours(red.getRoute(), Configs::customerMap.getDepotId());
+    obj.redSubs = red.explodeSubTours();
+    obj.blueSubs = blue.explodeSubTours();
 
     obj.generateRanking();  
 

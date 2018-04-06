@@ -23,13 +23,12 @@ public:
     Tour(vector<Customer>);
     Tour(vector<int>);
     Tour(vector<string>);
-
     void setRoute(vector<int>);
-
     vector<int>& getRoute();
-
     double getFitness();
     double getDist();
+    vector<int> getAllCharges();
+    vector<vector<int>> explodeSubTours();
 private:
     vector<int> route;
 };
