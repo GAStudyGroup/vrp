@@ -23,10 +23,13 @@ class TourRepairer{
     int getTourCharge(vector<int>&);
     vector<int> getOverloadedSubs(vector<vector<int>>&);
     int getHeaviestCustomer(vector<int>,int id);
+    int getLightestCustomer(vector<int>);
     void sortSubsByCharge(vector<vector<int>>&);
     void changeCustomers(vector<vector<int>>&);
     void eraseElement(vector<int>&,int);
     bool willOverload(vector<int>&, int);
     int getCustomerDemand(int);
+    void changeHeaviestCustomers(vector<vector<int>>&);
+    void changeLightestCustomers(vector<vector<int>>&);
 };
 #endif 

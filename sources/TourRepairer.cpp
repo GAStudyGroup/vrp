@@ -29,24 +29,41 @@ int TourRepairer::getTourCharge(vector<int>& subtour){
 }
 
 void TourRepairer::changeCustomers(vector<vector<int>>& subtours){//Verificar mais tarde
+    changeHeaviestCustomers(subtours);
+    changeLightestCustomers(subtours);
+}
+ void TourRepairer::changeHeaviestCustomers(vector<vector<int>>& subtours){
     vector<int> overIds=getOverloadedSubs(subtours);
-    //while(overIds.size()!=0){
         for(int id: overIds){//Ids dos sobrecaregados
             for(unsigned i=0;i<subtours.size();i++){ //Itera por todos os outros subs
                 if(i!=(unsigned)id){ //Não altera em relação a ele mesmo
                     for(unsigned j=0;j<subtours[id].size();j++){ //Testa todas possibilidades 1 mais pesado, 2 etc..
                         int idHeaviest=getHeaviestCustomer(subtours[id],j);
                         if(!willOverload(subtours[i],idHeaviest) && (idHeaviest!=
-                        Configs::customerMap.getDepotId())){
-                            eraseElement(subtours[id],idHeaviest);
-                            subtours[i].push_back(idHeaviest);
+                            Configs::customerMap.getDepotId())){
+                                eraseElement(subtours[id],idHeaviest);
+                                subtours[i].push_back(idHeaviest);//Adicionar aqui possível heuristica de dist
                         }
                     }
                 }
             }        
         }
-    //}
-}
+ }
+ void TourRepairer::changeLightestCustomers(vector<vector<int>>& subtours){
+    vector<int> overIds=getOverloadedSubs(subtours);
+    for(int id: overIds){
+        for(unsigned i=0;i<subtours.size();i++){
+            if(i!=(unsigned)id){
+                int idLightest = getLightestCustomer(subtours[id]);
+                if(!willOverload(subtours[i],idLightest)&&(idLightest!=
+                Configs::customerMap.getDepotId())){
+                    eraseElement(subtours[id],idLightest);
+                    subtours[i].push_back(idLightest);
+                }
+            }
+        }        
+    }
+ }
 vector<vector<int>> TourRepairer::splitSubTours(vector<int>& tour){
     vector<vector<int>> subtours;
     vector<int> aux;
@@ -126,6 +143,13 @@ int TourRepairer::getHeaviestCustomer(vector<int> subtour,int id){
         return getCustomerDemand(a) > getCustomerDemand(b);
     });
     int customerId=subtour[id];
+    return customerId;
+}
+int TourRepairer::getLightestCustomer(vector<int> subtour){
+    std::sort(subtour.begin(),subtour.end(),[this](int &a, int &b){
+        return getCustomerDemand(a) < getCustomerDemand(b);
+    });
+    int customerId=subtour[0]; //Sempre pega o menor
     return customerId;
 }
 

@@ -11,37 +11,43 @@
 
 using namespace std;
 
-const unsigned limitGen{300};
+const unsigned limitGen{100};
 const unsigned popSize{80};
 
 void startGA();
 Tour readFile(string);
 void debugGA();
+void debugRepair();
 
 void setParams(){
     //ImportData file("libs/more-libs/E-n33-k4.vrp");
-    ImportData file("libs/P-Sets/P-n22-k2.vrp");
-    Configs::truckNumber=5;
+    ImportData file("libs/P-Sets/P-n23-k8.vrp");
+    Configs::truckNumber=12;
     Configs::customerMap=CustomerMap(file.getCustomerList(),file.getCapacity(),Configs::truckNumber)    ;
-    Configs::InitialPopmutIterations=100;
+    Configs::InitialPopmutIterations=1000;
     Configs::InitialPopMutRate=70;
     Configs::mutationRate=100;
     Configs::applyWorst=true;
     Configs::fitnessMode=2;
 }
 int main(){
-    //srand(time(NULL));
+    srand(time(NULL));
     setParams();
     int start_s=clock();
-
+    
     startGA();
     //debugGA();
-
+    //debugRepair();
     int stop_s=clock();
     cout << "time: " << (stop_s-start_s)/double(CLOCKS_PER_SEC)*1000<< endl;
     return 0;
 }
-
+void debugRepair(){
+    Tour tour=tourGen();
+    cout<<tour<<endl;
+    tour=TourRepairer().repairTour(tour);
+    cout<<tour<<endl;
+}
 void startGA(){
     unsigned generation{0};
 
