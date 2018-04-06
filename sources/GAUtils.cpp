@@ -167,6 +167,5 @@ Tour crossover(Tour& red, Tour& blue){
     // }
     cout<<"----------------Saindo GPX-----------------"<<endl;;
     cout <<offspring<<endl;
-    cin.get();
     return(offspring);
 }

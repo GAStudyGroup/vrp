@@ -58,13 +58,12 @@ HamiltonianCycle::parentsHamiltonian HamiltonianCycle::toHamiltonianCycle(Tour r
 void HamiltonianCycle::generateRanking(){
     unsigned redSubsSize{redSubs.size()}, blueSubsSize{blueSubs.size()};
     choosenSubs choosen;
-
     for(unsigned red=0; red<redSubsSize; red++){
         for(unsigned blue=0; blue<blueSubsSize; blue++){
+
             ranking[red].push_back(Correlation(0, 0));
             unsigned redInsideSize{redSubs[red].size()};
-            unsigned blueInsideSize{redSubs[blue].size()};
-
+            unsigned blueInsideSize{blueSubs[blue].size()};
             /* cout << "SubRed: ";
             for(int c : redSubs[red]){
                 cout << c <<" ";
