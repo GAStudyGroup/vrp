@@ -69,7 +69,9 @@ ostream& operator<<(ostream& output, Tour& t)
         for(auto customer:subtour){
             output<< customer <<" ";
         }
-        output<<"| Charge:" << getSubCharge(subtour) << "\n";
+        output<<"| Charge:" << getSubCharge(subtour) << " ";
+        output<<((getSubCharge(subtour)>Configs::customerMap.getTruckCapacity())?"Estourou":" ");
+        output<<endl;
     }
     output<< "\nSize:"<< t.getRoute().size();
     output<<"\n";
