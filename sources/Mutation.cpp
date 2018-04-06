@@ -50,7 +50,7 @@ vector<int> Mutation::evaluateMutation(vector<int> tour){
         it++;
     }
     addList(tour);  
-    cout << "Tam Lista Mut: "<<sizeof(Configs::mutationMaxedList)<<endl;
+    //cout << "Tam Lista Mut: "<<sizeof(Configs::mutationMaxedList)<<endl;
     return tour;
 }
 
@@ -320,7 +320,7 @@ bool Mutation::validateTour(vector<int> tour, int depositNumber,int depositId){
     for(unsigned i=0;i<=((tour.size()+1)-(depositNumber));i++){
         //cout<<"O valor "<<i<< " aparece "<< valuesCont[i] <<"vezes" <<endl;;
         if((i!=(unsigned)depositId && valuesCont[i]>1) ||(i!=0 && valuesCont[i]==0)){
-            // cout <<"Deu merda"<<endl;
+            // cout <<"Dlaeu merda"<<endl;
             return false;
         }
     }

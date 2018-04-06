@@ -3,7 +3,7 @@
 #include "Mutation.hpp"
 #include "GPX2.hpp"
 #include "HamiltonianCycle.hpp"
-
+#include "TourRepairer.hpp"
 bool validateTour(vector<int> tour){
     std::sort(tour.begin(),  tour.end());
     vector<int>::iterator it;
@@ -108,14 +108,17 @@ void applyMutation(Population &pop){
 } */
 
 Population newGeneration(Population& pop){
-    int defaultSize{Configs::customerMap.getMap().size() + Configs::truckNumber -1};
+    //int defaultSize{Configs::customerMap.getMap().size() + Configs::truckNumber -1};
     
-    Population newPop{crossoverPopulation(pop)};
-
-    newPop.sortPop();
-    applyMutation(newPop);
-    newPop.sortPop();
-    return(newPop);
+    //Population newPop{crossoverPopulation(pop)};
+    //Population newPop=(popGen(Configs::popSize));
+    pop.sortPop();
+    applyMutation(pop);
+    for(auto tour:pop.getPop()){
+        tour=TourRepairer().repairTour(tour);
+    }
+    pop.sortPop();
+    return(pop);
 }
 
 Population crossoverPopulation(Population& pop){

@@ -7,11 +7,12 @@
 #include "Tour.hpp"
 #include "TourUtils.hpp"
 #include "GAUtils.hpp"
+#include "TourRepairer.hpp"
 
 using namespace std;
 
 const unsigned limitGen{300};
-const unsigned popSize{50};
+const unsigned popSize{80};
 
 void startGA();
 Tour readFile(string);
@@ -29,7 +30,7 @@ void setParams(){
     Configs::fitnessMode=2;
 }
 int main(){
-    srand(time(NULL));
+    //srand(time(NULL));
     setParams();
     int start_s=clock();
 
