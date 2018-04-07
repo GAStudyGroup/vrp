@@ -32,6 +32,9 @@
         - Nó mais próximo fisicamente de um tour a outro
             - Não pegar o depósito
 
+### Site 
+http://vrp.atd-lab.inf.puc-rio.br/index.php/en/
+
 ### Instâncias de VRP
 http://neo.lcc.uma.es/vrp/vrp-instances/capacitated-vrp-instances/
 ### Melhores resultados

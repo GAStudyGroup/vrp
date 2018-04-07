@@ -5,46 +5,14 @@
 #include "Configs.hpp"
 #include "TourUtils.hpp"
 #include "Distance.hpp"
-// RETIRAR DEPOIS
-bool validaMerdaChoosen(vector<pair<int,int>> merda){
-
-    vector<int> reds;
-    vector<int> blues;
-
-    for(auto it : merda){
-        reds.push_back(it.first);
-        blues.push_back(it.second);
-    }
-    std::sort(reds.begin(), reds.end());
-    std::sort(blues.begin(), blues.end());
-
-    bool redB{std::adjacent_find(reds.begin(), reds.end())==reds.end()};
-    bool blueB{std::adjacent_find(blues.begin(), blues.end())==blues.end()};
-
-    return(redB && blueB);
-}
 
 HamiltonianCycle::parentsHamiltonian HamiltonianCycle::toHamiltonianCycle(Tour red, Tour blue){
     HamiltonianCycle obj;
     obj.correlationDuplicate = (red.getRoute().size()*0.2);
     obj.correlationIn_Out = obj.correlationDuplicate*3; 
 
-    //obj.redSubs = explodeSubTours(red.getRoute(), Configs::customerMap.getDepotId());
     obj.redSubs = red.explodeSubTours();
     obj.blueSubs = blue.explodeSubTours();
-
-    cout << "RedInfos"<<endl;
-    for(auto v : obj.redSubs){
-        for(int c : v){
-            cout << c << " ";
-        }cout<<endl;
-    }
-    cout << "\n\nblueInfos"<<endl;
-    for(auto v : obj.blueSubs){
-        for(int c : v){
-            cout << c << " ";
-        }cout<<endl;
-    }
 
     obj.generateRanking();  
 
@@ -52,25 +20,10 @@ HamiltonianCycle::parentsHamiltonian HamiltonianCycle::toHamiltonianCycle(Tour r
 
     std::sort(obj.choosen.begin(), obj.choosen.end(), [](auto &left, auto &right){ return(left.first < right.first); });
 
-    if(!validaMerdaChoosen(obj.choosen)){
-        cout << "DEU MERDA NA CHOOSEN"<<endl;
-        exit(0);
-    }
-
-    cout << "Choosen"<<endl;
-    for(auto it : obj.choosen){
-        cout << it.first << " " << it.second << endl;
-    }
-
-    obj.rebuildTours(obj.getEmptySubtoursNumber(red.getRoute()), 
-                    obj.getEmptySubtoursNumber(blue.getRoute()));
-    exit(0);
-    parentsHamiltonian newTours = obj.rebuildTours();
-
-    if(newTours.first.size() != inSizeRed || newTours.second.size() != inSizeBlue){
-        cout << "WTF exit"<<endl;
-        exit(0);
-    }
+    parentsHamiltonian newTours = obj.rebuildTours(
+                            obj.getEmptySubtoursNumber(red.getRoute()),
+                            obj.getEmptySubtoursNumber(blue.getRoute())
+                        );
 
     newTours.first = obj.createDepotCopies(newTours.first);
     newTours.second = obj.createDepotCopies(newTours.second);
@@ -88,14 +41,6 @@ void HamiltonianCycle::generateRanking(){
             ranking[red].push_back(Correlation(0, 0));
             unsigned redInsideSize{redSubs[red].size()};
             unsigned blueInsideSize{blueSubs[blue].size()};
-            /* cout << "SubRed: ";
-            for(int c : redSubs[red]){
-                cout << c <<" ";
-            }cout << endl;
-            cout << "SubBlue: ";
-            for(int c : blueSubs[blue]){
-                cout << c <<" ";
-            }cout << endl; */
 
             for(unsigned redElement=0; redElement<redInsideSize; redElement++){
 
@@ -156,19 +101,8 @@ HamiltonianCycle::parentsHamiltonian HamiltonianCycle::rebuildTours(const int re
     int depotId{Configs::customerMap.getDepotId()};
     parentsHamiltonian parents;
 
-    // cout << "RedEmpty: " << redEmpty << " BlueEmpty: "<<blueEmpty << endl;
     parents = buildChoosenSubs();
-
     parents = restoreEmptySubtours(parents, redEmpty, blueEmpty);
-
-    /* cout << "Red " << parents.first.size() <<endl;
-    for(string c : parents.first){
-        cout << c << " ";
-    }
-    cout << "\nBlue " << parents.second.size() <<endl;
-    for(string c : parents.second){
-        cout << c << " ";
-    }cout <<endl; */
 
     return(parents);
 }

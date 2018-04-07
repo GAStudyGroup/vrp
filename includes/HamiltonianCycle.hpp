@@ -71,7 +71,6 @@ private:
     void choosenToursToMap();
 
     // Rebuild the tours following the choices already made
-    parentsHamiltonian rebuildTours();
     parentsHamiltonian rebuildTours(const int, const int);
 
     // With tour ready, search all elements that are Depots and generate Copies using token

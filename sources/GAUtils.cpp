@@ -86,33 +86,13 @@ void applyMutation(Population &pop){
     }
 }
 
-/* Population newGeneration(Population& pop){
-    Population newPop;
-    int defaultSize= (Configs::customerMap.getMap().size() + Configs::truckNumber)-1;
-    for(unsigned i=0; i<pop.getPop().size(); i++){
-        Tour offs;
-        cout <<"Tour1 Entrando: "<<pop.getPop()[i]<<endl;
-        cout <<"Tour2 Entrando: "<<pop.getPop()[(i+1)%pop.getPop().size()]<<endl;
-        // offs = GPX2::crossover(pop.getPop()[i], pop.getPop()[(i+1)%pop.getPop().size()]);
-        // if(offs.getRoute().size()>defaultSize){
-        //     cout <<"merda"<<endl;
-        //     cout <<"Tour saída: " <<offs<<endl;
-        //     exit(-1);
-        // }
-        // newPop.addNewTour(offs);
-    }
-    newPop.sortPop();
-    applyMutation(newPop);
-    newPop.sortPop();
-    return(newPop);
-} */
-
 Population newGeneration(Population& pop){
     crossoverPopulation(pop);
     pop.sortPop();
     for(auto tour:pop.getPop()){
             tour=TourRepairer().repairTour(tour);
     }
+    
     pop.sortPop();
     applyMutation(pop);
     
