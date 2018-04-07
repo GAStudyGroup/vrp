@@ -33,16 +33,16 @@ HamiltonianCycle::parentsHamiltonian HamiltonianCycle::toHamiltonianCycle(Tour r
 
 void HamiltonianCycle::generateRanking(){
     // Generate a ranking with correlations beetween all tours
-    unsigned redSubsSize{redSubs.size()}, blueSubsSize{blueSubs.size()};
+    int redSubsSize{(int)redSubs.size()}, blueSubsSize{(int)blueSubs.size()};
     choosenSubs choosen;
-    for(unsigned red=0; red<redSubsSize; red++){
-        for(unsigned blue=0; blue<blueSubsSize; blue++){
+    for(int red{0}; red<redSubsSize; red++){
+        for(int blue{0}; blue<blueSubsSize; blue++){
 
             ranking[red].push_back(Correlation(0, 0));
-            unsigned redInsideSize{redSubs[red].size()};
-            unsigned blueInsideSize{blueSubs[blue].size()};
+            int redInsideSize{(int)redSubs[red].size()};
+            int blueInsideSize{(int)blueSubs[blue].size()};
 
-            for(unsigned redElement=0; redElement<redInsideSize; redElement++){
+            for(int redElement{0}; redElement<redInsideSize; redElement++){
 
                 // Find in SubBlue the red element.
                 auto position = std::distance(blueSubs[blue].begin(), find(blueSubs[blue].begin(), blueSubs[blue].end(), redSubs[red][redElement]));
@@ -64,10 +64,10 @@ void HamiltonianCycle::generateRanking(){
 void HamiltonianCycle::choosenToursToMap(){
     vector<int> redNotChoosen, blueNotChoosen;
     // will load all values of ranking in Struct to Resolve and make the best choices
-    for(unsigned i=0; i<redSubs.size(); i++){
+    for(unsigned i{0}; i<redSubs.size(); i++){
         redNotChoosen.push_back(i);
     }
-    for(unsigned i=0; i<blueSubs.size(); i++){
+    for(unsigned i{0}; i<blueSubs.size(); i++){
         blueNotChoosen.push_back(i);
     }
     for(int red : redNotChoosen){
@@ -98,7 +98,6 @@ void HamiltonianCycle::choosenToursToMap(){
 }
 
 HamiltonianCycle::parentsHamiltonian HamiltonianCycle::rebuildTours(const int redEmpty, const int blueEmpty) {
-    int depotId{Configs::customerMap.getDepotId()};
     parentsHamiltonian parents;
 
     parents = buildChoosenSubs();
@@ -125,10 +124,10 @@ vector<string> HamiltonianCycle::createDepotCopies(vector<string> tour){
 
 int HamiltonianCycle::getEmptySubtoursNumber(vector<int>& tour) {
     int emptyCount{0};
-    unsigned long tSize{tour.size()};
+    int tSize{(int)tour.size()};
     int depotId{Configs::customerMap.getDepotId()};
 
-    for(unsigned long i{0}; i<tSize; i++){
+    for(int i{0}; i<tSize; i++){
         if(tour[i] == depotId){
             if(i == tSize-1){
                 if(tour[0] == depotId) emptyCount++;
@@ -142,12 +141,12 @@ int HamiltonianCycle::getEmptySubtoursNumber(vector<int>& tour) {
 
 HamiltonianCycle::parentsHamiltonian HamiltonianCycle::buildChoosenSubs() {
     parentsHamiltonian tours;
-    unsigned long choosenSize{choosen.size()};
+    int choosenSize{(int)choosen.size()};
     vector<int> alreadyRebuildRed;
     vector<int> alreadyRebuildBlue;
     int depotId{Configs::customerMap.getDepotId()};
 
-    for(unsigned i=0; i<choosenSize; i++){
+    for(int i{0}; i<choosenSize; i++){
         tours.first.push_back(std::to_string(depotId));
         tours.second.push_back(std::to_string(depotId));
 
@@ -164,7 +163,7 @@ HamiltonianCycle::parentsHamiltonian HamiltonianCycle::buildChoosenSubs() {
     // Sort desc to delete subTours already used
     std::sort(alreadyRebuildRed.begin(), alreadyRebuildRed.end(), [](int left, int right) { return(left>right); });
     std::sort(alreadyRebuildBlue.begin(), alreadyRebuildBlue.end(), [](int left, int right) { return(left>right); });
-    for(unsigned i=0; i<alreadyRebuildRed.size(); i++){
+    for(unsigned i{0}; i<alreadyRebuildRed.size(); i++){
         redSubs.erase(redSubs.begin()+alreadyRebuildRed[i]);
         blueSubs.erase(blueSubs.begin()+alreadyRebuildBlue[i]);
     }
@@ -191,10 +190,10 @@ HamiltonianCycle::parentsHamiltonian HamiltonianCycle::buildChoosenSubs() {
 
 HamiltonianCycle::parentsHamiltonian HamiltonianCycle::restoreEmptySubtours(parentsHamiltonian parents, int redEmpty, int blueEmpty) {
     string depotId{std::to_string(Configs::customerMap.getDepotId())};
-    unsigned int redSize{parents.first.size()}, blueSize{parents.second.size()};
+    int redSize{(int)parents.first.size()}, blueSize{(int)parents.second.size()};
 
     if(redSize != blueSize) {
-        unsigned int dif{std::abs((int)redSize - (int)blueSize)};
+        int dif{std::abs((int)redSize - (int)blueSize)};
         if(redSize > blueSize) {
             while(dif>0) {
                 parents.second.push_back(depotId);
