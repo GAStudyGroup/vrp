@@ -4,7 +4,7 @@
 
 - Função de balanceamento
 
-valgrind  --tool=memcheck --leak-check=yes --log-file=valgrind_output.txt ./bin/GA
+valgrind  --tool=memcheck --leak-check=yes --log-file=valgrind_output.txt -v ./bin/GA
 --leak-check=full --show-leak-kinds=all
 
 ### Necessário
