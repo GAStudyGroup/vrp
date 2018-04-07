@@ -1,0 +1,36 @@
+==29837== Memcheck, a memory error detector
+==29837== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==29837== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
+==29837== Command: ./bin/GA
+==29837== Parent PID: 23589
+==29837== 
+==29837== 
+==29837== Process terminating with default action of signal 2 (SIGINT)
+==29837==    at 0x111032: __gnu_cxx::__normal_iterator<int*, std::vector<int, std::allocator<int> > >::__normal_iterator(int* const&) (in /home/ecaanchesjr/gitRepos/vrp-gpx/bin/GA)
+==29837==    by 0x118BFF: __gnu_cxx::__normal_iterator<int*, std::vector<int, std::allocator<int> > >::operator+(long) const (in /home/ecaanchesjr/gitRepos/vrp-gpx/bin/GA)
+==29837==    by 0x118C95: std::vector<int, std::allocator<int> >::_M_erase(__gnu_cxx::__normal_iterator<int*, std::vector<int, std::allocator<int> > >) (in /home/ecaanchesjr/gitRepos/vrp-gpx/bin/GA)
+==29837==    by 0x1181DA: std::vector<int, std::allocator<int> >::erase(__gnu_cxx::__normal_iterator<int const*, std::vector<int, std::allocator<int> > >) (in /home/ecaanchesjr/gitRepos/vrp-gpx/bin/GA)
+==29837==    by 0x174070: Tour::explodeSubTours() (in /home/ecaanchesjr/gitRepos/vrp-gpx/bin/GA)
+==29837==    by 0x173E06: Tour::getAllCharges() (in /home/ecaanchesjr/gitRepos/vrp-gpx/bin/GA)
+==29837==    by 0x175224: calcPenalty(std::vector<int, std::allocator<int> >&) (in /home/ecaanchesjr/gitRepos/vrp-gpx/bin/GA)
+==29837==    by 0x1754CB: advancedFitness(std::vector<int, std::allocator<int> >&) (in /home/ecaanchesjr/gitRepos/vrp-gpx/bin/GA)
+==29837==    by 0x17376E: Tour::getFitness() (in /home/ecaanchesjr/gitRepos/vrp-gpx/bin/GA)
+==29837==    by 0x16EDF9: Mutation::basicFitnessEvaluation(Tour, Tour) (in /home/ecaanchesjr/gitRepos/vrp-gpx/bin/GA)
+==29837==    by 0x16D595: Mutation::fourthMove(std::vector<int, std::allocator<int> >, int, int) (in /home/ecaanchesjr/gitRepos/vrp-gpx/bin/GA)
+==29837==    by 0x16C3F5: Mutation::evaluateMutation(std::vector<int, std::allocator<int> >) (in /home/ecaanchesjr/gitRepos/vrp-gpx/bin/GA)
+==29837== 
+==29837== HEAP SUMMARY:
+==29837==     in use at exit: 14,008 bytes in 65 blocks
+==29837==   total heap usage: 9,096,531 allocs, 9,096,466 frees, 785,136,565 bytes allocated
+==29837== 
+==29837== LEAK SUMMARY:
+==29837==    definitely lost: 0 bytes in 0 blocks
+==29837==    indirectly lost: 0 bytes in 0 blocks
+==29837==      possibly lost: 0 bytes in 0 blocks
+==29837==    still reachable: 14,008 bytes in 65 blocks
+==29837==         suppressed: 0 bytes in 0 blocks
+==29837== Reachable blocks (those to which a pointer was found) are not shown.
+==29837== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==29837== 
+==29837== For counts of detected and suppressed errors, rerun with: -v
+==29837== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

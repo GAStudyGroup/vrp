@@ -1,36 +1,25 @@
-# vrp-gpx
-
-## Passos a serem realizados
+# Vehicle Routing Problem implementation using the Generalized Partition Crossover
 
 ### Muito Importante
+
 - Função de balanceamento
 
-- Montar o GPX para o VRP
-
-- Não entrar em desespero
+valgrind  --tool=memcheck --leak-check=yes --log-file=valgrind_output.txt ./bin/GA
+--leak-check=full --show-leak-kinds=all
 
 ### Necessário
-- ~~Refatorar a driver~~
 
 - Encontrar um método de perturbação mais eficiente (se houver)
 
 - Encontrar uma função de fitness mais eficiente
 
 ### Adicional
+
 - Colocar os parametros
 
 - Colocar Threads quando for rodar a mutação
 
 - Ver o que dá pra otimizar dentro da  mutação
-
-### Ideias para sobreposição correta de tours
-
-- Fazer a sobreposição de um tour com outro baseado em "ranking"
-    - Entrada e saída (peso alto)
-    - Relação de Customers iguais nos tours
-    - (IDÉIA) Distância de um tour a outro
-        - Nó mais próximo fisicamente de um tour a outro
-            - Não pegar o depósito
 
 ### Site 
 http://vrp.atd-lab.inf.puc-rio.br/index.php/en/
