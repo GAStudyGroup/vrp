@@ -1,4 +1,5 @@
 #include <algorithm>
+#include <cmath>
 
 #include "HamiltonianCycle.hpp"
 #include "Configs.hpp"
@@ -28,8 +29,24 @@ HamiltonianCycle::parentsHamiltonian HamiltonianCycle::toHamiltonianCycle(Tour r
     obj.correlationDuplicate = (red.getRoute().size()*0.2);
     obj.correlationIn_Out = obj.correlationDuplicate*3; 
 
+    // for validations (will delete after)
+    unsigned inSizeRed{red.getRoute().size()}, inSizeBlue{blue.getRoute().size()};
+
     obj.redSubs = explodeSubTours(red.getRoute(), Configs::customerMap.getDepotId());
     obj.blueSubs = explodeSubTours(blue.getRoute(), Configs::customerMap.getDepotId());
+
+    cout << "RedInfos"<<endl;
+    for(auto v : obj.redSubs){
+        for(int c : v){
+            cout << c << " ";
+        }cout<<endl;
+    }
+    cout << "\n\nblueInfos"<<endl;
+    for(auto v : obj.blueSubs){
+        for(int c : v){
+            cout << c << " ";
+        }cout<<endl;
+    }
 
     obj.generateRanking();  
 
@@ -37,17 +54,25 @@ HamiltonianCycle::parentsHamiltonian HamiltonianCycle::toHamiltonianCycle(Tour r
 
     std::sort(obj.choosen.begin(), obj.choosen.end(), [](auto &left, auto &right){ return(left.first < right.first); });
 
-/*     cout << "FINAL CHOOSEN" << endl;
-    for(auto it : obj.choosen){
-        cout << it.first << " " << it.second << endl;
-    } */
-
     if(!validaMerdaChoosen(obj.choosen)){
         cout << "DEU MERDA NA CHOOSEN"<<endl;
         exit(0);
     }
 
+    cout << "Choosen"<<endl;
+    for(auto it : obj.choosen){
+        cout << it.first << " " << it.second << endl;
+    }
+
+    obj.rebuildTours(obj.getEmptySubtoursNumber(red.getRoute()), 
+                    obj.getEmptySubtoursNumber(blue.getRoute()));
+    exit(0);
     parentsHamiltonian newTours = obj.rebuildTours();
+
+    if(newTours.first.size() != inSizeRed || newTours.second.size() != inSizeBlue){
+        cout << "WTF exit"<<endl;
+        exit(0);
+    }
 
     newTours.first = obj.createDepotCopies(newTours.first);
     newTours.second = obj.createDepotCopies(newTours.second);
@@ -56,6 +81,7 @@ HamiltonianCycle::parentsHamiltonian HamiltonianCycle::toHamiltonianCycle(Tour r
 }
 
 void HamiltonianCycle::generateRanking(){
+    // Generate a ranking with correlations beetween all tours
     unsigned redSubsSize{redSubs.size()}, blueSubsSize{blueSubs.size()};
     choosenSubs choosen;
     for(unsigned red=0; red<redSubsSize; red++){
@@ -74,20 +100,19 @@ void HamiltonianCycle::generateRanking(){
             }cout << endl; */
 
             for(unsigned redElement=0; redElement<redInsideSize; redElement++){
-                //cout << "Procurar " << redSubs[red][redElement] << " ";
 
+                // Find in SubBlue the red element.
                 auto position = std::distance(blueSubs[blue].begin(), find(blueSubs[blue].begin(), blueSubs[blue].end(), redSubs[red][redElement]));
 
+                // If element found 
                 if(!(position>=blueInsideSize)){
-                    //cout << "achou ";
+                    // Verificate if the element found is a border
                     if((position==0 || position==(redInsideSize-1))&&(redElement==0 || redElement==(redInsideSize-1))){
-                        //cout << " InOut ";
                         ranking[red][blue].score+=correlationIn_Out;
                         ranking[red][blue].numberInOut++;
                     }
                     ranking[red][blue].score+=correlationDuplicate;
                }
-               //cout << endl;
             }
         }
     }
@@ -95,23 +120,24 @@ void HamiltonianCycle::generateRanking(){
 
 void HamiltonianCycle::choosenToursToMap(){
     vector<int> redNotChoosen, blueNotChoosen;
-
+    // will load all values of ranking in Struct to Resolve and make the best choices
     for(unsigned i=0; i<redSubs.size(); i++){
         redNotChoosen.push_back(i);
     }
     for(unsigned i=0; i<blueSubs.size(); i++){
         blueNotChoosen.push_back(i);
     }
-
     for(int red : redNotChoosen){
         for(int blue : blueNotChoosen){
             resolveScore.push_back(ResolveScore(red, blue, ranking[red][blue].score));
         }
     }
 
+    // Sort values in ResolveScore to organize by score beetween subTours correlations
     std::sort(resolveScore.begin(), resolveScore.end(), [](auto &left, auto &right){ return(left.score > right.score); });
 
     for(auto it : resolveScore){
+        // Verify if the tours correlation has not been choosen yet.
         vector<int>::iterator findRedNotChoosen{find(redNotChoosen.begin(), redNotChoosen.end(), it.subRed)};
         vector<int>::iterator findBlueNotChoosen{find(blueNotChoosen.begin(), blueNotChoosen.end(), it.subBlue)};
 
@@ -119,6 +145,7 @@ void HamiltonianCycle::choosenToursToMap(){
         bool inBlueNotChoosen{findBlueNotChoosen != blueNotChoosen.end()};
 
         if(inRedNotChoosen && inBlueNotChoosen){
+            // insert in choosen structure
             choosen.push_back(std::make_pair(it.subRed, it.subBlue));
 
             blueNotChoosen.erase(findBlueNotChoosen);
@@ -127,74 +154,25 @@ void HamiltonianCycle::choosenToursToMap(){
     }
 }
 
-HamiltonianCycle::parentsHamiltonian HamiltonianCycle::rebuildTours(){
+HamiltonianCycle::parentsHamiltonian HamiltonianCycle::rebuildTours(const int redEmpty, const int blueEmpty) {
     int depotId{Configs::customerMap.getDepotId()};
-    parentsHamiltonian tours;
-    vector<int> alreadyRebuildRed, alreadyRebuildBlue;
-    unsigned limitRed{redSubs.size()};
-    unsigned limitBlue{blueSubs.size()};
-    unsigned choosenSize{choosen.size()};
+    parentsHamiltonian parents;
 
-    for(unsigned i=0; i<choosenSize; i++){
-        if(i<limitRed){
-            tours.first.push_back(std::to_string(depotId));
-        }
-        if(i<limitBlue){
-            tours.second.push_back(std::to_string(depotId));
-        }
+    // cout << "RedEmpty: " << redEmpty << " BlueEmpty: "<<blueEmpty << endl;
+    parents = buildChoosenSubs();
 
-        alreadyRebuildRed.push_back(choosen[i].first);
-        for(int redC : redSubs[choosen[i].first]){
-            tours.first.push_back(std::to_string(redC));
-        }
+    parents = restoreEmptySubtours(parents, redEmpty, blueEmpty);
 
-        alreadyRebuildBlue.push_back(choosen[i].second);
-        for(int blueC : blueSubs[choosen[i].second]){
-            tours.second.push_back(std::to_string(blueC));
-        }
+    /* cout << "Red " << parents.first.size() <<endl;
+    for(string c : parents.first){
+        cout << c << " ";
     }
-    std::sort(alreadyRebuildRed.begin(), alreadyRebuildRed.end(), [](int left, int right) { return(left>right); });
-    std::sort(alreadyRebuildBlue.begin(), alreadyRebuildBlue.end(), [](int left, int right) { return(left>right); });
+    cout << "\nBlue " << parents.second.size() <<endl;
+    for(string c : parents.second){
+        cout << c << " ";
+    }cout <<endl; */
 
-    for(unsigned i=0; i<alreadyRebuildRed.size(); i++){
-        redSubs.erase(redSubs.begin()+alreadyRebuildRed[i]);
-        blueSubs.erase(blueSubs.begin()+alreadyRebuildBlue[i]);
-    }
-
-    if(!redSubs.empty()){
-        /* vector<string>::iterator it = find(tours.second.begin(), tours.second.end(), std::to_string(depotId));
-        tours.second.emplace(it, std::to_string(depotId)); */
-        tours.second.push_back(std::to_string(depotId));
-        //tours.second.emplace(tours.second.begin(), std::to_string(depotId));
-        for(vector<int> red : redSubs){
-            tours.first.push_back(std::to_string(depotId));
-            for(int redC : red){
-                tours.first.push_back(std::to_string(redC));
-            }
-        }
-    }
-    if(!blueSubs.empty()){
-        //vector<string>::iterator it = find(tours.second.begin(), tours.second.end(), std::to_string(depotId));
-        //tours.first.emplace(it, std::to_string(depotId));
-        tours.first.push_back(std::to_string(depotId));
-        //tours.first.emplace(tours.first.begin(), std::to_string(depotId));
-        for(vector<int> blue : blueSubs){
-            tours.second.push_back(std::to_string(depotId));
-            for(int blueC : blue){
-                tours.second.push_back(std::to_string(blueC));
-            }
-        }
-    }
-
-    /* if(tours.first.size() != tours.second.size()){
-        if(tours.first.size() > tours.second.size()){
-            tours.second.emplace(tours.second.begin(), std::to_string(depotId));
-        }else{
-            tours.first.emplace(tours.first.begin(), std::to_string(depotId));
-        }
-    } */
-
-    return(tours);
+    return(parents);
 }
 
 vector<string> HamiltonianCycle::createDepotCopies(vector<string> tour){
@@ -211,4 +189,105 @@ vector<string> HamiltonianCycle::createDepotCopies(vector<string> tour){
         }
     }
     return(copiesTour);
+}
+
+int HamiltonianCycle::getEmptySubtoursNumber(vector<int>& tour) {
+    int emptyCount{0};
+    unsigned long tSize{tour.size()};
+    int depotId{Configs::customerMap.getDepotId()};
+
+    for(unsigned long i{0}; i<tSize; i++){
+        if(tour[i] == depotId){
+            if(i == tSize-1){
+                if(tour[0] == depotId) emptyCount++;
+            } else {
+                if(tour[i+1] == depotId) emptyCount++;
+            }
+        }
+    }
+    return(emptyCount);
+}
+
+HamiltonianCycle::parentsHamiltonian HamiltonianCycle::buildChoosenSubs() {
+    parentsHamiltonian tours;
+    unsigned long choosenSize{choosen.size()};
+    vector<int> alreadyRebuildRed;
+    vector<int> alreadyRebuildBlue;
+    int depotId{Configs::customerMap.getDepotId()};
+
+    for(unsigned i=0; i<choosenSize; i++){
+        tours.first.push_back(std::to_string(depotId));
+        tours.second.push_back(std::to_string(depotId));
+
+        alreadyRebuildRed.push_back(choosen[i].first);
+        for(int redC : redSubs[choosen[i].first]){
+            tours.first.push_back(std::to_string(redC));
+        }
+        alreadyRebuildBlue.push_back(choosen[i].second);
+        for(int blueC : blueSubs[choosen[i].second]){
+            tours.second.push_back(std::to_string(blueC));
+        }
+    }
+
+    // Sort desc to delete subTours already used
+    std::sort(alreadyRebuildRed.begin(), alreadyRebuildRed.end(), [](int left, int right) { return(left>right); });
+    std::sort(alreadyRebuildBlue.begin(), alreadyRebuildBlue.end(), [](int left, int right) { return(left>right); });
+    for(unsigned i=0; i<alreadyRebuildRed.size(); i++){
+        redSubs.erase(redSubs.begin()+alreadyRebuildRed[i]);
+        blueSubs.erase(blueSubs.begin()+alreadyRebuildBlue[i]);
+    }
+
+    if(!redSubs.empty()){
+        for(vector<int> red : redSubs){
+            tours.first.push_back(std::to_string(depotId));
+            for(int redC : red){
+                tours.first.push_back(std::to_string(redC));
+            }
+        }
+    }
+    if(!blueSubs.empty()){
+        for(vector<int> blue : blueSubs){
+            tours.second.push_back(std::to_string(depotId));
+            for(int blueC : blue){
+                tours.second.push_back(std::to_string(blueC));
+            }
+        }
+    }
+
+    return(tours);
+}
+
+HamiltonianCycle::parentsHamiltonian HamiltonianCycle::restoreEmptySubtours(parentsHamiltonian parents, int redEmpty, int blueEmpty) {
+    string depotId{std::to_string(Configs::customerMap.getDepotId())};
+    unsigned int redSize{parents.first.size()}, blueSize{parents.second.size()};
+
+    if(redSize != blueSize) {
+        unsigned int dif{std::abs((int)redSize - (int)blueSize)};
+        if(redSize > blueSize) {
+            while(dif>0) {
+                parents.second.push_back(depotId);
+                dif--;
+                blueEmpty--;
+            }
+        } else {
+            while(dif>0) {
+                parents.first.push_back(depotId);
+                dif--;
+                redEmpty--;
+            }
+        }
+    }
+
+    if(redEmpty!=0 && blueEmpty!=0) {
+        while(redEmpty>0){
+            parents.first.push_back(depotId);
+            redEmpty--;
+        }
+        while(blueEmpty>0){
+            parents.second.push_back(depotId);
+            blueEmpty--;
+        }
+    }
+
+    return(parents);
 }

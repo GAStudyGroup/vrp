@@ -33,8 +33,8 @@ int main(){
     setParams();
     int start_s=clock();
 
-    startGA();
-    //debugGA();
+    //startGA();
+    debugGA();
 
     int stop_s=clock();
     cout << "time: " << (stop_s-start_s)/double(CLOCKS_PER_SEC)*1000<< endl;
@@ -68,8 +68,8 @@ void startGA(){
 void debugGA(){
     Tour red, blue;
 
-    red=readFile("Debug/Hamiltonian/quebra1");
-    blue=readFile("Debug/Hamiltonian/quebra2");
+    red=readFile("Debug/Hamiltonian/sizeDif.red.tour");
+    blue=readFile("Debug/Hamiltonian/sizeDif.blue.tour");
 
     Tour offs = crossover(red, blue);
 }

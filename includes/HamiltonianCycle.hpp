@@ -61,6 +61,7 @@ private:
     using correlationMap = map<int, vector<Correlation>>;
     // Vector to store choices made by algorithm, first=redSub | second=blueSub
     using choosenSubs = vector<pair<int, int>>;
+    // Vector to store all subTours inside Tour
     using subTours = vector<vector<int>>;
 
     // Execute verification All X All in the subtours and generate a list with grades of correlation
@@ -71,9 +72,18 @@ private:
 
     // Rebuild the tours following the choices already made
     parentsHamiltonian rebuildTours();
+    parentsHamiltonian rebuildTours(const int, const int);
 
     // With tour ready, search all elements that are Depots and generate Copies using token
     vector<string> createDepotCopies(vector<string>);
+
+    // UTILITY FOR REBUILD TOURS
+    // Return the total of empty routes in tour
+    int getEmptySubtoursNumber(vector<int>&);
+    // Build the two parents with the choosen structure and load the not choosen subs
+    parentsHamiltonian buildChoosenSubs();
+    // Load the empty routes and equalty the tours size
+    parentsHamiltonian restoreEmptySubtours(parentsHamiltonian, int, int);
 
     unsigned correlationDuplicate{0};
     unsigned correlationIn_Out{0};

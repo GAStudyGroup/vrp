@@ -36,3 +36,4 @@
 bin/
 debuglogs/
 .directory
+*.map
