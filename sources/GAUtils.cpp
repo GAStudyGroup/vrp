@@ -3,7 +3,7 @@
 #include "Mutation.hpp"
 #include "GPX2.hpp"
 #include "HamiltonianCycle.hpp"
-
+#include "TourRepairer.hpp"
 bool validateTour(vector<int> tour){
     std::sort(tour.begin(),  tour.end());
     vector<int>::iterator it;
@@ -108,14 +108,16 @@ void applyMutation(Population &pop){
 } */
 
 Population newGeneration(Population& pop){
-    int defaultSize{Configs::customerMap.getMap().size() + Configs::truckNumber -1};
+    crossoverPopulation(pop);
+    pop.sortPop();
+    for(auto tour:pop.getPop()){
+            tour=TourRepairer().repairTour(tour);
+    }
+    pop.sortPop();
+    applyMutation(pop);
     
-    Population newPop{crossoverPopulation(pop)};
-
-    newPop.sortPop();
-    applyMutation(newPop);
-    newPop.sortPop();
-    return(newPop);
+    pop.sortPop();
+    return(pop);
 }
 
 Population crossoverPopulation(Population& pop){
@@ -138,17 +140,17 @@ Tour crossover(Tour& red, Tour& blue){
     validateTour(blue.getRoute());
 
     // cout << "CHAMADA CROSS"<<endl;
-    cout<<"-------------------Entrando hamiltonian------------------"<<endl;
-    cout << "RED\n"<<red<<endl;
-    cout << "BLUE\n"<<blue<<endl;
+    //  cout<<"-------------------Entrando hamiltonian------------------"<<endl;
+    //  cout << "RED\n"<<red<<endl;
+    //  cout << "BLUE\n"<<blue<<endl;
 
     
     HamiltonianCycle::parentsHamiltonian parents{HamiltonianCycle::toHamiltonianCycle(red, blue)};
-    cout<<"---------------------Saindo Hamiltonian--------------------"<<endl;
+    //  cout<<"---------------------Saindo Hamiltonian--------------------"<<endl;
     Tour first=Tour(parents.first);
     Tour second=Tour(parents.second);
-    cout <<"First:" << first<<endl;
-    cout <<"Second:" <<second<<endl;
+    //  cout <<"First:" << first<<endl;
+    //  cout <<"Second:" <<second<<endl;
 
     
     // if(!Mutation().validateTour(Tour(parents.first).getRoute(),Configs::truckNumber,Configs::customerMap.getDepotId())){
@@ -165,7 +167,7 @@ Tour crossover(Tour& red, Tour& blue){
     //     cout <<"merda depois do gpx";
     //     exit(-1);
     // }
-    cout<<"----------------Saindo GPX-----------------"<<endl;;
-    cout <<offspring<<endl;
+    //  cout<<"----------------Saindo GPX-----------------"<<endl;;
+    //  cout <<offspring<<endl;
     return(offspring);
 }

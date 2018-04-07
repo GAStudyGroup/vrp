@@ -50,7 +50,7 @@ vector<int> Mutation::evaluateMutation(vector<int> tour){
         it++;
     }
     addList(tour);  
-    cout << "Tam Lista Mut: "<<sizeof(Configs::mutationMaxedList)<<endl;
+    //cout << "Tam Lista Mut: "<<sizeof(Configs::mutationMaxedList)<<endl;
     return tour;
 }
 
@@ -276,8 +276,8 @@ vector<int> Mutation::doubleSwap(vector<int> tour,int currentValue,int iteration
     return swappedTour;
 }
 
-bool Mutation::checkInSameTour(vector<int> Tour, int depotId, int customer1,int customer2){
-    vector<vector<int>> tours=explodeSubTours(Tour,depotId);
+bool Mutation::checkInSameTour(vector<int> tour, int depotId, int customer1,int customer2){
+    vector<vector<int>> tours=Tour(tour).explodeSubTours();
     bool flag1=false, flag2=false;
     for(auto tour: tours){
         for(auto customer:tour){
@@ -320,7 +320,7 @@ bool Mutation::validateTour(vector<int> tour, int depositNumber,int depositId){
     for(unsigned i=0;i<=((tour.size()+1)-(depositNumber));i++){
         //cout<<"O valor "<<i<< " aparece "<< valuesCont[i] <<"vezes" <<endl;;
         if((i!=(unsigned)depositId && valuesCont[i]>1) ||(i!=0 && valuesCont[i]==0)){
-            // cout <<"Deu merda"<<endl;
+            // cout <<"Dlaeu merda"<<endl;
             return false;
         }
     }

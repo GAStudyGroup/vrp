@@ -31,9 +31,21 @@
 *.out
 *.app
 
+#Misc
+*.map
+KaprielViado.map
+KaprielViado2.map
+blue_semGhost.map
+red_semGhost.map
+
+#Dirs
 \.vscode/
 .vscode/
 bin/
 debuglogs/
 .directory
+<<<<<<< HEAD
 *.map
+=======
+
+>>>>>>> 8e3adab209a72495bda4d3172858beab7db3b65d

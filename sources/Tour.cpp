@@ -48,28 +48,35 @@ double Tour::getFitness()
 }
 
 double Tour::getDist(){
-    return getTourDistance(route);
+    vector<vector<int>> subs = this->explodeSubTours();
+    double distance=0;
+    for(vector<int> sub : subs){
+        distance += TourUtils::getSubDistance(sub);
+    }
+    return(distance);
 }
 
 ostream& operator<<(ostream& output, Tour& t)
 { // Overload de operador para impressão da população
     output<<"Tour: \n";
     for (int c : t.getRoute()) {
-        output << c << "\n" ;
+        output << c << " " ;
     }
-    // output << "\nFitness: " << t.getFitness();
-    // output << "\nDistance: "<<t.getDist();
-    // output << "\nCharges:";
-    // for(auto charge:getAllCharges(t.getRoute())){
-    //      output<<" "<<charge;
+     output << "\nFitness: " << t.getFitness();
+     output << "\nDistance: "<<t.getDist();
+    //  output << "\nCharges:";
+    //  for(auto charge:getAllCharges(t.getRoute())){
+    //       output<<" "<<charge;
     // }
     output<<"\nSubtours: \n";
-    for(auto subtour: explodeSubTours(t.getRoute(),Configs::customerMap.getDepotId())){
+    for(auto subtour: t.explodeSubTours()){
         output<< "| ";
         for(auto customer:subtour){
             output<< customer <<" ";
         }
-        output<<"| \n";
+        output<<"| Charge:" << TourUtils::getSubCharge(subtour) << " ";
+        output<<((TourUtils::getSubCharge(subtour)>Configs::customerMap.getTruckCapacity())?"Estourou":" ");
+        output<<endl;
     }
     output<< "\nSize:"<< t.getRoute().size();
     output<<"\n";
@@ -90,3 +97,50 @@ bool operator!=(Tour& t1, Tour& t2){
     return !(t1==t2);
 }
 
+vector<int> Tour::getAllCharges(){
+    vector<vector<int>> subs = this->explodeSubTours();
+    vector<int> charges;
+
+    for(vector<int> sub : subs){
+        charges.push_back((int) TourUtils::getSubCharge(sub));
+    }
+    return(charges);
+}
+
+vector<vector<int>> Tour::explodeSubTours(){
+    int depotId=Configs::customerMap.getDepotId();
+    vector<vector<int>> tours;
+    vector<int> sub;
+    vector<int> tour= this->getRoute();
+    while(tour.size()){
+        if(tour.back() == depotId || tour.front() == depotId){
+            if(tour.front() == depotId){
+                tour.erase(tour.begin());
+            }
+            while(tour.front() != depotId && tour.size() != 0){
+                sub.push_back(tour.front());
+                tour.erase(tour.begin());
+            }
+            if(!sub.empty()){
+                tours.push_back(sub);
+                sub.clear();
+            }
+        }else{
+            while(tour.back() != depotId){
+                sub.insert(sub.begin(), tour.back());
+                tour.erase(tour.end()-1);
+            }
+            while(tour.front() != depotId){
+                sub.push_back(tour.front());
+                tour.erase(tour.begin());
+            }
+            tour.erase(tour.begin()); // remove depotId from front
+            tours.push_back(sub);
+            sub.clear();
+        }
+    }
+    if(tours.back().empty()){
+        tours.erase(tours.end()-1);
+    }
+    return(tours);
+}

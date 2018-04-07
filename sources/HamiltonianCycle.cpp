@@ -4,7 +4,7 @@
 #include "HamiltonianCycle.hpp"
 #include "Configs.hpp"
 #include "TourUtils.hpp"
-
+#include "Distance.hpp"
 // RETIRAR DEPOIS
 bool validaMerdaChoosen(vector<pair<int,int>> merda){
 
@@ -29,11 +29,9 @@ HamiltonianCycle::parentsHamiltonian HamiltonianCycle::toHamiltonianCycle(Tour r
     obj.correlationDuplicate = (red.getRoute().size()*0.2);
     obj.correlationIn_Out = obj.correlationDuplicate*3; 
 
-    // for validations (will delete after)
-    unsigned inSizeRed{red.getRoute().size()}, inSizeBlue{blue.getRoute().size()};
-
-    obj.redSubs = explodeSubTours(red.getRoute(), Configs::customerMap.getDepotId());
-    obj.blueSubs = explodeSubTours(blue.getRoute(), Configs::customerMap.getDepotId());
+    //obj.redSubs = explodeSubTours(red.getRoute(), Configs::customerMap.getDepotId());
+    obj.redSubs = red.explodeSubTours();
+    obj.blueSubs = blue.explodeSubTours();
 
     cout << "RedInfos"<<endl;
     for(auto v : obj.redSubs){

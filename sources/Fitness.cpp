@@ -7,11 +7,11 @@ using std::pow;
 //OurFitness
 double ourFitness(vector<int>& tour){ //Buga quando tem dois depósitos no começo
     //printVector(tour,Configs::customerMap); //Coloquei aqui para ajudar o debug
-    vector<vector<int>> subs = explodeSubTours(tour, Configs::customerMap.getDepotId());
+    vector<vector<int>> subs = Tour(tour).explodeSubTours();
     double fitness=0;
     
     for(vector<int> sub : subs){
-        double chargeUsed = getSubCharge(sub);
+        double chargeUsed = TourUtils::getSubCharge(sub);
         //cout << "Used " << chargeUsed << " / " << Configs::customerMap.getTruckCapacity() << endl;
         if(chargeUsed <= Configs::customerMap.getTruckCapacity()){
             fitness += subFitness(sub, chargeUsed);
@@ -25,11 +25,11 @@ double ourFitness(vector<int>& tour){ //Buga quando tem dois depósitos no come�
 double subFitness(vector<int>& tour, double& chargeUsed){
     /* cout <<endl << "subFitness("<<tour.size()<<")"<<endl;
     for(auto t: tour ) cout << t << " "; */
-    return ((1 /getSubDistance(tour)) * (chargeUsed / Configs::customerMap.getTruckCapacity()));
+    return ((1 /TourUtils::getSubDistance(tour)) * (chargeUsed / Configs::customerMap.getTruckCapacity()));
 }
 
 double subFitnessPenalty(vector<int>& tour, double& chargeUsed){
-    return ( (1 / getSubDistance(tour)) * -1 * (chargeUsed / Configs::customerMap.getTruckCapacity()));
+    return ( (1 /TourUtils::getSubDistance(tour)) * -1 * (chargeUsed / Configs::customerMap.getTruckCapacity()));
 }
 
 //Advanced Fitness
@@ -51,7 +51,7 @@ double calcAlpha(){
 
 double calcPenalty(vector<int>& tour){
     double innerSum=0;
-    for(auto charge:getAllCharges(tour)){
+    for(auto charge:Tour(tour).getAllCharges()){
         if(charge>Configs::customerMap.getTruckCapacity()){
             innerSum+=pow((charge - Configs::customerMap.getTruckCapacity()),2);
         }else{
@@ -65,7 +65,7 @@ double calcPenalty(vector<int>& tour){
 }
 
 double advancedFitness(vector<int>& tour){
-    double fitness= getTourDistance(tour);
+    double fitness= Tour(tour).getDist();
     fitness+=calcPenalty(tour);
     return (1/fitness)*10000;
 }
