@@ -1,13 +1,11 @@
 #ifndef MUTATION_H
 #define MUTATION_H
 
-#include <iostream>
 #include <vector>
-#include <algorithm>
-#include <iterator>
-#include <functional>
 #include "Tour.hpp"
-using namespace std;
+
+using std::vector;
+using std::pair;
 class Mutation{
 public:
     vector<int> evaluateMutation(vector<int>);

@@ -1,7 +1,13 @@
+#include <iterator>
+#include <functional>
+#include <algorithm>
+#include <iostream>
+
 #include "Mutation.hpp"
 #include "Tour.hpp"
 #include "TourUtils.hpp"
 #include "Configs.hpp"
+
 
 vector<int> Mutation::evaluateMutation(vector<int> tour){
     pair<vector<int>,bool> result;
