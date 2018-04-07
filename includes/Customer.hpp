@@ -2,12 +2,6 @@
 #define CUSTOMER_H
 
 #include <iostream>
-#include <iomanip>
-
-using std::ostream;
-using std::setfill;
-using std::setw;
-
 class Customer{
 
 public:
@@ -35,7 +29,7 @@ private:
 	double demand;
 	bool depot;
 	
-	friend ostream& operator<<(ostream&, const Customer&);
+	friend std::ostream& operator<<(std::ostream&, const Customer&);
 };
 
 #endif

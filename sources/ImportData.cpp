@@ -1,5 +1,12 @@
+#include <iostream>
+#include <regex>
 #include "ImportData.hpp"
 
+using std::cout;
+using std::endl;
+using std::ifstream;
+using std::ostringstream;
+using std::regex;
 ImportData::ImportData(string nome)
 {
     string input;

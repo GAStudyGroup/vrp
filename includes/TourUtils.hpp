@@ -4,17 +4,7 @@
 #include <vector>
 #include <iostream>
 
-
-
-#include "CustomerMap.hpp"
-#include "Population.hpp"
-
 using std::vector;
-//Remover depois e tratar nas classes
-using std::cout;
-using std::endl;
-using std::pair;
-using std::make_pair;
 
 // Support function to calculate partial info about Tours
 namespace TourUtils{
