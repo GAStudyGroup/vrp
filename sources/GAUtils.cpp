@@ -1,9 +1,12 @@
+#include <iostream>
 #include "GAUtils.hpp"
 #include "Configs.hpp"
 #include "Mutation.hpp"
 #include "GPX2.hpp"
 #include "HamiltonianCycle.hpp"
 #include "TourRepairer.hpp"
+using std::cout;
+using std::endl;
 bool validateTour(vector<int> tour){
     std::sort(tour.begin(),  tour.end());
     vector<int>::iterator it;
