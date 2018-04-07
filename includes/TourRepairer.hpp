@@ -1,6 +1,7 @@
 #ifndef TOURREPAIRER_HPP
 #define TOURREPAIRER_HPP
 
+#include <vector>
 #include "Tour.hpp"
 using std::vector;
 class TourRepairer{

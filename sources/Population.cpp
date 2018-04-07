@@ -1,5 +1,5 @@
 #include "Population.hpp"
-
+#include <algorithm>
 Population::Population(){}
 Population::Population(vector<Tour>& pop):pop(pop){}
 
