@@ -1,5 +1,9 @@
-#include "Customer.hpp"
 
+#include <iomanip>
+#include "Customer.hpp"
+using std::ostream;
+using std::setfill;
+using std::setw;
 Customer::Customer() {}
 
 Customer::Customer(int id, double x, double y, double demand, bool depot)

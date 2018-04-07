@@ -2,27 +2,18 @@
 #define IMPORTDATA_H
 
 #include <fstream>
-#include <iostream>
-#include <regex>
-#include <sstream>
-#include <stdlib.h>
 #include <string>
 #include <vector>
 
 #include "Customer.hpp"
 
-using std::cout;
-using std::endl;
-using std::ifstream;
-using std::ostringstream;
-using std::regex;
+
 using std::string;
 using std::vector;
 
 class ImportData {
 public:
     ImportData(string);
-    //        vector<City> getCitiesCoord();
     string gettspName();
     string getType();
     string getedge_type();
@@ -41,7 +32,7 @@ private:
     string node_comment = "N/A";
     string flag;
     string flagaux;
-    ifstream myfile;
+    std::ifstream myfile;
     int dimension;
     int capacity;
     void regexManager(string);

@@ -1,8 +1,13 @@
+
 #include "Tour.hpp"
 #include "TourUtils.hpp"
 #include "Configs.hpp"
 #include "Fitness.hpp"
-#include <iostream>
+
+
+using std::endl;
+using std::ostream;
+using std::string;
 
 Tour::Tour() {}
 

@@ -2,8 +2,6 @@
 #define CUSTOMERMAP_HPP
 
 #include <vector>
-#include <algorithm>
-#include <math.h>
 #include <string>
 
 #include "Customer.hpp"

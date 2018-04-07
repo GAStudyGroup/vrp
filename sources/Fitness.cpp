@@ -1,6 +1,8 @@
+#include <cmath>
 #include "Fitness.hpp"
 #include "Configs.hpp"
 #include "TourUtils.hpp"
+
 using std::ceil;
 using std::pow;
 

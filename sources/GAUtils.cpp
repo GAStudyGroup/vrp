@@ -31,6 +31,7 @@ bool validateTour(vector<int> tour){
         }
         exit(1);
     }
+    return true;
 }
 
 
@@ -101,7 +102,7 @@ Population newGeneration(Population& pop){
 }
 
 Population crossoverPopulation(Population& pop){
-    unsigned size{pop.getPop().size()};
+    unsigned size=pop.getPop().size();
     Population aux;
 
     for(unsigned i=0; i<size; i++){
