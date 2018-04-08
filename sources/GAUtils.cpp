@@ -70,12 +70,14 @@ Population popGen(int popSize){
 
 void initialPopApplyMutation(Population &pop){
     double Rate= (double)Configs::InitialPopMutRate/(double)100;
+    unsigned numIndivs=(pop.getPop().size()*Rate);
     cout <<"Rate::"<<Rate<<endl;
+    cout<<"Num Indiv Mutate: "<<  numIndivs<<endl;
     for(unsigned i=0;i<Configs::InitialPopmutIterations;i++){
-        for(unsigned i=0;i<(pop.getPop().size()*Rate);i++){
+        for(unsigned i=0;i<numIndivs;i++){
             pop.getPop()[i]=Tour(Mutation().evaluateMutation((pop.getPop()[i].getRoute())));
         }
-        for(unsigned i=0;i<(pop.getPop().size()*Rate);i++){
+        for(unsigned i=0;i<numIndivs;i++){
             pop.getPop()[i]=TourRepairer().repairTour(pop.getPop()[i]);
         }
     }
@@ -83,20 +85,23 @@ void initialPopApplyMutation(Population &pop){
 }
 void applyMutation(Population &pop){
     double Rate=(double)Configs::mutationRate/(double)100;
+    
     cout <<"Rate::"<<Rate<<endl;
+    unsigned numIndiv=pop.getPop().size()*Rate;
+    cout<<"Num Indiv Mutate: "<<numIndiv<<endl;
     if(Configs::applyWorst){
-        for(unsigned i=pop.getPop().size()-1;i>(pop.getPop().size()-(pop.getPop().size()*Rate));i--){
+        for(unsigned i=pop.getPop().size()-1;i>(pop.getPop().size()-(numIndiv));i--){
             pop.getPop()[i]=Tour(Mutation().evaluateMutation(pop.getPop()[i].getRoute()));
         }
     }else{
-        for(unsigned i=0;i<pop.getPop().size()*Rate;i++){
+        for(unsigned i=0;i<numIndiv;i++){
             pop.getPop()[i]=Tour(Mutation().evaluateMutation(pop.getPop()[i].getRoute()));
         }  
     }
 }
 void popReset(Population &pop){
     int nToKeep =(int) (double)(pop.getPop().size()) * (double)(Configs::nBestToKeep/(double)100);
-    for(int i=(nToKeep+1);i<pop.getPop().size();i++){
+    for(unsigned i=(nToKeep+1);i<pop.getPop().size();i++){
         pop.getPop()[i]=tourGen();
         pop.getPop()[i]=TourRepairer().repairTour(pop.getPop()[i]);
         pop.getPop()[i]=Mutation().evaluateMutation(pop.getPop()[i].getRoute());

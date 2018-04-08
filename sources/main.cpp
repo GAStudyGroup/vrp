@@ -20,12 +20,12 @@ void debugGA();
 void debugRepair();
 
 void setParams(){
-    ImportData file("libs/P-Sets/P-n16-k8.vrp");
+    ImportData file("libs/A-Sets/A-n32-k5.vrp");
     Configs::truckNumber=8;
     Configs::customerMap=CustomerMap(file.getCustomerList(),file.getCapacity(),Configs::truckNumber)    ;
     Configs::InitialPopmutIterations=50;
-    Configs::InitialPopMutRate=100;
-    Configs::mutationRate=100;
+    Configs::InitialPopMutRate=65;
+    Configs::mutationRate=65;
     Configs::applyWorst=false;
     Configs::fitnessMode=2;
     Configs::nBestToKeep=10;
