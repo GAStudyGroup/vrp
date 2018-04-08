@@ -18,3 +18,5 @@ unsigned Configs::mutationRate{50};
 bool Configs::applyWorst{false};
 
 vector<Tour> Configs::mutationMaxedList;
+
+int Configs::nBestToKeep{10};

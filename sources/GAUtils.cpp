@@ -95,7 +95,13 @@ void applyMutation(Population &pop){
     }
 }
 void popReset(Population &pop){
-
+    int nToKeep =(int) (double)(pop.getPop().size()) * (double)(Configs::nBestToKeep/(double)100);
+    for(int i=(nToKeep+1);i<pop.getPop().size();i++){
+        pop.getPop()[i]=tourGen();
+        pop.getPop()[i]=TourRepairer().repairTour(pop.getPop()[i]);
+        pop.getPop()[i]=Mutation().evaluateMutation(pop.getPop()[i].getRoute());
+    }
+    pop.sortPop();
 }
 Population newGeneration(Population& pop){
     crossoverPopulation(pop);

@@ -23,6 +23,9 @@ namespace Configs {
 
     //Mutation improvements settings
     extern vector<Tour> mutationMaxedList;
+
+    //Reset Settings
+    extern int nBestToKeep;
 }
 
 #endif
