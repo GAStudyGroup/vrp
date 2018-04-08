@@ -23,4 +23,6 @@ Population crossoverPopulation(Population&);
 
 Tour crossover(Tour&, Tour&);
 
+void popReset(Population &);
+
 #endif

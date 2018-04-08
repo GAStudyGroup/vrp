@@ -69,16 +69,21 @@ Population popGen(int popSize){
 }
 
 void initialPopApplyMutation(Population &pop){
-    double Rate= Configs::InitialPopMutRate/100;
+    double Rate= (double)Configs::InitialPopMutRate/(double)100;
+    cout <<"Rate::"<<Rate<<endl;
     for(unsigned i=0;i<Configs::InitialPopmutIterations;i++){
         for(unsigned i=0;i<(pop.getPop().size()*Rate);i++){
             pop.getPop()[i]=Tour(Mutation().evaluateMutation((pop.getPop()[i].getRoute())));
+        }
+        for(unsigned i=0;i<(pop.getPop().size()*Rate);i++){
+            pop.getPop()[i]=TourRepairer().repairTour(pop.getPop()[i]);
         }
     }
     pop.sortPop();
 }
 void applyMutation(Population &pop){
-    double Rate=Configs::mutationRate/100;
+    double Rate=(double)Configs::mutationRate/(double)100;
+    cout <<"Rate::"<<Rate<<endl;
     if(Configs::applyWorst){
         for(unsigned i=pop.getPop().size()-1;i>(pop.getPop().size()-(pop.getPop().size()*Rate));i--){
             pop.getPop()[i]=Tour(Mutation().evaluateMutation(pop.getPop()[i].getRoute()));
@@ -89,7 +94,9 @@ void applyMutation(Population &pop){
         }  
     }
 }
+void popReset(Population &pop){
 
+}
 Population newGeneration(Population& pop){
     crossoverPopulation(pop);
     pop.sortPop();
