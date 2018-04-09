@@ -12,7 +12,7 @@
 using namespace std;
 
 const unsigned limitGen{200};
-const unsigned popSize{100};
+const unsigned popSize{50};
 
 void startGA();
 Tour readFile(string);
@@ -20,8 +20,8 @@ void debugGA();
 void debugRepair();
 
 void setParams(){
-    ImportData file("libs/E-Sets/E-n33-k4.vrp");
-    Configs::truckNumber=4;
+    ImportData file("libs/E-Sets/E-n76-k8.vrp");
+    Configs::truckNumber=10;
     Configs::customerMap=CustomerMap(file.getCustomerList(),file.getCapacity(),Configs::truckNumber)    ;
     Configs::InitialPopmutIterations=500;
     Configs::InitialPopMutRate=65;

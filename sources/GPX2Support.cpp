@@ -63,12 +63,12 @@ void GPX2Support::cleanInsideAccess(GPX2Structs::PartitionMap &partitions, GPX2S
                     testedAccessNodes.push_back(node);
                     accessNodesAV.push_back(node);
                 } else {
-                    //put the distance value in the edges of the nodes that are inserted in the partition 
+                    /* //put the distance value in the edges of the nodes that are inserted in the partition 
                     for(string node : result.second){
                         for(auto &edge : unitedGraph[node]->getEdges()){
                             edge.second = distance(node, edge.first);
                         }
-                    }
+                    } */
 
                     accessNodesAV.push_back(result.second.front());
                     accessNodesAV.push_back(result.second.back());

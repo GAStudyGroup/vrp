@@ -6,8 +6,8 @@
 #
 
 CC := g++ -std=gnu++17
-#CFLAGS := -fsanitize=leak -fsanitize=address -Wall -O3
-CFLAGS := -Wall -O3
+CFLAGS := -fsanitize=leak -fsanitize=address -Wall -O3
+#CFLAGS := -Wall -O3
 INC_FOLDER := -I includes
 SRC_FOLDER := sources
 

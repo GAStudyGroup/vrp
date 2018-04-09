@@ -1,0 +1,111 @@
+==10688== Memcheck, a memory error detector
+==10688== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==10688== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
+==10688== Command: ./bin/GA --leak-check=full --show-leak-kinds=all
+==10688== Parent PID: 9035
+==10688== 
+--10688-- 
+--10688-- Valgrind options:
+--10688--    --tool=memcheck
+--10688--    --leak-check=yes
+--10688--    --log-file=valgrind_output_NEEEW.txt
+--10688--    -v
+--10688-- Contents of /proc/version:
+--10688--   Linux version 4.14.31-1-MANJARO (builduser@development) (gcc version 7.3.1 20180312 (GCC)) #1 SMP PREEMPT Wed Mar 28 21:42:49 UTC 2018
+--10688-- 
+--10688-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-avx-avx2-bmi
+--10688-- Page sizes: currently 4096, max supported 4096
+--10688-- Valgrind library directory: /usr/lib/valgrind
+--10688-- Reading syms from /home/ecaanchesjr/gitRepos/vrp-gpx/bin/GA
+--10688-- Reading syms from /usr/lib/ld-2.26.so
+--10688-- Reading syms from /usr/lib/valgrind/memcheck-amd64-linux
+--10688--    object doesn't have a dynamic symbol table
+--10688-- Scheduler: using generic scheduler lock implementation.
+--10688-- Reading suppressions file: /usr/lib/valgrind/default.supp
+==10688== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-10688-by-ecaanchesjr-on-???
+==10688== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-10688-by-ecaanchesjr-on-???
+==10688== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-10688-by-ecaanchesjr-on-???
+==10688== 
+==10688== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==10688== don't want to do, unless you know exactly what you're doing,
+==10688== or are doing some strange experiment):
+==10688==   /usr/lib/valgrind/../../bin/vgdb --pid=10688 ...command...
+==10688== 
+==10688== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==10688==   /path/to/gdb ./bin/GA
+==10688== and then give GDB the following command
+==10688==   target remote | /usr/lib/valgrind/../../bin/vgdb --pid=10688
+==10688== --pid is optional if only one valgrind process is running
+==10688== 
+--10688-- REDIR: 0x401cb60 (ld-linux-x86-64.so.2:strlen) redirected to 0x58060901 (vgPlain_amd64_linux_REDIR_FOR_strlen)
+--10688-- REDIR: 0x401c940 (ld-linux-x86-64.so.2:index) redirected to 0x5806091b (vgPlain_amd64_linux_REDIR_FOR_index)
+--10688-- Reading syms from /usr/lib/valgrind/vgpreload_core-amd64-linux.so
+--10688-- Reading syms from /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so
+==10688== WARNING: new redirection conflicts with existing -- ignoring it
+--10688--     old: 0x0401cb60 (strlen              ) R-> (0000.0) 0x58060901 vgPlain_amd64_linux_REDIR_FOR_strlen
+--10688--     new: 0x0401cb60 (strlen              ) R-> (2007.0) 0x04c30180 strlen
+--10688-- REDIR: 0x401abd0 (ld-linux-x86-64.so.2:strcmp) redirected to 0x4c312b0 (strcmp)
+--10688-- REDIR: 0x401d0a0 (ld-linux-x86-64.so.2:mempcpy) redirected to 0x4c348c0 (mempcpy)
+--10688-- Reading syms from /usr/lib/libstdc++.so.6.0.24
+--10688-- Reading syms from /usr/lib/libm-2.26.so
+--10688--    object doesn't have a symbol table
+--10688-- Reading syms from /usr/lib/libgcc_s.so.1
+--10688-- Reading syms from /usr/lib/libc-2.26.so
+--10688-- REDIR: 0x57ab5f0 (libc.so.6:strchrnul) redirected to 0x4a276f0 (_vgnU_ifunc_wrapper)
+--10688-- REDIR: 0x57c4620 (libc.so.6:wcslen) redirected to 0x4a276f0 (_vgnU_ifunc_wrapper)
+--10688-- REDIR: 0x57afe90 (libc.so.6:memrchr) redirected to 0x4a276f0 (_vgnU_ifunc_wrapper)
+--10688-- REDIR: 0x57aa180 (libc.so.6:memcpy@@GLIBC_2.14) redirected to 0x4a276f0 (_vgnU_ifunc_wrapper)
+--10688-- REDIR: 0x57aa030 (libc.so.6:strncasecmp) redirected to 0x4a276f0 (_vgnU_ifunc_wrapper)
+--10688-- REDIR: 0x57a9d00 (libc.so.6:memmove) redirected to 0x4a276f0 (_vgnU_ifunc_wrapper)
+==10688== Preferring higher priority redirection:
+--10688--     old: 0x0587a440 (__memcpy_avx_unalign) R-> (2018.0) 0x04c31700 memcpy@@GLIBC_2.14
+--10688--     new: 0x0587a440 (__memcpy_avx_unalign) R-> (2018.1) 0x04c33ab0 memmove
+--10688-- REDIR: 0x57a8f20 (libc.so.6:strncpy) redirected to 0x4a276f0 (_vgnU_ifunc_wrapper)
+--10688-- REDIR: 0x57a9fe0 (libc.so.6:strcasecmp) redirected to 0x4a276f0 (_vgnU_ifunc_wrapper)
+--10688-- REDIR: 0x57a8970 (libc.so.6:strcat) redirected to 0x4a276f0 (_vgnU_ifunc_wrapper)
+--10688-- REDIR: 0x57a8f50 (libc.so.6:rindex) redirected to 0x4a276f0 (_vgnU_ifunc_wrapper)
+--10688-- REDIR: 0x57ab5c0 (libc.so.6:rawmemchr) redirected to 0x4a276f0 (_vgnU_ifunc_wrapper)
+--10688-- REDIR: 0x57a9e70 (libc.so.6:mempcpy) redirected to 0x4a276f0 (_vgnU_ifunc_wrapper)
+--10688-- REDIR: 0x57a9ca0 (libc.so.6:bcmp) redirected to 0x4a276f0 (_vgnU_ifunc_wrapper)
+--10688-- REDIR: 0x57a8ee0 (libc.so.6:strncmp) redirected to 0x4a276f0 (_vgnU_ifunc_wrapper)
+--10688-- REDIR: 0x57a89e0 (libc.so.6:strcmp) redirected to 0x4a276f0 (_vgnU_ifunc_wrapper)
+--10688-- REDIR: 0x57a9dd0 (libc.so.6:memset) redirected to 0x4a276f0 (_vgnU_ifunc_wrapper)
+--10688-- REDIR: 0x57c3860 (libc.so.6:wcschr) redirected to 0x4a276f0 (_vgnU_ifunc_wrapper)
+--10688-- REDIR: 0x57a8e80 (libc.so.6:strnlen) redirected to 0x4a276f0 (_vgnU_ifunc_wrapper)
+--10688-- REDIR: 0x57a8a50 (libc.so.6:strcspn) redirected to 0x4a276f0 (_vgnU_ifunc_wrapper)
+--10688-- REDIR: 0x57a8a20 (libc.so.6:strcpy) redirected to 0x4a276f0 (_vgnU_ifunc_wrapper)
+--10688-- REDIR: 0x57a8f80 (libc.so.6:strpbrk) redirected to 0x4a276f0 (_vgnU_ifunc_wrapper)
+--10688-- REDIR: 0x57a89a0 (libc.so.6:index) redirected to 0x4a276f0 (_vgnU_ifunc_wrapper)
+--10688-- REDIR: 0x57a8e50 (libc.so.6:strlen) redirected to 0x4a276f0 (_vgnU_ifunc_wrapper)
+--10688-- REDIR: 0x57aa080 (libc.so.6:strcasecmp_l) redirected to 0x4a276f0 (_vgnU_ifunc_wrapper)
+--10688-- REDIR: 0x57a9c70 (libc.so.6:memchr) redirected to 0x4a276f0 (_vgnU_ifunc_wrapper)
+--10688-- REDIR: 0x57a9240 (libc.so.6:strspn) redirected to 0x4a276f0 (_vgnU_ifunc_wrapper)
+--10688-- REDIR: 0x57a9fb0 (libc.so.6:stpncpy) redirected to 0x4a276f0 (_vgnU_ifunc_wrapper)
+--10688-- REDIR: 0x57a9f80 (libc.so.6:stpcpy) redirected to 0x4a276f0 (_vgnU_ifunc_wrapper)
+--10688-- REDIR: 0x57aa0d0 (libc.so.6:strncasecmp_l) redirected to 0x4a276f0 (_vgnU_ifunc_wrapper)
+--10688-- REDIR: 0x5879d30 (libc.so.6:__strrchr_avx2) redirected to 0x4c2fb00 (rindex)
+--10688-- REDIR: 0x57a5280 (libc.so.6:malloc) redirected to 0x4c2ce70 (malloc)
+--10688-- REDIR: 0x5879f00 (libc.so.6:__strlen_avx2) redirected to 0x4c300c0 (strlen)
+--10688-- REDIR: 0x5876510 (libc.so.6:__memcmp_avx2_movbe) redirected to 0x4c331d0 (bcmp)
+--10688-- REDIR: 0x58556d0 (libc.so.6:__strcmp_ssse3) redirected to 0x4c31170 (strcmp)
+--10688-- REDIR: 0x4ec6070 (libstdc++.so.6:operator new(unsigned long)) redirected to 0x4c2d4e0 (operator new(unsigned long))
+--10688-- REDIR: 0x587a440 (libc.so.6:__memcpy_avx_unaligned_erms) redirected to 0x4c33ab0 (memmove)
+--10688-- REDIR: 0x57a9720 (libc.so.6:__GI_strstr) redirected to 0x4c34b30 (__strstr_sse2)
+--10688-- REDIR: 0x4ec6130 (libstdc++.so.6:operator new[](unsigned long)) redirected to 0x4c2dc00 (operator new[](unsigned long))
+--10688-- REDIR: 0x5879910 (libc.so.6:__strchr_avx2) redirected to 0x4c2fd20 (index)
+--10688-- REDIR: 0x586ce00 (libc.so.6:__stpncpy_ssse3) redirected to 0x4c33870 (stpncpy)
+--10688-- REDIR: 0x4ec3fa0 (libstdc++.so.6:operator delete[](void*)) redirected to 0x4c2eaa0 (operator delete[](void*))
+--10688-- REDIR: 0x4ec3f70 (libstdc++.so.6:operator delete(void*)) redirected to 0x4c2e5a0 (operator delete(void*))
+--10688-- REDIR: 0x57a58e0 (libc.so.6:free) redirected to 0x4c2e0a0 (free)
+--10688-- REDIR: 0x587a420 (libc.so.6:__mempcpy_avx_unaligned_erms) redirected to 0x4c34500 (mempcpy)
+--10688-- REDIR: 0x5879b40 (libc.so.6:__strchrnul_avx2) redirected to 0x4c343f0 (strchrnul)
+--10688-- REDIR: 0x5875d90 (libc.so.6:__memchr_avx2) redirected to 0x4c31350 (memchr)
+==10688== 
+==10688== HEAP SUMMARY:
+==10688==     in use at exit: 0 bytes in 0 blocks
+==10688==   total heap usage: 110,107,078 allocs, 110,107,078 frees, 6,759,802,097 bytes allocated
+==10688== 
+==10688== All heap blocks were freed -- no leaks are possible
+==10688== 
+==10688== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==10688== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
