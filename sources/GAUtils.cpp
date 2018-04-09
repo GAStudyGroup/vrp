@@ -75,11 +75,12 @@ void initialPopApplyMutation(Population &pop){
     cout<<"Num Indiv Mutate: "<<  numIndivs<<endl;
     for(unsigned i=0;i<Configs::InitialPopmutIterations;i++){
         for(unsigned i=0;i<numIndivs;i++){
-            pop.getPop()[i]=Tour(Mutation().evaluateMutation((pop.getPop()[i].getRoute())));
-        }
-        for(unsigned i=0;i<numIndivs;i++){
             pop.getPop()[i]=TourRepairer().repairTour(pop.getPop()[i]);
         }
+        for(unsigned i=0;i<numIndivs;i++){
+            pop.getPop()[i]=Tour(Mutation().evaluateMutation((pop.getPop()[i].getRoute())));
+        }
+        
     }
     pop.sortPop();
 }
@@ -102,9 +103,11 @@ void applyMutation(Population &pop){
 void popReset(Population &pop){
     int nToKeep =(int) (double)(pop.getPop().size()) * (double)(Configs::nBestToKeep/(double)100);
     for(unsigned i=(nToKeep+1);i<pop.getPop().size();i++){
-        pop.getPop()[i]=tourGen();
-        pop.getPop()[i]=TourRepairer().repairTour(pop.getPop()[i]);
-        pop.getPop()[i]=Mutation().evaluateMutation(pop.getPop()[i].getRoute());
+        for(unsigned j=0;j<Configs::resetMutIterations;j++){
+            pop.getPop()[i]=tourGen();
+            pop.getPop()[i]=TourRepairer().repairTour(pop.getPop()[i]);
+            pop.getPop()[i]=Mutation().evaluateMutation(pop.getPop()[i].getRoute());
+        }
     }
     pop.sortPop();
 }

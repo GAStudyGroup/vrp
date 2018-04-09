@@ -2,8 +2,6 @@
 
 unsigned Configs::truckNumber{0};
 unsigned Configs::popSize{0};
-unsigned Configs::disturbFactor{0};
-unsigned Configs::elitismNumber{0};
 unsigned Configs::currentIteration{0};
 unsigned Configs::maxIterations{2000};
 
@@ -18,5 +16,5 @@ unsigned Configs::mutationRate{50};
 bool Configs::applyWorst{false};
 
 vector<Tour> Configs::mutationMaxedList;
-
+unsigned Configs::resetMutIterations{1};
 int Configs::nBestToKeep{10};

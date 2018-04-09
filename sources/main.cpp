@@ -11,8 +11,8 @@
 
 using namespace std;
 
-const unsigned limitGen{300};
-const unsigned popSize{70};
+const unsigned limitGen{200};
+const unsigned popSize{100};
 
 void startGA();
 Tour readFile(string);
@@ -20,16 +20,17 @@ void debugGA();
 void debugRepair();
 
 void setParams(){
-    ImportData file("libs/A-Sets/A-n32-k5.vrp");
-    Configs::truckNumber=8;
+    ImportData file("libs/E-Sets/E-n33-k4.vrp");
+    Configs::truckNumber=10;
     Configs::customerMap=CustomerMap(file.getCustomerList(),file.getCapacity(),Configs::truckNumber)    ;
-    Configs::InitialPopmutIterations=50;
+    Configs::InitialPopmutIterations=500;
     Configs::InitialPopMutRate=65;
     Configs::mutationRate=65;
     Configs::applyWorst=false;
     Configs::fitnessMode=2;
     Configs::nBestToKeep=10;
     Configs::maxIterations=limitGen;
+    Configs::resetMutIterations=20;
 }
 int main(){
     srand(time(NULL));
