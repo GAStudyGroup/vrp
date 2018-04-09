@@ -12,7 +12,7 @@
 using namespace std;
 
 const unsigned limitGen{200};
-const unsigned popSize{50};
+const unsigned popSize{25};
 
 void startGA();
 Tour readFile(string);
@@ -20,17 +20,17 @@ void debugGA();
 void debugRepair();
 
 void setParams(){
-    ImportData file("libs/E-Sets/E-n76-k8.vrp");
+    ImportData file("libs/P-Sets/P-n16-k8.vrp");
     Configs::truckNumber=10;
     Configs::customerMap=CustomerMap(file.getCustomerList(),file.getCapacity(),Configs::truckNumber)    ;
-    Configs::InitialPopmutIterations=500;
+    Configs::InitialPopmutIterations=10;
     Configs::InitialPopMutRate=65;
     Configs::mutationRate=65;
     Configs::applyWorst=false;
     Configs::fitnessMode=2;
     Configs::nBestToKeep=10;
     Configs::maxIterations=limitGen;
-    Configs::resetMutIterations=20;
+    Configs::resetMutIterations=2;
 }
 int main(){
     srand(time(NULL));
@@ -64,6 +64,7 @@ void startGA(){
     while(generation < limitGen){
         Configs::currentIteration=generation;
         cout << "Geração: "<< generation<<endl;
+        cout<<"Tam Lista: "<<Configs::mutationMaxedList.size()<<endl;
         pop = newGeneration(pop);
         cout << pop.getPop()[0]<<endl;
         generation++;

@@ -14,7 +14,6 @@ Tour TourRepairer::repairTour(Tour& original){
     //cout<<"Iniciando Reparação"<<endl;
     auto subtours= splitSubTours(original.getRoute());
     //sortSubsByCharge(subtours);
-    //printSubtours(subtours);
     changeCustomers(subtours);    
     original=tourRebuilder(subtours);
     return original;
@@ -57,25 +56,18 @@ void TourRepairer::changeCustomers(vector<vector<int>>& subtours){//Verificar ma
     }
  }
 vector<vector<int>> TourRepairer::splitSubTours(vector<int>& tour){
-    vector<vector<int>> subtours;
+    vector<vector<int>> subtours= Tour(tour).explodeSubTours();
+    for(unsigned i=0;i<subtours.size();i++){
+        subtours[i].emplace(subtours[i].begin(),Configs::customerMap.getDepotId());
+    }
+    int emptyRoutes=Configs::truckNumber-subtours.size();
     vector<int> aux;
-    int it=-1;
-    //int lastDepotPos=findLastDepotPosition(tour);
-    for(auto customer:tour){
-        it++;
-        if(Configs::customerMap.getDepotId()==customer){
-            if(it!=0){
-                subtours.push_back(aux);
-                aux.clear();
-                aux.push_back(customer);
-            }else{
-                aux.push_back(customer);    
-            }
-        }else{
-            aux.push_back(customer);
+    aux.push_back(Configs::customerMap.getDepotId());
+    if(emptyRoutes>0){
+        for(int i=0;i<emptyRoutes;i++){
+            subtours.push_back(aux);
         }
     }
-    subtours.push_back(aux);
     return subtours;
 }
 vector<int> TourRepairer::tourRebuilder(vector<vector<int>>& subtours){
