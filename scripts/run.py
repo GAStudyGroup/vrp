@@ -2,13 +2,7 @@
 from subprocess import call
 import os
 
-population_size = 50
-truck_number = 8
-mutation_iterations = 10
-disturb_factor = 10
-elitism_percentage = 10
-
-tours = ["libs/eil51.vrp"]
+tours = ["libs/A-Sets/A-n32-k5", "libs/A-Sets/A-n63-k10", "libs/A-Sets/A-n80-k10", "libs/E-Sets/E-n101-k14", "libs/E-Sets/E-n101-k8", "libs/P-Sets/P-n16-k8", "libs/P-Sets/P-n50-k8", "libs/P-Sets/P-n50-k8", "libs/P-Sets/P-n51-k10"]
 
 for tour_name in tours:
     for i in range(1):
@@ -16,7 +10,10 @@ for tour_name in tours:
         print("\n\nStarting GA\n")
 
         #chamar o GA
-        call(["./bin/GA", tour_name, str(truck_number), str(population_size), str(mutation_iterations), str(disturb_factor), str(elitism_percentage)])
+        name = tour_name.split("/")[2]
+
+        f=open("Logs/"+name+".log", "w")
+        call(["./bin/GA", tour_name+".vrp"], stdout=f)
 
         '''
         print("Validate crossover")
