@@ -7,14 +7,12 @@ using std::ceil;
 using std::pow;
 
 //OurFitness
-double ourFitness(vector<int>& tour){ //Buga quando tem dois depósitos no começo
-    //printVector(tour,Configs::customerMap); //Coloquei aqui para ajudar o debug
+double ourFitness(vector<int>& tour){
     vector<vector<int>> subs = Tour(tour).explodeSubTours();
     double fitness=0;
     
     for(vector<int> sub : subs){
         double chargeUsed = TourUtils::getSubCharge(sub);
-        //cout << "Used " << chargeUsed << " / " << Configs::customerMap.getTruckCapacity() << endl;
         if(chargeUsed <= Configs::customerMap.getTruckCapacity()){
             fitness += subFitness(sub, chargeUsed);
         }else{
@@ -25,8 +23,6 @@ double ourFitness(vector<int>& tour){ //Buga quando tem dois depósitos no come�
 }
 
 double subFitness(vector<int>& tour, double& chargeUsed){
-    /* cout <<endl << "subFitness("<<tour.size()<<")"<<endl;
-    for(auto t: tour ) cout << t << " "; */
     return ((1 /TourUtils::getSubDistance(tour)) * (chargeUsed / Configs::customerMap.getTruckCapacity()));
 }
 

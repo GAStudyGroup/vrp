@@ -1,259 +1,144 @@
 #ifndef GPX2_HPP
 #define GPX2_HPP
 
-#include <algorithm>
-#include <deque>
-#include <fstream>
-#include <iterator>
-#include <map>
-#include <set>
+
 #include <string>
-#include <iostream>
-
-#include "Customer.hpp"
-#include "Tour.hpp"
-#include "TourUtils.hpp"
-#include "CustomerNode.hpp"
-#include "Partition.hpp"
-
-using std::deque;
-using std::find;
-using std::make_pair;
-using std::map;
-using std::remove;
-using std::set;
-using std::size_t;
 using std::string;
-using std::to_string;
-using std::endl;
+
+#include <vector>
+using std::vector;
+
+#include "GPX2Structs.hpp"
 
 class GPX2 {
 
-    // Definições das principais estruturas utilizadas
-    using PartitionMap = map<int, Partition*>;
-    using CustomerGraph = map<string, CustomerNode*>;
-
-    /*
-        Estrutura para guardar informações das conexões entre partições unfeasible
-        
-        partitionId1: id da partição 1
-        partitionId2: id da partição 2
-        numberOfConnections: número de conexões entre as duas partições
-    */
-    using UnfeasibleConnection = struct UnfeasibleConnection {
-        int partitionId1;
-        int partitionId2;
-        int numberOfConnections;
-
-        UnfeasibleConnection(int id1, int id2, int number)
-            : partitionId1(id1)
-            , partitionId2(id2)
-            , numberOfConnections(number)
-        {
-        }
-    };
-
-    // Enum utilizado para definir o retorno da busca em profundidade
-    enum class SearchResult { CONNECTED_TO_PARTITION,
-        CONNECTED_TO_SELF,
-        IS_CONNECTED,
-        IS_NOT_CONNECTED };
-
-    // Enum para simbolizar os pais
-    enum class Parent { RED,
-        BLUE };
-
-    // -------------------------------------------------
-
-    const string ghostToken = "-";
-    friend bool operator==(const UnfeasibleConnection&, const UnfeasibleConnection&);
-
 public:
-    /*  
-        Método principal do GPX.
-        Recebe duas estruturas Tour, que serão os pais, e retorna um novo Tour que será o filho gerado.
-        Todos os passos executados pelo GPX são executados durante sua execução.
+    /*        
+        GPX's Main method
+        Receives two Tour structures, named as parents and returns a new Tour named child.
+        All steps of GPX are done when ths method is called.
     */
     vector<string> static crossover(vector<string>, vector<string>);
-private:
-    void printPartition(const int);
-    bool validatePartition();
 
+private:
     GPX2();
     ~GPX2();
 
     /*  
-        STEP 1 - Mapeamento do Tour
+        STEP 1 - Tour mapping
 
-        A estrutura Tour, inicialmente, é uma lista de cidades no qual a ordem que elas estão dispostas representa a ordem de visitação.
-        Para a realização do GPX é necessário que o Tour esteja disposto na forma de um grafo, com vértices sendo as cidades e arestas as ligações entre elas.
+        The Tour structure, initially , it is a int list of ids in which its order represents the city visitation order.
+        To be possible of using GPX, it is necessary that the Tour be represented in the form of a graph, 
+        in which the vertices are the cities, while the edges are the connections between the cities.
 
-        O método recebe o Tour como parâmetro e gera um Grafo do mesmo.
+        The method receives a tour as parameter and generates a graph from it.
     */
-    CustomerGraph tourToMap(vector<string>&);
+    void convertParentsToMap(vector<string>&,vector<string>&);
 
     // -----------------------------------------------------------------------------------------------------
     /*  
-        STEP 2 - Adição dos GhostNodes
+        STEP 2 - Applicating GhostNodes
 
-        O GPX implementa a ideia de GhostNode, quando os dois grafos pais são unidos podem existir nós que possuam grau 4 (ligações com outros 4 vértices). 
-        Esses vertices podem ser duplicados, gerando um vértice fantasma no mesmo ponto do vértice real, com isso é possível aumentar o total de partições encontradas.
-
-        Teóricamente os GhostNodes são adicionados ao grafo após a união dos grafos dos pais, porém para cortar custos computacionais eles são executados antes da união, sendo assim quando os grafos são unidos os GhostNodes já são inseridos no grafo da união.
-    */
-    // O método irá verificar os nós que irão se tornar Ghosts e será criado o nó Ghost
-    void createGhosts();
-    // O método irá inserir o nó Ghost criado no Grafo do pai
-    void insertGhost(string&, CustomerGraph&, CustomerNode*);
-
-    // -----------------------------------------------------------------------------------------------------
-    /*  
-        STEP 3 - União dos Grafos dos pais
-
-        Para a criação das partições é necessário que um Grafo com a união dos pais seja gerado (GU), como se os dois pais fossem sobrepostos.
+        The GPX uses the GhostNode concept,
+        when two parent graphs are united, it may exist nodes of degree 4 , or in another words, nodes connected to 4 other vertices.
+        These vertices can be duplicated, therefore,  a ghost node is created in the same spot of the "real" vertex, 
+        by doing this is possible to increase the partition number.
         
-        O método irá unir o Tour Red com o Tour Blue
+        In theory the ghosts nodes should be added after the union of the parent graphs, however, to reduce the use of resources
+        they are added before the union, doing so, when the graphs are united, the GhostNodes are already inserted in union graph.
+    */
+    //This metod verifies which nodes will become Ghosts and creates them
+    void createGhosts();
+
+    // -----------------------------------------------------------------------------------------------------
+    /*  
+        STEP 3 -  Union of the Parent Graphs
+
+        To be possible to create partitions it's needed that a Graph containing the union of the parents be generated, when the graphs are united, the resulting graph is an overlapping of the two parents. This graph will be called GU.
+        
+        This method joins Tour Red and Tour blue
     */
     void joinGraphs();
 
     // -----------------------------------------------------------------------------------------------------
     /*  
-        STEP 4 - Cortar as arestas sobrepostas
+        STEP 4 - Removing the overlapping edges
 
-        Após a criação do GU é necessário retirar as arestas sobrepostas, ou seja, as arestas que estão nos dois pais. Com esse corte as partições "começam a aparecer".
-        Os cortes são simbolizados com arestas de custo 0 de ligação e são marcados como AccessNodes.
+        After creating the GU it's necessary to remove the overlapping edges, that is, the edges which are in both parents. By doing theses "cuts" the partitions are created.
 
-        O método realiza os cortes, gerando o GU'.
+        The cuts will be described as cost 0 edges and also they will be marked as AcessNodes.
+
+        This method does the cuts, creating the GU'.
     */
     void cutCommonEdges();
 
     // -----------------------------------------------------------------------------------------------------
     /* 
-        STEP 5 - Encontrar as partições
+        STEP 5 - Finding the partitions
         
-        Para a execução do GPX, após a criação do GU' é preciso encontrar "SubTours" que simbolizem partições, essas partições serão utilizadas na formação do filho posteriormente.
-        As partições são circuitos com ligações entre os vértices desses cricuitos. Quanto maior o total de partições melhor será o desempenho do Crossover.
+        When executing a GPX, after the creation of the GU' is needed to find "SubTours" that represent partitions, these partitions are used to create the children afterwards.
+
+        The partitions are circuits with connections between the the vertices. The higher the partition number the better is the performance of the Crossover.
     */
-    // O método irá encontrar a partição no qual o vértice passado está contido, retorna uma lista com todos os nós que compõem a partição.
-    vector<string> findPartition(const string);
-    // Irá executar a verificação anterior para todas as partições.
+    //Does the previous verification for all the partitions
     void findAllPartitions();
-    // Após encontradas, as partições podem conter AccessNodes ligando entre os vértices que a compõem, esses vértices deixarão de ser AccessNodes.
-    void cleanInsideAccess();
 
     // -----------------------------------------------------------------------------------------------------
     /*  
-        STEP 6 - Checar se as partições são recombinantes (feasible)
+        STEP 6 - Verify if the partitions are recombinants (feasible)
 
-        Para poder realizar o Crossover é necessário que as partições que serão utilizadas para a criação do filho sejam recombinantes, ou seja, possuam AccessNodes de entrada e saída da partição representados em seus pais. 
-        No caso, seria possível percorrer uma entrada e uma saída tanto em um pai quanto no outro.
-
-        Se uma partição não seguir essa regra, ela se torna não-recombinantes (unfeasible). O GPX implementa uma "solução" para isso, a fim de melhorar o desempenho ele tenta fundir as partições unfeasible para torná-las feasible, caso possível.
-        Se ocorrer de uma fusão gerar uma partição feasible, ela será colocada na lista de partições feasible.
+        To be possible of executing the GPX it's also needed that the partitions be recombinant, that is, that they have the same AcessNodes that their parents.
+        #revisar depois / This means that is possible to go throught the same subtour in both parents.
+        If a partition does not follow this rule, so it is a non-recombinant partition, which we call unfeasible. In order to improve performance, the GPX2 try to fuse unfeasible partitions, so they might become feasible, hence, increasing the partition number.
     */
-    // Irá verificar se a partição é feasible
-    bool checkPartition(Partition*);
-    // Irá executar a verificação para todas as partições encontradas
+    //Does the previous verification for all partitions
     void checkAllPartitions();
-    // Para as partições unfeasible será executada a tentativa de fusion (os métodos de auxílio da fusion estão explicados abaixo)
+    // For the unfeasible partition, a fusion try is executed (the fusion methods are showed below)
     void fusion();
-    // obtem a lista de entrada e saida de todas as partições
-    void setAllEntryAndExits();
+    
 
     // -----------------------------------------------------------------------------------------------------
     /*  
-        STEP 7 - Escolher os "SubTours" que irão compor o filho
+        STEP 7 - Choose the "SubTours" that will compound the child
 
-        Nesta etapa será verificado em cada pai qual possui o melhor SubTour para ser herdado pelo filho. Cada partição é composta pela união de um SubTour de cada pai, eles serão escolhidos e salvos de acordo com o melhor.
-
-        O método irá executar a verificação em cada partição, salvando em uma lista o pai com o melhor SubTour.
+        In this step it will be veryfied between the parents which of the two have the better SubTour to be inherited by the child. Each partition is made up by the union of a SubTour from each parent, the best SubTour is choose and saved.
     */
     void choose();
 
     // -----------------------------------------------------------------------------------------------------
     /*  
-        STEP 8 - Criar Grafo do filho
+        STEP 8 - Create the child graph
 
-        Após escolhidos os melhores SubTours, o mapa do filho será criado.
-        Depois de criado é necessário remover os GhostNodes, eles serão unidos aos vértices de origem.
-
-        Para melhoria, após a montagem do filho sobre os pais, é verificado qual Tour, Red ou Blue, ficou com uma fitness mais elevada, esse Tour será escolhido para ser o filho.
+        After the choice of the best SubTour, the child map is created.
+        After its creations it's necessary to remove the GhostNodes, which will be united again to ther origin vertices.
+        
+        For futher improvement, after the child assemblement, it's verified between the tours, which one has the better fitness, this one will be chose to be the child.
+        
     */
-    // O método irá montar o Grafo do filho sobre os Grafos dos dois pais, depois irá verificar qual ficou melhor
+    // This method will assemble the child's Graph from both parent Graphs, then it checks which one is better
     void buildOffspring();
-    // Irá remover os Ghosts do melhor filho criado
-    void removeGhosts(CustomerGraph&);
 
     // -----------------------------------------------------------------------------------------------------
     /*  
-        STEP 9 - Linearização de Grafo para lista de City (Tour)
+        STEP 9 -Converting the graph to a Cities List (Tour)
 
-        Após terminado, o GPX irá retornar o Grafo filho ao estado original dos pais, forma de um Tour.
+        When the GPX is finished, the GPX will remove the ghosts from the child and turn and tour.
     */
-    vector<string> mapToTour(CustomerGraph&);
-
-    /*  
-    -------------------------------------------------------------------------------------------------------------
-
-        MÉTODOS DE UTILIDADE
-
-        Métodos utilizados para dar suporte aos passos que compõem o GPX.
-    */
-    // Funções utilizadas para verificar se dois pares são iguais
-    bool comparePairInt(const UnfeasibleConnection&, const UnfeasibleConnection&);
-    bool comparePairString(const pair<string, string>&, const pair<string, string>&);
-    // Métodos que irão limpar os ponteiros e vetores utilizados
-    void static deletePartitionMap(PartitionMap&);
-    // Busca em profundidade fora da partição para encontrar conexões entre partições
-    pair<SearchResult, vector<string>> DFS_outside(string, PartitionMap, bool = false);
-    // Busca em profundidade dentro da partição para verificar se os AccessNodes estão conectados
-    pair<SearchResult, vector<string>> DFS_inside(string, string, CustomerGraph, Partition*);
-    // Apagar subvetor de um vetor
-    void eraseSubVector(vector<string>&, vector<string>&);
-    //f Função utilizada para obter as entradas e saídas que estão conectadas de uma partição
-    vector<pair<string, string>> getEntryAndExitList(Partition*);
-    // Distância parcial, usado para medir o melhor pai em cada partição
-    int partialDistance(string, string, CustomerGraph, Partition*);
-    // Imprimir o mapa
-    void printMap(CustomerGraph&, std::ostream&);
-    // Retorna a distância necessária para percorrer todo o grafo
-    int totalDistance(CustomerGraph&);
-    // Retorna o ID da partição que a cidade está contida
-    int whichPartition(const string, PartitionMap);
-
-    /*  
-        MÉTODOS DE UTILIDADE - FUSION
-
-        Para execução do procedimento da fusion são necessárias várias etapas e procedimentos. 
-    */
-    // Verificar se todas as partições são unfeasible (caso durante uma fusão ocorra a criação de uma feasible)
-    void checkUnfeasiblePartitions();
-    // Contar a quantidade de conexões existentes entre as partições
-    void countConnectedPartitions();
-    // Fundir as partições
-    void fusePartitions();
-    // Retorna uma lista com todas as fusões que a partição participa
-    vector<UnfeasibleConnection> fusionsWithPartition(const int, vector<UnfeasibleConnection>&);
-    // Irá gerar uma lista com as fusões a serem realizadas, já executando as validações necessárias
-    void generateFusionPairs();
-    // Verificar as partições unfeasible que estão conectadas
-    bool unfeasiblePartitionsConnected();
-    // Gerar uma lista com os IDs das partições que podem ser fundidas
-    UnfeasibleConnection whichPartitionToFuseWith(Partition*);
-    void deleteCustomerGraph(CustomerGraph&);
-
+    vector<string> convertChoosenChild();
+    
     /* 
-        VARIÁVEIS
+        Variables
     */
-    PartitionMap feasiblePartitions;
-    PartitionMap unfeasiblePartitions;
-    CustomerGraph unitedGraph;
-    vector<UnfeasibleConnection> fuseWith;
+    GPX2Structs::PartitionMap candidatePartitions;
+    GPX2Structs::PartitionMap feasiblePartitions;
+    GPX2Structs::PartitionMap unfeasiblePartitions;
+    GPX2Structs::NodeMap unitedGraph;
+    vector<GPX2Structs::UnfeasibleConnection> fuseWith;
 
-    CustomerGraph red;
-    CustomerGraph blue;
-    vector<Parent> partitionsChoosen;
-    Parent offspringChoosen;
+    GPX2Structs::NodeMap red;
+    GPX2Structs::NodeMap blue;
+    vector<GPX2Structs::Parent> partitionsChoosen;
+    GPX2Structs::Parent offspringChoosen;
 };
 
 #endif

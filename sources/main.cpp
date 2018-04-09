@@ -21,7 +21,7 @@ void debugRepair();
 
 void setParams(){
     ImportData file("libs/E-Sets/E-n33-k4.vrp");
-    Configs::truckNumber=10;
+    Configs::truckNumber=4;
     Configs::customerMap=CustomerMap(file.getCustomerList(),file.getCapacity(),Configs::truckNumber)    ;
     Configs::InitialPopmutIterations=500;
     Configs::InitialPopMutRate=65;
