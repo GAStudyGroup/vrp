@@ -46,6 +46,9 @@ double Tour::getFitness()
         case 2:
             return advancedFitness(route);
         break;
+        case 3:
+            return 2000*1/this->getDist();
+        break;
         default:
             return -1;
         break;
@@ -65,7 +68,7 @@ ostream& operator<<(ostream& output, Tour& t)
 { // Overload de operador para impressão da população
     output<<"Tour: \n";
     for (int c : t.getRoute()) {
-        output << c << " " ;
+        output << c -1<< " " ;
     }
      output << "\nFitness: " << t.getFitness();
      output << "\nDistance: "<<t.getDist();
@@ -77,7 +80,7 @@ ostream& operator<<(ostream& output, Tour& t)
     for(auto subtour: t.explodeSubTours()){
         output<< "| ";
         for(auto customer:subtour){
-            output<< customer <<" ";
+            output<< customer -1 <<" ";
         }
         output<<"| Charge:" << TourUtils::getSubCharge(subtour) << " ";
         output<<((TourUtils::getSubCharge(subtour)>Configs::customerMap.getTruckCapacity())?"Estourou":" ");

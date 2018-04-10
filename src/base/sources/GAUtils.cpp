@@ -95,10 +95,12 @@ void applyMutation(Population &pop){
     if(Configs::applyWorst){
         for(unsigned i=pop.getPop().size()-1;i>(pop.getPop().size()-(numIndiv));i--){
             pop.getPop()[i]=Tour(Mutation().evaluateMutation(pop.getPop()[i].getRoute()));
+             pop.getPop()[i]=TourRepairer().repairTour(pop.getPop()[i]);  
         }
     }else{
         for(unsigned i=0;i<numIndiv;i++){
             pop.getPop()[i]=Tour(Mutation().evaluateMutation(pop.getPop()[i].getRoute()));
+            pop.getPop()[i]=TourRepairer().repairTour(pop.getPop()[i]);  
         }  
     }
 }
@@ -109,6 +111,7 @@ void popReset(Population &pop){
             pop.getPop()[i]=tourGen();
             pop.getPop()[i]=TourRepairer().repairTour(pop.getPop()[i]);
             pop.getPop()[i]=Mutation().evaluateMutation(pop.getPop()[i].getRoute());
+            pop.getPop()[i]=TourRepairer().repairTour(pop.getPop()[i]);
         }
     }
     pop.sortPop();
@@ -121,8 +124,7 @@ Population newGeneration(Population& pop){
     }
     
     pop.sortPop();
-    applyMutation(pop);
-    
+    applyMutation(pop);  
     pop.sortPop();
     return(pop);
 }

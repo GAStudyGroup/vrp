@@ -12,7 +12,7 @@
 using namespace std;
 
 const unsigned limitGen{300};
-const unsigned popSize{50};
+const unsigned popSize{15};
 
 void startGA();
 Tour readFile(string);
@@ -22,23 +22,24 @@ void debugRepair();
 void setParams(string fileName){
     //ImportData file("libs/P-Sets/P-n16-k8.vrp");
     ImportData file(fileName);
-    Configs::truckNumber=50;
+    Configs::truckNumber=23;
     Configs::customerMap=CustomerMap(file.getCustomerList(),file.getCapacity(),Configs::truckNumber)    ;
-    Configs::InitialPopmutIterations=10;
-    Configs::InitialPopMutRate=65;
-    Configs::mutationRate=65;
+    Configs::InitialPopmutIterations=40;
+    Configs::InitialPopMutRate=100;
+    Configs::mutationRate=100;
     Configs::applyWorst=false;
     Configs::fitnessMode=2;
-    Configs::nBestToKeep=10;
+    Configs::nBestToKeep=1;
     Configs::maxIterations=limitGen;
-    Configs::resetMutIterations=2;
+    Configs::resetMutIterations=5;
 }
 int main(int argc, char *argv[]){
     srand(time(NULL));
     int start_s=clock();
 
-    setParams(argv[1]);
-
+    //setParams(argv[1]);
+    setParams("vrp/P-Sets/P-n23-k8.vrp");
+    //debugRepair();
     startGA();
     //debugGA();
 

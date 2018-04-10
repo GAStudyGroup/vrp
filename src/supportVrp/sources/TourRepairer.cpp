@@ -33,7 +33,10 @@ void TourRepairer::changeCustomers(vector<vector<int>>& subtours){//Verificar ma
                         if(!willOverload(subtours[i],idHeaviest) && (idHeaviest!=
                             Configs::customerMap.getDepotId())){
                                 eraseElement(subtours[id],idHeaviest);
-                                subtours[i].push_back(idHeaviest);//Adicionar aqui possível heuristica de dist
+                                //Adicionar aqui possível heuristica de dist
+                                //subtours[i].push_back(idHeaviest);
+                                subtours[i].emplace(subtours[i].begin()+
+                                checkBestPosition(subtours[i],idHeaviest),idHeaviest);
                         }
                     }
                 }
@@ -49,7 +52,9 @@ void TourRepairer::changeCustomers(vector<vector<int>>& subtours){//Verificar ma
                 if(!willOverload(subtours[i],idLightest)&&(idLightest!=
                 Configs::customerMap.getDepotId())){
                     eraseElement(subtours[id],idLightest);
-                    subtours[i].push_back(idLightest);
+                    //subtours[i].push_back(idLightest);
+                    subtours[i].emplace(subtours[i].begin()+
+                    checkBestPosition(subtours[i],idLightest),idLightest);
                 }
             }
         }        
@@ -152,4 +157,20 @@ bool TourRepairer::willOverload(vector<int>& subtour, int id){
         return true;
     }    
     return false;
+}
+
+int TourRepairer::checkBestPosition(vector<int> subtour,int customer){
+    if(subtour.size()==1){
+        return 1;
+    }
+    vector<std::pair<int,vector<int>>> lista;
+    for(unsigned i=1;i<subtour.size();i++){
+        vector<int> temp = subtour;
+        temp.emplace(temp.begin()+i,customer);
+        lista.push_back(std::make_pair(i,temp));
+    }
+    std::sort(lista.begin(),lista.end(),[](auto &a, auto &b){
+        return TourUtils::getSubDistance(a.second) < TourUtils::getSubDistance(b.second);
+    });
+    return lista[0].first;
 }

@@ -31,5 +31,6 @@ class TourRepairer{
     int getCustomerDemand(int);
     void changeHeaviestCustomers(vector<vector<int>>&);
     void changeLightestCustomers(vector<vector<int>>&);
+    int checkBestPosition(vector<int>,int);
 };
 #endif 
