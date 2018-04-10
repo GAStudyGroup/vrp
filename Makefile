@@ -28,7 +28,7 @@ exit $$RESULT
 endef
 
 
-app = GPX2
+app = VRP
 
 srcExt = cpp
 srcDir = src
