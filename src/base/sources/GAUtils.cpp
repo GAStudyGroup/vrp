@@ -50,7 +50,7 @@ vector<int> tourGen(){
             }
         }
 
-        std::random_shuffle(tour.begin(), tour.end());
+        std::shuffle(tour.begin(), tour.end(), Configs::urng);
 
         unsigned tamGambi = tour.size() + Configs::customerMap.getNumberTrucks();
         int i=0, backsGap = (tour.size()+1)/Configs::customerMap.getNumberTrucks();

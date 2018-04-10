@@ -1,7 +1,11 @@
 #ifndef CONFIGS_HPP
 #define CONFIGS_HPP
+
+#include <random>
+
 #include "CustomerMap.hpp"
 #include "Tour.hpp"
+
 namespace Configs {
     //Basic Settings
     //Truck number to be used
@@ -42,6 +46,8 @@ namespace Configs {
     extern int nBestToKeep;
     //Defines how many iterations of mutation will be applied during reset
     extern unsigned resetMutIterations;
+
+    extern std::mt19937 urng;
 }
 
 #endif

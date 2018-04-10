@@ -18,3 +18,5 @@ bool Configs::applyWorst{false};
 vector<Tour> Configs::mutationMaxedList;
 unsigned Configs::resetMutIterations{1};
 int Configs::nBestToKeep{10};
+
+std::mt19937 Configs::urng;

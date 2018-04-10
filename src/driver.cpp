@@ -1,6 +1,6 @@
-#include <ctime>
 #include <fstream>
 #include <sstream>
+#include <random>
 #include "ImportData.hpp"
 #include "CustomerMap.hpp"
 #include "Configs.hpp"
@@ -34,7 +34,9 @@ void setParams(string fileName){
     Configs::resetMutIterations=5;
 }
 int main(int argc, char *argv[]){
-    srand(time(NULL));
+    std::random_device rng;
+    Configs::urng.seed(rng());
+    
     int start_s=clock();
 
     //setParams(argv[1]);
