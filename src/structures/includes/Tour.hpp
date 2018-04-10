@@ -4,6 +4,7 @@
 #include <vector>
 #include <string>
 #include <iostream>
+#include <deque>
 #include "Customer.hpp"
 
 using std::vector;
@@ -18,6 +19,7 @@ public:
     Tour(vector<Customer>);
     Tour(vector<int>);
     Tour(vector<std::string>);
+    Tour(std::deque<int>);
     void setRoute(vector<int>);
     vector<int>& getRoute();
     double getFitness();

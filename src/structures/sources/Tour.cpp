@@ -10,7 +10,9 @@ using std::ostream;
 using std::string;
 
 Tour::Tour() {}
-
+Tour::Tour(std::deque<int> route){
+    this->route= vector<int>(route.begin(),route.end());    
+}
 Tour::Tour(vector<int> route)
     : route(route)
 {

@@ -2,15 +2,12 @@
 #include <functional>
 #include <algorithm>
 #include <iostream>
-#include <deque>
 
 #include "Mutation.hpp"
 #include "Tour.hpp"
 #include "TourUtils.hpp"
 #include "Configs.hpp"
 
-using std::deque;
-using std::make_pair;
 
 vector<int> Mutation::evaluateMutation(vector<int> tour){
     pair<vector<int>,bool> result;
@@ -64,7 +61,7 @@ vector<int> Mutation::evaluateMutation(vector<int> tour){
 }
 
     pair<vector<int>,bool> Mutation::firstMove(vector<int> tour,int it,int value){
-    deque<int> initial(tour.begin(),tour.end()); 
+    vector<int> initial=tour; 
     pair<vector<int>,bool> result=setInitialResult(tour);
     //cout<<"Fitness antes do movimento "<< iFitness <<endl;
     if(value!=Configs::customerMap.getDepotId()){ //Only does the move it isn't a depot   
@@ -76,16 +73,14 @@ vector<int> Mutation::evaluateMutation(vector<int> tour){
                 initial.emplace(initial.begin()+i,value);                
             }
             //printVector(initial); //Debug
-            vector<int> aux(initial.begin(),initial.end());
-            result=basicFitnessEvaluation(Tour(tour),Tour(aux));
+            result=basicFitnessEvaluation(Tour(tour),Tour(initial));
             // printVector(initial); //Debug
             if(result.second){
                 break;
             }
         }                
     }else{
-        vector<int> aux(initial.begin(),initial.end());
-        result.first=aux;
+        result.first=initial;
         result.second=false;
     }
     //cout<<"Fitness depois do movimento "<<bFitness<<endl;
@@ -96,13 +91,11 @@ vector<int> Mutation::evaluateMutation(vector<int> tour){
 
 pair<vector<int>,bool> Mutation::secondAndThirdMove(vector<int> tour, int it,int value,int mode){
     //cout<<"iterator: " <<it <<endl;
-    pair<deque<int>,bool> result;
-    result.first= deque<int>(tour.begin(),tour.end());
-    result.second=false;
+    pair<vector<int>,bool> result=setInitialResult(tour);
     int valU=0;
     int valX=0;
     if(it==Configs::customerMap.getDepotId() || it==(int)tour.size()-1){
-        return make_pair(vector<int>(result.first.begin(),result.first.end()),false);
+        return result;
     }else{
         for(unsigned int i=0;i<result.first.size()-1;i++){
                 valU=result.first[i];
@@ -122,16 +115,14 @@ pair<vector<int>,bool> Mutation::secondAndThirdMove(vector<int> tour, int it,int
                 }
                 
                 // /printVector(result.first);
-                auto auxP=basicFitnessEvaluation(Tour(tour),Tour(result.first));
-                result.first=deque<int>(auxP.first.begin(),auxP.first.end());
-                result.second=auxP.second;
+                result=basicFitnessEvaluation(Tour(tour),Tour(result.first));
                 if(result.second){
-                    return make_pair(vector<int>(result.first.begin(),result.first.end()),true);
+                    return result;
                 }
-                result.first=deque<int>(tour.begin(),tour.end());
+                result.first=tour;
         }
         result.second=false;
-        return make_pair(vector<int>(result.first.begin(),result.first.end()),false);
+        return  result;
     }
 }
 pair<vector<int>,bool> Mutation::secondMove(vector<int> tour, int it,int value){
@@ -165,10 +156,7 @@ pair<vector<int>,bool> Mutation::fourthMove(vector<int> tour, int it,int value){
 
 
 pair<vector<int>,bool> Mutation::fifthMove(vector<int> tour, int it,int value){
-    //pair<vector<int>,bool> result=setInitialResult(tour);
-    pair<deque<int>,bool> result;
-    result.first=deque<int>(tour.begin(),tour.end());
-    result.second=false;
+    pair<vector<int>,bool> result=setInitialResult(tour);
     if(it<(int)tour.size()-1){
         int valU=0;
         int valX=0;
@@ -194,17 +182,15 @@ pair<vector<int>,bool> Mutation::fifthMove(vector<int> tour, int it,int value){
 
                 result.first.erase(find(result.first.begin(),result.first.end(),-value));
                 //printVector(result.first);
-                auto aux=basicFitnessEvaluation(Tour(tour),Tour(result.first));
-                result.first=deque<int>(aux.first.begin(),aux.first.end());
-                result.second=aux.second;
+                result=basicFitnessEvaluation(Tour(tour),Tour(result.first));
                 if(result.second){
-                    return make_pair(vector<int>(aux.first.begin(),aux.first.end()),true);
+                    return result;
                 }
-                result.first=deque<int>(tour.begin(),tour.end());
+                result.first=tour;
             }
         }
     }
-    return make_pair(vector<int>(result.first.begin(),result.first.end()),false);
+    return result;
 }
 
 pair<vector<int>,bool> Mutation::sixthMove(vector<int> tour, int it,int value){

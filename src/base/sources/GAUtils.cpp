@@ -82,6 +82,9 @@ void initialPopApplyMutation(Population &pop){
         for(unsigned i=0;i<numIndivs;i++){
             pop.getPop()[i]=Tour(Mutation().evaluateMutation((pop.getPop()[i].getRoute())));
         }
+        for(unsigned i=0;i<numIndivs;i++){
+            pop.getPop()[i]=TourRepairer().repairTour(pop.getPop()[i]);
+        }
         
     }
     pop.sortPop();
