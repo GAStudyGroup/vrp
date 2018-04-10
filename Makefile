@@ -10,7 +10,6 @@ ERROR_STRING = "[ERROR]"
 WARN_STRING  = "[WARNING]"
 COM_STRING   = "Compiling"
 
-
 define run_and_test
 printf "%b" "$(COM_COLOR) $(COM_STRING) $(OBJ_COLOR) $(@F) $(NO_COLOR)\r"; \
 $(1) 2> $@.log; \
@@ -38,7 +37,7 @@ inc = $(shell find -type f -iname "*.hpp" -printf "%h\n" | sort -u)
 
 debug = 1
 
-CFlags = -Wall -std=gnu++17
+CFlags = -Wall -std=gnu++17 -03
 LDFlags =
 libs =
 libDir =

@@ -21,6 +21,12 @@ valgrind  --tool=memcheck --leak-check=yes --log-file=valgrind_output.txt -v ./b
 
 - Ver o que dá pra otimizar dentro da  mutação
 
+# Idéias
+
+- Pop inicial: gerar completamente random, colocar a reparação e a mutação em seguida
+
+- Logs para comparar ações do GPX e da mutação, separadamente (igual para o OX)
+
 ### Site 
 http://vrp.atd-lab.inf.puc-rio.br/index.php/en/
 
