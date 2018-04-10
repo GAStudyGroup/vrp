@@ -35,8 +35,7 @@
 *.map
 
 #Dirs
-\.vscode/
 .vscode/
 bin/
-debuglogs/
-.directory
+logs/
+obj/
