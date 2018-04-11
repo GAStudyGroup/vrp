@@ -2,7 +2,7 @@
 from subprocess import call
 import os
 
-tours = ["libs/A-Sets/A-n32-k5", "libs/A-Sets/A-n63-k10", "libs/A-Sets/A-n80-k10", "libs/E-Sets/E-n101-k14", "libs/E-Sets/E-n101-k8", "libs/P-Sets/P-n16-k8", "libs/P-Sets/P-n50-k8", "libs/P-Sets/P-n50-k8", "libs/P-Sets/P-n51-k10"]
+tours = ["vrp/A-Sets/A-n32-k5", "vrp/A-Sets/A-n63-k10", "vrp/A-Sets/A-n80-k10", "vrp/E-Sets/E-n101-k14", "vrp/E-Sets/E-n101-k8", "vrp/P-Sets/P-n16-k8", "vrp/P-Sets/P-n50-k8", "vrp/P-Sets/P-n50-k8", "vrp/P-Sets/P-n51-k10"]
 
 for tour_name in tours:
     for i in range(1):
@@ -12,7 +12,7 @@ for tour_name in tours:
         #chamar o GA
         name = tour_name.split("/")[2]
 
-        f=open("Logs/"+name+".log", "w")
+        f=open("logs/"+name+".log", "w")
         call(["./bin/GA", tour_name+".vrp"], stdout=f)
 
         '''

@@ -154,3 +154,12 @@ vector<vector<int>> Tour::explodeSubTours(){
     }
     return(tours);
 }
+
+bool Tour::isValid() {
+    vector<int> charges{getAllCharges()};
+
+    for(int subCharge : charges) {
+        if(subCharge > Configs::customerMap.getTruckCapacity()) return(false);
+    }
+    return(true);
+}

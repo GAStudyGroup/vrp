@@ -27,6 +27,15 @@ valgrind  --tool=memcheck --leak-check=yes --log-file=valgrind_output.txt -v ./b
 
 - Logs para comparar ações do GPX e da mutação, separadamente (igual para o OX)
 
+## Arguments
+
+  Code     | Alias   | What is                 | Required   
+ :-----:   | :-----: | :----------------:      | :--------:   
+ `-name`   | `-n`    | Name of .vrp file       | Yes             
+ `-size`   | `-s`    | Population Size         | Yes
+ `-trucks` | `-t`    | Truck number            | Yes
+ `-it`     | -       | Max limit of iterations | Yes             
+
 ### Site 
 http://vrp.atd-lab.inf.puc-rio.br/index.php/en/
 

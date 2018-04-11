@@ -20,8 +20,22 @@ std::ostream& operator<<(std::ostream& output, Population& pop)
 }
 
 void Population::sortPop(){
-    std::sort(this->getPop().begin(),this->getPop().end(),
+    std::sort(pop.begin(), pop.end(),
      [](Tour& a, Tour& b) {        
         return  a.getFitness() > b.getFitness();
     });
+}
+
+std::pair<int, int> Population::getBestSolution() {
+    int bestDist{std::numeric_limits<int>::max()}, bestPos{0};
+    int size{(int)pop.size()};
+
+    for(int i{0}; i<size; i++) {
+        int dist{(int)pop[i].getDist()};
+        if(dist < bestDist) {
+            bestDist = dist;
+            bestPos = i; 
+        }
+    }
+    return(std::make_pair(bestPos, bestDist));
 }

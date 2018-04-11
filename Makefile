@@ -37,8 +37,8 @@ inc = $(shell find -type f -iname "*.hpp" -printf "%h\n" | sort -u)
 
 debug = 1
 
-CFlags = -Wall -std=gnu++17 -O3
-LDFlags =
+CFlags = -Wall -std=gnu++17 -O3 
+LDFlags = -fsanitize=address -fsanitize=leak
 libs =
 libDir =
 
@@ -69,6 +69,7 @@ all: $(binDir)/$(app)
 
 $(binDir)/$(app): buildrepo $(objects)
 	@mkdir -p `dirname $@`
+	@mkdir -p log
 	@#@echo "Linking $@..."
 	@$(call run_and_test, $(CC) $(objects) $(LDFlags) -o $@)
 

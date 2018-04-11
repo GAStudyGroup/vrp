@@ -19,17 +19,22 @@ void Arg::validateArguments(){
 }
 
 void Arg::processInput(){
-    string argString{""};
     vector<string> argVector;
     for(int i=1;i<argc;i++){
-        argString += argv[i];
-        argString += " ";
+        string arg = argv[i];
+        if(arg[0] == '-'){
+            arg.erase(0,1);
+            argVector.push_back(arg);
+        }else{
+            argVector.back() += " ";
+            argVector.back() += arg;
+        }
     }
-    argVector = split(argString,'-');
+    
     for(string arg : argVector){
         vector<string> argSplited = split(arg);
         Argument *a = getArgument(argSplited[0]);
-        if(a==NULL){
+        if(a==nullptr){
             throw std::runtime_error("Unexpected argument: "+argSplited[0]);
         }
         string option;

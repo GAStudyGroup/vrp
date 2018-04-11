@@ -26,6 +26,7 @@ public:
     double getDist();
     vector<int> getAllCharges();
     vector<vector<int>> explodeSubTours();
+    bool isValid();
 private:
     vector<int> route;
 };

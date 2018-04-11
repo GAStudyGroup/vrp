@@ -6,30 +6,22 @@
 
 #include "Customer.hpp"
 
-using std::string;
-
 class CustomerMap {
 
     public:
         CustomerMap();
-        CustomerMap(std::vector<Customer>, int, int);
+        CustomerMap(std::vector<Customer>, double);
 
         Customer getCustomer(const int);
-        Customer getCustomer(const string);
+        Customer getCustomer(const std::string);
         std::vector<Customer>& getMap();
         int getDepotId();
-
         void setMap(std::vector<Customer>);
-        void setNumberTrucks(int);
-        void setTruckCapacity(double);
 
-        int getNumberTrucks();
         double getTruckCapacity();
-        std::vector<Customer> map;
     private:
-        
-        double truckCapacity;
-        int nTrucks;
+        std::vector<Customer> map;
+        double maxTruckCapacity;
 };
 
 #endif

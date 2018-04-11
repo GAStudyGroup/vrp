@@ -1,8 +1,10 @@
-#ifndef POPULATION_H
-#define POPULATION_H
+#ifndef POPULATION_HPP
+#define POPULATION_HPP
 
 #include <iostream>
 #include <vector>
+#include <utility>
+#include <limits>
 
 #include "Tour.hpp"
 #include "Customer.hpp"
@@ -19,6 +21,8 @@ public:
 
     vector<Tour>& getPop();
     void sortPop();
+
+    std::pair<int, int> getBestSolution();
 private:
     vector<Tour> pop;
 

@@ -33,7 +33,7 @@ double subFitnessPenalty(vector<int>& tour, double& chargeUsed){
 //Advanced Fitness
 int calcMnv(){
     double demandSum=0;
-    for (auto customer: Configs::customerMap.map){
+    for (auto customer: Configs::customerMap.getMap()){
         demandSum+=customer.getDemand();
     }  
     int mnv=ceil(demandSum/Configs::customerMap.getTruckCapacity());

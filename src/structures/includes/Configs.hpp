@@ -2,18 +2,23 @@
 #define CONFIGS_HPP
 
 #include <random>
+#include <string>
 
 #include "CustomerMap.hpp"
 #include "Tour.hpp"
 
 namespace Configs {
     //Basic Settings
+    extern std::string file; 
+    extern std::string pathToFile;
     //Truck number to be used
     extern unsigned truckNumber;
     //Size of the populations used
     extern unsigned popSize;
     //Customer map to be used among the entire program
     extern CustomerMap customerMap;
+    extern unsigned runId;
+    extern unsigned crossoverType;
 
     //Fitness params
     //Best of the first pop
