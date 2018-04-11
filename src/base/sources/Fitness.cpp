@@ -13,7 +13,7 @@ double ourFitness(vector<int>& tour){
     
     for(vector<int> sub : subs){
         double chargeUsed = TourUtils::getSubCharge(sub);
-        if(chargeUsed <= Configs::customerMap.getTruckCapacity()){
+        if(chargeUsed <= Globals::customerMap.getTruckCapacity()){
             fitness += subFitness(sub, chargeUsed);
         }else{
             fitness += subFitnessPenalty(sub, chargeUsed);
@@ -23,25 +23,25 @@ double ourFitness(vector<int>& tour){
 }
 
 double subFitness(vector<int>& tour, double& chargeUsed){
-    return ((1 /TourUtils::getSubDistance(tour)) * (chargeUsed / Configs::customerMap.getTruckCapacity()));
+    return ((1 /TourUtils::getSubDistance(tour)) * (chargeUsed / Globals::customerMap.getTruckCapacity()));
 }
 
 double subFitnessPenalty(vector<int>& tour, double& chargeUsed){
-    return ( (1 /TourUtils::getSubDistance(tour)) * -1 * (chargeUsed / Configs::customerMap.getTruckCapacity()));
+    return ( (1 /TourUtils::getSubDistance(tour)) * -1 * (chargeUsed / Globals::customerMap.getTruckCapacity()));
 }
 
 //Advanced Fitness
 int calcMnv(){
     double demandSum=0;
-    for (auto customer: Configs::customerMap.getMap()){
+    for (auto customer: Globals::customerMap.getMap()){
         demandSum+=customer.getDemand();
     }  
-    int mnv=ceil(demandSum/Configs::customerMap.getTruckCapacity());
+    int mnv=ceil(demandSum/Globals::customerMap.getTruckCapacity());
     return (mnv);
 }
 
 double calcAlpha(){
-    double divide=pow(((calcMnv()/2)*Configs::customerMap.getTruckCapacity()),2);
+    double divide=pow(((calcMnv()/2)*Globals::customerMap.getTruckCapacity()),2);
     divide=divide*(1/(double)Configs::maxIterations);
     double alpha=(Configs::initialBest/divide);    
     return alpha;
@@ -50,8 +50,8 @@ double calcAlpha(){
 double calcPenalty(vector<int>& tour){
     double innerSum=0;
     for(auto charge:Tour(tour).getAllCharges()){
-        if(charge>Configs::customerMap.getTruckCapacity()){
-            innerSum+=pow((charge - Configs::customerMap.getTruckCapacity()),2);
+        if(charge>Globals::customerMap.getTruckCapacity()){
+            innerSum+=pow((charge - Globals::customerMap.getTruckCapacity()),2);
         }else{
             innerSum+=0;
         }

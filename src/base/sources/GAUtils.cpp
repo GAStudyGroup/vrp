@@ -9,14 +9,14 @@
 
 vector<int> tourGen(){
     vector<int> tour;
-    int depotId=Configs::customerMap.getDepotId();
+    int depotId=Globals::customerMap.getDepotId();
 
-        for(auto c : Configs::customerMap.getMap()){
+        for(auto c : Globals::customerMap.getMap()){
             if(c.getId() != depotId){
                 tour.push_back(c.getId());
             }
         }
-        std::shuffle(tour.begin(), tour.end(), Configs::urng);
+        std::shuffle(tour.begin(), tour.end(), Globals::urng);
 
         unsigned tamGambi = tour.size() + Configs::truckNumber;
         int i=0, backsGap = (tour.size()+1)/Configs::truckNumber;
@@ -91,7 +91,6 @@ Population newGeneration(Population& pop){
     for(auto tour:pop.getPop()){
             tour=TourRepairer().repairTour(tour);
     }
-    
     pop.sortPop();
     applyMutation(pop);  
     pop.sortPop();
@@ -120,9 +119,11 @@ Tour crossover(Tour& red, Tour& blue){
 void RunControl::initAlg(Population& pop) {
     ImportData vrpFile(Configs::pathToFile+Configs::file);
 
-    Configs::customerMap = CustomerMap(vrpFile.getCustomerList(), vrpFile.getCapacity());
+    Globals::customerMap = CustomerMap(vrpFile.getCustomerList(), vrpFile.getCapacity());
 
     pop = popGen(Configs::popSize);
+
+    initialPopApplyMutation(pop);
 }
 
 std::ofstream RunControl::initLogFile() {

@@ -31,10 +31,17 @@ valgrind  --tool=memcheck --leak-check=yes --log-file=valgrind_output.txt -v ./b
 
   Code     | Alias   | What is                 | Required   
  :-----:   | :-----: | :----------------:      | :--------:   
- `-name`   | `-n`    | Name of .vrp file       | Yes             
- `-size`   | `-s`    | Population Size         | Yes
- `-trucks` | `-t`    | Truck number            | Yes
- `-it`     | -       | Max limit of iterations | Yes             
+ `-name`   | `-n`    | Name of .vrp file       | **Yes**           
+ `-size`   | `-s`    | Population Size         | **Yes**
+ `-trucks` | `-t`    | Truck number            | **Yes**
+ `-it`     | -       | Max limit of iterations | **Yes**            
+ `-id`     | -       | ID of actual Run (Log)  | **No**
+ `-cross`  | `-cx`   | Crossover method        | **No**
+ `-path`   | -       | Path of .vrp folder     | **No**
+ `-fit`    | -       | Fitness method          | **No**
+ `-mrate`  | -       | Mutation Rate           | **No**
+ `-initm`  | -       | Initial Mutation It...  | **No**
+
 
 ### Site 
 http://vrp.atd-lab.inf.puc-rio.br/index.php/en/

@@ -67,7 +67,7 @@ vector<int> Mutation::evaluateMutation(vector<int> tour){
     deque<int> initial(tour.begin(),tour.end()); 
     pair<vector<int>,bool> result=setInitialResult(tour);
     //cout<<"Fitness antes do movimento "<< iFitness <<endl;
-    if(value!=Configs::customerMap.getDepotId()){ //Only does the move it isn't a depot   
+    if(value!=Globals::customerMap.getDepotId()){ //Only does the move it isn't a depot   
         for(unsigned int i=0;i<initial.size()-1;i++){
             if(initial[i]==value){
                 continue;
@@ -101,14 +101,14 @@ pair<vector<int>,bool> Mutation::secondAndThirdMove(vector<int> tour, int it,int
     result.second=false;
     int valU=0;
     int valX=0;
-    if(it==Configs::customerMap.getDepotId() || it==(int)tour.size()-1){
+    if(it==Globals::customerMap.getDepotId() || it==(int)tour.size()-1){
         return make_pair(vector<int>(result.first.begin(),result.first.end()),false);
     }else{
         for(unsigned int i=0;i<result.first.size()-1;i++){
                 valU=result.first[i];
                 valX=result.first[i+1];
                 //cout<<"VALU: "<<valU << " VALX: "<< valX<< " IT: "<<it<<endl;
-                if(valU==Configs::customerMap.getDepotId() || valX==Configs::customerMap.getDepotId() || valU==value || valX==value){
+                if(valU==Globals::customerMap.getDepotId() || valX==Globals::customerMap.getDepotId() || valU==value || valX==value){
                     continue;
                 }
                 result.first.erase(find(result.first.begin(),result.first.end(),valU));
@@ -144,9 +144,9 @@ pair<vector<int>,bool> Mutation::thirdMove(vector<int> tour, int it,int value){
 pair<vector<int>,bool> Mutation::fourthMove(vector<int> tour, int it,int value){
     pair<vector<int>,bool> result=setInitialResult(tour);
     int auxId=0;
-    if(value!=Configs::customerMap.getDepotId()){
+    if(value!=Globals::customerMap.getDepotId()){
         for(unsigned int i=0; i<tour.size();i++){
-            if(result.first[i]!=Configs::customerMap.getDepotId() && result.first[i]!=value){
+            if(result.first[i]!=Globals::customerMap.getDepotId() && result.first[i]!=value){
                 auxId=result.first[i];
                 result.first[i]=value;
                 result.first[it]=auxId;
@@ -172,11 +172,11 @@ pair<vector<int>,bool> Mutation::fifthMove(vector<int> tour, int it,int value){
     if(it<(int)tour.size()-1){
         int valU=0;
         int valX=0;
-        if(value!=Configs::customerMap.getDepotId()){
+        if(value!=Globals::customerMap.getDepotId()){
             for(unsigned int i=0;i<tour.size()-1;i++){
                 valU=result.first[i];
                 valX=result.first[i+1];
-                if(valU == Configs::customerMap.getDepotId() || valX == Configs::customerMap.getDepotId() ||valU==value ||valX==value){
+                if(valU == Globals::customerMap.getDepotId() || valX == Globals::customerMap.getDepotId() ||valU==value ||valX==value){
                  continue;
                 }
                 //cout<< "Value U: "<<valU << " Value X: "<<valX<<endl;
@@ -210,13 +210,13 @@ pair<vector<int>,bool> Mutation::fifthMove(vector<int> tour, int it,int value){
 pair<vector<int>,bool> Mutation::sixthMove(vector<int> tour, int it,int value){
     pair<vector<int>,bool> result=setInitialResult(tour);
     int valU=0,valX=0,valV=0,valY=0;
-    if(value!=Configs::customerMap.getDepotId() && it<(int)(tour.size()-1)){
+    if(value!=Globals::customerMap.getDepotId() && it<(int)(tour.size()-1)){
         valU=result.first[it];
         valX=result.first[it+1];
         for(unsigned int i=0; i< (tour.size()-1);i++){
             valV=result.first[i];
             valY=result.first[i+1];
-            if(valV!=Configs::customerMap.getDepotId() && valY!=Configs::customerMap.getDepotId() && valX!=Configs::customerMap.getDepotId() 
+            if(valV!=Globals::customerMap.getDepotId() && valY!=Globals::customerMap.getDepotId() && valX!=Globals::customerMap.getDepotId() 
             && valU!=valV && valU!=valX && valU!=valY 
             && valX!=valV && valX!=valY
             && valY!=valV){
@@ -237,26 +237,26 @@ pair<vector<int>,bool> Mutation::sixthMove(vector<int> tour, int it,int value){
 pair<vector<int>,bool> Mutation::seventhAndEighthAndNineMove(vector<int> tour, int it,int value, int move){
     pair<vector<int>,bool> result=setInitialResult(tour);
     int ValU=0,ValX=0,ValV=0,ValY=0;
-        if(value==Configs::customerMap.getDepotId() || it==(int)tour.size()-1){
+        if(value==Globals::customerMap.getDepotId() || it==(int)tour.size()-1){
             return result;
         }else{
             ValU=result.first[it];
             ValX=result.first[it+1];
-            if(ValX!=ValU && ValX!=Configs::customerMap.getDepotId()){
+            if(ValX!=ValU && ValX!=Globals::customerMap.getDepotId()){
                 for(unsigned int i=0; i<tour.size()-1;i++){
                     ValV=result.first[i];
                     ValY=result.first[i+1];
-                    if(ValX==Configs::customerMap.getDepotId()||ValV==Configs::customerMap.getDepotId() || ValY==Configs::customerMap.getDepotId() || ValU==ValV 
+                    if(ValX==Globals::customerMap.getDepotId()||ValV==Globals::customerMap.getDepotId() || ValY==Globals::customerMap.getDepotId() || ValU==ValV 
                     ||!(ValU!=ValV && ValU!=ValX && ValU!=ValY && ValX!=ValV && ValX!=ValY && ValY!=ValV)){
                         continue;
                     }
                     if(move==7){
-                        if(!checkInSameTour(tour,Configs::customerMap.getDepotId(),ValU,ValV)){
+                        if(!checkInSameTour(tour,Globals::customerMap.getDepotId(),ValU,ValV)){
                             continue;
                         }
                      }
                      else if(move==8 || move==9){
-                        if(checkInSameTour(tour,Configs::customerMap.getDepotId(),ValU,ValV)){
+                        if(checkInSameTour(tour,Globals::customerMap.getDepotId(),ValU,ValV)){
                             continue;
                         }
                     }

@@ -109,7 +109,7 @@ HamiltonianCycle::parentsHamiltonian HamiltonianCycle::rebuildTours(const int re
 vector<string> HamiltonianCycle::createDepotCopies(vector<string> tour){
     vector<string> copiesTour;
     string token{depotCopyToken};
-    const string depotId{std::to_string(Configs::customerMap.getDepotId())};
+    const string depotId{std::to_string(Globals::customerMap.getDepotId())};
 
     for(string customer : tour){
         if(!customer.compare(depotId)){
@@ -125,7 +125,7 @@ vector<string> HamiltonianCycle::createDepotCopies(vector<string> tour){
 int HamiltonianCycle::getEmptySubtoursNumber(vector<int>& tour) {
     int emptyCount{0};
     int tSize{(int)tour.size()};
-    int depotId{Configs::customerMap.getDepotId()};
+    int depotId{Globals::customerMap.getDepotId()};
 
     for(int i{0}; i<tSize; i++){
         if(tour[i] == depotId){
@@ -144,7 +144,7 @@ HamiltonianCycle::parentsHamiltonian HamiltonianCycle::buildChoosenSubs() {
     int choosenSize{(int)choosen.size()};
     vector<int> alreadyRebuildRed;
     vector<int> alreadyRebuildBlue;
-    int depotId{Configs::customerMap.getDepotId()};
+    int depotId{Globals::customerMap.getDepotId()};
 
     for(int i{0}; i<choosenSize; i++){
         tours.first.push_back(std::to_string(depotId));
@@ -189,7 +189,7 @@ HamiltonianCycle::parentsHamiltonian HamiltonianCycle::buildChoosenSubs() {
 }
 
 HamiltonianCycle::parentsHamiltonian HamiltonianCycle::restoreEmptySubtours(parentsHamiltonian parents, int redEmpty, int blueEmpty) {
-    string depotId{std::to_string(Configs::customerMap.getDepotId())};
+    string depotId{std::to_string(Globals::customerMap.getDepotId())};
     int redSize{(int)parents.first.size()}, blueSize{(int)parents.second.size()};
 
     if(redSize != blueSize) {

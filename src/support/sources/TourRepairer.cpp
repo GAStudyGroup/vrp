@@ -31,7 +31,7 @@ void TourRepairer::changeCustomers(vector<vector<int>>& subtours){//Verificar ma
                     for(unsigned j=0;j<subtours[id].size();j++){ //Testa todas possibilidades 1 mais pesado, 2 etc..
                         int idHeaviest=getHeaviestCustomer(subtours[id],j);
                         if(!willOverload(subtours[i],idHeaviest) && (idHeaviest!=
-                            Configs::customerMap.getDepotId())){
+                            Globals::customerMap.getDepotId())){
                                 eraseElement(subtours[id],idHeaviest);
                                 //Adicionar aqui possível heuristica de dist
                                 //subtours[i].push_back(idHeaviest);
@@ -50,7 +50,7 @@ void TourRepairer::changeCustomers(vector<vector<int>>& subtours){//Verificar ma
             if(i!=(unsigned)id){
                 int idLightest = getLightestCustomer(subtours[id]);
                 if(!willOverload(subtours[i],idLightest)&&(idLightest!=
-                Configs::customerMap.getDepotId())){
+                Globals::customerMap.getDepotId())){
                     eraseElement(subtours[id],idLightest);
                     //subtours[i].push_back(idLightest);
                     subtours[i].emplace(subtours[i].begin()+
@@ -63,11 +63,11 @@ void TourRepairer::changeCustomers(vector<vector<int>>& subtours){//Verificar ma
 vector<vector<int>> TourRepairer::splitSubTours(vector<int>& tour){
     vector<vector<int>> subtours= Tour(tour).explodeSubTours();
     for(unsigned i=0;i<subtours.size();i++){
-        subtours[i].emplace(subtours[i].begin(),Configs::customerMap.getDepotId());
+        subtours[i].emplace(subtours[i].begin(),Globals::customerMap.getDepotId());
     }
     int emptyRoutes=Configs::truckNumber-subtours.size();
     vector<int> aux;
-    aux.push_back(Configs::customerMap.getDepotId());
+    aux.push_back(Globals::customerMap.getDepotId());
     if(emptyRoutes>0){
         for(int i=0;i<emptyRoutes;i++){
             subtours.push_back(aux);
@@ -87,7 +87,7 @@ vector<int> TourRepairer::tourRebuilder(vector<vector<int>>& subtours){
 int TourRepairer::findLastDepotPosition(vector<int>&tour){
     int lastDepotPos=-1;
     for(unsigned i=0;i<tour.size();i++){
-        if(tour[i]==Configs::customerMap.getDepotId()){
+        if(tour[i]==Globals::customerMap.getDepotId()){
             lastDepotPos=i;
         }
     }
@@ -112,7 +112,7 @@ vector<int> TourRepairer::getOverloadedSubs(vector<vector<int>>& subtours){
     int id=-1;;
     for(auto subtour: subtours){
         id++;
-        if(TourUtils::getSubCharge(subtour)>Configs::customerMap.getTruckCapacity()){
+        if(TourUtils::getSubCharge(subtour)>Globals::customerMap.getTruckCapacity()){
             SubsIds.push_back(id);
         }
     }
@@ -147,12 +147,12 @@ void TourRepairer::eraseElement(vector<int>& subtour,int element){
 }
 
 int TourRepairer::getCustomerDemand(int id){
-    return Configs::customerMap.getCustomer(id).getDemand();
+    return Globals::customerMap.getCustomer(id).getDemand();
 }
 
 bool TourRepairer::willOverload(vector<int>& subtour, int id){
     int totalCharge= (TourUtils::getSubCharge(subtour) + getCustomerDemand(id));
-    if(totalCharge>Configs::customerMap.getTruckCapacity()){
+    if(totalCharge>Globals::customerMap.getTruckCapacity()){
         // cout<<"Over"<<endl;
         return true;
     }    

@@ -1,0 +1,23 @@
+Run ID: 0
+Vehicle Routing Problem: E-n22-k4.vrp
+Configurations of run: 
+	Population Size: 50
+	Truck Number: 4
+	Max Iterations: 500
+
+Best Known solution: Implementar
+
+Generation: 0
+	BestSolution: 375
+	Valid solution.
+	SubTours used: 4
+
+Generation: 1
+	BestSolution: 375
+	Valid solution.
+	SubTours used: 4
+
+Generation: 2
+	BestSolution: 375
+	Valid solution.
+	SubTours used: 4

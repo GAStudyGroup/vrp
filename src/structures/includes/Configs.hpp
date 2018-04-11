@@ -8,7 +8,7 @@
 #include "Tour.hpp"
 
 namespace Configs {
-    //Basic Settings
+    //Basic Settings of GA
     extern std::string file; 
     extern std::string pathToFile;
     //Truck number to be used
@@ -16,7 +16,6 @@ namespace Configs {
     //Size of the populations used
     extern unsigned popSize;
     //Customer map to be used among the entire program
-    extern CustomerMap customerMap;
     extern unsigned runId;
     extern unsigned crossoverType;
 
@@ -51,7 +50,14 @@ namespace Configs {
     extern int nBestToKeep;
     //Defines how many iterations of mutation will be applied during reset
     extern unsigned resetMutIterations;
+}
 
+namespace MutationCtrl {
+    // COLOQUE TUDO AQUI
+}
+
+namespace Globals {
+    extern CustomerMap customerMap;
     extern std::mt19937 urng;
 }
 

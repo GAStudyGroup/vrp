@@ -3,6 +3,7 @@
 using std::string;
 #include <fstream>
 #include <utility>
+#include <random>
 
 #include "Arg.hpp"
 #include "Configs.hpp"
@@ -24,9 +25,14 @@ void startGA();
         2. -cross/-cx   "Type of Crossover (default is GPX2)"
         3. -path        "Folder where .vrp is located (relative path of algorithm call)"
         4. -fit         "Type of fitness"
+        5. -mrate       "Rate of Mutation"
+        6. -initm       "Initial Mutation Iterations"
 */
 
 int main(int argc, char *argv[]) {
+    std::random_device rng;
+    Globals::urng.seed(rng());
+
     /* Required args */
     string NAME{"name"};
     string POP_SIZE{"size"};
@@ -92,11 +98,16 @@ void startGA() {
     do{
         pair<int, int> bestSol{pop.getBestSolution()};
         std::cout << "\nGeneration: " << Configs::currentIteration << "\n";
-        std::cout << "\tBestSolution: " << bestSol.second << "\n\t" << (pop.getPop()[bestSol.first].isValid()?"Valid solution.":"Not a Valid solution.")  << std::endl;
+        std::cout << "\tBestSolution: " << bestSol.second << "\n\t" << (pop.getPop()[bestSol.first].isValid()?"Valid solution.":"Not a Valid solution.") << "\n\t" <<
+        "SubTours used: " << pop.getPop()[bestSol.first].subToursUsed() << std::endl;
+        cout << pop.getPop()[bestSol.first] << endl;
+
         logFile << "\nGeneration: " << Configs::currentIteration << "\n";
-        logFile << "\tBestSolution: " << bestSol.second << "\n\t" << (pop.getPop()[bestSol.first].isValid()?"Valid solution.":"Not a Valid solution.")  << std::endl;
+        logFile << "\tBestSolution: " << bestSol.second << "\n\t" << (pop.getPop()[bestSol.first].isValid()?"Valid solution.":"Not a Valid solution.") << "\n\t" <<
+        "SubTours used: " << pop.getPop()[bestSol.first].subToursUsed() << std::endl;
 
         pop = newGeneration(pop);
+        popReset(pop);
         Configs::currentIteration++;
     } while(RunControl::stopAlg(pop));
 

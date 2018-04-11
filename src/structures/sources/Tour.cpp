@@ -85,7 +85,7 @@ ostream& operator<<(ostream& output, Tour& t)
             output<< customer -1 <<" ";
         }
         output<<"| Charge:" << TourUtils::getSubCharge(subtour) << " ";
-        output<<((TourUtils::getSubCharge(subtour)>Configs::customerMap.getTruckCapacity())?"Estourou":" ");
+        output<<((TourUtils::getSubCharge(subtour)>Globals::customerMap.getTruckCapacity())?"Estourou":" ");
         output<<endl;
     }
     output<< "\nSize:"<< t.getRoute().size();
@@ -118,7 +118,7 @@ vector<int> Tour::getAllCharges(){
 }
 
 vector<vector<int>> Tour::explodeSubTours(){
-    int depotId=Configs::customerMap.getDepotId();
+    int depotId=Globals::customerMap.getDepotId();
     vector<vector<int>> tours;
     vector<int> sub;
     vector<int> tour= this->getRoute();
@@ -159,7 +159,11 @@ bool Tour::isValid() {
     vector<int> charges{getAllCharges()};
 
     for(int subCharge : charges) {
-        if(subCharge > Configs::customerMap.getTruckCapacity()) return(false);
+        if(subCharge > Globals::customerMap.getTruckCapacity()) return(false);
     }
     return(true);
+}
+
+int Tour::subToursUsed() {
+    return(explodeSubTours().size());
 }
