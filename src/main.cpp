@@ -11,6 +11,8 @@ using std::string;
 #include "Population.hpp"
 
 void startGA();
+void printGenInfo(std::ostream&, Population&);
+void setParams(Arg&);
 
 
 /* 
@@ -30,23 +32,24 @@ void startGA();
         5. -mrate       "Rate of Mutation"
         6. -initm       "Initial Mutation Iterations"
 */
+
+/* Global params code */
+/* Required args */
+string NAME{"name"};
+string POP_SIZE{"size"};
+string T_NUMBER{"trucks"};
+string MAX_IT{"it"};
+/* Optional */
+string ID{"id"};
+string CROSS{"cross"};
+string PATH{"path"};
+string FITNESS{"fit"};
+string MUT_RATE{"mrate"};
+string INIT_MUT{"initm"};
+
 int main(int argc, char *argv[]) {
     std::random_device rng;
     Globals::urng.seed(rng());
-
-    /* Required args */
-    string NAME{"name"};
-    string POP_SIZE{"size"};
-    string T_NUMBER{"trucks"};
-    string MAX_IT{"it"};
-
-    /* Optional */
-    string ID{"id"};
-    string CROSS{"cross"};
-    string PATH{"path"};
-    string FITNESS{"fit"};
-    string MUT_RATE{"mrate"};
-    string INIT_MUT{"initm"};
 
     Arg args(argc, argv);
 
@@ -70,18 +73,7 @@ int main(int argc, char *argv[]) {
     }
 
     /* Setting configurations */
-    Configs::file = args.getOption(NAME); 
-    Configs::popSize = std::stoi(args.getOption(POP_SIZE));
-    Configs::truckNumber = std::stoi(args.getOption(T_NUMBER));
-    Configs::maxIterations = std::stoi(args.getOption(MAX_IT));
-
-    Configs::runId = ((args.getOption(ID).empty())? Configs::runId : std::stoi(args.getOption(ID)));
-    Configs::crossoverType = ((args.getOption(CROSS).empty())? Configs::crossoverType : std::stoi(args.getOption(CROSS)));
-    string path{args.getOption(PATH)};
-    Configs::pathToFile = ((path.empty())? Configs::pathToFile : ((path[path.length()-1]=='/')?path : path+='/'));
-    Configs::fitnessMode = ((args.getOption(FITNESS).empty())? Configs::fitnessMode : std::stoi(args.getOption(FITNESS)));
-    MutationCtrl::mutationRate = ((args.getOption(MUT_RATE).empty())? MutationCtrl::mutationRate : std::stoi(args.getOption(MUT_RATE)));
-    MutationCtrl::InitialPopmutIterations = ((args.getOption(INIT_MUT).empty())? MutationCtrl::InitialPopmutIterations : std::stoi(args.getOption(INIT_MUT)));
+    setParams(args);
 
     startGA();
     return(0);
@@ -96,15 +88,8 @@ void startGA() {
     RunControl::initAlg(pop);
 
     do{
-        pair<int, int> bestSol{pop.getBestSolution()};
-        std::cout << "\nGeneration: " << Globals::currentIteration << "\n";
-        std::cout << "\tBestSolution: " << bestSol.second << "\n\t" << (pop.getPop()[bestSol.first].isValid()?"Valid solution.":"Not a Valid solution.") << "\n\t" <<
-        "SubTours used: " << pop.getPop()[bestSol.first].subToursUsed() << std::endl;
-        cout << pop.getPop()[bestSol.first] << endl;
-
-        logFile << "\nGeneration: " << Globals::currentIteration << "\n";
-        logFile << "\tBestSolution: " << bestSol.second << "\n\t" << (pop.getPop()[bestSol.first].isValid()?"Valid solution.":"Not a Valid solution.") << "\n\t" <<
-        "SubTours used: " << pop.getPop()[bestSol.first].subToursUsed() << std::endl;
+        printGenInfo(std::cout, pop);
+        printGenInfo(logFile, pop);
 
         pop = GenerationCtrl::newGeneration(pop);
         Globals::currentIteration++;
@@ -114,4 +99,28 @@ void startGA() {
     
     RunControl::printExecutionTime(logFile, std::chrono::duration<double> (algFinish - algStart).count());
     logFile.close();
+}
+
+void printGenInfo(std::ostream& out, Population& pop) {
+    pair<int, int> bestSol{pop.getBestSolution()};
+    bool isValid{pop.getPop()[bestSol.first].isValid()};
+    int subTourUsed{pop.getPop()[bestSol.first].subToursUsed()};
+
+    out << "\nGeneration: " << Globals::currentIteration << "\n";
+    out << "\tBestSolution: " << bestSol.second << "\n\t" << (isValid?"Valid solution.":"Not a Valid solution.") << "\n\t" << "SubTours used: " << subTourUsed << std::endl;
+}
+
+void setParams(Arg& args) {
+    Configs::file = args.getOption(NAME); 
+    Configs::popSize = std::stoi(args.getOption(POP_SIZE));
+    Configs::truckNumber = std::stoi(args.getOption(T_NUMBER));
+    Configs::maxIterations = std::stoi(args.getOption(MAX_IT));
+
+    Configs::runId = ((args.getOption(ID).empty())? Configs::runId : std::stoi(args.getOption(ID)));
+    Configs::crossoverType = ((args.getOption(CROSS).empty())? Configs::crossoverType : std::stoi(args.getOption(CROSS)));
+    string path{args.getOption(PATH)};
+    Configs::pathToFile = ((path.empty())? Configs::pathToFile : ((path[path.length()-1]=='/')?path : path+='/'));
+    Configs::fitnessMode = ((args.getOption(FITNESS).empty())? Configs::fitnessMode : std::stoi(args.getOption(FITNESS)));
+    MutationCtrl::mutationRate = ((args.getOption(MUT_RATE).empty())? MutationCtrl::mutationRate : std::stoi(args.getOption(MUT_RATE)));
+    MutationCtrl::InitialPopmutIterations = ((args.getOption(INIT_MUT).empty())? MutationCtrl::InitialPopmutIterations : std::stoi(args.getOption(INIT_MUT)));
 }
