@@ -102,12 +102,12 @@ void startGA() {
 }
 
 void printGenInfo(std::ostream& out, Population& pop) {
-    pair<int, int> bestSol{pop.getBestSolution()};
-    bool isValid{pop.getPop()[bestSol.first].isValid()};
-    int subTourUsed{pop.getPop()[bestSol.first].subToursUsed()};
+    Tour bestSol{pop.getBestSolution()};
+    bool isValid{bestSol.isValid()};
+    int subTourUsed{bestSol.subToursUsed()};
 
     out << "\nGeneration: " << Globals::currentIteration << "\n";
-    out << "\tBestSolution: " << bestSol.second << "\n\t" << (isValid?"Valid solution.":"Not a Valid solution.") << "\n\t" << "SubTours used: " << subTourUsed << std::endl;
+    out << "\tBestSolution: " << bestSol.getDist()<< "\n\t" << (isValid?"Valid solution.":"Not a Valid solution.") << "\n\t" << "SubTours used: " << subTourUsed << std::endl;
 }
 
 void setParams(Arg& args) {

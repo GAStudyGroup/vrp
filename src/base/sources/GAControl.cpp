@@ -23,7 +23,7 @@ void RunControl::initAlg(Population& pop) {
     Globals::customerMap = CustomerMap(vrpFile.getCustomerList(), vrpFile.getCapacity());
     //Generates a random pop and applies mutation
     pop = InitialPop::InitialPopByMutation(Configs::popSize);
-    Fitness::initialBest= pop.getBestSolution().second;
+    Fitness::initialBest= pop.getBestSolution().getDist();
 }
 
 std::ofstream RunControl::initLogFile() {
