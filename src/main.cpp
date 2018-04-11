@@ -11,6 +11,8 @@ using std::string;
 #include "Population.hpp"
 
 void startGA();
+
+
 /* 
     Arguments configuration
 
@@ -28,7 +30,6 @@ void startGA();
         5. -mrate       "Rate of Mutation"
         6. -initm       "Initial Mutation Iterations"
 */
-
 int main(int argc, char *argv[]) {
     std::random_device rng;
     Globals::urng.seed(rng());
@@ -77,7 +78,7 @@ int main(int argc, char *argv[]) {
     Configs::runId = ((args.getOption(ID).empty())? Configs::runId : std::stoi(args.getOption(ID)));
     Configs::crossoverType = ((args.getOption(CROSS).empty())? Configs::crossoverType : std::stoi(args.getOption(CROSS)));
     string path{args.getOption(PATH)};
-    Configs::pathToFile = ((path.empty())? Configs::pathToFile : ((path[path.length()-1]=='/')?path:path+='/'));
+    Configs::pathToFile = ((path.empty())? Configs::pathToFile : ((path[path.length()-1]=='/')?path : path+='/'));
     Configs::fitnessMode = ((args.getOption(FITNESS).empty())? Configs::fitnessMode : std::stoi(args.getOption(FITNESS)));
     Configs::mutationRate = ((args.getOption(MUT_RATE).empty())? Configs::mutationRate : std::stoi(args.getOption(MUT_RATE)));
     Configs::InitialPopmutIterations = ((args.getOption(INIT_MUT).empty())? Configs::InitialPopmutIterations : std::stoi(args.getOption(INIT_MUT)));
@@ -88,11 +89,10 @@ int main(int argc, char *argv[]) {
 
 void startGA() {
     Population pop;
-
     std::ofstream logFile{RunControl::initLogFile()};
     RunControl::printHeader(logFile);
-    auto algStart = std::chrono::high_resolution_clock::now();
 
+    auto algStart = std::chrono::high_resolution_clock::now();
     RunControl::initAlg(pop);
 
     do{
@@ -113,6 +113,7 @@ void startGA() {
 
 
     auto algFinish = std::chrono::high_resolution_clock::now();
+    
     RunControl::printExecutionTime(logFile, std::chrono::duration<double> (algFinish - algStart).count());
     logFile.close();
 }

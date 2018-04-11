@@ -29,18 +29,18 @@ valgrind  --tool=memcheck --leak-check=yes --log-file=valgrind_output.txt -v ./b
 
 ## Arguments
 
-  Code     | Alias   | What is                 | Required   
- :-----:   | :-----: | :----------------:      | :--------:   
- `-name`   | `-n`    | Name of .vrp file       | **Yes**           
- `-size`   | `-s`    | Population Size         | **Yes**
- `-trucks` | `-t`    | Truck number            | **Yes**
- `-it`     | -       | Max limit of iterations | **Yes**            
- `-id`     | -       | ID of actual Run (Log)  | **No**
- `-cross`  | `-cx`   | Crossover method        | **No**
- `-path`   | -       | Path of .vrp folder     | **No**
- `-fit`    | -       | Fitness method          | **No**
- `-mrate`  | -       | Mutation Rate           | **No**
- `-initm`  | -       | Initial Mutation It...  | **No**
+  Code     | Alias   | What is                       | Required   
+ :-----:   | :-----: | :----------------:            | :--------:   
+ `-name`   | `-n`    | Name of .vrp file             | **Yes**           
+ `-size`   | `-s`    | Population Size               | **Yes**
+ `-trucks` | `-t`    | Truck number                  | **Yes**
+ `-it`     | -       | Max limit of iterations       | **Yes**            
+ `-id`     | -       | ID of actual Run (Log)        | **No**
+ `-cross`  | `-cx`   | Crossover method (1-2)        | **No**
+ `-path`   | -       | Path of .vrp folder           | **No**
+ `-fit`    | -       | Fitness method   (1-2)        | **No**
+ `-mrate`  | -       | Mutation Rate (0-100          | **No**
+ `-initm`  | -       | Initial Mutation It...(0-100) | **No**
 
 
 ### Site 
