@@ -2,24 +2,28 @@
 
 #include "InitialPop.hpp"
 #include "Configs.hpp"
-#include "Mutation.hpp"
-#include "TourRepairer.hpp"
+#include "Extra.hpp"
 
+ Population InitialPop::InitialPopByMutation(int size){
+     Population pop;
+     pop=popGen(size);
+     initialPopApplyMutation(pop);
+     return pop;
+ }
 void InitialPop::initialPopApplyMutation(Population &pop){
     double Rate= (double)MutationCtrl::InitialPopMutRate/(double)100;
     unsigned numIndivs=(pop.getPop().size()*Rate);
-    Mutation mut;
     //std::cout <<"Rate:"<<Rate<<std::endl;
     //std::cout <<"Num Indiv Mutate: "<<  numIndivs<<std::endl;
     for(unsigned i=0;i<MutationCtrl::InitialPopmutIterations;i++){
         for(unsigned i=0;i<numIndivs;i++){
-            pop.getPop()[i]=TourRepairer().repairTour(pop.getPop()[i]);
+            Extra::applyRepair(pop.getPop()[i]);
         }
         for(unsigned i=0;i<numIndivs;i++){
-            pop.getPop()[i]=Tour(mut.evaluateMutation((pop.getPop()[i].getRoute())));
+            Extra::applyMutation(pop.getPop()[i]);
         }
         for(unsigned i=0;i<numIndivs;i++){
-            pop.getPop()[i]=TourRepairer().repairTour(pop.getPop()[i]);
+           Extra::applyRepair(pop.getPop()[i]);
         }
         
     }

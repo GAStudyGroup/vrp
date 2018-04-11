@@ -1,5 +1,5 @@
-#ifndef GAUTILS_HPP
-#define GAUTILS_HPP
+#ifndef GACONTROL_HPP
+#define GACONTROL_HPP
 
 #include <vector>
 using std::vector;
@@ -8,12 +8,10 @@ using std::vector;
 
 #include "Population.hpp"
 
-
-Population newGeneration(Population& pop);
-
-void applyMutation(Population &pop);
-
-void popReset(Population &);
+//GenerationCtrl
+namespace GenerationCtrl{
+    Population newGeneration(Population& pop);
+}
 
 /* Control Run */
 namespace RunControl {

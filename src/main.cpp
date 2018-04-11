@@ -7,7 +7,7 @@ using std::string;
 
 #include "Arg.hpp"
 #include "Configs.hpp"
-#include "GAUtils.hpp"
+#include "GAControl.hpp"
 #include "Population.hpp"
 
 void startGA();
@@ -106,7 +106,7 @@ void startGA() {
         logFile << "\tBestSolution: " << bestSol.second << "\n\t" << (pop.getPop()[bestSol.first].isValid()?"Valid solution.":"Not a Valid solution.") << "\n\t" <<
         "SubTours used: " << pop.getPop()[bestSol.first].subToursUsed() << std::endl;
 
-        pop = newGeneration(pop);
+        pop = GenerationCtrl::newGeneration(pop);
         Globals::currentIteration++;
     } while(RunControl::stopAlg(pop));
 

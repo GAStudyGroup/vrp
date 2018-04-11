@@ -1,0 +1,128 @@
+Run ID: 0
+Vehicle Routing Problem: P-n22-k2.vrp
+Configurations of run: 
+	Population Size: 10
+	Truck Number: 2
+	Max Iterations: 300
+
+Best Known solution: Implementar
+
+Generation: 0
+	BestSolution: 259
+	Valid solution.
+	SubTours used: 2
+
+Generation: 1
+	BestSolution: 259
+	Valid solution.
+	SubTours used: 2
+
+Generation: 2
+	BestSolution: 255
+	Valid solution.
+	SubTours used: 2
+
+Generation: 3
+	BestSolution: 228
+	Valid solution.
+	SubTours used: 2
+
+Generation: 4
+	BestSolution: 227
+	Valid solution.
+	SubTours used: 2
+
+Generation: 5
+	BestSolution: 224
+	Valid solution.
+	SubTours used: 2
+
+Generation: 6
+	BestSolution: 224
+	Valid solution.
+	SubTours used: 2
+
+Generation: 7
+	BestSolution: 224
+	Valid solution.
+	SubTours used: 2
+
+Generation: 8
+	BestSolution: 224
+	Valid solution.
+	SubTours used: 2
+
+Generation: 9
+	BestSolution: 224
+	Valid solution.
+	SubTours used: 2
+
+Generation: 10
+	BestSolution: 224
+	Valid solution.
+	SubTours used: 2
+
+Generation: 11
+	BestSolution: 224
+	Valid solution.
+	SubTours used: 2
+
+Generation: 12
+	BestSolution: 224
+	Valid solution.
+	SubTours used: 2
+
+Generation: 13
+	BestSolution: 224
+	Valid solution.
+	SubTours used: 2
+
+Generation: 14
+	BestSolution: 224
+	Valid solution.
+	SubTours used: 2
+
+Generation: 15
+	BestSolution: 224
+	Valid solution.
+	SubTours used: 2
+
+Generation: 16
+	BestSolution: 224
+	Valid solution.
+	SubTours used: 2
+
+Generation: 17
+	BestSolution: 224
+	Valid solution.
+	SubTours used: 2
+
+Generation: 18
+	BestSolution: 224
+	Valid solution.
+	SubTours used: 2
+
+Generation: 19
+	BestSolution: 224
+	Valid solution.
+	SubTours used: 2
+
+Generation: 20
+	BestSolution: 224
+	Valid solution.
+	SubTours used: 2
+
+Generation: 21
+	BestSolution: 224
+	Valid solution.
+	SubTours used: 2
+
+Generation: 22
+	BestSolution: 224
+	Valid solution.
+	SubTours used: 2
+
+Generation: 23
+	BestSolution: 224
+	Valid solution.
+	SubTours used: 2
