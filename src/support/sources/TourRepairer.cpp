@@ -121,21 +121,21 @@ vector<int> TourRepairer::getOverloadedSubs(vector<vector<int>>& subtours){
 
 void TourRepairer::sortSubsByCharge(vector<vector<int>>& subtours){
     std::sort(subtours.begin(),subtours.end(),
-     [this](vector<int>& a, vector<int>& b) {        
+     [](vector<int>& a, vector<int>& b) {        
         return  TourUtils::getSubCharge(a) < TourUtils::getSubCharge(b);
     });
     
 }
 
 int TourRepairer::getHeaviestCustomer(vector<int> subtour,int id){
-    std::sort(subtour.begin(),subtour.end(),[this](int &a, int &b){
+    std::sort(subtour.begin(),subtour.end(),[](int &a, int &b){
         return getCustomerDemand(a) > getCustomerDemand(b);
     });
     int customerId=subtour[id];
     return customerId;
 }
 int TourRepairer::getLightestCustomer(vector<int> subtour){
-    std::sort(subtour.begin(),subtour.end(),[this](int &a, int &b){
+    std::sort(subtour.begin(),subtour.end(),[](int &a, int &b){
         return getCustomerDemand(a) < getCustomerDemand(b);
     });
     int customerId=subtour[0]; //Sempre pega o menor

@@ -35,7 +35,7 @@ void Extra::applyMutation(Population &pop){
 }
 
 void Extra::applyMutation(Tour& tour){
-    tour=Tour(Mutation().evaluateMutation(tour.getRoute()));
+    tour=Tour(Mutation::evaluateMutation(tour.getRoute()));
     applyRepair(tour);
 }
 
@@ -46,5 +46,5 @@ void Extra::applyRepair(Population& pop){
     pop.sortPop();
 }
 void Extra::applyRepair(Tour& tour){
-    tour=TourRepairer().repairTour(tour);
+    tour=TourRepairer::repairTour(tour);
 }
