@@ -43,7 +43,7 @@ int calcMnv(){
 double calcAlpha(){
     double divide=pow(((calcMnv()/2)*Globals::customerMap.getTruckCapacity()),2);
     divide=divide*(1/(double)Configs::maxIterations);
-    double alpha=(Configs::initialBest/divide);    
+    double alpha=(Fitness::initialBest/divide);    
     return alpha;
 }
 
@@ -57,7 +57,7 @@ double calcPenalty(vector<int>& tour){
         }
     }
     double alpha=calcAlpha();
-    double rate=((double)Configs::currentIteration/(double)Configs::maxIterations);
+    double rate=((double)Globals::currentIteration/(double)Configs::maxIterations);
     double penalty=rate*alpha*innerSum;
     return 1000*penalty;
 }

@@ -37,11 +37,11 @@ Population popGen(int popSize){
 }
 
 void initialPopApplyMutation(Population &pop){
-    double Rate= (double)Configs::InitialPopMutRate/(double)100;
+    double Rate= (double)MutationCtrl::InitialPopMutRate/(double)100;
     unsigned numIndivs=(pop.getPop().size()*Rate);
     //std::cout <<"Rate:"<<Rate<<std::endl;
     //std::cout <<"Num Indiv Mutate: "<<  numIndivs<<std::endl;
-    for(unsigned i=0;i<Configs::InitialPopmutIterations;i++){
+    for(unsigned i=0;i<MutationCtrl::InitialPopmutIterations;i++){
         for(unsigned i=0;i<numIndivs;i++){
             pop.getPop()[i]=TourRepairer().repairTour(pop.getPop()[i]);
         }
@@ -56,12 +56,12 @@ void initialPopApplyMutation(Population &pop){
     pop.sortPop();
 }
 void applyMutation(Population &pop){
-    double Rate=(double)Configs::mutationRate/(double)100;
+    double Rate=(double)MutationCtrl::mutationRate/(double)100;
     
     //std::cout<<"Rate::"<<Rate<<std::endl;
     unsigned numIndiv=pop.getPop().size()*Rate;
     //std::cout<<"Num Indiv Mutate: "<<numIndiv<<std::endl;
-    if(Configs::applyWorst){
+    if(MutationCtrl::applyWorst){
         for(unsigned i=pop.getPop().size()-1;i>(pop.getPop().size()-(numIndiv));i--){
             pop.getPop()[i]=Tour(Mutation().evaluateMutation(pop.getPop()[i].getRoute()));
              pop.getPop()[i]=TourRepairer().repairTour(pop.getPop()[i]);  
@@ -74,9 +74,9 @@ void applyMutation(Population &pop){
     }
 }
 void popReset(Population &pop){
-    int nToKeep =(int) (double)(pop.getPop().size()) * (double)(Configs::nBestToKeep/(double)100);
+    int nToKeep =(int) (double)(pop.getPop().size()) * (double)(ResetConfigs::nBestToKeep/(double)100);
     for(unsigned i=(nToKeep+1);i<pop.getPop().size();i++){
-        for(unsigned j=0;j<Configs::resetMutIterations;j++){
+        for(unsigned j=0;j<ResetConfigs::resetMutIterations;j++){
             pop.getPop()[i]=tourGen();
             pop.getPop()[i]=TourRepairer().repairTour(pop.getPop()[i]);
             pop.getPop()[i]=Mutation().evaluateMutation(pop.getPop()[i].getRoute());
@@ -124,6 +124,7 @@ void RunControl::initAlg(Population& pop) {
     pop = popGen(Configs::popSize);
 
     initialPopApplyMutation(pop);
+    Fitness::initialBest=pop.getPop()[0].getDist();
 }
 
 std::ofstream RunControl::initLogFile() {
@@ -155,8 +156,7 @@ void RunControl::printExecutionTime(std::ostream &out, double seconds) {
 
 bool RunControl::stopAlg(Population& pop) {
     // Colocar para validar o total a bestSolution com python
-    if(Configs::currentIteration < Configs::maxIterations) {
-
+    if(Globals::currentIteration < Configs::maxIterations) {
         return(true);
     } else {
         return(false);

@@ -80,8 +80,8 @@ int main(int argc, char *argv[]) {
     string path{args.getOption(PATH)};
     Configs::pathToFile = ((path.empty())? Configs::pathToFile : ((path[path.length()-1]=='/')?path : path+='/'));
     Configs::fitnessMode = ((args.getOption(FITNESS).empty())? Configs::fitnessMode : std::stoi(args.getOption(FITNESS)));
-    Configs::mutationRate = ((args.getOption(MUT_RATE).empty())? Configs::mutationRate : std::stoi(args.getOption(MUT_RATE)));
-    Configs::InitialPopmutIterations = ((args.getOption(INIT_MUT).empty())? Configs::InitialPopmutIterations : std::stoi(args.getOption(INIT_MUT)));
+    MutationCtrl::mutationRate = ((args.getOption(MUT_RATE).empty())? MutationCtrl::mutationRate : std::stoi(args.getOption(MUT_RATE)));
+    MutationCtrl::InitialPopmutIterations = ((args.getOption(INIT_MUT).empty())? MutationCtrl::InitialPopmutIterations : std::stoi(args.getOption(INIT_MUT)));
 
     startGA();
     return(0);
@@ -97,18 +97,18 @@ void startGA() {
 
     do{
         pair<int, int> bestSol{pop.getBestSolution()};
-        std::cout << "\nGeneration: " << Configs::currentIteration << "\n";
+        std::cout << "\nGeneration: " << Globals::currentIteration << "\n";
         std::cout << "\tBestSolution: " << bestSol.second << "\n\t" << (pop.getPop()[bestSol.first].isValid()?"Valid solution.":"Not a Valid solution.") << "\n\t" <<
         "SubTours used: " << pop.getPop()[bestSol.first].subToursUsed() << std::endl;
         cout << pop.getPop()[bestSol.first] << endl;
 
-        logFile << "\nGeneration: " << Configs::currentIteration << "\n";
+        logFile << "\nGeneration: " << Globals::currentIteration << "\n";
         logFile << "\tBestSolution: " << bestSol.second << "\n\t" << (pop.getPop()[bestSol.first].isValid()?"Valid solution.":"Not a Valid solution.") << "\n\t" <<
         "SubTours used: " << pop.getPop()[bestSol.first].subToursUsed() << std::endl;
 
         pop = newGeneration(pop);
         popReset(pop);
-        Configs::currentIteration++;
+        Globals::currentIteration++;
     } while(RunControl::stopAlg(pop));
 
 

@@ -8,22 +8,26 @@ unsigned Configs::truckNumber{0};
 unsigned Configs::popSize{0};
 unsigned Configs::runId{0};
 unsigned Configs::crossoverType{0};
-unsigned Configs::currentIteration{0};
+int Configs::fitnessMode{2};
 unsigned Configs::maxIterations{0};
- 
-int Configs::fitnessMode{1};
-double Configs::initialBest{0};
-
-unsigned Configs::InitialPopmutIterations{50};
-unsigned Configs::InitialPopMutRate{100};
-
-unsigned Configs::mutationRate{50};
-bool Configs::applyWorst{false};
-
-vector<Tour> Configs::mutationMaxedList;
-unsigned Configs::resetMutIterations{30};
-int Configs::nBestToKeep{5};
 
 /* Namespace Globals */
 CustomerMap Globals::customerMap{CustomerMap()};
 std::mt19937 Globals::urng;
+unsigned Globals::currentIteration{0};
+
+// Mutation Configs
+unsigned MutationCtrl::InitialPopmutIterations{50};
+unsigned MutationCtrl::InitialPopMutRate{100};
+unsigned MutationCtrl::mutationRate{50};
+bool MutationCtrl::applyWorst{false};
+
+//Mutation aux
+vector<Tour> MutationCtrl::mutationMaxedList;
+
+//Reset
+int ResetConfigs::nBestToKeep{5};
+unsigned ResetConfigs::resetMutIterations{30};
+
+//Fitness
+double Fitness::initialBest{0};

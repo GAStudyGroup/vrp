@@ -7,7 +7,7 @@
 #include "CustomerMap.hpp"
 #include "Tour.hpp"
 
-namespace Configs {
+namespace Configs{
     //Basic Settings of GA
     extern std::string file; 
     extern std::string pathToFile;
@@ -15,20 +15,20 @@ namespace Configs {
     extern unsigned truckNumber;
     //Size of the populations used
     extern unsigned popSize;
-    //Customer map to be used among the entire program
-    extern unsigned runId;
-    extern unsigned crossoverType;
-
-    //Fitness params
-    //Best of the first pop
-    extern double initialBest;
-    //Max number of iterations
-    extern unsigned maxIterations;
     //Fitness mode, value must be 1 or 2
     extern int fitnessMode;
-    //Iteration counter to be used by the fitness function
-    extern unsigned currentIteration;
+    extern unsigned runId;
+    extern unsigned crossoverType;    
+    //Max number of iterations
+    extern unsigned maxIterations;
+}
+
+namespace MutationCtrl{
     
+    //Mutation improvements settings
+    //Store tours that can't be improved anymore
+    extern vector<Tour> mutationMaxedList;
+
     //Initial population settings
     //Quantity of iterations to be realized on the initial population
     extern unsigned InitialPopmutIterations;
@@ -39,12 +39,10 @@ namespace Configs {
     //Amount of populations that will receive mutation
     extern unsigned mutationRate;
     //true applies mutation to the best, false applies mutation to the worst
-    extern bool applyWorst; 
+    extern bool applyWorst;     
+}
 
-    //Mutation improvements settings
-    //Store tours that can't be improved anymore
-    extern vector<Tour> mutationMaxedList;
-
+namespace ResetConfigs{
     //Reset Settings
     //Maintain the n best tours during reset
     extern int nBestToKeep;
@@ -52,13 +50,18 @@ namespace Configs {
     extern unsigned resetMutIterations;
 }
 
-namespace MutationCtrl {
-    // COLOQUE TUDO AQUI
+namespace Fitness{
+    //Fitness params
+    //Best of the first pop
+    extern double initialBest;
 }
+
 
 namespace Globals {
     extern CustomerMap customerMap;
     extern std::mt19937 urng;
+    //Iteration counter
+    extern unsigned currentIteration;
 }
 
 #endif

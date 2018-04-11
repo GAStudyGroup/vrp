@@ -1,0 +1,43 @@
+Run ID: 0
+Vehicle Routing Problem: P-n16-k8.vrp
+Configurations of run: 
+	Population Size: 15
+	Truck Number: 8
+	Max Iterations: 100
+
+Best Known solution: Implementar
+
+Generation: 0
+	BestSolution: 495
+	Valid solution.
+	SubTours used: 8
+
+Generation: 1
+	BestSolution: 486
+	Not a Valid solution.
+	SubTours used: 8
+
+Generation: 2
+	BestSolution: 479
+	Valid solution.
+	SubTours used: 8
+
+Generation: 3
+	BestSolution: 463
+	Valid solution.
+	SubTours used: 8
+
+Generation: 4
+	BestSolution: 450
+	Valid solution.
+	SubTours used: 8
+
+Generation: 5
+	BestSolution: 450
+	Valid solution.
+	SubTours used: 8
+
+Generation: 6
+	BestSolution: 450
+	Valid solution.
+	SubTours used: 8
