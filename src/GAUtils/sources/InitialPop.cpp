@@ -1,0 +1,56 @@
+#include <algorithm>
+
+#include "InitialPop.hpp"
+#include "Configs.hpp"
+#include "Mutation.hpp"
+#include "TourRepairer.hpp"
+
+void InitialPop::initialPopApplyMutation(Population &pop){
+    double Rate= (double)MutationCtrl::InitialPopMutRate/(double)100;
+    unsigned numIndivs=(pop.getPop().size()*Rate);
+    Mutation mut;
+    //std::cout <<"Rate:"<<Rate<<std::endl;
+    //std::cout <<"Num Indiv Mutate: "<<  numIndivs<<std::endl;
+    for(unsigned i=0;i<MutationCtrl::InitialPopmutIterations;i++){
+        for(unsigned i=0;i<numIndivs;i++){
+            pop.getPop()[i]=TourRepairer().repairTour(pop.getPop()[i]);
+        }
+        for(unsigned i=0;i<numIndivs;i++){
+            pop.getPop()[i]=Tour(mut.evaluateMutation((pop.getPop()[i].getRoute())));
+        }
+        for(unsigned i=0;i<numIndivs;i++){
+            pop.getPop()[i]=TourRepairer().repairTour(pop.getPop()[i]);
+        }
+        
+    }
+    pop.sortPop();
+}
+
+Population InitialPop::popGen(int popSize){
+    Population pop;
+    for(int x=0; x<popSize; x++){
+        Tour tour= Tour(tourGen());
+        pop.addNewTour(tour);
+    }
+    return (pop);
+}
+
+vector<int> InitialPop::tourGen(){
+    vector<int> tour;
+    int depotId=Globals::customerMap.getDepotId();
+
+        for(auto c : Globals::customerMap.getMap()){
+            if(c.getId() != depotId){
+                tour.push_back(c.getId());
+            }
+        }
+        std::shuffle(tour.begin(), tour.end(), Globals::urng);
+
+        unsigned tamGambi = tour.size() + Configs::truckNumber;
+        int i=0, backsGap = (tour.size()+1)/Configs::truckNumber;
+        while(tour.size() != tamGambi){
+            tour.insert(tour.begin()+i, depotId);
+            i+=backsGap+1;
+        }
+       return tour;
+}

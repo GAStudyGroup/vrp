@@ -1,23 +1,183 @@
 Run ID: 0
 Vehicle Routing Problem: E-n22-k4.vrp
 Configurations of run: 
-	Population Size: 50
-	Truck Number: 4
-	Max Iterations: 500
+	Population Size: 15
+	Truck Number: 8
+	Max Iterations: 150
 
 Best Known solution: Implementar
 
 Generation: 0
-	BestSolution: 375
+	BestSolution: 525
 	Valid solution.
-	SubTours used: 4
+	SubTours used: 5
 
 Generation: 1
-	BestSolution: 375
+	BestSolution: 524
+	Valid solution.
+	SubTours used: 5
+
+Generation: 2
+	BestSolution: 506
+	Valid solution.
+	SubTours used: 5
+
+Generation: 3
+	BestSolution: 494
+	Valid solution.
+	SubTours used: 5
+
+Generation: 4
+	BestSolution: 493
+	Valid solution.
+	SubTours used: 5
+
+Generation: 5
+	BestSolution: 485
+	Valid solution.
+	SubTours used: 5
+
+Generation: 6
+	BestSolution: 475
+	Valid solution.
+	SubTours used: 5
+
+Generation: 7
+	BestSolution: 470
 	Valid solution.
 	SubTours used: 4
 
-Generation: 2
-	BestSolution: 375
+Generation: 8
+	BestSolution: 469
+	Valid solution.
+	SubTours used: 4
+
+Generation: 9
+	BestSolution: 463
+	Valid solution.
+	SubTours used: 4
+
+Generation: 10
+	BestSolution: 462
+	Valid solution.
+	SubTours used: 4
+
+Generation: 11
+	BestSolution: 453
+	Valid solution.
+	SubTours used: 4
+
+Generation: 12
+	BestSolution: 452
+	Valid solution.
+	SubTours used: 4
+
+Generation: 13
+	BestSolution: 450
+	Valid solution.
+	SubTours used: 4
+
+Generation: 14
+	BestSolution: 442
+	Valid solution.
+	SubTours used: 4
+
+Generation: 15
+	BestSolution: 434
+	Valid solution.
+	SubTours used: 4
+
+Generation: 16
+	BestSolution: 432
+	Valid solution.
+	SubTours used: 4
+
+Generation: 17
+	BestSolution: 431
+	Valid solution.
+	SubTours used: 4
+
+Generation: 18
+	BestSolution: 413
+	Valid solution.
+	SubTours used: 4
+
+Generation: 19
+	BestSolution: 410
+	Valid solution.
+	SubTours used: 4
+
+Generation: 20
+	BestSolution: 409
+	Valid solution.
+	SubTours used: 4
+
+Generation: 21
+	BestSolution: 408
+	Valid solution.
+	SubTours used: 4
+
+Generation: 22
+	BestSolution: 404
+	Valid solution.
+	SubTours used: 4
+
+Generation: 23
+	BestSolution: 399
+	Valid solution.
+	SubTours used: 4
+
+Generation: 24
+	BestSolution: 397
+	Valid solution.
+	SubTours used: 4
+
+Generation: 25
+	BestSolution: 385
+	Valid solution.
+	SubTours used: 4
+
+Generation: 26
+	BestSolution: 383
+	Valid solution.
+	SubTours used: 4
+
+Generation: 27
+	BestSolution: 383
+	Valid solution.
+	SubTours used: 4
+
+Generation: 28
+	BestSolution: 383
+	Valid solution.
+	SubTours used: 4
+
+Generation: 29
+	BestSolution: 383
+	Valid solution.
+	SubTours used: 4
+
+Generation: 30
+	BestSolution: 383
+	Valid solution.
+	SubTours used: 4
+
+Generation: 31
+	BestSolution: 383
+	Valid solution.
+	SubTours used: 4
+
+Generation: 32
+	BestSolution: 383
+	Valid solution.
+	SubTours used: 4
+
+Generation: 33
+	BestSolution: 383
+	Valid solution.
+	SubTours used: 4
+
+Generation: 34
+	BestSolution: 383
 	Valid solution.
 	SubTours used: 4

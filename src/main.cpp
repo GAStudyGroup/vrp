@@ -107,10 +107,8 @@ void startGA() {
         "SubTours used: " << pop.getPop()[bestSol.first].subToursUsed() << std::endl;
 
         pop = newGeneration(pop);
-        popReset(pop);
         Globals::currentIteration++;
     } while(RunControl::stopAlg(pop));
-
 
     auto algFinish = std::chrono::high_resolution_clock::now();
     

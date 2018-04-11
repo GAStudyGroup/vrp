@@ -2,82 +2,27 @@
 #include "GAUtils.hpp"
 #include "Configs.hpp"
 #include "Mutation.hpp"
-#include "GPX2.hpp"
-#include "HamiltonianCycle.hpp"
 #include "TourRepairer.hpp"
 #include "ImportData.hpp"
 
-vector<int> tourGen(){
-    vector<int> tour;
-    int depotId=Globals::customerMap.getDepotId();
+#include "InitialPop.hpp"
+#include "Crossover.hpp"
 
-        for(auto c : Globals::customerMap.getMap()){
-            if(c.getId() != depotId){
-                tour.push_back(c.getId());
-            }
-        }
-        std::shuffle(tour.begin(), tour.end(), Globals::urng);
-
-        unsigned tamGambi = tour.size() + Configs::truckNumber;
-        int i=0, backsGap = (tour.size()+1)/Configs::truckNumber;
-        while(tour.size() != tamGambi){
-            tour.insert(tour.begin()+i, depotId);
-            i+=backsGap+1;
-        }
-       return tour;
-}
-
-Population popGen(int popSize){
-    Population pop;
-    for(int x=0; x<popSize; x++){
-        Tour tour= Tour(tourGen());
-        pop.addNewTour(tour);
-    }
-    return (pop);
-}
-
-void initialPopApplyMutation(Population &pop){
-    double Rate= (double)MutationCtrl::InitialPopMutRate/(double)100;
-    unsigned numIndivs=(pop.getPop().size()*Rate);
-    //std::cout <<"Rate:"<<Rate<<std::endl;
-    //std::cout <<"Num Indiv Mutate: "<<  numIndivs<<std::endl;
-    for(unsigned i=0;i<MutationCtrl::InitialPopmutIterations;i++){
-        for(unsigned i=0;i<numIndivs;i++){
-            pop.getPop()[i]=TourRepairer().repairTour(pop.getPop()[i]);
-        }
-        for(unsigned i=0;i<numIndivs;i++){
-            pop.getPop()[i]=Tour(Mutation().evaluateMutation((pop.getPop()[i].getRoute())));
-        }
-        for(unsigned i=0;i<numIndivs;i++){
-            pop.getPop()[i]=TourRepairer().repairTour(pop.getPop()[i]);
-        }
-        
+Population newGeneration(Population& pop){
+    Crossover::crossoverPopulation(pop);
+    for(auto tour:pop.getPop()){
+            tour=TourRepairer().repairTour(tour);
     }
     pop.sortPop();
-}
-void applyMutation(Population &pop){
-    double Rate=(double)MutationCtrl::mutationRate/(double)100;
-    
-    //std::cout<<"Rate::"<<Rate<<std::endl;
-    unsigned numIndiv=pop.getPop().size()*Rate;
-    //std::cout<<"Num Indiv Mutate: "<<numIndiv<<std::endl;
-    if(MutationCtrl::applyWorst){
-        for(unsigned i=pop.getPop().size()-1;i>(pop.getPop().size()-(numIndiv));i--){
-            pop.getPop()[i]=Tour(Mutation().evaluateMutation(pop.getPop()[i].getRoute()));
-             pop.getPop()[i]=TourRepairer().repairTour(pop.getPop()[i]);  
-        }
-    }else{
-        for(unsigned i=0;i<numIndiv;i++){
-            pop.getPop()[i]=Tour(Mutation().evaluateMutation(pop.getPop()[i].getRoute()));
-            pop.getPop()[i]=TourRepairer().repairTour(pop.getPop()[i]);  
-        }  
-    }
+    applyMutation(pop);  
+    popReset(pop);
+    return(pop);
 }
 void popReset(Population &pop){
     int nToKeep =(int) (double)(pop.getPop().size()) * (double)(ResetConfigs::nBestToKeep/(double)100);
     for(unsigned i=(nToKeep+1);i<pop.getPop().size();i++){
         for(unsigned j=0;j<ResetConfigs::resetMutIterations;j++){
-            pop.getPop()[i]=tourGen();
+            pop.getPop()[i]=InitialPop::tourGen();
             pop.getPop()[i]=TourRepairer().repairTour(pop.getPop()[i]);
             pop.getPop()[i]=Mutation().evaluateMutation(pop.getPop()[i].getRoute());
             pop.getPop()[i]=TourRepairer().repairTour(pop.getPop()[i]);
@@ -85,46 +30,35 @@ void popReset(Population &pop){
     }
     pop.sortPop();
 }
-Population newGeneration(Population& pop){
-    crossoverPopulation(pop);
-    pop.sortPop();
-    for(auto tour:pop.getPop()){
-            tour=TourRepairer().repairTour(tour);
+void applyMutation(Population &pop){
+    double Rate=(double)MutationCtrl::mutationRate/(double)100;
+    Mutation mut;
+    //std::cout<<"Rate::"<<Rate<<std::endl;
+    unsigned numIndiv=pop.getPop().size()*Rate;
+    //std::cout<<"Num Indiv Mutate: "<<numIndiv<<std::endl;
+    if(MutationCtrl::applyWorst){
+        for(unsigned i=pop.getPop().size()-1;i>(pop.getPop().size()-(numIndiv));i--){
+            pop.getPop()[i]=Tour(mut.evaluateMutation(pop.getPop()[i].getRoute()));
+             pop.getPop()[i]=TourRepairer().repairTour(pop.getPop()[i]);  
+        }
+    }else{
+        for(unsigned i=0;i<numIndiv;i++){
+            pop.getPop()[i]=Tour(mut.evaluateMutation(pop.getPop()[i].getRoute()));
+            pop.getPop()[i]=TourRepairer().repairTour(pop.getPop()[i]);  
+        }  
     }
     pop.sortPop();
-    applyMutation(pop);  
-    pop.sortPop();
-    return(pop);
 }
-
-Population crossoverPopulation(Population& pop){
-    unsigned size{(unsigned)pop.getPop().size()};
-    Population aux;
-
-    for(unsigned i=0; i<size; i++){
-        Tour auxT{crossover(pop.getPop()[i], pop.getPop()[(i+1)%size])};
-        aux.addNewTour(auxT);
-    }
-    return(aux);
-}
-
-Tour crossover(Tour& red, Tour& blue){
-    HamiltonianCycle::parentsHamiltonian parents{HamiltonianCycle::toHamiltonianCycle(red, blue)};
-    Tour offspring{GPX2::crossover(parents.first, parents.second)};
-    return(offspring);
-}
-
 
 /* Run control */
 void RunControl::initAlg(Population& pop) {
+    //Setting the data
     ImportData vrpFile(Configs::pathToFile+Configs::file);
-
     Globals::customerMap = CustomerMap(vrpFile.getCustomerList(), vrpFile.getCapacity());
-
-    pop = popGen(Configs::popSize);
-
-    initialPopApplyMutation(pop);
-    Fitness::initialBest=pop.getPop()[0].getDist();
+    //Generates a random pop and applies mutation
+    pop = InitialPop::popGen(Configs::popSize);
+    InitialPop::initialPopApplyMutation(pop);
+    Fitness::initialBest=pop.getBestSolution().second;
 }
 
 std::ofstream RunControl::initLogFile() {
