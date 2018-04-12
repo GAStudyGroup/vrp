@@ -9,15 +9,20 @@
 
 namespace Configs{
     //Basic Settings of GA
+
+    //Name of file .vrp
     extern std::string file; 
+    //Path to the folder where the file is (if have)
     extern std::string pathToFile;
     //Truck number to be used
     extern unsigned truckNumber;
-    //Size of the populations used
+    //Size of the population
     extern unsigned popSize;
     //Fitness mode, value must be 1 or 2
     extern int fitnessMode;
+    //Run id, used to Log
     extern unsigned runId;
+    //Type of crossover, 1 or 2
     extern unsigned crossoverType;    
     //Max number of iterations
     extern unsigned maxIterations;

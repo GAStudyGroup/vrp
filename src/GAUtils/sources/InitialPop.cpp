@@ -40,21 +40,35 @@ Population InitialPop::popGen(int popSize){
 }
 
 vector<int> InitialPop::tourGen(){
+    // vector<int> tour;
+    // int depotId=Globals::customerMap.getDepotId();
+
+    // for(auto c : Globals::customerMap.getMap()){
+    //     if(c.getId() != depotId){
+    //         tour.push_back(c.getId());
+    //     }
+    // }
+    // std::shuffle(tour.begin(), tour.end(), Globals::urng);
+
+    // unsigned tamGambi = tour.size() + Configs::truckNumber;
+    // int i=0, backsGap = (tour.size()+1)/Configs::truckNumber;
+    // while(tour.size() != tamGambi){
+    //     tour.insert(tour.begin()+i, depotId);
+    //     i+=backsGap+1;
+    // }
+    // return tour;  
+    int depotId{Globals::customerMap.getDepotId()};
     vector<int> tour;
-    int depotId=Globals::customerMap.getDepotId();
 
-        for(auto c : Globals::customerMap.getMap()){
-            if(c.getId() != depotId){
-                tour.push_back(c.getId());
-            }
+    for(Customer c : Globals::customerMap.getMap()) {
+        if(c.getId() != depotId){
+            tour.push_back(c.getId());
         }
-        std::shuffle(tour.begin(), tour.end(), Globals::urng);
-
-        unsigned tamGambi = tour.size() + Configs::truckNumber;
-        int i=0, backsGap = (tour.size()+1)/Configs::truckNumber;
-        while(tour.size() != tamGambi){
-            tour.insert(tour.begin()+i, depotId);
-            i+=backsGap+1;
-        }
-       return tour;
+    }
+    //std::shuffle(tour.begin(), tour.end(), Globals::urng);
+    for(int i{0}; i<Configs::truckNumber; i++) {
+        tour.push_back(depotId);
+    }
+    std::shuffle(tour.begin(), tour.end(), Globals::urng);
+    return(tour); 
 }
