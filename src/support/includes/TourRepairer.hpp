@@ -4,7 +4,7 @@
 #include <vector>
 #include "Tour.hpp"
 using std::vector;
-class TourRepairer{
+namespace TourRepairer{
     //Step 1- Find the overloaded tours
     //Step 2- Find the customer whom demands the most
     //Step 3- Move this customer to the tour with less load
@@ -13,10 +13,7 @@ class TourRepairer{
 
     //Colocar para não alterar caso for estourar
     //Encontrar um modo em que todos os subtour sejam válidos
-    public:
     Tour repairTour(Tour&);
-    
-    private:
     vector<vector<int>> splitSubTours(vector<int>&);
     void printSubtours(vector<vector<int>>&);
     int findLastDepotPosition(vector<int>&tour);

@@ -26,16 +26,9 @@ void Population::sortPop(){
     });
 }
 
-std::pair<int, int> Population::getBestSolution() {
-    int bestDist{std::numeric_limits<int>::max()}, bestPos{0};
-    int size{(int)pop.size()};
-
-    for(int i{0}; i<size; i++) {
-        int dist{(int)pop[i].getDist()};
-        if(dist < bestDist) {
-            bestDist = dist;
-            bestPos = i; 
-        }
-    }
-    return(std::make_pair(bestPos, bestDist));
+Tour Population::getBestSolution() {
+    Tour best=*std::min_element(this->getPop().begin(),this->getPop().end(),[](auto &a, auto &b){
+        return a.getDist() < b.getDist();
+    });
+    return best;
 }

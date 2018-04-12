@@ -6,11 +6,9 @@
 
 using std::vector;
 using std::pair;
-class Mutation{
-public:
+namespace Mutation{
     vector<int> evaluateMutation(vector<int>);
     bool validateTour(vector<int>,int,int);
-private:
     //If the node is a client, remove it then insert it after the next
     pair<vector<int>,bool> firstMove(vector<int>, int,int);
     //Second and third moves move: If u and x are clients, remove them then insert (u; x) after v

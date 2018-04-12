@@ -22,7 +22,7 @@ public:
     vector<Tour>& getPop();
     void sortPop();
 
-    std::pair<int, int> getBestSolution();
+    Tour getBestSolution();
 private:
     vector<Tour> pop;
 
