@@ -117,10 +117,15 @@ void startGA() {
         Globals::currentIteration++;
     } while(RunControl::stopAlg(pop));
 
+    printGenInfo(std::cout, pop);
+    printGenInfo(logFile, pop);
+
     auto algFinish = std::chrono::high_resolution_clock::now();
     RunControl::printExecutionTime(logFile, std::chrono::duration<double> (algFinish - algStart).count());
+    RunControl::printExecutionTime(std::cout, std::chrono::duration<double> (algFinish - algStart).count());
 
     Tour best{pop.getBestSolution()};
+    RunControl::printFooter(std::cout, best);
     RunControl::printFooter(logFile, best);
 
     logFile.close();
