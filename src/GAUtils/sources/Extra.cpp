@@ -7,7 +7,9 @@
 
 void Extra::popReset(Population &pop){
     unsigned size{(unsigned) pop.getPop().size()};
-    int nToKeep =(int) (double)(pop.getPop().size()) * (double)(ResetConfigs::nBestToKeep/(double)100);
+    /* int nToKeep =(int) (double)(pop.getPop().size()) * (double)(ResetConfigs::nBestToKeep/(double)100); */
+    unsigned nToKeep{(unsigned)std::round(((size)*ResetConfigs::nBestToKeep)/100)};
+    std::cout << "NToKeep " << nToKeep << std::endl;  
 
     Population aux;
     aux.getPop().insert(aux.getPop().end(), pop.getPop().begin(), pop.getPop().begin()+nToKeep);
@@ -56,7 +58,6 @@ void Extra::applyRepair(Tour& tour){
 
 void Extra::applyOptInSubs(Tour& t) {
     int depotId{Globals::customerMap.getDepotId()};
-    int in{t.getDist()};
     int empty{t.getEmptySubtoursNumber()};
     vector<vector<int>> subTours{t.explodeSubTours()};
     vector<int> newT;

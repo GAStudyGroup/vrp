@@ -28,7 +28,7 @@ bool MutationCtrl::applyWorst{false};
 vector<Tour> MutationCtrl::mutationMaxedList;
 
 //Reset
-int ResetConfigs::nBestToKeep{5};
+int ResetConfigs::nBestToKeep{10};
 unsigned ResetConfigs::resetMutIterations{30};
 
 //Fitness
