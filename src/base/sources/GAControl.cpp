@@ -13,9 +13,11 @@ Population GenerationCtrl::newGeneration(Population& pop){
     Extra::applyRepair(pop);
     Extra::applyMutation(pop);  
     Extra::applyCombined(pop);
+    Extra::applyOptInPop(pop);
     Extra::popReset(pop);  
     Extra::applyMutation(pop);
     Extra::applyCombined(pop);
+    Extra::applyOptInPop(pop);
     return(pop);
 }
 

@@ -18,6 +18,7 @@ namespace Extra{
     void applyCombined(Tour&);
     void applyCombined(Population&);
 
+    void applyOptInPop(Population&);
     void applyOptInSubs(Tour&);
 }
 #endif

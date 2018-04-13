@@ -6,7 +6,7 @@
 #include "Opt.hpp"
 
 
-void Extra::popReset(Population &pop){ // OLD
+/* void Extra::popReset(Population &pop){ // OLD
     unsigned size{(unsigned) pop.getPop().size()};
     unsigned nToKeep{(unsigned)std::round(((size)*ResetConfigs::nBestToKeep)/100)};
     // std::cout << "NToKeep " << nToKeep << std::endl;  
@@ -25,9 +25,9 @@ void Extra::popReset(Population &pop){ // OLD
     }
     pop = aux;
     pop.sortPop();
-}
+}*/
 
-/* void Extra::popReset(Population &pop){ // NEW
+void Extra::popReset(Population &pop){ // NEW
     unsigned size{(unsigned) pop.getPop().size()};
     unsigned nToKeep{(unsigned)std::round(((size)*ResetConfigs::nBestToKeep)/100)};
 
@@ -50,7 +50,7 @@ void Extra::popReset(Population &pop){ // OLD
     }
     pop = aux;
     pop.sortPop();
-} */
+}
 
 void Extra::applyMutation(Population &pop){
     double Rate=(double)MutationCtrl::mutationRate/(double)100;
@@ -100,22 +100,34 @@ void Extra::applyCombined(Population& pop){
     applyRepair(pop);
     applyRepairV4(pop);
 }
+
+
+void Extra::applyOptInPop(Population& pop) {
+    for(Tour &t : pop.getPop()) {
+        applyOptInSubs(t);
+    }
+    pop.sortPop();
+}
 void Extra::applyOptInSubs(Tour& t) {
+    // Execute the 2-opt in each subtour, do not destroy limit of charge and improve the customer distribution  
     int depotId{Globals::customerMap.getDepotId()};
     int empty{t.getEmptySubtoursNumber()};
     vector<vector<int>> subTours{t.explodeSubTours()};
     vector<int> newT;
     newT.reserve(t.getRoute().size());
 
+    // Run optimize and save results
     for(vector<int> &subT : subTours) {
         subT = Opt::optimize(subT);
     }
 
+    // Insert the new subtours in a New tour
     for(vector<int> subT : subTours) {
         newT.push_back(depotId);
         newT.insert(newT.end(), subT.begin(), subT.end());
     }
 
+    // Load the new tour with empty routes of old tour
     while(empty > 0) {
         newT.push_back(depotId);
         empty--;
