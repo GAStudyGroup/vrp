@@ -19,7 +19,7 @@ namespace TourRepairer{
     int findLastDepotPosition(vector<int>&tour);
     vector<int> tourRebuilder(vector<vector<int>>&tour);
     vector<int> getOverloadedSubs(vector<vector<int>>&);
-    int getHeaviestCustomer(vector<int>,int id);
+    int getHeaviestCustomer(vector<int>);
     int getLightestCustomer(vector<int>);
     void sortSubsByCharge(vector<vector<int>>&);
     void changeCustomers(vector<vector<int>>&);
@@ -29,5 +29,9 @@ namespace TourRepairer{
     void changeHeaviestCustomers(vector<vector<int>>&);
     void changeLightestCustomers(vector<vector<int>>&);
     int checkBestPosition(vector<int>,int);
+
+    void changeHeaviestCustomersV4(vector<vector<int>>&);
+    void changeLightestCustomersV4(vector<vector<int>>& subtours);
+    std::pair<int,vector<int>> getBestPossibleTour(vector<std::pair<int,vector<int>>>);
 };
 #endif 
