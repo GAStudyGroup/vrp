@@ -12,7 +12,9 @@ Population GenerationCtrl::newGeneration(Population& pop){
     Crossover::crossoverPopulation(pop);
     Extra::applyRepair(pop);
     Extra::applyMutation(pop);  
-    Extra::popReset(pop);    
+    Extra::applyCombined(pop);
+    Extra::popReset(pop);  
+    Extra::applyMutation(pop);
     return(pop);
 }
 

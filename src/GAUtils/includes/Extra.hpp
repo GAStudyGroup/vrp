@@ -15,6 +15,9 @@ namespace Extra{
     void applyRepairV4(Tour&);
     void applyRepairV4(Population&);
 
+    void applyCombined(Tour&);
+    void applyCombined(Population&);
+
     void applyOptInSubs(Tour&);
 }
 #endif
