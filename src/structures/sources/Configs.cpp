@@ -17,6 +17,7 @@ unsigned Configs::logMethod{0};
 CustomerMap Globals::customerMap{CustomerMap()};
 std::mt19937 Globals::urng;
 unsigned Globals::currentIteration{0};
+std::ofstream* Globals::debugLogFile;
 
 // Mutation Configs
 unsigned MutationCtrl::InitialPopmutIterations{6};

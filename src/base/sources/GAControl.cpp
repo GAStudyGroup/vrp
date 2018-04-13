@@ -9,15 +9,44 @@
 #include "Extra.hpp"
 
 Population GenerationCtrl::newGeneration(Population& pop){
+    *Globals::debugLogFile << "NewGen Start: " << pop.getBestSolution().getDist() << " isValid: " << pop.getBestSolution().isValid() << std::endl;
+
     Crossover::crossoverPopulation(pop);
+
+    *Globals::debugLogFile << "After GPX: " << pop.getBestSolution().getDist() << " isValid: " << pop.getBestSolution().isValid() << std::endl;
+
     Extra::applyRepair(pop);
-    Extra::applyMutation(pop);  
+
+    *Globals::debugLogFile << "After Repair: " << pop.getBestSolution().getDist() << " isValid: " << pop.getBestSolution().isValid() << std::endl;
+
+    Extra::applyMutation(pop); 
+
+    *Globals::debugLogFile << "After Mutation: " << pop.getBestSolution().getDist() << " isValid: " << pop.getBestSolution().isValid() << std::endl; 
+
     Extra::applyCombined(pop);
+
+    *Globals::debugLogFile << "After Combined: " << pop.getBestSolution().getDist() << " isValid: " << pop.getBestSolution().isValid() << std::endl;
+    
     Extra::applyOptInPop(pop);
-    Extra::popReset(pop);  
+
+    *Globals::debugLogFile << "After OptInPop: " << pop.getBestSolution().getDist() << " isValid: " << pop.getBestSolution().isValid() << std::endl;
+
+    Extra::popReset(pop);
+
+    *Globals::debugLogFile << "After Reset: " << pop.getBestSolution().getDist() << " isValid: " << pop.getBestSolution().isValid() << std::endl;  
+    
     Extra::applyMutation(pop);
+
+    *Globals::debugLogFile << "After Reset-Mutation: " << pop.getBestSolution().getDist() << " isValid: " << pop.getBestSolution().isValid() << std::endl;
+
     Extra::applyCombined(pop);
+
+    *Globals::debugLogFile << "After Reset-Combined: " << pop.getBestSolution().getDist() << " isValid: " << pop.getBestSolution().isValid() << std::endl;
+
     Extra::applyOptInPop(pop);
+
+    *Globals::debugLogFile << "After Reset-optPop: " << pop.getBestSolution().getDist() <<" isValid: " << pop.getBestSolution().isValid() <<  std::endl << std::endl << std::endl;
+
     return(pop);
 }
 
@@ -38,7 +67,8 @@ std::ofstream RunControl::initLogFile() {
     } else {
         fileName = "log/"+Configs::file+"/"+Configs::file+"_Run_"+ std::to_string(Configs::runId) +"_Cross_"+ std::to_string(Configs::crossoverType) +"_Fitness_" + std::to_string(Configs::fitnessMode) +".log";
     }
-
+    
+    Globals::debugLogFile = new std::ofstream(fileName+".debug.log");
     std::ofstream logFile(fileName);
     if(!logFile.is_open()){
         std::cout << "Error openning log File: " << fileName <<std::endl;

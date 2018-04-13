@@ -33,7 +33,6 @@ void Extra::popReset(Population &pop){ // NEW
 
     Population aux;
     aux.getPop().insert(aux.getPop().end(), pop.getPop().begin(), pop.getPop().begin()+nToKeep);
-
     for(unsigned i{nToKeep}; i<size; i++) {
         Tour t{InitialPop::tourGen()};
         //std::cout << "==================== Gerado:======================== \n" << t << std::endl;

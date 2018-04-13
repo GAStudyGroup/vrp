@@ -71,6 +71,8 @@ namespace Globals {
     extern std::mt19937 urng;
     //Iteration counter
     extern unsigned currentIteration;
+
+    extern std::ofstream* debugLogFile;
 }
 
 #endif
