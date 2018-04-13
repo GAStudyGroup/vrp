@@ -13,27 +13,28 @@ namespace TourRepairer{
 
     //Colocar para não alterar caso for estourar
     //Encontrar um modo em que todos os subtour sejam válidos
-    Tour repairTour(Tour&);
+    Tour repairTourV3(Tour&);
+    Tour repairTourV4(Tour&);
+    
     vector<vector<int>> splitSubTours(vector<int>&);
     void printSubtours(vector<vector<int>>&);
-    int findLastDepotPosition(vector<int>&tour);
     vector<int> tourRebuilder(vector<vector<int>>&tour);
     vector<int> getOverloadedSubs(vector<vector<int>>&);
+
     int getHeaviestCustomer(vector<int>);
     int getLightestCustomer(vector<int>);
+
     void sortSubsByCharge(vector<vector<int>>&);
+
     void changeCustomers(vector<vector<int>>&);
+    void changeCustomersV4(vector<vector<int>>&subtours);
+    
     void eraseElement(vector<int>&,int);
     bool willOverload(vector<int>&, int);
     int getCustomerDemand(int);
-    //void changeHeaviestCustomers(vector<vector<int>>&);
-    //void changeLightestCustomers(vector<vector<int>>&);
     int checkBestPosition(vector<int>,int);
-    //void changeHeaviestCustomersV4(vector<vector<int>>&);
-    //void changeLightestCustomersV4(vector<vector<int>>& subtours);
     std::pair<int,vector<int>> getBestPossibleTour(vector<std::pair<int,vector<int>>>);
 
-    //functional
     void changeCustomersMachineV4(vector<vector<int>>&, int (vector<int>));
     void changeCustomersMachine(vector<vector<int>>&, int (vector<int>));
 };
