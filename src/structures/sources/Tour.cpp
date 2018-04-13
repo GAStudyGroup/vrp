@@ -43,10 +43,10 @@ double Tour::getFitness()
 { 
     switch (Configs::fitnessMode){
         case 1:
-            return ourFitness(route);
+            return OurFitness::ourFitness(route);
         break;
         case 2:
-            return advancedFitness(route);
+            return AdvancedFitness::advancedFitness(route);
         break;
         case 3:
             return 2000*1/this->getDist();
