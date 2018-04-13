@@ -11,10 +11,10 @@ using std::string;
 #include "Population.hpp"
 
 //Teste
-#include "Tour.hpp"
-#include "Extra.hpp"
-#include "InitialPop.hpp"
-#include "ImportData.hpp"
+// #include "Tour.hpp"
+// #include "Extra.hpp"
+// #include "InitialPop.hpp"
+// #include "ImportData.hpp"
 void startGA();
 void printGenInfo(std::ostream&, Population&);
 void setParams(Arg&);
@@ -62,10 +62,10 @@ string LOG{"log"};
 //     Globals::customerMap= CustomerMap(file.getCustomerList(),file.getCapacity());
 //     Configs::truckNumber=12;
 
-//     /*Tour tour = InitialPop::tourGen();
+//     Tour tour = InitialPop::tourGen();
 //     cout <<tour<<endl;
 //     Extra::applyRepair(tour);
-//     cout <<tour<<endl;*/
+//     cout <<tour<<endl;
 // }
 
 int main(int argc, char *argv[]) {

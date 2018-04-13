@@ -26,12 +26,15 @@ namespace TourRepairer{
     void eraseElement(vector<int>&,int);
     bool willOverload(vector<int>&, int);
     int getCustomerDemand(int);
-    void changeHeaviestCustomers(vector<vector<int>>&);
-    void changeLightestCustomers(vector<vector<int>>&);
+    //void changeHeaviestCustomers(vector<vector<int>>&);
+    //void changeLightestCustomers(vector<vector<int>>&);
     int checkBestPosition(vector<int>,int);
-
-    void changeHeaviestCustomersV4(vector<vector<int>>&);
-    void changeLightestCustomersV4(vector<vector<int>>& subtours);
+    //void changeHeaviestCustomersV4(vector<vector<int>>&);
+    //void changeLightestCustomersV4(vector<vector<int>>& subtours);
     std::pair<int,vector<int>> getBestPossibleTour(vector<std::pair<int,vector<int>>>);
+
+    //functional
+    void changeCustomersMachineV4(vector<vector<int>>&, int (vector<int>));
+    void changeCustomersMachine(vector<vector<int>>&, int (vector<int>));
 };
 #endif 
