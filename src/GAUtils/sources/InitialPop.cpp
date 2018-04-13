@@ -23,11 +23,10 @@ void InitialPop::initialPopApplyMutation(Population &pop){
             Extra::applyMutation(pop.getPop()[i]);
         }
         for(unsigned i=0;i<numIndivs;i++){
-           Extra::applyRepair(pop.getPop()[i]);
+           Extra::applyRepairV4(pop.getPop()[i]);
         }
         
     }
-    pop.sortPop();
 }
 
 Population InitialPop::popGen(int popSize){
@@ -38,6 +37,7 @@ Population InitialPop::popGen(int popSize){
         // Extra::applyOptInSubs(tour);
         pop.addNewTour(tour);
     }
+    pop.sortPop();
     return (pop);
 }
 

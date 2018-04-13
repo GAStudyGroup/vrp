@@ -19,7 +19,7 @@ std::mt19937 Globals::urng;
 unsigned Globals::currentIteration{0};
 
 // Mutation Configs
-unsigned MutationCtrl::InitialPopmutIterations{50};
+unsigned MutationCtrl::InitialPopmutIterations{6};
 unsigned MutationCtrl::InitialPopMutRate{100};
 unsigned MutationCtrl::mutationRate{50};
 bool MutationCtrl::applyWorst{false};
