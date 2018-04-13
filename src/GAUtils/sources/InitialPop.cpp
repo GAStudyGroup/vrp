@@ -66,7 +66,7 @@ vector<int> InitialPop::tourGen(){
         }
     }
     //std::shuffle(tour.begin(), tour.end(), Globals::urng);
-    for(int i{0}; i<Configs::truckNumber; i++) {
+    for(unsigned i{0}; i<Configs::truckNumber; i++) {
         tour.push_back(depotId);
     }
     std::shuffle(tour.begin(), tour.end(), Globals::urng);

@@ -67,29 +67,17 @@ double Tour::getDist(){
 }
 
 ostream& operator<<(ostream& output, Tour& t)
-{ // Overload de operador para impressão da população
-    output<<"Tour: \n";
-    for (int c : t.getRoute()) {
-        output << c -1<< " " ;
+{
+    output<<"Tour " << (t.isValid()?"VALID" : "NOT VALID") <<"\n";
+    vector<vector<int>> subtours{t.explodeSubTours()};
+
+    for(unsigned i{0}; i<subtours.size(); i++){
+        output << "Route #" << i+1 << ": "; 
+        for(auto customer:subtours[i]){
+            output << customer-1 <<" ";
+        }output<<"\n";
     }
-     output << "\nFitness: " << t.getFitness();
-     output << "\nDistance: "<<t.getDist();
-    //  output << "\nCharges:";
-    //  for(auto charge:getAllCharges(t.getRoute())){
-    //       output<<" "<<charge;
-    // }
-    output<<"\nSubtours: \n";
-    for(auto subtour: t.explodeSubTours()){
-        output<< "| ";
-        for(auto customer:subtour){
-            output<< customer -1 <<" ";
-        }
-        output<<"| Charge:" << TourUtils::getSubCharge(subtour) << " ";
-        output<<((TourUtils::getSubCharge(subtour)>Globals::customerMap.getTruckCapacity())?"Estourou":" ");
-        output<<endl;
-    }
-    output<< "\nSize:"<< t.getRoute().size();
-    output<<"\n";
+    output<<"Cost: " << t.getDist() <<endl;
     return (output);
 }
 

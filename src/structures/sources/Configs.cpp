@@ -10,6 +10,7 @@ unsigned Configs::runId{0};
 unsigned Configs::crossoverType{0};
 int Configs::fitnessMode{2};
 unsigned Configs::maxIterations{0};
+unsigned Configs::optimalValue{0};
 
 /* Namespace Globals */
 CustomerMap Globals::customerMap{CustomerMap()};

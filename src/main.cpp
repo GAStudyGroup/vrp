@@ -14,7 +14,6 @@ void startGA();
 void printGenInfo(std::ostream&, Population&);
 void setParams(Arg&);
 
-
 /* 
     Arguments configuration
 
@@ -31,6 +30,7 @@ void setParams(Arg&);
         4. -fit         "Type of fitness"
         5. -mrate       "Rate of Mutation"
         6. -initm       "Initial Mutation Iterations"
+        7. -opt         "Optimal distance value known (if setted will stop arg when the value is reached)"
 */
 
 /* Global params code */
@@ -46,6 +46,7 @@ string PATH{"path"};
 string FITNESS{"fit"};
 string MUT_RATE{"mrate"};
 string INIT_MUT{"initm"};
+string OPT{"opt"};
 
 int main(int argc, char *argv[]) {
     std::random_device rng;
@@ -63,6 +64,7 @@ int main(int argc, char *argv[]) {
     args.newArgument(FITNESS, false);
     args.newArgument(MUT_RATE, false);
     args.newArgument(INIT_MUT, false);
+    args.newArgument(OPT, false);
 
 
     try {
@@ -96,8 +98,11 @@ void startGA() {
     } while(RunControl::stopAlg(pop));
 
     auto algFinish = std::chrono::high_resolution_clock::now();
-    
     RunControl::printExecutionTime(logFile, std::chrono::duration<double> (algFinish - algStart).count());
+    
+    Tour best{pop.getBestSolution()};
+    RunControl::printFooter(logFile, best);
+
     logFile.close();
 }
 
@@ -121,6 +126,7 @@ void setParams(Arg& args) {
     string path{args.getOption(PATH)};
     Configs::pathToFile = ((path.empty())? Configs::pathToFile : ((path[path.length()-1]=='/')?path : path+='/'));
     Configs::fitnessMode = ((args.getOption(FITNESS).empty())? Configs::fitnessMode : std::stoi(args.getOption(FITNESS)));
+    Configs::optimalValue = ((args.getOption(OPT).empty())? Configs::optimalValue : std::stoi(args.getOption(OPT)));
     MutationCtrl::mutationRate = ((args.getOption(MUT_RATE).empty())? MutationCtrl::mutationRate : std::stoi(args.getOption(MUT_RATE)));
     MutationCtrl::InitialPopmutIterations = ((args.getOption(INIT_MUT).empty())? MutationCtrl::InitialPopmutIterations : std::stoi(args.getOption(INIT_MUT)));
 }

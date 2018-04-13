@@ -19,6 +19,7 @@ namespace RunControl {
     std::ofstream initLogFile();
     void printHeader(std::ostream&);
     void printExecutionTime(std::ostream&, double);
+    void printFooter(std::ostream&, Tour&);
     bool stopAlg(Population&);
 }
 

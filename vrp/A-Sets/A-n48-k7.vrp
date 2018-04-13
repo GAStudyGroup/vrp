@@ -1,5 +1,5 @@
 NAME : A-n48-k7
-COMMENT : (Augerat et al, Min no of trucks: 7, Best value: 1073)
+COMMENT : (Augerat et al, No of trucks: 7, Optimal value: 1073)
 TYPE : CVRP
 DIMENSION : 48
 EDGE_WEIGHT_TYPE : EUC_2D 

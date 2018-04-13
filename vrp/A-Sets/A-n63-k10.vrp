@@ -1,5 +1,5 @@
 NAME : A-n63-k10
-COMMENT : (Augerat et al, Min no of trucks: 10, Best value: 1315)
+COMMENT : (Augerat et al, No of trucks: 10, Optimal value: 1314)
 TYPE : CVRP
 DIMENSION : 63
 EDGE_WEIGHT_TYPE : EUC_2D 

@@ -19,7 +19,7 @@ Population GenerationCtrl::newGeneration(Population& pop){
 /* Run control */
 void RunControl::initAlg(Population& pop) {
     //Setting the data
-    ImportData vrpFile(Configs::pathToFile+Configs::file);
+    ImportData vrpFile(Configs::pathToFile+Configs::file+".vrp");
     Globals::customerMap = CustomerMap(vrpFile.getCustomerList(), vrpFile.getCapacity());
     //Generates a random pop and applies mutation
     pop = InitialPop::InitialPopByMutation(Configs::popSize);
@@ -40,21 +40,53 @@ std::ofstream RunControl::initLogFile() {
 void RunControl::printHeader(std::ostream &out) {
     out << "Run ID: " << Configs::runId<<"\n";
     out << "Vehicle Routing Problem: " << Configs::file << "\n";
-    out << "Configurations of run: \n" << "\tPopulation Size: " << Configs::popSize << "\n";
-    out << "\tTruck Number: " << Configs::truckNumber << "\n\tMax Iterations: " << Configs::maxIterations << "\n";
+    out << "Best Known solution: " << ((Configs::optimalValue!=0)?Configs::optimalValue+"" : "Not founded in file") << "\n\n";
 
-    out << "\nBest Known solution: " << "Implementar" << std::endl;
+    out << "Configurations of run";
+    out << "\n\tPopulation Size: " << Configs::popSize;
+    out << "\n\tTruck Number: " << Configs::truckNumber;
+    out << "\n\tMax Iterations: " << Configs::maxIterations;
+
+    out << "\n\tGA Configurations";
+    out << "\n\t\tFitness Mode: " << Configs::fitnessMode;
+    out << "\n\t\tCrossover Method: " << Configs::crossoverType;
+
+    out << "\n\tMutation Configurations";
+    out << "\n\t\tInitial Pop Iterations: " << MutationCtrl::InitialPopmutIterations;
+    out << "\n\t\tGeneral Rate: " << MutationCtrl::mutationRate <<"%";
+
+    out << "\n" << std::endl;
+}
+
+void RunControl::printFooter(std::ostream& out, Tour& t) {
+    out << "\n\nBest Solution Known\n";
+
+    std::ifstream solFile{Configs::pathToFile+Configs::file+".sol"};
+    string output;
+    if(!solFile.is_open()) { exit(0); }
+
+    while(getline(solFile, output)) { 
+        out << output << "\n";
+    }
+
+    out << "\n\nAlgorithm solution founded\n";
+    out << t;
+    solFile.close();
 }
 
 void RunControl::printExecutionTime(std::ostream &out, double seconds) {
-    out << "Execution time: ";
+    out << "\n\nExecution time: ";
     out << "\n\t" << seconds << " seconds.";
     out << "\n\t" << ((int)(seconds/60)) << ":" << ((int)seconds%60) << " minutes.";
     out << std::endl;
 }
 
 bool RunControl::stopAlg(Population& pop) {
-    // Colocar para validar o total a bestSolution com python
+    if(Configs::optimalValue != 0) {
+        if(pop.getBestSolution().getDist() <= Configs::optimalValue) {
+            return(false);
+        }
+    }
     if(Globals::currentIteration < Configs::maxIterations) {
         return(true);
     } else {

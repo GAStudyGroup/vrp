@@ -7,7 +7,7 @@
 #include "CustomerMap.hpp"
 #include "Tour.hpp"
 
-namespace Configs{
+namespace Configs {
     //Basic Settings of GA
 
     //Name of file .vrp
@@ -26,9 +26,11 @@ namespace Configs{
     extern unsigned crossoverType;    
     //Max number of iterations
     extern unsigned maxIterations;
+    //Best known solution
+    extern unsigned optimalValue;
 }
 
-namespace MutationCtrl{
+namespace MutationCtrl {
     
     //Mutation improvements settings
     //Store tours that can't be improved anymore
@@ -47,7 +49,7 @@ namespace MutationCtrl{
     extern bool applyWorst;     
 }
 
-namespace ResetConfigs{
+namespace ResetConfigs {
     //Reset Settings
     //Maintain the n best tours during reset
     extern int nBestToKeep;
@@ -55,7 +57,7 @@ namespace ResetConfigs{
     extern unsigned resetMutIterations;
 }
 
-namespace Fitness{
+namespace Fitness {
     //Fitness params
     //Best of the first pop
     extern double initialBest;

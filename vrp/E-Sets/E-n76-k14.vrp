@@ -1,5 +1,5 @@
 NAME : E-n76-k14
-COMMENT : (Christophides and Eilon, Min no of trucks: 14, Best value: 1032)
+COMMENT : (Christophides and Eilon, Min no of trucks: 14, Optimal value: 1021)
 TYPE : CVRP
 DIMENSION : 76
 EDGE_WEIGHT_TYPE : EUC_2D
