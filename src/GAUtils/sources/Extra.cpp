@@ -43,7 +43,7 @@ void Extra::applyMutation(Population &pop){
 
 void Extra::applyMutation(Tour& tour){
     tour=Tour(Mutation::evaluateMutation(tour.getRoute()));
-    applyRepair(tour);
+    applyRepairV4(tour);
 }
 
 void Extra::applyRepair(Population& pop){
@@ -53,7 +53,17 @@ void Extra::applyRepair(Population& pop){
     pop.sortPop();
 }
 void Extra::applyRepair(Tour& tour){
-    tour=TourRepairer::repairTour(tour);
+    tour=TourRepairer::repairTourV3(tour);
+}
+
+void Extra::applyRepairV4(Population& pop){
+    for(unsigned i=0;i<pop.getPop().size();i++){
+        applyRepairV4(pop.getPop()[i]);
+    }
+    pop.sortPop();
+}
+void Extra::applyRepairV4(Tour& tour){
+    tour=TourRepairer::repairTourV4(tour);
 }
 
 void Extra::applyOptInSubs(Tour& t) {

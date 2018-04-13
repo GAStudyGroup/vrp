@@ -10,7 +10,7 @@
 using std::cout;
 using std::endl;
 
-Tour TourRepairer::repairTour(Tour& original){
+Tour TourRepairer::repairTourV3(Tour& original){
     //cout<<"Iniciando Reparação"<<endl;
     auto subtours= splitSubTours(original.getRoute());
     //sortSubsByCharge(subtours);
@@ -18,13 +18,25 @@ Tour TourRepairer::repairTour(Tour& original){
     original=tourRebuilder(subtours);
     return original;
 }
-
-void TourRepairer::changeCustomers(vector<vector<int>>& subtours){//Verificar mais tarde
-    //changeCustomersMachineV4(subtours,&getHeaviestCustomer);
-    //changeCustomersMachineV4(subtours,&getLightestCustomer);
+Tour TourRepairer::repairTourV4(Tour& original){
+    //cout<<"Iniciando Reparação"<<endl;
+    auto subtours= splitSubTours(original.getRoute());
+    //sortSubsByCharge(subtours);
+    changeCustomersV4(subtours);    
+    original=tourRebuilder(subtours);
+    return original;
+}
+//Applies V4.0
+void TourRepairer::changeCustomersV4(vector<vector<int>>&subtours){
+    changeCustomersMachineV4(subtours,&getLightestCustomer);
+    changeCustomersMachineV4(subtours,&getHeaviestCustomer);
+}
+//Applies V3.0
+void TourRepairer::changeCustomers(vector<vector<int>>& subtours){
     changeCustomersMachine(subtours,&getHeaviestCustomer);
     changeCustomersMachine(subtours,&getLightestCustomer);
 }
+//Version 4.0 Searchs for the best of all tours to insert the customer
 void TourRepairer::changeCustomersMachineV4(vector<vector<int>>& subtours, 
     int getCustomerToChange(vector<int>)){
 //Getting all overloaded subs
@@ -56,6 +68,7 @@ void TourRepairer::changeCustomersMachineV4(vector<vector<int>>& subtours,
         }
     }
 }
+//Version 3.0 of function, searchs only among subtours
 void TourRepairer::changeCustomersMachine(vector<vector<int>>& subtours, 
     int getCustomerToChange(vector<int>)){
     vector<int> overIds=getOverloadedSubs(subtours);
@@ -77,87 +90,8 @@ void TourRepairer::changeCustomersMachine(vector<vector<int>>& subtours,
             }        
         }
 }
-//  void TourRepairer::changeHeaviestCustomers(vector<vector<int>>& subtours){
-//     vector<int> overIds=getOverloadedSubs(subtours);
-//     for(int id: overIds){//Ids dos sobrecaregados
-//         for(unsigned i=0;i<subtours.size();i++){ //Itera por todos os outros subs
-//             if(i!=(unsigned)id){ //Não altera em relação a ele mesmo
-//                 for(unsigned j=0;j<subtours[id].size();j++){ //Testa todas possibilidades 1 mais pesado, 2 etc..
-//                     int idHeaviest=getHeaviestCustomer(subtours[id]);
-//                     if(!willOverload(subtours[i],idHeaviest) && (idHeaviest!=
-//                         Globals::customerMap.getDepotId())){
-//                             eraseElement(subtours[id],idHeaviest);
-//                             //Adicionar aqui possível heuristica de dist
-//                             //subtours[i].push_back(idHeaviest);
-//                             subtours[i].emplace(subtours[i].begin()+
-//                             checkBestPosition(subtours[i],idHeaviest),idHeaviest);
-//                     }
-//                 }
-//             }
-//         }        
-//     }
-//  }
-//  void TourRepairer::changeHeaviestCustomersV4(vector<vector<int>>& subtours){
-//     //Getting all overloaded subs
-//     vector<int> OverIds=getOverloadedSubs(subtours);
-//     //Possible tours
-//     vector<std::pair<int,vector<int>>> possible;
-//     for(int id: OverIds){
-//         int idHeaviest=getHeaviestCustomer(subtours[id]);
-//         for(unsigned i=0;i<subtours.size();i++){ //Goes through all possible subtours
-//             if(i!= (unsigned)(id)){ //If the value is not itself
-//                 for(unsigned j=0;j<subtours.size();j++){ //Checks all possible positions
-//                     if(!willOverload(subtours[i],idHeaviest) && (idHeaviest!=
-//                     Globals::customerMap.getDepotId())){ //Validate
-//                         vector<int> aux = subtours[i]; // This aux stores the possible move
-//                         //eraseElement(subtours[id],idHeaviest);
-//                         aux.emplace(aux.begin()+
-//                                 checkBestPosition(aux,idHeaviest),idHeaviest);
-//                         possible.push_back(std::make_pair(i,aux));
-//                     }
-//                 }
-                
-//             }
-//         }
-//         if(possible.size()>0){
-//             auto bestPossible=getBestPossibleTour(possible);
-//             subtours[bestPossible.first]=bestPossible.second;
-//             possible.clear();
-//             eraseElement(subtours[id],idHeaviest);
-//         }
-//     }
-//  }
-//  void TourRepairer::changeLightestCustomersV4(vector<vector<int>>& subtours){
-//     //Getting all overloaded subs
-//     vector<int> OverIds=getOverloadedSubs(subtours);
-//     //Possible tours
-//     vector<std::pair<int,vector<int>>> possible;
-//     for(int id: OverIds){
-//         int idLightest=getLightestCustomer(subtours[id]);
-//         for(unsigned i=0;i<subtours.size();i++){ //Goes through all possible subtours
-//             if(i!= (unsigned)(id)){ //If the value is not itself
-//                 for(unsigned j=0;j<subtours.size();j++){ //Checks all possible positions
-//                     if(!willOverload(subtours[i],idLightest) && (idLightest!=
-//                     Globals::customerMap.getDepotId())){ //Validate
-//                         vector<int> aux = subtours[i]; // This aux stores the possible move
-//                         //eraseElement(subtours[id],idLightest);
-//                         aux.emplace(aux.begin()+
-//                                 checkBestPosition(aux,idLightest),idLightest);
-//                         possible.push_back(std::make_pair(i,aux));
-//                     }
-//                 }
-                
-//             }
-//         }
-//         if(possible.size()>0){
-//             auto bestPossible=getBestPossibleTour(possible);
-//             subtours[bestPossible.first]=bestPossible.second;
-//             possible.clear();
-//             eraseElement(subtours[id],idLightest);
-//         }
-//     }
-//  }
- std::pair<int,vector<int>> TourRepairer::getBestPossibleTour(
+//Returns the best tour possible for the customer to be inserted
+std::pair<int,vector<int>> TourRepairer::getBestPossibleTour(
      vector<std::pair<int,vector<int>>>  possible){
     vector<std::pair<int,vector<int>>> result;
     
@@ -166,23 +100,7 @@ void TourRepairer::changeCustomersMachine(vector<vector<int>>& subtours,
     });
     return possible[0];
  }
-//  void TourRepairer::changeLightestCustomers(vector<vector<int>>& subtours){
-//     vector<int> overIds=getOverloadedSubs(subtours);
-//     for(int id: overIds){
-//         for(unsigned i=0;i<subtours.size();i++){
-//             if(i!=(unsigned)id){
-//                 int idLightest = getLightestCustomer(subtours[id]);
-//                 if(!willOverload(subtours[i],idLightest)&&(idLightest!=
-//                 Globals::customerMap.getDepotId())){
-//                     eraseElement(subtours[id],idLightest);
-//                     //subtours[i].push_back(idLightest);
-//                     subtours[i].emplace(subtours[i].begin()+
-//                     checkBestPosition(subtours[i],idLightest),idLightest);
-//                 }
-//             }
-//         }        
-//     }
-//  }
+//Split the tour onto subtours
 vector<vector<int>> TourRepairer::splitSubTours(vector<int>& tour){
     vector<vector<int>> subtours= Tour(tour).explodeSubTours();
     for(unsigned i=0;i<subtours.size();i++){
@@ -198,6 +116,7 @@ vector<vector<int>> TourRepairer::splitSubTours(vector<int>& tour){
     }
     return subtours;
 }
+//Rebuilds tour after changes
 vector<int> TourRepairer::tourRebuilder(vector<vector<int>>& subtours){
     vector<int> newTour;
     for(auto subtour:subtours){
@@ -207,15 +126,7 @@ vector<int> TourRepairer::tourRebuilder(vector<vector<int>>& subtours){
     }
     return newTour;
 }
-int TourRepairer::findLastDepotPosition(vector<int>&tour){
-    int lastDepotPos=-1;
-    for(unsigned i=0;i<tour.size();i++){
-        if(tour[i]==Globals::customerMap.getDepotId()){
-            lastDepotPos=i;
-        }
-    }
-    return lastDepotPos;
-}
+//Prints the subtours vector
 void TourRepairer::printSubtours(vector<vector<int>>& subtours){
     int it=1;
     for(auto subtour: subtours){
@@ -229,7 +140,7 @@ void TourRepairer::printSubtours(vector<vector<int>>& subtours){
         cout<<endl;
     }
 }
-
+//Gets the ids of the subtours that are overloaded
 vector<int> TourRepairer::getOverloadedSubs(vector<vector<int>>& subtours){
     vector<int> SubsIds;
     int id=-1;;
@@ -241,7 +152,7 @@ vector<int> TourRepairer::getOverloadedSubs(vector<vector<int>>& subtours){
     }
     return SubsIds;
 }
-
+//Sorts the subtours vector by their charge
 void TourRepairer::sortSubsByCharge(vector<vector<int>>& subtours){
     std::sort(subtours.begin(),subtours.end(),
      [](vector<int>& a, vector<int>& b) {        
@@ -249,13 +160,14 @@ void TourRepairer::sortSubsByCharge(vector<vector<int>>& subtours){
     });
     
 }
-
+//Returns the customer with the heavistes demand
 int TourRepairer::getHeaviestCustomer(vector<int> subtour){
     std::sort(subtour.begin(),subtour.end(),[](int &a, int &b){
         return getCustomerDemand(a) > getCustomerDemand(b);
     });
     return subtour[0];
 }
+//Returns the customer with the lowest demand 
 int TourRepairer::getLightestCustomer(vector<int> subtour){
     std::sort(subtour.begin(),subtour.end(),[](int &a, int &b){
         return getCustomerDemand(a) < getCustomerDemand(b);
@@ -264,14 +176,16 @@ int TourRepairer::getLightestCustomer(vector<int> subtour){
     return customerId;
 }
 
+//Erase a customer from a subtour
 void TourRepairer::eraseElement(vector<int>& subtour,int element){
     subtour.erase(find(subtour.begin(),subtour.end(),element));
 }
 
+//Acesses the demand of a customer
 int TourRepairer::getCustomerDemand(int id){
     return Globals::customerMap.getCustomer(id).getDemand();
 }
-
+//Checks if a given customer will overload the subttour
 bool TourRepairer::willOverload(vector<int>& subtour, int id){
     int totalCharge= (TourUtils::getSubCharge(subtour) + getCustomerDemand(id));
     if(totalCharge>Globals::customerMap.getTruckCapacity()){
@@ -280,7 +194,7 @@ bool TourRepairer::willOverload(vector<int>& subtour, int id){
     }    
     return false;
 }
-
+//Checks the best position in a subtour to insert the customer
 int TourRepairer::checkBestPosition(vector<int> subtour,int customer){
     if(subtour.size()==1){
         return 1;
