@@ -28,6 +28,9 @@ public:
     vector<vector<int>> explodeSubTours();
     bool isValid();
     int subToursUsed();
+
+    // Return the total of empty routes in tour
+    int getEmptySubtoursNumber();
 private:
     vector<int> route;
 };

@@ -155,3 +155,21 @@ bool Tour::isValid() {
 int Tour::subToursUsed() {
     return(explodeSubTours().size());
 }
+
+int Tour::getEmptySubtoursNumber() {
+    int emptyCount{0};
+    vector<int> route{this->route};
+    int tSize{(int)route.size()};
+    int depotId{Globals::customerMap.getDepotId()};
+
+    for(int i{0}; i<tSize; i++) {
+        if(route[i] == depotId) {
+            if(i == tSize-1) {
+                if(route[0] == depotId) emptyCount++;
+            } else {
+                if(route[i+1] == depotId) emptyCount++;
+            }
+        }
+    }
+    return(emptyCount);
+}

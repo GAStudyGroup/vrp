@@ -3,17 +3,22 @@
 #include "TourRepairer.hpp"
 #include "InitialPop.hpp"
 #include "Mutation.hpp"
+#include "Opt.hpp"
 
 void Extra::popReset(Population &pop){
+    unsigned size{(unsigned) pop.getPop().size()};
     int nToKeep =(int) (double)(pop.getPop().size()) * (double)(ResetConfigs::nBestToKeep/(double)100);
-    for(unsigned i=(nToKeep+1);i<pop.getPop().size();i++){
-        for(unsigned j=0;j<ResetConfigs::resetMutIterations;j++){
-            pop.getPop()[i]=InitialPop::tourGen();
-            applyRepair(pop.getPop()[i]);
-            applyMutation(pop.getPop()[i]);
-            applyRepair(pop.getPop()[i]);
-        }
+
+    Population aux;
+    aux.getPop().insert(aux.getPop().end(), pop.getPop().begin(), pop.getPop().begin()+nToKeep);
+
+    for(unsigned i{nToKeep}; i<size; i++) {
+        Tour t{InitialPop::tourGen()};
+        applyRepair(t);
+        applyOptInSubs(t);
+        aux.addNewTour(t);
     }
+    pop = aux;
     pop.sortPop();
 }
 
@@ -47,4 +52,29 @@ void Extra::applyRepair(Population& pop){
 }
 void Extra::applyRepair(Tour& tour){
     tour=TourRepairer::repairTour(tour);
+}
+
+void Extra::applyOptInSubs(Tour& t) {
+    int depotId{Globals::customerMap.getDepotId()};
+    int in{t.getDist()};
+    int empty{t.getEmptySubtoursNumber()};
+    vector<vector<int>> subTours{t.explodeSubTours()};
+    vector<int> newT;
+    newT.reserve(t.getRoute().size());
+
+    for(vector<int> &subT : subTours) {
+        subT = Opt::optimize(subT);
+    }
+
+    for(vector<int> subT : subTours) {
+        newT.push_back(depotId);
+        newT.insert(newT.end(), subT.begin(), subT.end());
+    }
+
+    while(empty > 0) {
+        newT.push_back(depotId);
+        empty--;
+    }
+
+    t = Tour(newT);
 }

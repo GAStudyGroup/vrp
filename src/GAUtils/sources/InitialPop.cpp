@@ -34,6 +34,8 @@ Population InitialPop::popGen(int popSize){
     Population pop;
     for(int x=0; x<popSize; x++){
         Tour tour= Tour(tourGen());
+        // Extra::applyRepair(tour);
+        // Extra::applyOptInSubs(tour);
         pop.addNewTour(tour);
     }
     return (pop);

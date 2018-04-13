@@ -21,9 +21,8 @@ HamiltonianCycle::parentsHamiltonian HamiltonianCycle::toHamiltonianCycle(Tour r
     std::sort(obj.choosen.begin(), obj.choosen.end(), [](auto &left, auto &right){ return(left.first < right.first); });
 
     parentsHamiltonian newTours = obj.rebuildTours(
-                            obj.getEmptySubtoursNumber(red.getRoute()),
-                            obj.getEmptySubtoursNumber(blue.getRoute())
-                        );
+                            red.getEmptySubtoursNumber(),
+                            blue.getEmptySubtoursNumber());
 
     newTours.first = obj.createDepotCopies(newTours.first);
     newTours.second = obj.createDepotCopies(newTours.second);
@@ -120,23 +119,6 @@ vector<string> HamiltonianCycle::createDepotCopies(vector<string> tour){
         }
     }
     return(copiesTour);
-}
-
-int HamiltonianCycle::getEmptySubtoursNumber(vector<int>& tour) {
-    int emptyCount{0};
-    int tSize{(int)tour.size()};
-    int depotId{Globals::customerMap.getDepotId()};
-
-    for(int i{0}; i<tSize; i++){
-        if(tour[i] == depotId){
-            if(i == tSize-1){
-                if(tour[0] == depotId) emptyCount++;
-            } else {
-                if(tour[i+1] == depotId) emptyCount++;
-            }
-        }
-    }
-    return(emptyCount);
 }
 
 HamiltonianCycle::parentsHamiltonian HamiltonianCycle::buildChoosenSubs() {

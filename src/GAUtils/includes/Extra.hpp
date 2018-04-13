@@ -1,6 +1,8 @@
 #ifndef EXTRA_CPP
 #define EXTRA_CPP
+
 #include "Population.hpp"
+
 namespace Extra{
     void applyMutation(Tour&);
     void applyMutation(Population &pop);
@@ -9,5 +11,7 @@ namespace Extra{
 
     void applyRepair(Tour&);
     void applyRepair(Population&);
+
+    void applyOptInSubs(Tour&);
 }
 #endif

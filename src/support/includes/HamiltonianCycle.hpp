@@ -77,8 +77,6 @@ private:
     vector<string> createDepotCopies(vector<string>);
 
     // UTILITY FOR REBUILD TOURS
-    // Return the total of empty routes in tour
-    int getEmptySubtoursNumber(vector<int>&);
     // Build the two parents with the choosen structure and load the not choosen subs
     parentsHamiltonian buildChoosenSubs();
     // Load the empty routes and equalty the tours size
