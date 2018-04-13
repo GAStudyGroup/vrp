@@ -9,18 +9,18 @@
 void Extra::popReset(Population &pop){ // OLD
     unsigned size{(unsigned) pop.getPop().size()};
     unsigned nToKeep{(unsigned)std::round(((size)*ResetConfigs::nBestToKeep)/100)};
-    std::cout << "NToKeep " << nToKeep << std::endl;  
+    // std::cout << "NToKeep " << nToKeep << std::endl;  
 
     Population aux;
     aux.getPop().insert(aux.getPop().end(), pop.getPop().begin(), pop.getPop().begin()+nToKeep);
 
     for(unsigned i{nToKeep}; i<size; i++) {
         Tour t{InitialPop::tourGen()};
-        std::cout << "==================== Gerado:======================== \n" << t << std::endl;
+        // std::cout << "==================== Gerado:======================== \n" << t << std::endl;
         applyRepair(t);
-        std::cout << "========================Reparado========================\n" << t << std::endl;
+        // std::cout << "========================Reparado========================\n" << t << std::endl;
         applyOptInSubs(t);
-        std::cout << "========================OPT========================\n" << t << std::endl;
+        // std::cout << "========================OPT========================\n" << t << std::endl;
         aux.addNewTour(t);
     }
     pop = aux;
@@ -71,7 +71,6 @@ void Extra::applyMutation(Population &pop){
 
 void Extra::applyMutation(Tour& tour){
     tour=Tour(Mutation::evaluateMutation(tour.getRoute()));
-    applyRepairV4(tour);
 }
 
 void Extra::applyRepair(Population& pop){
@@ -93,7 +92,14 @@ void Extra::applyRepairV4(Population& pop){
 void Extra::applyRepairV4(Tour& tour){
     tour=TourRepairer::repairTourV4(tour);
 }
-
+void Extra::applyCombined(Tour& tour){
+    applyRepair(tour);
+    applyRepairV4(tour);
+}
+void Extra::applyCombined(Population& pop){
+    applyRepair(pop);
+    applyRepairV4(pop);
+}
 void Extra::applyOptInSubs(Tour& t) {
     int depotId{Globals::customerMap.getDepotId()};
     int empty{t.getEmptySubtoursNumber()};
