@@ -28,6 +28,8 @@ namespace Configs {
     extern unsigned maxIterations;
     //Best known solution
     extern unsigned optimalValue;
+    //Method of write log
+    extern unsigned logMethod;
 }
 
 namespace MutationCtrl {

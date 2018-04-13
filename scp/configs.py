@@ -5,9 +5,10 @@ Esets = "E-Sets"
 Psets = "P-Sets"
 
 logDir = "log/"
+logMode = "1"
 
-SIZE = ["100"]
-MAX_IT = ["300"]
+SIZE = ["5"]
+MAX_IT = ["10"]
 PATH = "vrp/"
 RUNS = 10
 

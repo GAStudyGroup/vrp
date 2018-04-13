@@ -31,6 +31,7 @@ void setParams(Arg&);
         5. -mrate       "Rate of Mutation"
         6. -initm       "Initial Mutation Iterations"
         7. -opt         "Optimal distance value known (if setted will stop arg when the value is reached)"
+        8. -log         "Inform if the algorithm make log in folder or in root of log/"
 */
 
 /* Global params code */
@@ -40,13 +41,14 @@ string POP_SIZE{"size"};
 string T_NUMBER{"trucks"};
 string MAX_IT{"it"};
 /* Optional */
-string ID{"id"};
+string RUN{"run"};
 string CROSS{"cross"};
 string PATH{"path"};
 string FITNESS{"fit"};
 string MUT_RATE{"mrate"};
 string INIT_MUT{"initm"};
 string OPT{"opt"};
+string LOG{"log"};
 
 int main(int argc, char *argv[]) {
     std::random_device rng;
@@ -58,13 +60,14 @@ int main(int argc, char *argv[]) {
     args.newArgument(POP_SIZE, true, "s");
     args.newArgument(T_NUMBER, true, "t");
     args.newArgument(MAX_IT, true);
-    args.newArgument(ID, false);
+    args.newArgument(RUN, false);
     args.newArgument(CROSS, false, "cx");
     args.newArgument(PATH, false);
     args.newArgument(FITNESS, false);
     args.newArgument(MUT_RATE, false);
     args.newArgument(INIT_MUT, false);
     args.newArgument(OPT, false);
+    args.newArgument(LOG, false);
 
 
     try {
@@ -99,7 +102,7 @@ void startGA() {
 
     auto algFinish = std::chrono::high_resolution_clock::now();
     RunControl::printExecutionTime(logFile, std::chrono::duration<double> (algFinish - algStart).count());
-    
+
     Tour best{pop.getBestSolution()};
     RunControl::printFooter(logFile, best);
 
@@ -121,7 +124,8 @@ void setParams(Arg& args) {
     Configs::truckNumber = std::stoi(args.getOption(T_NUMBER));
     Configs::maxIterations = std::stoi(args.getOption(MAX_IT));
 
-    Configs::runId = ((args.getOption(ID).empty())? Configs::runId : std::stoi(args.getOption(ID)));
+    Configs::logMethod = ((args.getOption(LOG).empty())? Configs::logMethod : std::stoi(args.getOption(LOG)));
+    Configs::runId = ((args.getOption(RUN).empty())? Configs::runId : std::stoi(args.getOption(RUN)));
     Configs::crossoverType = ((args.getOption(CROSS).empty())? Configs::crossoverType : std::stoi(args.getOption(CROSS)));
     string path{args.getOption(PATH)};
     Configs::pathToFile = ((path.empty())? Configs::pathToFile : ((path[path.length()-1]=='/')?path : path+='/'));

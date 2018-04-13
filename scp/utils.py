@@ -7,10 +7,7 @@ def getTrucks(name):
     s = re.search(r"\d+(\.\d+)?", trucks)
     return(str(s.group(0)))
 
-
-
 def getBest(name, path):
-    print(str(path)+"/"+str(name))
     try:
         file = open(path+"/"+name, "r")
     except OSError:

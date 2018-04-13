@@ -16,8 +16,7 @@ for Set in configs.Sets:
                         
                         print("Starting "+ str(run) +" run of "+fileArray[0])
 
-                        '''print(str(ut.getBest(file, configs.PATH+configs.Bsets)))'''
-                        call(["./bin/VRP", "-name "+fileArray[0], "-trucks "+ut.getTrucks(file), "-size "+popSize, "-it "+maxIt, "-path "+str(Set), "-opt "+str(ut.getBest(file, Set))])
+                        call(["./bin/VRP", "-name "+fileArray[0], "-trucks "+ut.getTrucks(file), "-size "+popSize, "-it "+maxIt, "-path "+str(Set), "-opt "+str(ut.getBest(file, Set)), "-log "+configs.logMode, "-run "+str(run)])
 
 '''
 import random

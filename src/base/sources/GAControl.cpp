@@ -27,11 +27,16 @@ void RunControl::initAlg(Population& pop) {
 }
 
 std::ofstream RunControl::initLogFile() {
-    string fileName{"log/"+Configs::file+"_run_"+ std::to_string(Configs::runId) +"_cross_"+ std::to_string(Configs::crossoverType) +".log"};
+    string fileName;
+    if(Configs::logMethod==0) {
+        fileName = "log/"+Configs::file+"_Run_"+ std::to_string(Configs::runId) +"_Cross_"+ std::to_string(Configs::crossoverType) +"_Fitness_" + std::to_string(Configs::fitnessMode) +".log";
+    } else {
+        fileName = "log/"+Configs::file+"/"+Configs::file+"_Run_"+ std::to_string(Configs::runId) +"_Cross_"+ std::to_string(Configs::crossoverType) +"_Fitness_" + std::to_string(Configs::fitnessMode) +".log";
+    }
 
     std::ofstream logFile(fileName);
     if(!logFile.is_open()){
-        std::cout << "Error in openning log File: " << fileName <<std::endl;
+        std::cout << "Error openning log File: " << fileName <<std::endl;
         exit(0);
     }
     return(logFile);
@@ -40,7 +45,7 @@ std::ofstream RunControl::initLogFile() {
 void RunControl::printHeader(std::ostream &out) {
     out << "Run ID: " << Configs::runId<<"\n";
     out << "Vehicle Routing Problem: " << Configs::file << "\n";
-    out << "Best Known solution: " << ((Configs::optimalValue!=0)?Configs::optimalValue+"" : "Not founded in file") << "\n\n";
+    out << "Best Known solution: " << ((Configs::optimalValue!=0) ? std::to_string(Configs::optimalValue) : "Not founded in file") << "\n\n";
 
     out << "Configurations of run";
     out << "\n\tPopulation Size: " << Configs::popSize;
@@ -52,19 +57,20 @@ void RunControl::printHeader(std::ostream &out) {
     out << "\n\t\tCrossover Method: " << Configs::crossoverType;
 
     out << "\n\tMutation Configurations";
-    out << "\n\t\tInitial Pop Iterations: " << MutationCtrl::InitialPopmutIterations;
     out << "\n\t\tGeneral Rate: " << MutationCtrl::mutationRate <<"%";
+    out << "\n\t\tInitial Pop Rate: " << MutationCtrl::InitialPopMutRate<<"%";
+    out << "\n\t\tInitial Pop Iterations: " << MutationCtrl::InitialPopmutIterations;
 
     out << "\n" << std::endl;
 }
 
 void RunControl::printFooter(std::ostream& out, Tour& t) {
     out << "\n\nBest Solution Known\n";
-
     std::ifstream solFile{Configs::pathToFile+Configs::file+".sol"};
-    string output;
+    
     if(!solFile.is_open()) { exit(0); }
 
+    string output;
     while(getline(solFile, output)) { 
         out << output << "\n";
     }

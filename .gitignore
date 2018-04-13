@@ -39,3 +39,4 @@
 bin/
 obj/
 log/
+scp/__pycache__/

@@ -88,6 +88,9 @@ cleanbin: clean
 buildrepo:
 	@$(call make-repo)
 
+cleanlogs:
+	$(RM) -r log/*
+
 define make-repo
 	for dir in $(srcDirs); \
 	do \
