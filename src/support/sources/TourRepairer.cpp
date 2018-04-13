@@ -61,10 +61,10 @@ void TourRepairer::changeCustomersMachineV4(vector<vector<int>>& subtours,
             }
         }
         if(possible.size()>0){
-            auto bestPossible=getBestPossibleTour(possible);
+            eraseElement(subtours[id],toChangeId);
+            auto bestPossible=getBestPossibleTour(possible,subtours);
             subtours[bestPossible.first]=bestPossible.second;
             possible.clear();
-            eraseElement(subtours[id],toChangeId);
         }
     }
 }
@@ -92,13 +92,15 @@ void TourRepairer::changeCustomersMachine(vector<vector<int>>& subtours,
 }
 //Returns the best tour possible for the customer to be inserted
 std::pair<int,vector<int>> TourRepairer::getBestPossibleTour(
-     vector<std::pair<int,vector<int>>>  possible){
-    vector<std::pair<int,vector<int>>> result;
-    
-    std::sort(possible.begin(),possible.end(),[](auto &a, auto &b){
-        return TourUtils::getSubCharge(a.second) < TourUtils::getSubCharge(b.second);
-    });
-    return possible[0];
+     vector<std::pair<int,vector<int>>>  possible, vector<vector<int>> subtours){    
+    vector<std::pair<int,vector<int>>> rebuilt;
+    for(unsigned i=0; i<possible.size();i++){
+        rebuilt.push_back(std::make_pair(possible[i].first,tourRebuilder(subtours)));
+    }
+    std::sort(rebuilt.begin(),rebuilt.end(),[](auto &a, auto &b){
+        return TourUtils::getSubDistance(a.second) < TourUtils::getSubDistance(b.second);
+    });   
+    return possible[rebuilt[0].first];
  }
 //Split the tour onto subtours
 vector<vector<int>> TourRepairer::splitSubTours(vector<int>& tour){

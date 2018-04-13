@@ -11,10 +11,13 @@ using std::string;
 #include "Population.hpp"
 
 //Teste
-// #include "Tour.hpp"
-// #include "Extra.hpp"
-// #include "InitialPop.hpp"
-// #include "ImportData.hpp"
+#include "Tour.hpp"
+#include "Extra.hpp"
+#include "InitialPop.hpp"
+#include "ImportData.hpp"
+#include <iostream>
+using std::cout;
+using std::endl;
 void startGA();
 void printGenInfo(std::ostream&, Population&);
 void setParams(Arg&);
