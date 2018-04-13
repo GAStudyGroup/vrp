@@ -89,8 +89,11 @@ void RunControl::printExecutionTime(std::ostream &out, double seconds) {
 
 bool RunControl::stopAlg(Population& pop) {
     if(Configs::optimalValue != 0) {
-        if(pop.getBestSolution().getDist() <= Configs::optimalValue) {
+        Tour best{pop.getBestSolution()};
+        if(best.getDist() <= Configs::optimalValue && best.isValid()) {
+            std::cout << "Best Solution founded"<<std::endl;
             return(false);
+            //Configs::maxIterations=Globals::currentIteration+10;
         }
     }
     if(Globals::currentIteration < Configs::maxIterations) {

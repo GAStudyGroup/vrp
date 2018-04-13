@@ -5,9 +5,9 @@
 #include "Mutation.hpp"
 #include "Opt.hpp"
 
-void Extra::popReset(Population &pop){
+
+void Extra::popReset(Population &pop){ // OLD
     unsigned size{(unsigned) pop.getPop().size()};
-    /* int nToKeep =(int) (double)(pop.getPop().size()) * (double)(ResetConfigs::nBestToKeep/(double)100); */
     unsigned nToKeep{(unsigned)std::round(((size)*ResetConfigs::nBestToKeep)/100)};
     std::cout << "NToKeep " << nToKeep << std::endl;  
 
@@ -16,13 +16,41 @@ void Extra::popReset(Population &pop){
 
     for(unsigned i{nToKeep}; i<size; i++) {
         Tour t{InitialPop::tourGen()};
+        std::cout << "==================== Gerado:======================== \n" << t << std::endl;
         applyRepair(t);
+        std::cout << "========================Reparado========================\n" << t << std::endl;
         applyOptInSubs(t);
+        std::cout << "========================OPT========================\n" << t << std::endl;
         aux.addNewTour(t);
     }
     pop = aux;
     pop.sortPop();
 }
+
+/* void Extra::popReset(Population &pop){ // NEW
+    unsigned size{(unsigned) pop.getPop().size()};
+    unsigned nToKeep{(unsigned)std::round(((size)*ResetConfigs::nBestToKeep)/100)};
+
+    Population aux;
+    aux.getPop().insert(aux.getPop().end(), pop.getPop().begin(), pop.getPop().begin()+nToKeep);
+
+    for(unsigned i{nToKeep}; i<size; i++) {
+        Tour t{InitialPop::tourGen()};
+        //std::cout << "==================== Gerado:======================== \n" << t << std::endl;
+        int countRepair{0};
+        while(!t.isValid() && countRepair!=5) {
+            //std::cout << "REPARA A MERDA"<<std::endl;
+            applyRepair(t);
+            countRepair++;
+        }
+        //std::cout << "========================Reparado========================\n" << t << std::endl;
+        applyOptInSubs(t);
+        //std::cout << "========================OPT========================\n" << t << std::endl;
+        aux.addNewTour(t);
+    }
+    pop = aux;
+    pop.sortPop();
+} */
 
 void Extra::applyMutation(Population &pop){
     double Rate=(double)MutationCtrl::mutationRate/(double)100;
