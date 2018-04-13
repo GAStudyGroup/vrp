@@ -43,6 +43,8 @@ namespace Mutation{
     bool verifyList(vector<int>&);
     void addList(vector<int>&);
     void sortList();
+
+    vector< pair<vector<int>,bool> (*) (vector<int>,int,int)> getMovesVector(); 
 };
 
 
