@@ -4,6 +4,6 @@
 #include "Population.hpp"
 namespace Crossover{
     Tour crossover(Tour&, Tour&);
-    Population crossoverPopulation(Population&);
+    void crossoverPopulation(Population&);
 }
 #endif

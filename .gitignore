@@ -40,3 +40,4 @@ bin/
 obj/
 log/
 scp/__pycache__/
+*.txt
