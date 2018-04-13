@@ -33,7 +33,8 @@ namespace TourRepairer{
     bool willOverload(vector<int>&, int);
     int getCustomerDemand(int);
     int checkBestPosition(vector<int>,int);
-    std::pair<int,vector<int>> getBestPossibleTour(vector<std::pair<int,vector<int>>>);
+    std::pair<int,vector<int>> getBestPossibleTour(vector<std::pair<int,vector<int>>>,
+    vector<vector<int>>);
 
     void changeCustomersMachineV4(vector<vector<int>>&, int (vector<int>));
     void changeCustomersMachine(vector<vector<int>>&, int (vector<int>));
