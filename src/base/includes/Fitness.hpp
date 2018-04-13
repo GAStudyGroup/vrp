@@ -15,7 +15,7 @@ double subFitnessPenalty(vector<int>&, double&);
 
 
 double advancedFitness(vector<int>&);
-int calcMnv();
+
 double calcAlpha();
 double calcPenalty(vector<int>&);
 

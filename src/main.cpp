@@ -55,52 +55,51 @@ string INIT_MUT{"initm"};
 string OPT{"opt"};
 string LOG{"log"};
 
-int main(){
-    std::random_device rng;
-    Globals::urng.seed(rng());
-    ImportData file("vrp/small/P-n16-k8.vrp");
-    Globals::customerMap= CustomerMap(file.getCustomerList(),file.getCapacity());
-    Configs::truckNumber=12;
-
-    Tour tour = InitialPop::tourGen();
-    cout <<tour<<endl;
-    Extra::applyRepair(tour);
-    cout <<tour<<endl;
-}
-
-// int main(int argc, char *argv[]) {
+// int main(){
 //     std::random_device rng;
 //     Globals::urng.seed(rng());
+//     ImportData file("vrp/small/P-n16-k8.vrp");
+//     Globals::customerMap= CustomerMap(file.getCustomerList(),file.getCapacity());
+//     Configs::truckNumber=12;
 
-//     Arg args(argc, argv);
-
-//     args.newArgument(NAME, true, "n");
-//     args.newArgument(POP_SIZE, true, "s");
-//     args.newArgument(T_NUMBER, true, "t");
-//     args.newArgument(MAX_IT, true);
-//     args.newArgument(RUN, false);
-//     args.newArgument(CROSS, false, "cx");
-//     args.newArgument(PATH, false);
-//     args.newArgument(FITNESS, false);
-//     args.newArgument(MUT_RATE, false);
-//     args.newArgument(INIT_MUT, false);
-//     args.newArgument(OPT, false);
-//     args.newArgument(LOG, false);
-
-
-//     try {
-//         args.validateArguments();
-//     } catch(std::runtime_error e) {
-//         std::cout << e.what() << std::endl;
-//         return(0);
-//     }
-
-//     /* Setting configurations */
-//     setParams(args);
-
-//     startGA();
-//     return(0);
+//     /*Tour tour = InitialPop::tourGen();
+//     cout <<tour<<endl;
+//     Extra::applyRepair(tour);
+//     cout <<tour<<endl;*/
 // }
+
+int main(int argc, char *argv[]) {
+    std::random_device rng;
+    Globals::urng.seed(rng());
+
+    Arg args(argc, argv);
+
+    args.newArgument(NAME, true, "n");
+    args.newArgument(POP_SIZE, true, "s");
+    args.newArgument(T_NUMBER, true, "t");
+    args.newArgument(MAX_IT, true);
+    args.newArgument(RUN, false);
+    args.newArgument(CROSS, false, "cx");
+    args.newArgument(PATH, false);
+    args.newArgument(FITNESS, false);
+    args.newArgument(MUT_RATE, false);
+    args.newArgument(INIT_MUT, false);
+    args.newArgument(OPT, false);
+    args.newArgument(LOG, false);
+
+    try {
+        args.validateArguments();
+    } catch(std::runtime_error e) {
+        std::cout << e.what() << std::endl;
+        return(0);
+    }
+
+    /* Setting configurations */
+    setParams(args);
+
+    startGA();
+    return(0);
+}
 
 void startGA() {
     Population pop;
@@ -109,7 +108,7 @@ void startGA() {
 
     auto algStart = std::chrono::high_resolution_clock::now();
     RunControl::initAlg(pop);
-
+    //cout<< "MNV: "<<Globals::customerMap.getMnv()<<endl;
     do{
         printGenInfo(std::cout, pop);
         printGenInfo(logFile, pop);

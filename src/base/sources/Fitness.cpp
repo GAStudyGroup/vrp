@@ -31,17 +31,9 @@ double subFitnessPenalty(vector<int>& tour, double& chargeUsed){
 }
 
 //Advanced Fitness
-int calcMnv(){
-    double demandSum=0;
-    for (auto customer: Globals::customerMap.getMap()){
-        demandSum+=customer.getDemand();
-    }  
-    int mnv=ceil(demandSum/Globals::customerMap.getTruckCapacity());
-    return (mnv);
-}
 
 double calcAlpha(){
-    double divide=pow(((calcMnv()/2)*Globals::customerMap.getTruckCapacity()),2);
+    double divide=pow(((Globals::customerMap.getMnv()/2)*Globals::customerMap.getTruckCapacity()),2);
     divide=divide*(1/(double)Configs::maxIterations);
     double alpha=(Fitness::initialBest/divide);    
     return alpha;

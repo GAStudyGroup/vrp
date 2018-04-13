@@ -37,7 +37,7 @@ inc = $(shell find -type f -iname "*.hpp" -printf "%h\n" | sort -u)
 
 debug = 1
 
-CFlags = -Wall -std=gnu++17 -O0
+CFlags = -Wall -std=gnu++17 -O3
 LDFlags = -fsanitize=address -fsanitize=leak
 libs =
 libDir =

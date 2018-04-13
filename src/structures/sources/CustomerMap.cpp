@@ -1,9 +1,16 @@
 #include <algorithm>
+#include <cmath>
 #include "CustomerMap.hpp"
 CustomerMap::CustomerMap(){}
 
-CustomerMap::CustomerMap(std::vector<Customer> list, double cap):map(list),
-maxTruckCapacity(cap){}
+CustomerMap::CustomerMap(std::vector<Customer> list, double cap){
+    map=list;
+    maxTruckCapacity=cap;
+    mnv=calcMnv();
+}
+int CustomerMap::getMnv(){
+    return mnv;
+}
 
 Customer CustomerMap::getCustomer(const int id){
     auto it = std::find_if(map.begin(), map.end(), [&id](const Customer& obj) { return (obj.getId() == id); });
@@ -41,4 +48,13 @@ int CustomerMap::getDepotId(){
 
 double CustomerMap::getTruckCapacity() {
     return(maxTruckCapacity);
+}
+
+int CustomerMap::calcMnv(){
+    double demandSum=0;
+    for (auto customer: this->getMap()){
+        demandSum+=customer.getDemand();
+    }  
+    int mnv=std::ceil(demandSum/this->getTruckCapacity());
+    return (mnv);
 }

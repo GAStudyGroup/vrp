@@ -19,9 +19,12 @@ class CustomerMap {
         void setMap(std::vector<Customer>);
 
         double getTruckCapacity();
+        int getMnv();
     private:
         std::vector<Customer> map;
         double maxTruckCapacity;
+        int mnv; // minimimun number of vehicles
+        int calcMnv();
 };
 
 #endif
