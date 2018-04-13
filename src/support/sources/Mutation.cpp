@@ -17,41 +17,12 @@ vector<int> Mutation::evaluateMutation(vector<int> tour){
         return tour;
     }
     for (auto value: tour){
-       result=firstMove(initial,it,value);
-        if(result.second==true){
-           return result.first;
-        }
-       result=secondMove(initial,it,value);
-        if(result.second==true){
-            return result.first;
-        }
-        result=thirdMove(initial,it,value);
-        if(result.second==true){
-            return result.first;
-        }
-        result=fourthMove(initial,it,value);
-        if(result.second==true){
-            return result.first;
-        }        
-        result=fifthMove(initial,it,value);
-        if(result.second==true){
-            return result.first;
-        }
-        result=sixthMove(initial,it,value); 
-        if(result.second==true){
-            return result.first;
-        }
-        result=seventhMove(initial,it,value);
-        if(result.second==true){
-           return result.first; 
-        }
-        result=eighthMove(initial,it,value);
-        if(result.second==true){
-           return result.first; 
-        }
-        result=ninethMove(initial,it,value);
-        if(result.second==true){
-           return result.first; 
+        auto moves = getMovesVector();
+        for(auto move: moves){
+            result=move(initial,it,value);
+            if(result.second){
+                return result.first;
+            }
         }
         it++;
     }
@@ -60,27 +31,25 @@ vector<int> Mutation::evaluateMutation(vector<int> tour){
     return tour;
 }
 
-    pair<vector<int>,bool> Mutation::firstMove(vector<int> tour,int it,int value){
-    vector<int> initial=tour; 
+    pair<vector<int>,bool> Mutation::firstMove(vector<int> tour,int it,int value){ 
     pair<vector<int>,bool> result=setInitialResult(tour);
     //cout<<"Fitness antes do movimento "<< iFitness <<endl;
     if(value!=Globals::customerMap.getDepotId()){ //Only does the move it isn't a depot   
-        for(unsigned int i=0;i<initial.size()-1;i++){
-            if(initial[i]==value){
+        for(unsigned int i=0;i<result.first.size()-1;i++){
+            if(result.first[i]==value){
                 continue;
             }else{
-                initial.erase(find(initial.begin(),initial.end(),value));
-                initial.emplace(initial.begin()+i,value);                
+                result.first.erase(find(result.first.begin(),result.first.end(),value));
+                result.first.emplace(result.first.begin()+i,value);                
             }
-            //printVector(initial); //Debug
-            result=basicFitnessEvaluation(Tour(tour),Tour(initial));
-            // printVector(initial); //Debug
+            //printVector(result.first); //Debug
+            result=basicFitnessEvaluation(Tour(tour),Tour(result.first));
+            // printVector(result.first); //Debug
             if(result.second){
                 break;
             }
         }                
     }else{
-        result.first=initial;
         result.second=false;
     }
     //cout<<"Fitness depois do movimento "<<bFitness<<endl;
@@ -359,4 +328,17 @@ void Mutation::sortList(){
     [](Tour& a, Tour& b){
         return a.getFitness() > b.getFitness();
     });
+}
+vector<pair<vector<int>,bool> (*) (vector<int>,int,int)> Mutation::getMovesVector(){
+    vector<pair<vector<int>,bool> (*) (vector<int>,int,int)> moves;
+    moves.push_back(&firstMove);
+    moves.push_back(&secondMove);
+    moves.push_back(&thirdMove);
+    moves.push_back(&fourthMove);
+    moves.push_back(&fifthMove);
+    moves.push_back(&sixthMove);
+    moves.push_back(&seventhMove);
+    moves.push_back(&eighthMove);
+    moves.push_back(&ninethMove);
+    return moves;
 }
