@@ -103,6 +103,7 @@ int main(int argc, char *argv[]) {
     setParams(args);
 
     startGA();
+    delete Globals::debugLogFile;
     return(0);
 }
 
