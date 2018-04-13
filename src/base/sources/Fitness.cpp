@@ -7,7 +7,7 @@ using std::ceil;
 using std::pow;
 
 //OurFitness
-double ourFitness(vector<int>& tour){
+double OurFitness::ourFitness(vector<int>& tour){
     vector<vector<int>> subs = Tour(tour).explodeSubTours();
     double fitness=0;
     
@@ -22,24 +22,24 @@ double ourFitness(vector<int>& tour){
     return (fitness*100);
 }
 
-double subFitness(vector<int>& tour, double& chargeUsed){
+double OurFitness::subFitness(vector<int>& tour, double& chargeUsed){
     return ((1 /TourUtils::getSubDistance(tour)) * (chargeUsed / Globals::customerMap.getTruckCapacity()));
 }
 
-double subFitnessPenalty(vector<int>& tour, double& chargeUsed){
+double OurFitness::subFitnessPenalty(vector<int>& tour, double& chargeUsed){
     return ( (1 /TourUtils::getSubDistance(tour)) * -1 * (chargeUsed / Globals::customerMap.getTruckCapacity()));
 }
 
 //Advanced Fitness
 
-double calcAlpha(){
+double AdvancedFitness::calcAlpha(){
     double divide=pow(((Globals::customerMap.getMnv()/2)*Globals::customerMap.getTruckCapacity()),2);
     divide=divide*(1/(double)Configs::maxIterations);
     double alpha=(Fitness::initialBest/divide);    
     return alpha;
 }
 
-double calcPenalty(vector<int>& tour){
+double AdvancedFitness::calcPenalty(vector<int>& tour){
     double innerSum=0;
     for(auto charge:Tour(tour).getAllCharges()){
         if(charge>Globals::customerMap.getTruckCapacity()){
@@ -54,7 +54,7 @@ double calcPenalty(vector<int>& tour){
     return 1000*penalty;
 }
 
-double advancedFitness(vector<int>& tour){
+double AdvancedFitness::advancedFitness(vector<int>& tour){
     double fitness= Tour(tour).getDist();
     fitness+=calcPenalty(tour);
     return (1/fitness)*10000;
