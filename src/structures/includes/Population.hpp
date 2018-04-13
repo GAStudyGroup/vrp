@@ -23,6 +23,7 @@ public:
     void sortPop();
 
     Tour getBestSolution();
+    int totalToursValid();
 private:
     vector<Tour> pop;
 

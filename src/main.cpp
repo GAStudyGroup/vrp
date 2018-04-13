@@ -76,7 +76,6 @@ int main(int argc, char *argv[]) {
 
     args.setProgramName("Genetic Algorithm to Vehicle Routing Problem.");
     args.setHelp();
-
     args.newArgument(NAME, true, "Name of .vrp file");
     args.newArgument(POP_SIZE, true, "Size of population");
     args.newArgument(T_NUMBER, true, "Number of trucks");
@@ -139,8 +138,9 @@ void printGenInfo(std::ostream& out, Population& pop) {
     bool isValid{bestSol.isValid()};
     int subTourUsed{bestSol.subToursUsed()};
 
-    out << "\nGeneration: " << Globals::currentIteration << "\n";
-    out << "\tBestSolution: " << bestSol.getDist()<< "\n\t" << (isValid?"Valid solution.":"Not a Valid solution.") << "\n\t" << "SubTours used: " << subTourUsed << std::endl;
+    out << "\nGeneration: " << Globals::currentIteration;
+    out << "\n\tValid solutions in Population: " << pop.totalToursValid();
+    out << "\n\tBestSolution: " << bestSol.getDist()<< "\n\t" << (isValid?"Valid solution.":"Not a Valid solution.") << "\n\t" << "SubTours used: " << subTourUsed << std::endl;
 }
 
 void setParams(Arg& args) {

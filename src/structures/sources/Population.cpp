@@ -32,3 +32,11 @@ Tour Population::getBestSolution() {
     });
     return best;
 }
+
+int Population::totalToursValid() {
+    int validCount{0};
+    for(Tour t : pop) {
+        if(t.isValid()) validCount++;
+    }
+    return(validCount);
+}
