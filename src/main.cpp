@@ -41,13 +41,13 @@ void setParams(Arg&);
 
 /* Global params code */
 /* Required args */
-string NAME{"name"};
-string POP_SIZE{"size"};
-string T_NUMBER{"trucks"};
+string NAME{"name|n"};
+string POP_SIZE{"size|s"};
+string T_NUMBER{"trucks|t"};
 string MAX_IT{"it"};
 /* Optional */
 string RUN{"run"};
-string CROSS{"cross"};
+string CROSS{"cross|cx"};
 string PATH{"path"};
 string FITNESS{"fit"};
 string MUT_RATE{"mrate"};
@@ -74,18 +74,21 @@ int main(int argc, char *argv[]) {
 
     Arg args(argc, argv);
 
-    args.newArgument(NAME, true, "n");
-    args.newArgument(POP_SIZE, true, "s");
-    args.newArgument(T_NUMBER, true, "t");
-    args.newArgument(MAX_IT, true);
-    args.newArgument(RUN, false);
-    args.newArgument(CROSS, false, "cx");
-    args.newArgument(PATH, false);
-    args.newArgument(FITNESS, false);
-    args.newArgument(MUT_RATE, false);
-    args.newArgument(INIT_MUT, false);
-    args.newArgument(OPT, false);
-    args.newArgument(LOG, false);
+    args.setProgramName("Genetic Algorithm to Vehicle Routing Problem.");
+    args.setHelp();
+
+    args.newArgument(NAME, true, "Name of .vrp file");
+    args.newArgument(POP_SIZE, true, "Size of population");
+    args.newArgument(T_NUMBER, true, "Number of trucks");
+    args.newArgument(MAX_IT, true, "Maximum of iterations");
+    args.newArgument(RUN, false, "ID of run");
+    args.newArgument(CROSS, false, "Method of crossover");
+    args.newArgument(PATH, false, "Path of file");
+    args.newArgument(FITNESS, false, "Method to calculate fitness");
+    args.newArgument(MUT_RATE, false, "Rate of mutation in generation");
+    args.newArgument(INIT_MUT, false, "Total Iterations of Mutation in Initial pop");
+    args.newArgument(OPT, false, "Best known optimal value (with using the script, the best value will be founded in file and setted, if exists");
+    args.newArgument(LOG, false, "Method of log, default is in root log/");
 
     try {
         args.validateArguments();
@@ -147,12 +150,19 @@ void setParams(Arg& args) {
     Configs::maxIterations = std::stoi(args.getOption(MAX_IT));
 
     Configs::logMethod = ((args.getOption(LOG).empty())? Configs::logMethod : std::stoi(args.getOption(LOG)));
+
     Configs::runId = ((args.getOption(RUN).empty())? Configs::runId : std::stoi(args.getOption(RUN)));
+
     Configs::crossoverType = ((args.getOption(CROSS).empty())? Configs::crossoverType : std::stoi(args.getOption(CROSS)));
+
     string path{args.getOption(PATH)};
     Configs::pathToFile = ((path.empty())? Configs::pathToFile : ((path[path.length()-1]=='/')?path : path+='/'));
+
     Configs::fitnessMode = ((args.getOption(FITNESS).empty())? Configs::fitnessMode : std::stoi(args.getOption(FITNESS)));
+
     Configs::optimalValue = ((args.getOption(OPT).empty())? Configs::optimalValue : std::stoi(args.getOption(OPT)));
+
     MutationCtrl::mutationRate = ((args.getOption(MUT_RATE).empty())? MutationCtrl::mutationRate : std::stoi(args.getOption(MUT_RATE)));
+
     MutationCtrl::InitialPopmutIterations = ((args.getOption(INIT_MUT).empty())? MutationCtrl::InitialPopmutIterations : std::stoi(args.getOption(INIT_MUT)));
 }
