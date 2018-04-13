@@ -41,6 +41,7 @@ valgrind  --tool=memcheck --leak-check=yes --log-file=valgrind_output.txt -v ./b
  `-fit`    | -       | Fitness method   (1-2)        | **No**
  `-mrate`  | -       | Mutation Rate (0-100          | **No**
  `-initm`  | -       | Initial Mutation It...(0-100) | **No**
+ 
 
 
 ### Site 
