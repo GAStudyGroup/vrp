@@ -22,8 +22,8 @@ Tour TourRepairer::repairTour(Tour& original){
 void TourRepairer::changeCustomers(vector<vector<int>>& subtours){//Verificar mais tarde
     //changeCustomersMachineV4(subtours,&getHeaviestCustomer);
     //changeCustomersMachineV4(subtours,&getLightestCustomer);
-    changeCustomersMachineV4(subtours,&getHeaviestCustomer);
-    changeCustomersMachineV4(subtours,&getLightestCustomer);
+    changeCustomersMachine(subtours,&getHeaviestCustomer);
+    changeCustomersMachine(subtours,&getLightestCustomer);
 }
 void TourRepairer::changeCustomersMachineV4(vector<vector<int>>& subtours, 
     int getCustomerToChange(vector<int>)){

@@ -11,8 +11,10 @@ Opt::Opt(){}
 Opt::~Opt(){}
 
 vector<int> Opt::optimize(vector<int> &tour){
-    Opt obj;
-
+     if(tour.size() == 1) {
+        return(tour);
+    }
+    Opt obj;   
     bool run{false};
     long unsigned int routeSize{tour.size()};
     do{
