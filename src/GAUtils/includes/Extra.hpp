@@ -20,5 +20,8 @@ namespace Extra{
 
     void applyOptInPop(Population&);
     void applyOptInSubs(Tour&);
+
+    void applyTrim(Tour&);
+    void applyTrim(Population&);
 }
 #endif

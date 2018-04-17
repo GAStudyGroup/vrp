@@ -11,6 +11,7 @@ using std::vector;
 //GenerationCtrl
 namespace GenerationCtrl{
     Population newGeneration(Population& pop);
+    Population basicGeneration(Population &pop);
 }
 
 /* Control Run */

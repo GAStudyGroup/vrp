@@ -4,7 +4,7 @@
 #include "InitialPop.hpp"
 #include "Mutation.hpp"
 #include "Opt.hpp"
-
+#include "Trim.hpp"
 
 /* void Extra::popReset(Population &pop){ // OLD
     unsigned size{(unsigned) pop.getPop().size()};
@@ -100,6 +100,16 @@ void Extra::applyCombined(Population& pop){
     applyRepairV4(pop);
 }
 
+void Extra::applyTrim(Tour& tour){
+    tour = Trim::applyTrim(tour);
+}
+
+void Extra::applyTrim(Population &pop){
+    for(unsigned i=0;i<pop.getPop().size();i++){
+        applyTrim(pop.getPop()[i]);
+    }
+    pop.sortPop();
+}
 
 void Extra::applyOptInPop(Population& pop) {
     for(Tour &t : pop.getPop()) {

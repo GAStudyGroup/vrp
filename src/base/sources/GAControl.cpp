@@ -8,6 +8,14 @@
 #include "Crossover.hpp"
 #include "Extra.hpp"
 
+Population GenerationCtrl::basicGeneration(Population& pop){
+    //Crossover::crossoverPopulation(pop);
+    //Extra::applyRepair(pop);
+    //Extra::applyMutation(pop);
+    Extra::applyTrim(pop);    
+    return pop;
+}
+
 Population GenerationCtrl::newGeneration(Population& pop){
     *Globals::debugLogFile << "NewGen Start: " << pop.getBestSolution().getDist() << " isValid: " << pop.getBestSolution().isValid() << std::endl;
 
@@ -80,7 +88,7 @@ std::ofstream RunControl::initLogFile() {
 void RunControl::printHeader(std::ostream &out) {
     out << "Run ID: " << Configs::runId<<"\n";
     out << "Vehicle Routing Problem: " << Configs::file << "\n";
-    out << "Best Known solution: " << ((Configs::optimalValue!=0) ? std::to_string(Configs::optimalValue) : "Not founded in file") << "\n\n";
+    out << "Best Known solution: " << ((Configs::optimalValue!=0) ? std::to_string(Configs::optimalValue) : "Not found in file") << "\n\n";
 
     out << "Configurations of run";
     out << "\n\tPopulation Size: " << Configs::popSize;
@@ -110,7 +118,7 @@ void RunControl::printFooter(std::ostream& out, Tour& t) {
         out << output << "\n";
     }
 
-    out << "\n\nAlgorithm solution founded\n";
+    out << "\n\nAlgorithm solution found\n";
     out << t;
     solFile.close();
 }
