@@ -130,14 +130,14 @@ vector<int> TourRepairer::tourRebuilder(vector<vector<int>>& subtours){
 }
 //Prints the subtours vector
 void TourRepairer::printSubtours(vector<vector<int>>& subtours){
-    int it=1;
+    int it=0;
     for(auto subtour: subtours){
         cout<<"SubTour "<<it<<": ";
         for(auto customer: subtour){
             cout<<customer<<" ";
         }
         cout<<" Charge: "<<TourUtils::getSubCharge(subtour);
-        cout<<" Heaviest Customer: "<<getHeaviestCustomer(subtour);
+        //cout<<" Heaviest Customer: "<<getHeaviestCustomer(subtour);
         it++;
         cout<<endl;
     }

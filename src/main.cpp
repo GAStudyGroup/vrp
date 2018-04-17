@@ -15,6 +15,7 @@ using std::string;
 #include "Extra.hpp"
 #include "InitialPop.hpp"
 #include "ImportData.hpp"
+#include "Trim.hpp"
 #include <iostream>
 using std::cout;
 using std::endl;
@@ -66,7 +67,9 @@ int main(){
     Configs::truckNumber=12;
 
     Tour tour = InitialPop::tourGen();
-    cout <<tour<<endl;
+    Extra::applyRepair(tour);
+    cout <<tour<<endl;    
+    Trim::applyTrim(tour);
     //Future debug
 }
 
