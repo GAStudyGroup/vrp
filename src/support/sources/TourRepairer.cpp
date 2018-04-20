@@ -141,6 +141,7 @@ void TourRepairer::printSubtours(vector<vector<int>>& subtours){
         it++;
         cout<<endl;
     }
+    cout<<endl;
 }
 //Gets the ids of the subtours that are overloaded
 vector<int> TourRepairer::getOverloadedSubs(vector<vector<int>>& subtours){

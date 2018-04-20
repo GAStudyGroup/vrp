@@ -8,6 +8,8 @@ namespace Trim{
     vector<int> getToursToTrim(vector<vector<int>>,int);
     int getExtraSubsN(Tour&);
     vector<vector<int>> moveCustomers(vector<vector<int>>,int);
+
+    void printVector(vector<int>);
 }
 
 #endif

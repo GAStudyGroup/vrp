@@ -124,8 +124,6 @@ void startGA() {
 
         pop = GenerationCtrl::basicGeneration(pop);
         Tour aux= pop.getBestSolution();
-        cout<<aux<<endl;
-        cout<<"Size: "<<aux.getRoute().size()<<endl;
         Globals::currentIteration++;
     } while(RunControl::stopAlg(pop));
 

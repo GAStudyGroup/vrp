@@ -9,9 +9,9 @@
 #include "Extra.hpp"
 
 Population GenerationCtrl::basicGeneration(Population& pop){
-    //Crossover::crossoverPopulation(pop);
-    //Extra::applyRepair(pop);
-    //Extra::applyMutation(pop);
+    Crossover::crossoverPopulation(pop);
+    Extra::applyRepair(pop);
+    Extra::applyMutation(pop);
     Extra::applyTrim(pop);    
     return pop;
 }
