@@ -49,7 +49,8 @@ vector<vector<int>> Trim::moveCustomers(vector<vector<int>> subtours,int extraN)
                     break;
                 }
                 if(!TourRepairer::willOverload(sub,id) && id!=Globals::customerMap.getDepotId()){
-                    sub.push_back(id);
+                    //sub.push_back(id);
+                    sub.emplace(sub.begin()+TourRepairer::checkBestPosition(sub,id),id);
                     extra.erase(std::find(extra.begin(),extra.end(),id));
                     alreadyInserted=true;
                 }   
