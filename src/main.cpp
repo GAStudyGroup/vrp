@@ -11,14 +11,14 @@ using std::string;
 #include "Population.hpp"
 
 //Teste
-#include "Tour.hpp"
-#include "Extra.hpp"
-#include "InitialPop.hpp"
-#include "ImportData.hpp"
-#include "Trim.hpp"
-#include <iostream>
-using std::cout;
-using std::endl;
+// #include "Tour.hpp"
+// #include "Extra.hpp"
+// #include "InitialPop.hpp"
+// #include "ImportData.hpp"
+// #include "Trim.hpp"
+// #include <iostream>
+// using std::cout;
+// using std::endl;
 void startGA();
 void printGenInfo(std::ostream&, Population&);
 void setParams(Arg&);
@@ -122,7 +122,7 @@ void startGA() {
         printGenInfo(std::cout, pop);
         printGenInfo(logFile, pop);
 
-        pop = GenerationCtrl::basicGeneration(pop);
+        pop = GenerationCtrl::generation(pop);
         Tour aux= pop.getBestSolution();
         Globals::currentIteration++;
     } while(RunControl::stopAlg(pop));

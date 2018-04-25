@@ -30,6 +30,9 @@ namespace Configs {
     extern unsigned optimalValue;
     //Method of write log
     extern unsigned logMethod;
+
+    //In case of OX
+    extern unsigned elitismNumber;
 }
 
 namespace MutationCtrl {
