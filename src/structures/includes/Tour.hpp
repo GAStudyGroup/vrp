@@ -31,8 +31,11 @@ public:
 
     // Return the total of empty routes in tour
     int getEmptySubtoursNumber();
+    //Function to print a file that will be printed as a graph by a program in html5
+    std::string printToGraph();
 private:
     vector<int> route;
+    std::string getCustomerInfoToPrint(int id);
 };
 
 #endif

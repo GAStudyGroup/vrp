@@ -10,9 +10,24 @@
 
 Population GenerationCtrl::generation(Population &pop)
 {
-    // return newGeneration(pop);
-    // return basicGenerationOX(pop);
-    return basicGenerationGPX(pop);
+    //return basicGenerationOX(pop);
+    //return basicGenerationGPX(pop);
+    //return newGeneration(pop);
+    return GenerationOXGPX(pop);
+}
+
+Population GenerationCtrl::GenerationOXGPX(Population &pop)
+{
+    Crossover::crossoverOX(pop);
+    pop.sortPop();
+    Extra::applyRepair(pop);
+    Crossover::crossoverGPX(pop);
+    Extra::applyRepair(pop);
+    Extra::applyMutation(pop);
+    Extra::applyRepairV4(pop);
+    Extra::applyTrim(pop);
+    Extra::popReset(pop);
+    return pop;
 }
 
 Population GenerationCtrl::basicGenerationOX(Population &pop)

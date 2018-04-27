@@ -13,7 +13,7 @@ namespace GenerationCtrl{
     Population newGeneration(Population& pop);
     Population basicGenerationGPX(Population &pop);
     Population basicGenerationOX(Population &pop);
-
+    Population GenerationOXGPX(Population &pop);
     Population generation(Population &pop);
 }
 

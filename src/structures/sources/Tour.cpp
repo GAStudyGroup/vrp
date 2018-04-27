@@ -174,3 +174,25 @@ int Tour::getEmptySubtoursNumber() {
     }
     return(emptyCount);
 }
+
+std::string Tour::printToGraph(){
+    std::string output="";
+    auto routes=this->explodeSubTours();
+    output+=getCustomerInfoToPrint(Globals::customerMap.getDepotId());
+    for (auto route: routes){
+        for(auto customer: route){
+            output += getCustomerInfoToPrint(customer);
+        }
+        output+=getCustomerInfoToPrint(Globals::customerMap.getDepotId());
+    }
+    return output;
+}
+
+std::string Tour::getCustomerInfoToPrint(int id){
+    Customer customerObj=Globals::customerMap.getCustomer(id);
+    std::string info="";
+    info=(std::to_string(id) + " " + 
+            std::to_string(customerObj.getX()) + " " + 
+            std::to_string(customerObj.getY()) + "\n");
+    return info;
+}
