@@ -31,7 +31,7 @@ namespace Mutation{
     pair<vector<int>,bool> eighthMove(vector<int>,int,int);
 
     pair<vector<int>,bool> ninethMove(vector<int>,int,int);
-    //Checks if two clients are in the same tours
+    //Checks if two clients are in the same tour
     bool checkInSameTour(vector<int>, int,int,int);
     //Evaluates the fitness inside every move
     pair<vector<int>,bool> basicFitnessEvaluation(Tour ,Tour);  
@@ -45,7 +45,11 @@ namespace Mutation{
     void sortList();
 
     vector< pair<vector<int>,bool> (*) (vector<int>,int,int)> getMovesVector(); 
-};
+    
+    //Functions to test moves
+    vector<int> testInsert(vector<int>);
+    vector<int> testSwap(vector<int>);
 
+};
 
 #endif

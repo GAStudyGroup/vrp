@@ -11,14 +11,15 @@ using std::string;
 #include "Population.hpp"
 
 //Teste
-// #include "Tour.hpp"
-// #include "Extra.hpp"
-// #include "InitialPop.hpp"
-// #include "ImportData.hpp"
-// #include "Trim.hpp"
-// #include <iostream>
-// using std::cout;
-// using std::endl;
+#include "Tour.hpp"
+#include "Extra.hpp"
+#include "InitialPop.hpp"
+#include "ImportData.hpp"
+#include "Trim.hpp"
+#include "Mutation.hpp"
+#include <iostream>
+using std::cout;
+using std::endl;
 void startGA();
 void printGenInfo(std::ostream&, Population&);
 void setParams(Arg&);
@@ -60,17 +61,22 @@ string OPT{"opt"};
 string LOG{"log"};
 
 // int main(){
+//     Configs::fitnessMode=1;
 //     std::random_device rng;
 //     Globals::urng.seed(rng());
 //     ImportData file("vrp/small/P-n22-k2.vrp");
 //     Globals::customerMap= CustomerMap(file.getCustomerList(),file.getCapacity());
-//     Configs::truckNumber=16;
+//     Configs::truckNumber=2;
 
 //     Tour tour = InitialPop::tourGen();
-//     Extra::applyRepair(tour);
+//     for(int i=0;i<60;i++){
+//         Extra::applyMutation(tour);
+//     }
 //     cout <<tour<<endl;    
-//     Trim::applyTrim(tour);
-//     cout <<tour<<endl;
+//     tour.printToGraph(std::cout);
+//     tour=Mutation::testSwap(tour.getRoute());
+//     cout<<tour<<endl;
+//     tour.printToGraph(std::cout);
 //     //Future debug
 // }
 

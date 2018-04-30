@@ -342,3 +342,49 @@ vector<pair<vector<int>,bool> (*) (vector<int>,int,int)> Mutation::getMovesVecto
     moves.push_back(&ninethMove);
     return moves;
 }
+
+vector<int> Mutation::testInsert(vector<int> tour){
+    pair<vector<int>,bool> result;
+    vector<int> initial = tour;
+    int it=0;
+    if(verifyList(tour)){
+        return tour;
+    }
+    for (auto value: tour){
+        vector<pair<vector<int>,bool> (*) (vector<int>,int,int)>  moves;
+        moves.push_back(&firstMove);
+        for(auto move: moves){
+            result=move(initial,it,value);
+            if(result.second){
+                return result.first;
+            }
+        }
+        it++;
+    }
+    addList(tour);  
+    //cout << "Tam Lista Mut: "<<sizeof(Configs::mutationMaxedList)<<endl;
+    return tour;
+}
+
+vector<int> Mutation::testSwap(vector<int> tour){
+    pair<vector<int>,bool> result;
+    vector<int> initial = tour;
+    int it=0;
+    if(verifyList(tour)){
+        return tour;
+    }
+    for (auto value: tour){
+        vector<pair<vector<int>,bool> (*) (vector<int>,int,int)>  moves;
+        moves.push_back(&fourthMove);
+        for(auto move: moves){
+            result=move(initial,it,value);
+            if(result.second){
+                return result.first;
+            }
+        }
+        it++;
+    }
+    addList(tour);  
+    //cout << "Tam Lista Mut: "<<sizeof(Configs::mutationMaxedList)<<endl;
+    return tour;
+}
