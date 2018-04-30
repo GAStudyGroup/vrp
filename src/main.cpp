@@ -127,7 +127,7 @@ void startGA() {
         Globals::currentIteration++;
     } while(RunControl::stopAlg(pop));
 
-    std::cout<<pop.getBestSolution().printToGraph()<<std::endl;
+    pop.getBestSolution().printToGraph(std::cout);
     printGenInfo(std::cout, pop);
     printGenInfo(logFile, pop);
 

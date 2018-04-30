@@ -214,7 +214,7 @@ int Tour::getEmptySubtoursNumber()
     return (emptyCount);
 }
 
-std::string Tour::printToGraph()
+void Tour::printToGraph(std::ostream &out)
 {
     vector<std::string> colorVector;
     colorVector.push_back("#ff0000ff");
@@ -241,7 +241,7 @@ std::string Tour::printToGraph()
         output += getCustomerInfoToPrint(Globals::customerMap.getDepotId());
         i++;
     }
-    return output;
+    out << output;
 }
 
 std::string Tour::getCustomerInfoToPrint(int id)
