@@ -91,6 +91,7 @@ ostream &operator<<(ostream &output, Tour &t)
         }
         output << "\n";
     }
+    output << "Fitness: " << t.getFitness() << endl;
     output << "Cost: " << t.getDist() << endl;
     output << "Size: " << t.getRoute().size() << endl;
     return (output);

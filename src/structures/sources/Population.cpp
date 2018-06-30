@@ -22,13 +22,13 @@ std::ostream& operator<<(std::ostream& output, Population& pop)
 void Population::sortPop(){
     std::sort(pop.begin(), pop.end(),
      [](Tour& a, Tour& b) {        
-        return  a.getFitness() > b.getFitness();
+        return  a.getFitness() < b.getFitness();
     });
 }
 
 Tour Population::getBestSolution() {
     Tour best=*std::min_element(this->getPop().begin(),this->getPop().end(),[](auto &a, auto &b){
-        return a.getDist() < b.getDist();
+        return a.getFitness() < b.getFitness();
     });
     return best;
 }

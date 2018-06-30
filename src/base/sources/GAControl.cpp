@@ -184,7 +184,7 @@ bool RunControl::stopAlg(Population &pop)
     if (Configs::optimalValue != 0)
     {
         Tour best{pop.getBestSolution()};
-        if (best.getDist() <= Configs::optimalValue && best.isValid())
+        if (best.getFitness() <= Configs::optimalValue && best.isValid())
         {
             std::cout << "Best Solution founded" << std::endl;
             return (false);
