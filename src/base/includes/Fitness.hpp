@@ -19,4 +19,10 @@ namespace AdvancedFitness{
     double calcAlpha();
     double calcPenalty(vector<int>&);
 }
+
+namespace newFitness{
+    double newFitness(vector<int>&);
+    double calcPenalty(vector<int>&);
+    int calcPenaltyMultiplicator(vector<int>&);
+}
 #endif

@@ -56,6 +56,10 @@ double Tour::getFitness()
     case 3:
         return 2000 * 1 / this->getDist();
         break;
+    case 4:
+        // Josimar
+        return newFitness::newFitness(route);
+        break;
     default:
         return -1;
         break;

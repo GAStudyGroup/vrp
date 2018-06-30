@@ -59,3 +59,33 @@ double AdvancedFitness::advancedFitness(vector<int>& tour){
     fitness+=calcPenalty(tour);
     return (1/fitness)*10000;
 }
+
+// New fitness 
+
+double newFitness::newFitness(vector<int>& tour) {
+    double tourDistance{Tour(tour).getDist()};
+
+    return (tourDistance + (calcPenalty(tour) * calcPenaltyMultiplicator(tour)));
+}
+
+double newFitness::calcPenalty(vector<int>& tour) {
+    double maxDistance{TourUtils::getMaxDistance(tour)};
+    int tourSize{tour.size()};
+    std::cout << "max: " << maxDistance << std::endl;
+    return (tourSize * maxDistance);
+}
+
+int newFitness::calcPenaltyMultiplicator(vector<int>& tour) {
+    vector<int> tourCharges = Tour(tour).getAllCharges();
+    // +1 to maintain the 100%/100% < 1
+    int capacityDivider{Globals::customerMap.getTruckCapacity() + 1};
+    int multiplicator{0};
+
+    std::cout << "CapacityDivider: " << capacityDivider << std::endl;
+    for(int charge : tourCharges) {
+        std::cout << "Charge: " << charge << " divider " << std::floor(charge/capacityDivider) << std::endl;
+        multiplicator += std::floor(charge/capacityDivider);
+    }
+    std::cout << "Multiplicador: " << multiplicator << std::endl;
+    return (multiplicator);
+}
