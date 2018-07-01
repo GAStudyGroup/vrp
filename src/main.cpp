@@ -61,75 +61,55 @@ string INIT_MUT{"initm"};
 string OPT{"opt"};
 string LOG{"log"};
 
-int main(){
-    Configs::fitnessMode=1;
-    std::random_device rng;
-    Globals::urng.seed(rng());
-    ImportData file("vrp/small/P-n16-k8.vrp");
-    Globals::customerMap= CustomerMap(file.getCustomerList(),file.getCapacity());
-    Configs::truckNumber=8;
-
-    Tour tour = InitialPop::tourGen();
-    cout<<tour<<endl;
-    Tour classifiedTour=Kmeans::run(tour);
-    cout<<classifiedTour<<endl;
-    //vector<int> route = tour.explodeSubTours()[0];
-    // pair<double,double> result=CentroidCalc::calcRouteCentroid(route);
-    // cout<<"Customer Data"<<endl;
-    // for(int customer: route){
-    //     cout<< "Customer "<< customer <<" X:"
-    //     <<Globals::customerMap.getCustomer(customer).getX()<<endl;
-    //     cout<< "Customer "<< customer <<" Y:"
-    //     <<Globals::customerMap.getCustomer(customer).getY()<<endl;
-    //     cout<<endl;
-    // }
-    // cout<< "Centroid Data"<<endl;
-    // cout<< "X Value: "<<result.first<<endl;
-    // cout<< "Y Value: "<<result.second<<endl;
-    // int i=0;
-    // auto centroids=CentroidCalc::getAllCentroids(tour);
-    // for(auto result:centroids){
-    //     cout<< "Centroid "<<i<<": X: "<<result.first << " Y:"<<result.second<<endl;
-    //     i++;
-    // }
-    // cout<<Classifier::findNearestCentroid(centroids,1)<<endl;
-}
-
-// int main(int argc, char *argv[]) {
+// int main(){
+//     Configs::fitnessMode=1;
 //     std::random_device rng;
 //     Globals::urng.seed(rng());
+//     ImportData file("vrp/small/P-n16-k8.vrp");
+//     Globals::customerMap= CustomerMap(file.getCustomerList(),file.getCapacity());
+//     Configs::truckNumber=8;
 
-//     Arg args(argc, argv);
-
-//     args.setProgramName("Genetic Algorithm to Vehicle Routing Problem.");
-//     args.setHelp();
-//     args.newArgument(NAME, true, "Name of .vrp file");
-//     args.newArgument(POP_SIZE, true, "Size of population");
-//     args.newArgument(T_NUMBER, true, "Number of trucks");
-//     args.newArgument(MAX_IT, true, "Maximum of iterations");
-//     args.newArgument(RUN, false, "ID of run");
-//     args.newArgument(CROSS, false, "Method of crossover");
-//     args.newArgument(PATH, false, "Path of file");
-//     args.newArgument(FITNESS, false, "Method to calculate fitness");
-//     args.newArgument(MUT_RATE, false, "Rate of mutation in generation");
-//     args.newArgument(INIT_MUT, false, "Total Iterations of Mutation in Initial pop");
-//     args.newArgument(OPT, false, "Best known optimal value (with using the script, the best value will be founded in file and setted, if exists");
-//     args.newArgument(LOG, false, "Method of log, default is in root log/");
-
-//     try {
-//         args.validateArguments();
-//     } catch(std::runtime_error e) {
-//         std::cout << e.what() << std::endl;
-//         return(0);
-//     }
-
-//     /* Setting configurations */
-//     setParams(args);
-
-//     startGA();
-//     delete Globals::debugLogFile;
-//     return(0);
+//     Tour tour = InitialPop::tourGen();
+//     cout<<tour<<endl;
+//     Tour classifiedTour=Kmeans::run(tour);
+//     cout<<classifiedTour<<endl;
 // }
+
+int main(int argc, char *argv[]) {
+    std::random_device rng;
+    Globals::urng.seed(rng());
+
+    Arg args(argc, argv);
+
+    args.setProgramName("Genetic Algorithm to Vehicle Routing Problem.");
+    args.setHelp();
+    args.newArgument(NAME, true, "Name of .vrp file");
+    args.newArgument(POP_SIZE, true, "Size of population");
+    args.newArgument(T_NUMBER, true, "Number of trucks");
+    args.newArgument(MAX_IT, true, "Maximum of iterations");
+    args.newArgument(RUN, false, "ID of run");
+    args.newArgument(CROSS, false, "Method of crossover");
+    args.newArgument(PATH, false, "Path of file");
+    args.newArgument(FITNESS, false, "Method to calculate fitness");
+    args.newArgument(MUT_RATE, false, "Rate of mutation in generation");
+    args.newArgument(INIT_MUT, false, "Total Iterations of Mutation in Initial pop");
+    args.newArgument(OPT, false, "Best known optimal value (with using the script, the best value will be founded in file and setted, if exists");
+    args.newArgument(LOG, false, "Method of log, default is in root log/");
+
+    try {
+        args.validateArguments();
+    } catch(std::runtime_error e) {
+        std::cout << e.what() << std::endl;
+        return(0);
+    }
+
+    /* Setting configurations */
+    setParams(args);
+
+    startGA();
+    delete Globals::debugLogFile;
+    return(0);
+}
 
 void startGA() {
 

@@ -10,10 +10,10 @@
 
 Population GenerationCtrl::generation(Population &pop)
 {
-    //return basicGenerationOX(pop);
+    return basicGenerationOX(pop);
     //return basicGenerationGPX(pop);
     //return newGeneration(pop);
-    return GenerationOXGPX(pop);
+    //return GenerationOXGPX(pop);
 }
 
 Population GenerationCtrl::GenerationOXGPX(Population &pop)
@@ -32,16 +32,18 @@ Population GenerationCtrl::GenerationOXGPX(Population &pop)
 
 Population GenerationCtrl::basicGenerationOX(Population &pop)
 {
-    Crossover::crossoverOX(pop);
-    Extra::applyRepair(pop);
-    Extra::applyMutation(pop);
-    Extra::applyTrim(pop);
+    Extra::applyKmeans(pop);
+    // Crossover::crossoverOX(pop);
+    // Extra::applyRepair(pop);
+    // Extra::applyMutation(pop);
+    // Extra::applyTrim(pop);
     return pop;
 }
 
 Population GenerationCtrl::basicGenerationGPX(Population &pop)
 {
     Crossover::crossoverGPX(pop);
+
     Extra::applyRepair(pop);
     Extra::applyMutation(pop);
     Extra::applyTrim(pop);

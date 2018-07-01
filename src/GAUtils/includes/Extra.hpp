@@ -23,5 +23,8 @@ namespace Extra{
 
     void applyTrim(Tour&);
     void applyTrim(Population&);
+
+    void applyKmeans(Tour&);
+    void applyKmeans(Population&);
 }
 #endif

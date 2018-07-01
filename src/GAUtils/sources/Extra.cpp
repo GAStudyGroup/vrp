@@ -5,6 +5,7 @@
 #include "Mutation.hpp"
 #include "Opt.hpp"
 #include "Trim.hpp"
+#include "Kmeans.hpp"
 
 /* void Extra::popReset(Population &pop){ // OLD
     unsigned size{(unsigned) pop.getPop().size()};
@@ -143,4 +144,15 @@ void Extra::applyOptInSubs(Tour& t) {
     }
 
     t = Tour(newT);
+}
+//Implementar aqui como será a nova heuristica
+void Extra::applyKmeans(Tour& t){
+    t= Kmeans::run(t);
+}
+
+void Extra::applyKmeans(Population& p){
+    for (Tour& t: p.getPop()){
+        applyKmeans(t);
+    }
+    p.sortPop();
 }

@@ -68,8 +68,8 @@ int Classifier::findNearestCentroid(vector<pair<double,double>> centroids,int cu
     }
     return minDistanceCentroid;
 }
-//Kmeans application methods
-Tour KmeansMethods::fullKmeans(Tour& originalTour, vector<pair<double,double>> centroids){
+
+Tour Classifier::KmeansBasic(Tour& originalTour, vector<pair<double,double>> centroids){
     vector<vector<int>> routes;
     for(unsigned i=0;i<centroids.size();i++){
         vector<int> aux;
@@ -97,23 +97,34 @@ Tour KmeansMethods::fullKmeans(Tour& originalTour, vector<pair<double,double>> c
     //Rebuild and return the classified tour
     return TourRepairer::tourRebuilder(routes);
 }
-Tour Kmeans::run(Tour& originalTour){
+//Kmeans application methods
+Tour KmeansMethods::InfiniteIteratedKmeans(Tour& originalTour){
     auto centroids = CentroidCalc::getAllCentroids(originalTour);
     vector<pair<double,double>> lastCentroids;
     Tour tour=originalTour;
-    if(KmeansCfg::KmeansIterations==-1){
-        while(!CentroidCalc::compareCentroids(centroids,lastCentroids)){
+    while(!CentroidCalc::compareCentroids(centroids,lastCentroids)){
             lastCentroids=CentroidCalc::getAllCentroids(tour);
-            tour=KmeansMethods::fullKmeans(tour,centroids);
+            tour=Classifier::KmeansBasic(tour,centroids);
             centroids=CentroidCalc::getAllCentroids(tour);
-            cout<<"rodando"<<endl;
+            //cout<<"rodando"<<endl;
         }
-        return tour;
+    return tour;
+}
+
+Tour KmeansMethods::LimitedIteratedKmeans(Tour& originalTour,int iterations){
+    auto centroids = CentroidCalc::getAllCentroids(originalTour);
+    Tour tour=originalTour;
+    for(int i=0;i<iterations;i++){
+        tour=Classifier::KmeansBasic(tour,centroids);
+        centroids=CentroidCalc::getAllCentroids(tour);
+    }
+    return tour;
+}
+//Kmeans run
+Tour Kmeans::run(Tour& originalTour){
+    if(KmeansCfg::KmeansIterations==-1){
+        return KmeansMethods::InfiniteIteratedKmeans(originalTour);
     }else{
-        for(int i=0;i<KmeansCfg::KmeansIterations;i++){
-            tour=KmeansMethods::fullKmeans(tour,centroids);
-            centroids=CentroidCalc::getAllCentroids(tour);
-        }
-        return tour;
+        return KmeansMethods::LimitedIteratedKmeans(originalTour,KmeansCfg::KmeansIterations);
     }
 }
