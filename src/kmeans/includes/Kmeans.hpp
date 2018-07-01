@@ -11,4 +11,8 @@ namespace CentroidCalc{
     pair<double,double> calcRouteCentroid(vector<int>&);
     vector<pair<double,double>> getAllCentroids(Tour&);
 }
+//Given a customer, returns the nearest centroid from it
+namespace Classifier{
+    int findNearestCentroid(vector<pair<double,double>> centroids,int customer);
+}
 #endif

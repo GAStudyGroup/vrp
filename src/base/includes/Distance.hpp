@@ -7,4 +7,6 @@
 double distance(const int, const int);
 
 double distance(const std::string, const std::string);
+
+double distance(const double xA, const double yA, const double xB, const double yB);
 #endif

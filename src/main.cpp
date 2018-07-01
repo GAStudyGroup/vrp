@@ -85,11 +85,12 @@ int main(){
     // cout<< "X Value: "<<result.first<<endl;
     // cout<< "Y Value: "<<result.second<<endl;
     int i=0;
-    for(auto result:CentroidCalc::getAllCentroids(tour)){
+    auto centroids=CentroidCalc::getAllCentroids(tour);
+    for(auto result:centroids){
         cout<< "Centroid "<<i<<": X: "<<result.first << " Y:"<<result.second<<endl;
         i++;
     }
-
+    cout<<Classifier::findNearestCentroid(centroids,1)<<endl;
 }
 
 // int main(int argc, char *argv[]) {
