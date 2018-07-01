@@ -342,7 +342,7 @@ vector<pair<vector<int>,bool> (*) (vector<int>,int,int)> Mutation::getMovesVecto
     moves.push_back(&ninethMove);
     return moves;
 }
-
+// Test functions used as sample presenting the TCC
 vector<int> Mutation::testInsert(vector<int> tour){
     pair<vector<int>,bool> result;
     vector<int> initial = tour;
