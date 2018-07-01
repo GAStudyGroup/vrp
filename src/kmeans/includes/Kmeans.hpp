@@ -15,4 +15,12 @@ namespace CentroidCalc{
 namespace Classifier{
     int findNearestCentroid(vector<pair<double,double>> centroids,int customer);
 }
+
+namespace KmeansMethods{
+    //Tour iteratedKmeans(int iterations);
+    Tour fullKmeans(Tour&);
+}
+namespace Kmeans{
+    Tour run(Tour&);
+}
 #endif

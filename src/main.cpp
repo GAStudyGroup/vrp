@@ -71,6 +71,8 @@ int main(){
 
     Tour tour = InitialPop::tourGen();
     cout<<tour<<endl;
+    Tour classifiedTour=Kmeans::run(tour);
+    cout<<classifiedTour<<endl;
     //vector<int> route = tour.explodeSubTours()[0];
     // pair<double,double> result=CentroidCalc::calcRouteCentroid(route);
     // cout<<"Customer Data"<<endl;
@@ -84,13 +86,13 @@ int main(){
     // cout<< "Centroid Data"<<endl;
     // cout<< "X Value: "<<result.first<<endl;
     // cout<< "Y Value: "<<result.second<<endl;
-    int i=0;
-    auto centroids=CentroidCalc::getAllCentroids(tour);
-    for(auto result:centroids){
-        cout<< "Centroid "<<i<<": X: "<<result.first << " Y:"<<result.second<<endl;
-        i++;
-    }
-    cout<<Classifier::findNearestCentroid(centroids,1)<<endl;
+    // int i=0;
+    // auto centroids=CentroidCalc::getAllCentroids(tour);
+    // for(auto result:centroids){
+    //     cout<< "Centroid "<<i<<": X: "<<result.first << " Y:"<<result.second<<endl;
+    //     i++;
+    // }
+    // cout<<Classifier::findNearestCentroid(centroids,1)<<endl;
 }
 
 // int main(int argc, char *argv[]) {

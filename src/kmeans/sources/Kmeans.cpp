@@ -1,7 +1,7 @@
 #include "Kmeans.hpp"
 #include "Configs.hpp"
 #include "Distance.hpp"
-
+#include "TourRepairer.hpp"
 #include <limits>
 //Centoid calculations
 using std::cout;
@@ -43,11 +43,48 @@ int Classifier::findNearestCentroid(vector<pair<double,double>> centroids,int cu
     //Find the nearest distance
     double minDistance = std::numeric_limits<double>::max();
     double minDistanceCentroid=0;
-    for(int i=0;i<centroidDistances.size();i++){
+    for(unsigned i=0;i<centroidDistances.size();i++){
         if(centroidDistances[i]<minDistance){
             minDistance=centroidDistances[i];
             minDistanceCentroid=i;
         }
     }
     return minDistanceCentroid;
+}
+//Kmeans application methods
+Tour KmeansMethods::fullKmeans(Tour& originalTour){
+    auto centroids = CentroidCalc::getAllCentroids(originalTour);
+    vector<vector<int>> routes;
+    for(unsigned i=0;i<centroids.size();i++){
+        vector<int> aux;
+        routes.push_back(aux);
+    }
+    //Assign customer to its route
+    for(vector<int> route: originalTour.explodeSubTours()){
+        for(int customer: route){
+            //cout<<Classifier::findNearestCentroid(centroids,customer)<<endl;
+            routes[Classifier::findNearestCentroid(centroids,customer)].
+            push_back(customer);
+        }
+    }
+    //Insert a depot in the beginning of each route
+    for(auto &route:routes){
+        route.emplace(route.begin(),Globals::customerMap.getDepotId());
+    }
+    //Insert the empty routes in the tour    
+    vector<int> emptyRouteAux;
+    emptyRouteAux.push_back(Globals::customerMap.getDepotId());
+    int emptyTotal=(Configs::truckNumber - originalTour.explodeSubTours().size());
+    for(int i=0;i<emptyTotal;i++){
+        routes.push_back(emptyRouteAux);
+    }
+    //Rebuild and return the classified tour
+    return TourRepairer::tourRebuilder(routes);
+}
+Tour Kmeans::run(Tour& originalTour){
+    if(KmeansCfg::KmeansIterations==-1){
+        return KmeansMethods::fullKmeans(originalTour);
+    }else{
+        return KmeansMethods::fullKmeans(originalTour);
+    }
 }

@@ -35,3 +35,6 @@ unsigned ResetConfigs::resetMutIterations{30};
 
 //Fitness
 double Fitness::initialBest{0};
+
+//Kmeans
+int KmeansCfg::KmeansIterations{-1};
