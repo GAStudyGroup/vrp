@@ -10,6 +10,8 @@ using std::pair;
 namespace CentroidCalc{
     pair<double,double> calcRouteCentroid(vector<int>&);
     vector<pair<double,double>> getAllCentroids(Tour&);
+    bool compareCentroids(vector<pair<double,double>>,vector<pair<double,double>>);
+    bool compareDoubles(double, double);
 }
 //Given a customer, returns the nearest centroid from it
 namespace Classifier{
@@ -18,7 +20,7 @@ namespace Classifier{
 
 namespace KmeansMethods{
     //Tour iteratedKmeans(int iterations);
-    Tour fullKmeans(Tour&);
+    Tour fullKmeans(Tour&, vector<pair<double,double>>);
 }
 namespace Kmeans{
     Tour run(Tour&);
