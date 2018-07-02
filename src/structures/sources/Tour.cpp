@@ -253,3 +253,9 @@ std::string Tour::getCustomerInfoToPrint(int id)
             std::to_string(customerObj.getY()) + "\n");
     return info;
 }
+void Tour::printRoute(){
+    for(int customer : getRoute()){
+        std::cout<<customer<<" ";
+    }
+    std::cout<<endl;
+}

@@ -68,24 +68,13 @@ int main(){
     Globals::urng.seed(rng());
     ImportData file("vrp/small/P-n16-k8.vrp");
     Globals::customerMap= CustomerMap(file.getCustomerList(),file.getCapacity());
-    Configs::truckNumber=8;
+    Configs::truckNumber=11;
 
     Tour tour = InitialPop::tourGen();
     cout<<tour<<endl;
-    auto centroids= CapacitedCentroidCalc::getAllCentroids(tour);
-    for(auto centroid:centroids){
-        cout<<centroid.id<<endl;
-        cout<<centroid.x<<endl;
-        cout<<centroid.y<<endl;
-        cout<<"Distance: "<<distance(centroid.x,centroid.y,
-        Globals::customerMap.getCustomer(2).getX(),
-        Globals::customerMap.getCustomer(2).getY());
-        cout<<endl;
-    }
-    auto ids= CapacitedClassifier::getNearestCentroids(centroids,2);
-    for(auto id: ids){
-        cout<<id<<endl;
-    }
+    Tour classifiedTour=CapacitedKmeans::run(tour);
+    cout<<classifiedTour<<endl;
+    // //classifiedTour.printRoute();
 }
 
 // int main(int argc, char *argv[]) {

@@ -33,6 +33,7 @@ public:
     int getEmptySubtoursNumber();
     //Function to print a file that will be printed as a graph by a program in html5
     void printToGraph(std::ostream&);
+    void printRoute();
 private:
     vector<int> route;
     std::string getCustomerInfoToPrint(int id);

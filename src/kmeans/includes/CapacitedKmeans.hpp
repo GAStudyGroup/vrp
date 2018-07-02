@@ -20,8 +20,9 @@ namespace CapacitedCentroidCalc{
 }
 namespace CapacitedClassifier{
     vector<int> getNearestCentroids(vector<Structure::Centroid> centroids, int customer);
+    Tour capacitedKmeansBasic(Tour& originalTour, vector<Structure::Centroid> centroids);
 }
 namespace CapacitedKmeans{
-    
+    Tour run(Tour& originalTour);
 }
 #endif
