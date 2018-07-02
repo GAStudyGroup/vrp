@@ -85,10 +85,13 @@ vector<Structure::Centroid> centroids){
             
         }
     }
-    //Fazer algo para tratar o edge case
     cout<<"unassigned size: "<<unassigned.size()<<endl;
     for(int un: unassigned){
         cout<<un<<endl;
+    }
+    if(unassigned.size()>0){
+        //Fazer algo para tratar o edge case
+        
     }
     //Insert a depot in the beginning of each route
     for(auto &route : routes){
