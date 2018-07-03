@@ -85,13 +85,12 @@ vector<Structure::Centroid> centroids){
             
         }
     }
-    cout<<"unassigned size: "<<unassigned.size()<<endl;
-    for(int un: unassigned){
-        cout<<un<<endl;
-    }
     if(unassigned.size()>0){
-        //Fazer algo para tratar o edge case
-        
+        //Assign to nearest centroid
+        for(auto un: unassigned){
+            routes[CapacitedClassifier::getNearestCentroids(centroids,un)[0]]
+            .push_back(un);
+        }
     }
     //Insert a depot in the beginning of each route
     for(auto &route : routes){
@@ -112,8 +111,19 @@ vector<Structure::Centroid> centroids){
 
 Tour CapacitedKmeans::run(Tour& originalTour){
     if(originalTour.explodeSubTours().size()>=(unsigned)Globals::customerMap.getMnv()){
+        Tour tour=originalTour;
         auto centroids = CapacitedCentroidCalc::getAllCentroids(originalTour);
-        return CapacitedClassifier::capacitedKmeansBasic(originalTour,centroids);
+        vector<Structure::Centroid> centroidsLast;
+        int safeMeasure=0;
+        while(!CapacitedCentroidCalc::compareCentroids(centroids,centroidsLast)
+        && safeMeasure!= KmeansCfg::KmeansIterations){
+            centroidsLast=CapacitedCentroidCalc::getAllCentroids(tour);
+            tour=CapacitedClassifier::capacitedKmeansBasic(tour,centroids);
+            centroids=CapacitedCentroidCalc::getAllCentroids(tour);
+            safeMeasure++;
+            // cout<<"Rodando:"<<safeMeasure<<endl;
+        }
+        return tour;
     }else{
         return originalTour;
     }

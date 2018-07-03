@@ -66,9 +66,9 @@ int main(){
     Configs::fitnessMode=1;
     std::random_device rng;
     Globals::urng.seed(rng());
-    ImportData file("vrp/small/P-n16-k8.vrp");
+    ImportData file("vrp/A-Sets/A-n32-k5.vrp");
     Globals::customerMap= CustomerMap(file.getCustomerList(),file.getCapacity());
-    Configs::truckNumber=11;
+    Configs::truckNumber=5;
 
     Tour tour = InitialPop::tourGen();
     cout<<tour<<endl;
