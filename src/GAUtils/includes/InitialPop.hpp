@@ -7,7 +7,11 @@ namespace InitialPop{
     std::vector<int> tourGen();
     Population popGen(int);
     void initialPopApplyMutation(Population &pop);
+    void shuffleRoutes(Tour& tour);
 
     Population InitialPopByMutation(int size);
+    Population InitialPopByKmeans(int size);
+
+    Population InitialPopAdvanced(int size);
 }
 #endif

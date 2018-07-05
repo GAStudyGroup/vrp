@@ -62,56 +62,56 @@ string INIT_MUT{"initm"};
 string OPT{"opt"};
 string LOG{"log"};
 
-int main(){
-    Configs::fitnessMode=1;
+// int main(){
+//     Configs::fitnessMode=1;
+//     std::random_device rng;
+//     Globals::urng.seed(rng());
+//     ImportData file("vrp/A-Sets/A-n38-k5.vrp");
+//     Globals::customerMap= CustomerMap(file.getCustomerList(),file.getCapacity());
+//     Configs::truckNumber=5;
+
+//     Tour tour = InitialPop::tourGen();
+//     cout<<tour<<endl;
+//     Tour classifiedTour=CapacitedKmeans::run(tour);
+//     cout<<classifiedTour<<endl;
+//     // //classifiedTour.printRoute();
+// }
+
+int main(int argc, char *argv[]) {
     std::random_device rng;
     Globals::urng.seed(rng());
-    ImportData file("vrp/A-Sets/A-n38-k5.vrp");
-    Globals::customerMap= CustomerMap(file.getCustomerList(),file.getCapacity());
-    Configs::truckNumber=5;
 
-    Tour tour = InitialPop::tourGen();
-    cout<<tour<<endl;
-    Tour classifiedTour=CapacitedKmeans::run(tour);
-    cout<<classifiedTour<<endl;
-    // //classifiedTour.printRoute();
+    Arg args(argc, argv);
+
+    args.setProgramName("Genetic Algorithm to Vehicle Routing Problem.");
+    args.setHelp();
+    args.newArgument(NAME, true, "Name of .vrp file");
+    args.newArgument(POP_SIZE, true, "Size of population");
+    args.newArgument(T_NUMBER, true, "Number of trucks");
+    args.newArgument(MAX_IT, true, "Maximum of iterations");
+    args.newArgument(RUN, false, "ID of run");
+    args.newArgument(CROSS, false, "Method of crossover");
+    args.newArgument(PATH, false, "Path of file");
+    args.newArgument(FITNESS, false, "Method to calculate fitness");
+    args.newArgument(MUT_RATE, false, "Rate of mutation in generation");
+    args.newArgument(INIT_MUT, false, "Total Iterations of Mutation in Initial pop");
+    args.newArgument(OPT, false, "Best known optimal value (with using the script, the best value will be founded in file and setted, if exists");
+    args.newArgument(LOG, false, "Method of log, default is in root log/");
+
+    try {
+        args.validateArguments();
+    } catch(std::runtime_error e) {
+        std::cout << e.what() << std::endl;
+        return(0);
+    }
+
+    /* Setting configurations */
+    setParams(args);
+
+    startGA();
+    delete Globals::debugLogFile;
+    return(0);
 }
-
-// int main(int argc, char *argv[]) {
-//     std::random_device rng;
-//     Globals::urng.seed(rng());int
-
-//     Arg args(argc, argv);
-
-//     args.setProgramName("Genetic Algorithm to Vehicle Routing Problem.");
-//     args.setHelp();
-//     args.newArgument(NAME, true, "Name of .vrp file");
-//     args.newArgument(POP_SIZE, true, "Size of population");
-//     args.newArgument(T_NUMBER, true, "Number of trucks");
-//     args.newArgument(MAX_IT, true, "Maximum of iterations");
-//     args.newArgument(RUN, false, "ID of run");
-//     args.newArgument(CROSS, false, "Method of crossover");
-//     args.newArgument(PATH, false, "Path of file");
-//     args.newArgument(FITNESS, false, "Method to calculate fitness");
-//     args.newArgument(MUT_RATE, false, "Rate of mutation in generation");
-//     args.newArgument(INIT_MUT, false, "Total Iterations of Mutation in Initial pop");
-//     args.newArgument(OPT, false, "Best known optimal value (with using the script, the best value will be founded in file and setted, if exists");
-//     args.newArgument(LOG, false, "Method of log, default is in root log/");
-
-//     try {
-//         args.validateArguments();
-//     } catch(std::runtime_error e) {
-//         std::cout << e.what() << std::endl;
-//         return(0);
-//     }
-
-//     /* Setting configurations */
-//     setParams(args);
-
-//     startGA();
-//     delete Globals::debugLogFile;
-//     return(0);
-// }
 
 void startGA() {
 

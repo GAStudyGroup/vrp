@@ -11,7 +11,7 @@
 Population GenerationCtrl::generation(Population &pop)
 {
     return basicGenerationOX(pop);
-    //return basicGenerationGPX(pop);
+    // return basicGenerationGPX(pop);
     //return newGeneration(pop);
     //return GenerationOXGPX(pop);
 }
@@ -32,18 +32,16 @@ Population GenerationCtrl::GenerationOXGPX(Population &pop)
 
 Population GenerationCtrl::basicGenerationOX(Population &pop)
 {
-    Extra::applyKmeans(pop);
-    // Crossover::crossoverOX(pop);
-    // Extra::applyRepair(pop);
-    // Extra::applyMutation(pop);
-    // Extra::applyTrim(pop);
+    Crossover::crossoverOX(pop);
+    Extra::applyRepair(pop);
+    Extra::applyMutation(pop);
+    Extra::applyTrim(pop);
     return pop;
 }
 
 Population GenerationCtrl::basicGenerationGPX(Population &pop)
 {
     Crossover::crossoverGPX(pop);
-
     Extra::applyRepair(pop);
     Extra::applyMutation(pop);
     Extra::applyTrim(pop);
@@ -102,7 +100,9 @@ void RunControl::initAlg(Population &pop)
     ImportData vrpFile(Configs::pathToFile + Configs::file + ".vrp");
     Globals::customerMap = CustomerMap(vrpFile.getCustomerList(), vrpFile.getCapacity());
     //Generates a random pop and applies mutation
-    pop = InitialPop::InitialPopByMutation(Configs::popSize);
+    // pop = InitialPop::InitialPopByMutation(Configs::popSize);
+    // pop= InitialPop::InitialPopByKmeans(Configs::popSize);
+    pop =InitialPop::InitialPopAdvanced(Configs::popSize);
     Fitness::initialBest = pop.getBestSolution().getDist();
 }
 
