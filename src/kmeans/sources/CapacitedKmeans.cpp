@@ -33,6 +33,23 @@ vector<Structure::Centroid> CapacitedCentroidCalc::getAllCentroids(Tour& tour){
     }
     return centroids;
 }
+
+vector<Structure::Centroid> CapacitedCentroidCalc::heavierCustomersAsCentroids(Tour& tour){
+    vector<Structure::Centroid> centroids;
+    vector<int> tourCustomers=tour.getRoute();
+    std::sort(tourCustomers.begin(),tourCustomers.end(),[](int& a, int& b){
+        return Globals::customerMap.getCustomer(a).getDemand()>
+        Globals::customerMap.getCustomer(b).getDemand();
+    });
+    for(int i=0;i<Globals::customerMap.getMnv();i++){
+        Structure::Centroid centroid;
+        centroid.id=i;
+        centroid.x=Globals::customerMap.getCustomer(i).getX();
+        centroid.y=Globals::customerMap.getCustomer(i).getY();
+        centroids.push_back(centroid);
+    }
+    return centroids;
+}
 //Returns the ids of the centroids sorted(ASC) by the distance that they are from the customer
 vector<int> CapacitedClassifier::getNearestCentroids(vector<Structure::Centroid> centroids,
 int customer){
@@ -110,21 +127,23 @@ vector<Structure::Centroid> centroids){
 }
 
 Tour CapacitedKmeans::run(Tour& originalTour){
+    Tour tour=originalTour;
+    vector<Structure::Centroid> centroids;
     if(originalTour.explodeSubTours().size()>=(unsigned)Globals::customerMap.getMnv()){
-        Tour tour=originalTour;
-        auto centroids = CapacitedCentroidCalc::getAllCentroids(originalTour);
-        vector<Structure::Centroid> centroidsLast;
-        int safeMeasure=0;
-        while(!CapacitedCentroidCalc::compareCentroids(centroids,centroidsLast)
-        && safeMeasure!= KmeansCfg::KmeansIterations){
-            centroidsLast=CapacitedCentroidCalc::getAllCentroids(tour);
-            tour=CapacitedClassifier::capacitedKmeansBasic(tour,centroids);
-            centroids=CapacitedCentroidCalc::getAllCentroids(tour);
-            safeMeasure++;
-            // cout<<"Rodando:"<<safeMeasure<<endl;
-        }
-        return tour;
+        centroids = CapacitedCentroidCalc::getAllCentroids(originalTour);
     }else{
-        return originalTour;
+        centroids=CapacitedCentroidCalc::heavierCustomersAsCentroids(tour);
+    }    
+    vector<Structure::Centroid> centroidsLast;
+    int safeMeasure=0;
+    while(!CapacitedCentroidCalc::compareCentroids(centroids,centroidsLast)
+        && safeMeasure!= KmeansCfg::KmeansIterations){
+        centroidsLast=CapacitedCentroidCalc::getAllCentroids(tour);
+        tour=CapacitedClassifier::capacitedKmeansBasic(tour,centroids);
+        centroids=CapacitedCentroidCalc::getAllCentroids(tour);
+        safeMeasure++;
+        // cout<<"Rodando:"<<safeMeasure<<endl;
     }
+    return tour;
+
 }
