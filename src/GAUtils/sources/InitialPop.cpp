@@ -96,6 +96,9 @@ void InitialPop::shuffleRoutes(Tour& tour){
 Population InitialPop::InitialPopByKmeans(int size){
     vector<Tour> population;
     Tour baseTour= tourGen();
+    for(int i=0;i<50;i++){
+        Extra::applyRepair(baseTour);
+    }
     baseTour=CapacitedKmeans::run(baseTour);
     for(int i=0;i<size;i++){
         shuffleRoutes(baseTour);
@@ -106,9 +109,16 @@ Population InitialPop::InitialPopByKmeans(int size){
 
 Population InitialPop::InitialPopAdvanced(int size){
     Population pop = InitialPopByKmeans(size);
-    Extra::applyCombined(pop);
-    for(int i=0;i<MutationCtrl::InitialPopmutIterations;i++){
+    for(unsigned i=0;i<15;i++){
         Extra::applyMutation(pop);
     }
     return pop;
+}
+
+Population InitialPop::InitialPopRandom(int size){
+    vector<Tour> tours;
+    for(int i=0;i<size;i++){
+        tours.push_back(tourGen());
+    }
+    return tours;
 }

@@ -259,3 +259,13 @@ void Tour::printRoute(){
     }
     std::cout<<endl;
 }
+
+int Tour::getValidRoutes(){
+    int valid=0;
+    for(auto route:explodeSubTours()){
+        if(TourUtils::getSubCharge(route)<=Globals::customerMap.getTruckCapacity()){
+            valid++;
+        }
+    }
+    return valid;
+}

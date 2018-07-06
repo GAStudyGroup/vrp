@@ -66,15 +66,24 @@ string LOG{"log"};
 //     Configs::fitnessMode=1;
 //     std::random_device rng;
 //     Globals::urng.seed(rng());
-//     ImportData file("vrp/A-Sets/A-n38-k5.vrp");
+//     // ImportData file("vrp/E-Sets/E-n22-k4.vrp");
+//     ImportData file("vrp/small/P-n16-k8.vrp");
 //     Globals::customerMap= CustomerMap(file.getCustomerList(),file.getCapacity());
-//     Configs::truckNumber=5;
+//     Configs::truckNumber=8;
 
-//     Tour tour = InitialPop::tourGen();
-//     cout<<tour<<endl;
-//     Tour classifiedTour=CapacitedKmeans::run(tour);
-//     cout<<classifiedTour<<endl;
-//     // //classifiedTour.printRoute();
+//     cout<<"Generating random"<<endl;
+//     Population popRandom=InitialPop::InitialPopRandom(100);
+//     popRandom.printPopulationStats();
+//     cout<<endl;
+
+//     cout<<"Generating with mutation"<<endl;
+//     Population popMut=InitialPop::InitialPopByMutation(100);
+//     popMut.printPopulationStats();
+//     cout<<endl;
+
+//     cout<<"Generating with Kmeans"<<endl;
+//     Population pop = InitialPop::InitialPopAdvanced(100);
+//     pop.printPopulationStats();
 // }
 
 int main(int argc, char *argv[]) {

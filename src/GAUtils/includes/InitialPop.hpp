@@ -9,7 +9,10 @@ namespace InitialPop{
     void initialPopApplyMutation(Population &pop);
     void shuffleRoutes(Tour& tour);
 
+    Population InitialPopRandom(int size);
+    
     Population InitialPopByMutation(int size);
+    
     Population InitialPopByKmeans(int size);
 
     Population InitialPopAdvanced(int size);

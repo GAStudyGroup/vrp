@@ -40,3 +40,15 @@ int Population::totalToursValid() {
     }
     return(validCount);
 }
+
+void Population::printPopulationStats(){
+    //Get average distance
+    double total=0;
+    int validRoutes=0;
+    for(auto tour: pop){
+        total+=tour.getDist();
+        validRoutes+=tour.getValidRoutes();
+    }
+    std::cout<<"Average Distance: "<<(total/pop.size())<<std::endl;
+    std::cout<<"Valid Routes: "<<validRoutes<<std::endl;
+}

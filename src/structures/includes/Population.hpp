@@ -24,6 +24,8 @@ public:
 
     Tour getBestSolution();
     int totalToursValid();
+
+    void printPopulationStats();
 private:
     vector<Tour> pop;
 
