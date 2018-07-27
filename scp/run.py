@@ -1,4 +1,6 @@
 #!/usr/bin/env python
+# ./bin/VRP -name P-n16-k8 -trucks 8 -size 50 -it 20 -path vrp/small
+
 from subprocess import call
 import os
 import configs

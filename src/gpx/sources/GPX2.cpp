@@ -32,7 +32,7 @@ vector<string> GPX2::crossover(vector<string> redT, vector<string> blueT)
 
     //the tours are equal if 0, or one of them is better if 
     if (obj.candidatePartitions.size() < 2) {
-        return ((Tour(redT).getDist() < Tour(blueT).getDist()) ? redT : blueT);
+        return ((Tour(redT).getFitness() < Tour(blueT).getFitness()) ? redT : blueT);
     }
 
     // Step 6
@@ -45,7 +45,7 @@ vector<string> GPX2::crossover(vector<string> redT, vector<string> blueT)
     }
 
     if (obj.feasiblePartitions.size() < 1) {
-        return ((Tour(redT).getDist() < Tour(blueT).getDist()) ? redT : blueT);
+        return ((Tour(redT).getFitness() < Tour(blueT).getFitness()) ? redT : blueT);
     }
 
     // Step 7

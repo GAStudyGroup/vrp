@@ -154,8 +154,8 @@ void printGenInfo(std::ostream& out, Population& pop) {
     int subTourUsed{bestSol.subToursUsed()};
 
     out << "\nGeneration: " << Globals::currentIteration;
-    out << "\n\tValid solutions in Population: " << pop.totalToursValid();
-    out << "\n\tBestSolution: " << bestSol.getDist()<< "\n\t" << (isValid?"Valid solution.":"Not a Valid solution.") << "\n\t" << "SubTours used: " << subTourUsed << std::endl;
+    out << "\n\tValid solutions in Population: " << pop.totalToursValid() << "/" << pop.getPop().size();
+    out << "\n\tBestSolution Fitness: " << bestSol.getFitness() << "\n\tBestSolution Distance: " << bestSol.getDist()  << "\n\t" << (isValid?"Valid solution.":"Not a Valid solution.") << "\n\t" << "SubTours used: " << subTourUsed << std::endl;
 }
 
 void setParams(Arg& args) {

@@ -276,7 +276,7 @@ pair<vector<int>,bool> Mutation::basicFitnessEvaluation(Tour OldTour,Tour NewTou
     pair<vector<int>,bool> result;
     result.first=OldTour.getRoute();
     result.second=false;
-    if(NewTour.getFitness()>OldTour.getFitness()){
+    if(NewTour.getFitness()<OldTour.getFitness()){
         result.first=NewTour.getRoute();
         result.second=true;
     }

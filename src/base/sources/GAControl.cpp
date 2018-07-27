@@ -11,9 +11,9 @@
 Population GenerationCtrl::generation(Population &pop)
 {
     //return basicGenerationOX(pop);
-    //return basicGenerationGPX(pop);
+    return basicGenerationGPX(pop);
     //return newGeneration(pop);
-    return GenerationOXGPX(pop);
+    //return GenerationOXGPX(pop);
 }
 
 Population GenerationCtrl::GenerationOXGPX(Population &pop)
