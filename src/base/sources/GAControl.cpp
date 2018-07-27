@@ -36,6 +36,7 @@ Population GenerationCtrl::basicGenerationOX(Population &pop)
     Extra::applyRepair(pop);
     Extra::applyMutation(pop);
     Extra::applyTrim(pop);
+    // Extra::popReset(pop);
     return pop;
 }
 
@@ -45,6 +46,7 @@ Population GenerationCtrl::basicGenerationGPX(Population &pop)
     Extra::applyRepair(pop);
     Extra::applyMutation(pop);
     Extra::applyTrim(pop);
+    Extra::popReset(pop);
     return pop;
 }
 
@@ -100,7 +102,10 @@ void RunControl::initAlg(Population &pop)
     ImportData vrpFile(Configs::pathToFile + Configs::file + ".vrp");
     Globals::customerMap = CustomerMap(vrpFile.getCustomerList(), vrpFile.getCapacity());
     //Generates a random pop and applies mutation
-    pop = InitialPop::InitialPopByMutation(Configs::popSize);
+    // pop = InitialPop::InitialPopByMutation(Configs::popSize);
+    // pop= InitialPop::InitialPopByKmeans(Configs::popSize);
+    // pop=InitialPop::InitialPopRandom(Configs::popSize);
+    pop =InitialPop::InitialPopAdvanced(Configs::popSize);
     Fitness::initialBest = pop.getBestSolution().getDist();
 }
 
@@ -186,7 +191,7 @@ bool RunControl::stopAlg(Population &pop)
         Tour best{pop.getBestSolution()};
         if (best.getDist() <= Configs::optimalValue && best.isValid())
         {
-            std::cout << "Best Solution founded" << std::endl;
+            std::cout << "Best Solution found" << std::endl;
             return (false);
             //Configs::maxIterations=Globals::currentIteration+10;
         }

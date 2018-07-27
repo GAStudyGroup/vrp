@@ -12,11 +12,13 @@ using std::string;
 
 //Teste
 #include "Tour.hpp"
-#include "Extra.hpp"
+// #include "Extra.hpp"
 #include "InitialPop.hpp"
 #include "ImportData.hpp"
-#include "Trim.hpp"
-#include "Mutation.hpp"
+// #include "Trim.hpp"
+// #include "Mutation.hpp"
+#include "CapacitedKmeans.hpp"
+#include "Distance.hpp"
 #include <iostream>
 using std::cout;
 using std::endl;
@@ -64,20 +66,24 @@ string LOG{"log"};
 //     Configs::fitnessMode=1;
 //     std::random_device rng;
 //     Globals::urng.seed(rng());
-//     ImportData file("vrp/small/P-n22-k2.vrp");
+//     // ImportData file("vrp/E-Sets/E-n22-k4.vrp");
+//     ImportData file("vrp/small/P-n16-k8.vrp");
 //     Globals::customerMap= CustomerMap(file.getCustomerList(),file.getCapacity());
-//     Configs::truckNumber=2;
+//     Configs::truckNumber=8;
 
-//     Tour tour = InitialPop::tourGen();
-//     for(int i=0;i<60;i++){
-//         Extra::applyMutation(tour);
-//     }
-//     cout <<tour<<endl;    
-//     tour.printToGraph(std::cout);
-//     tour=Mutation::testSwap(tour.getRoute());
-//     cout<<tour<<endl;
-//     tour.printToGraph(std::cout);
-//     //Future debug
+//     cout<<"Generating random"<<endl;
+//     Population popRandom=InitialPop::InitialPopRandom(100);
+//     popRandom.printPopulationStats();
+//     cout<<endl;
+
+//     cout<<"Generating with mutation"<<endl;
+//     Population popMut=InitialPop::InitialPopByMutation(100);
+//     popMut.printPopulationStats();
+//     cout<<endl;
+
+//     cout<<"Generating with Kmeans"<<endl;
+//     Population pop = InitialPop::InitialPopAdvanced(100);
+//     pop.printPopulationStats();
 // }
 
 int main(int argc, char *argv[]) {
@@ -117,6 +123,7 @@ int main(int argc, char *argv[]) {
 }
 
 void startGA() {
+
     Population pop;
     std::ofstream logFile{RunControl::initLogFile()};
     RunControl::printHeader(logFile);

@@ -258,3 +258,19 @@ std::string Tour::getCustomerInfoToPrint(int id)
             std::to_string(customerObj.getY()) + "\n");
     return info;
 }
+void Tour::printRoute(){
+    for(int customer : getRoute()){
+        std::cout<<customer<<" ";
+    }
+    std::cout<<endl;
+}
+
+int Tour::getValidRoutes(){
+    int valid=0;
+    for(auto route:explodeSubTours()){
+        if(TourUtils::getSubCharge(route)<=Globals::customerMap.getTruckCapacity()){
+            valid++;
+        }
+    }
+    return valid;
+}
