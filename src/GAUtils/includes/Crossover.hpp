@@ -4,7 +4,8 @@
 #include "Population.hpp"
 namespace Crossover{
     Tour crossoverGPX(Tour&, Tour&);
-    void crossoverGPX(Population&);
+    void crossoverGPX_OLD(Population&);
+    void crossoverGPX_5Best(Population&);
 
     void crossoverOX(Tour&, Tour&);
     void crossoverOX(Population&);

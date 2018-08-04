@@ -4,6 +4,9 @@
 
 - Função de balanceamento
 
+make && clear && ./bin/VRP -name M-n101-k10 -path vrp/M-Sets -trucks 10 -size 100 -it 20
+
+
 valgrind  --tool=memcheck --leak-check=yes --log-file=valgrind_output.txt -v ./bin/GA
 --leak-check=full --show-leak-kinds=all
 

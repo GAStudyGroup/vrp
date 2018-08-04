@@ -8,6 +8,7 @@ namespace Extra{
     void applyMutation(Population &pop);
 
     void popReset(Population &);    
+    void fillPop(Population&);
 
     void applyRepair(Tour&);
     void applyRepair(Population&);

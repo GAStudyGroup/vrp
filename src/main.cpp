@@ -2,8 +2,8 @@
 #include <string>
 using std::string;
 #include <fstream>
-#include <utility>
 #include <random>
+#include <utility>
 
 #include "Arg.hpp"
 #include "Configs.hpp"
@@ -13,8 +13,8 @@ using std::string;
 //Teste
 #include "Tour.hpp"
 // #include "Extra.hpp"
-#include "InitialPop.hpp"
 #include "ImportData.hpp"
+#include "InitialPop.hpp"
 // #include "Trim.hpp"
 // #include "Mutation.hpp"
 #include "CapacitedKmeans.hpp"
@@ -48,19 +48,19 @@ void setParams(Arg&);
 
 /* Global params code */
 /* Required args */
-string NAME{"name|n"};
-string POP_SIZE{"size|s"};
-string T_NUMBER{"trucks|t"};
-string MAX_IT{"it"};
+string NAME{ "name|n" };
+string POP_SIZE{ "size|s" };
+string T_NUMBER{ "trucks|t" };
+string MAX_IT{ "it" };
 /* Optional */
-string RUN{"run"};
-string CROSS{"cross|cx"};
-string PATH{"path"};
-string FITNESS{"fit"};
-string MUT_RATE{"mrate"};
-string INIT_MUT{"initm"};
-string OPT{"opt"};
-string LOG{"log"};
+string RUN{ "run" };
+string CROSS{ "cross|cx" };
+string PATH{ "path" };
+string FITNESS{ "fit" };
+string MUT_RATE{ "mrate" };
+string INIT_MUT{ "initm" };
+string OPT{ "opt" };
+string LOG{ "log" };
 
 // int main(){
 //     Configs::fitnessMode=1;
@@ -86,7 +86,8 @@ string LOG{"log"};
 //     pop.printPopulationStats();
 // }
 
-int main(int argc, char *argv[]) {
+int main(int argc, char* argv[])
+{
     std::random_device rng;
     Globals::urng.seed(rng());
 
@@ -109,9 +110,9 @@ int main(int argc, char *argv[]) {
 
     try {
         args.validateArguments();
-    } catch(std::runtime_error e) {
+    } catch (std::runtime_error e) {
         std::cout << e.what() << std::endl;
-        return(0);
+        return (0);
     }
 
     /* Setting configurations */
@@ -119,72 +120,77 @@ int main(int argc, char *argv[]) {
 
     startGA();
     delete Globals::debugLogFile;
-    return(0);
+    return (0);
 }
 
-void startGA() {
+void startGA()
+{
 
     Population pop;
-    std::ofstream logFile{RunControl::initLogFile()};
+    std::ofstream logFile{ RunControl::initLogFile() };
     RunControl::printHeader(logFile);
 
     auto algStart = std::chrono::high_resolution_clock::now();
     RunControl::initAlg(pop);
     //cout<< "MNV: "<<Globals::customerMap.getMnv()<<endl;
-    do{
+    do {
         printGenInfo(std::cout, pop);
         printGenInfo(logFile, pop);
 
         pop = GenerationCtrl::generation(pop);
-        Tour aux= pop.getBestSolution();
+        Tour aux = pop.getBestSolution();
         Globals::currentIteration++;
-    } while(RunControl::stopAlg(pop));
+    } while (RunControl::stopAlg(pop));
 
-    pop.getBestSolution().printToGraph(std::cout);
+    //pop.getBestSolution().printToGraph(std::cout);
     printGenInfo(std::cout, pop);
     printGenInfo(logFile, pop);
 
     auto algFinish = std::chrono::high_resolution_clock::now();
-    RunControl::printExecutionTime(logFile, std::chrono::duration<double> (algFinish - algStart).count());
-    RunControl::printExecutionTime(std::cout, std::chrono::duration<double> (algFinish - algStart).count());
+    RunControl::printExecutionTime(logFile, std::chrono::duration<double>(algFinish - algStart).count());
+    RunControl::printExecutionTime(std::cout, std::chrono::duration<double>(algFinish - algStart).count());
 
-    Tour best{pop.getBestSolution()};
+    Tour best{ pop.getBestSolution() };
+    cout<<best<<endl;
     RunControl::printFooter(std::cout, best);
     RunControl::printFooter(logFile, best);
 
     logFile.close();
 }
 
-void printGenInfo(std::ostream& out, Population& pop) {
-    Tour bestSol{pop.getBestSolution()};
-    bool isValid{bestSol.isValid()};
-    int subTourUsed{bestSol.subToursUsed()};
+void printGenInfo(std::ostream& out, Population& pop)
+{
+    Tour bestSol{ pop.getBestSolution() };
+    bool isValid{ bestSol.isValid() };
+    int subTourUsed{ bestSol.subToursUsed() };
 
     out << "\nGeneration: " << Globals::currentIteration;
     out << "\n\tValid solutions in Population: " << pop.totalToursValid() << "/" << pop.getPop().size();
-    out << "\n\tBestSolution Fitness: " << bestSol.getFitness() << "\n\tBestSolution Distance: " << bestSol.getDist()  << "\n\t" << (isValid?"Valid solution.":"Not a Valid solution.") << "\n\t" << "SubTours used: " << subTourUsed << std::endl;
+    out << "\n\tBestSolution Fitness: " << bestSol.getFitness() << "\n\tBestSolution Distance: " << bestSol.getDist() << "\n\t" << (isValid ? "Valid solution." : "Not a Valid solution.") << "\n\t"
+        << "SubTours used: " << subTourUsed << std::endl;
 }
 
-void setParams(Arg& args) {
-    Configs::file = args.getOption(NAME); 
+void setParams(Arg& args)
+{
+    Configs::file = args.getOption(NAME);
     Configs::popSize = std::stoi(args.getOption(POP_SIZE));
     Configs::truckNumber = std::stoi(args.getOption(T_NUMBER));
     Configs::maxIterations = std::stoi(args.getOption(MAX_IT));
 
-    Configs::logMethod = ((args.getOption(LOG).empty())? Configs::logMethod : std::stoi(args.getOption(LOG)));
+    Configs::logMethod = ((args.getOption(LOG).empty()) ? Configs::logMethod : std::stoi(args.getOption(LOG)));
 
-    Configs::runId = ((args.getOption(RUN).empty())? Configs::runId : std::stoi(args.getOption(RUN)));
+    Configs::runId = ((args.getOption(RUN).empty()) ? Configs::runId : std::stoi(args.getOption(RUN)));
 
-    Configs::crossoverType = ((args.getOption(CROSS).empty())? Configs::crossoverType : std::stoi(args.getOption(CROSS)));
+    Configs::crossoverType = ((args.getOption(CROSS).empty()) ? Configs::crossoverType : std::stoi(args.getOption(CROSS)));
 
-    string path{args.getOption(PATH)};
-    Configs::pathToFile = ((path.empty())? Configs::pathToFile : ((path[path.length()-1]=='/')?path : path+='/'));
+    string path{ args.getOption(PATH) };
+    Configs::pathToFile = ((path.empty()) ? Configs::pathToFile : ((path[path.length() - 1] == '/') ? path : path += '/'));
 
-    Configs::fitnessMode = ((args.getOption(FITNESS).empty())? Configs::fitnessMode : std::stoi(args.getOption(FITNESS)));
+    Configs::fitnessMode = ((args.getOption(FITNESS).empty()) ? Configs::fitnessMode : std::stoi(args.getOption(FITNESS)));
 
-    Configs::optimalValue = ((args.getOption(OPT).empty())? Configs::optimalValue : std::stoi(args.getOption(OPT)));
+    Configs::optimalValue = ((args.getOption(OPT).empty()) ? Configs::optimalValue : std::stoi(args.getOption(OPT)));
 
-    MutationCtrl::mutationRate = ((args.getOption(MUT_RATE).empty())? MutationCtrl::mutationRate : std::stoi(args.getOption(MUT_RATE)));
+    MutationCtrl::mutationRate = ((args.getOption(MUT_RATE).empty()) ? MutationCtrl::mutationRate : std::stoi(args.getOption(MUT_RATE)));
 
-    MutationCtrl::InitialPopmutIterations = ((args.getOption(INIT_MUT).empty())? MutationCtrl::InitialPopmutIterations : std::stoi(args.getOption(INIT_MUT)));
+    MutationCtrl::InitialPopmutIterations = ((args.getOption(INIT_MUT).empty()) ? MutationCtrl::InitialPopmutIterations : std::stoi(args.getOption(INIT_MUT)));
 }
