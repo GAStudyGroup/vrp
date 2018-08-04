@@ -3,6 +3,8 @@
 #include "GPX2.hpp"
 #include "Extra.hpp"
 #include "Configs.hpp"
+
+
 void Crossover::crossoverGPX(Population& pop){
     unsigned size{(unsigned)pop.getPop().size()};
     /* Population aux;
@@ -14,12 +16,14 @@ void Crossover::crossoverGPX(Population& pop){
     return(aux); */
     Population fullPop;
 
+    int test{0};
     for(unsigned i{0}; i<size; i++) {
         Tour nowT{pop.getPop()[i]};
         for(unsigned j{0}; j<size; j++) {
             if(i != j) {
                 Tour offspring{Crossover::crossoverGPX(nowT, pop.getPop()[j])};
                 nowT = offspring;
+                test++;
             }
         }
         fullPop.addNewTour(nowT);

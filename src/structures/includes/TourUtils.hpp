@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <iostream>
+#include <limits>
 
 using std::vector;
 
@@ -12,6 +13,8 @@ namespace TourUtils{
     double getSubCharge(vector<int>&);
     // return a distance used in route 
     double getSubDistance(vector<int>&);
+    // return the max distance beetween to customers in tour
+    double getMaxDistance(vector<int>&);
 };
 
 #endif

@@ -3,7 +3,8 @@
 #include "InitialPop.hpp"
 #include "Configs.hpp"
 #include "Extra.hpp"
-
+#include "CapacitedKmeans.hpp"
+#include "TourRepairer.hpp"
  Population InitialPop::InitialPopByMutation(int size){
      Population pop;
      pop=popGen(size);
@@ -73,4 +74,51 @@ vector<int> InitialPop::tourGen(){
     }
     std::shuffle(tour.begin(), tour.end(), Globals::urng);
     return(tour); 
+}
+void InitialPop::shuffleRoutes(Tour& tour){
+    vector<vector<int>> routes = tour.explodeSubTours();
+    int empty= Configs::truckNumber = routes.size();
+    int depotId=Globals::customerMap.getDepotId();
+    for(auto &route:routes){
+        std::shuffle(route.begin(),route.end(),Globals::urng);
+    }
+
+    vector<int> emptyAux;
+    for(int i=0;i<empty;i++){
+        routes.push_back(emptyAux);
+    }
+    for(auto &route:routes){
+        route.emplace(route.begin(),depotId);
+    }
+    tour = TourRepairer::tourRebuilder(routes);
+}
+
+Population InitialPop::InitialPopByKmeans(int size){
+    vector<Tour> population;
+    Tour baseTour= tourGen();
+    for(int i=0;i<50;i++){
+        Extra::applyRepair(baseTour);
+    }
+    baseTour=CapacitedKmeans::run(baseTour);
+    for(int i=0;i<size;i++){
+        shuffleRoutes(baseTour);
+        population.push_back(baseTour);
+    }
+    return population;
+}
+
+Population InitialPop::InitialPopAdvanced(int size){
+    Population pop = InitialPopByKmeans(size);
+    for(unsigned i=0;i<15;i++){
+        Extra::applyMutation(pop);
+    }
+    return pop;
+}
+
+Population InitialPop::InitialPopRandom(int size){
+    vector<Tour> tours;
+    for(int i=0;i<size;i++){
+        tours.push_back(tourGen());
+    }
+    return tours;
 }

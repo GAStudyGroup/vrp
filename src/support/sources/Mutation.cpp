@@ -276,7 +276,7 @@ pair<vector<int>,bool> Mutation::basicFitnessEvaluation(Tour OldTour,Tour NewTou
     pair<vector<int>,bool> result;
     result.first=OldTour.getRoute();
     result.second=false;
-    if(NewTour.getFitness()>OldTour.getFitness()){
+    if(NewTour.getFitness()<OldTour.getFitness()){
         result.first=NewTour.getRoute();
         result.second=true;
     }
@@ -342,7 +342,7 @@ vector<pair<vector<int>,bool> (*) (vector<int>,int,int)> Mutation::getMovesVecto
     moves.push_back(&ninethMove);
     return moves;
 }
-
+// Test functions used as sample presenting the TCC
 vector<int> Mutation::testInsert(vector<int> tour){
     pair<vector<int>,bool> result;
     vector<int> initial = tour;

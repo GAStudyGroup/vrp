@@ -8,7 +8,7 @@ unsigned Configs::truckNumber{0};
 unsigned Configs::popSize{0};
 unsigned Configs::runId{0};
 unsigned Configs::crossoverType{0};
-int Configs::fitnessMode{2};
+int Configs::fitnessMode{4};
 unsigned Configs::maxIterations{0};
 unsigned Configs::optimalValue{0};
 unsigned Configs::logMethod{0};
@@ -35,3 +35,6 @@ unsigned ResetConfigs::resetMutIterations{30};
 
 //Fitness
 double Fitness::initialBest{0};
+
+//Kmeans
+int KmeansCfg::KmeansIterations{3000};

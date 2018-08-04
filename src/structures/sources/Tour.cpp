@@ -56,6 +56,10 @@ double Tour::getFitness()
     case 3:
         return 2000 * 1 / this->getDist();
         break;
+    case 4:
+        // Josimar
+        return newFitness::newFitness(route);
+        break;
     default:
         return -1;
         break;
@@ -88,6 +92,7 @@ ostream &operator<<(ostream &output, Tour &t)
         output << "\n";
     }
     output << "Cost: " << t.getDist() << endl;
+    output << "Fitness: " << t.getFitness() << endl;
     output << "Size: " << t.getRoute().size() << endl;
     return (output);
 }
@@ -252,4 +257,20 @@ std::string Tour::getCustomerInfoToPrint(int id)
             std::to_string(customerObj.getX()) + " " +
             std::to_string(customerObj.getY()) + "\n");
     return info;
+}
+void Tour::printRoute(){
+    for(int customer : getRoute()){
+        std::cout<<customer<<" ";
+    }
+    std::cout<<endl;
+}
+
+int Tour::getValidRoutes(){
+    int valid=0;
+    for(auto route:explodeSubTours()){
+        if(TourUtils::getSubCharge(route)<=Globals::customerMap.getTruckCapacity()){
+            valid++;
+        }
+    }
+    return valid;
 }

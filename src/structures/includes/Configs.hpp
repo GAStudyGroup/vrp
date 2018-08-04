@@ -68,6 +68,12 @@ namespace Fitness {
     extern double initialBest;
 }
 
+namespace KmeansCfg{
+    //Kmeans param
+    //Kmeans max iterations, if set equal -1 it will run until there is no more centroids changes
+    //if set to a larger value it will run the especified number of iterations
+    extern int KmeansIterations;
+}
 
 namespace Globals {
     extern CustomerMap customerMap;

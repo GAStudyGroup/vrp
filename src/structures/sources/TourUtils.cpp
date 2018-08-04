@@ -22,3 +22,15 @@ double TourUtils::getSubDistance(vector<int>& tour){
     return (dist);
 }
 
+double TourUtils::getMaxDistance(vector<int>& tour) {
+    double maxDistance = std::numeric_limits<double>::min();
+
+    for(int i=0; i<tour.size()-1; i++) {
+        double actualDistance = distance(tour[i], tour[i+1]);
+        if(actualDistance > maxDistance) {
+            maxDistance = actualDistance;
+        }
+    }
+    return maxDistance;
+}
+
