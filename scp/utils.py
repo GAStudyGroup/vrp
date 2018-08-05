@@ -14,7 +14,7 @@ def getBest(name, path):
         pass
 
     for line in file:
-        if line.find("Optimal") != -1:
+        if line.find("Optimal") != -1 or line.find("Best") != -1:
             array = line.split()
             value = array[len(array)-1]
             if value[len(value)-1 == ")"]:
