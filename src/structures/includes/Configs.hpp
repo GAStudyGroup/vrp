@@ -18,7 +18,7 @@ namespace Configs {
     extern unsigned truckNumber;
     //Size of the population
     extern unsigned popSize;
-    //Fitness mode, value must be 1 or 2
+    //Fitness mode, value must be 0 = OX or 1 = GPX
     extern int fitnessMode;
     //Run id, used to Log
     extern unsigned runId;
@@ -33,6 +33,9 @@ namespace Configs {
 
     //In case of OX
     extern unsigned elitismNumber;
+
+    extern unsigned initialPopMethod;
+    extern bool withMutation;
 }
 
 namespace MutationCtrl {

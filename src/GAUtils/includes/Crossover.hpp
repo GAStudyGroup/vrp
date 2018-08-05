@@ -9,7 +9,7 @@ namespace Crossover{
 
     void crossoverOX(Tour&, Tour&);
     void crossoverOX(Population&);
-
+    void crossoverOX_Elitism(Population&);
     
 }
 

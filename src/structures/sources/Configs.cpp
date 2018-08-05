@@ -7,12 +7,14 @@ std::string Configs::pathToFile{""};
 unsigned Configs::truckNumber{0};
 unsigned Configs::popSize{0};
 unsigned Configs::runId{0};
-unsigned Configs::crossoverType{0};
+unsigned Configs::crossoverType{1};
 int Configs::fitnessMode{4};
 unsigned Configs::maxIterations{0};
 unsigned Configs::optimalValue{0};
 unsigned Configs::logMethod{0};
 unsigned Configs::elitismNumber{5};
+unsigned Configs::initialPopMethod{0};
+bool Configs::withMutation{true};
 
 /* Namespace Globals */
 CustomerMap Globals::customerMap{CustomerMap()};

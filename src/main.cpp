@@ -61,6 +61,8 @@ string MUT_RATE{ "mrate" };
 string INIT_MUT{ "initm" };
 string OPT{ "opt" };
 string LOG{ "log" };
+string WITH_MUTATION{ "mutation" };
+string INITIAL_METHOD{ "inmethod" };
 
 // int main(){
 //     Configs::fitnessMode=1;
@@ -107,6 +109,8 @@ int main(int argc, char* argv[])
     args.newArgument(INIT_MUT, false, "Total Iterations of Mutation in Initial pop");
     args.newArgument(OPT, false, "Best known optimal value (with using the script, the best value will be founded in file and setted, if exists");
     args.newArgument(LOG, false, "Method of log, default is in root log/");
+    args.newArgument(INITIAL_METHOD, false, "Method of pop initial");
+    args.newArgument(WITH_MUTATION, false, "The run has mutation?");
 
     try {
         args.validateArguments();
@@ -151,7 +155,7 @@ void startGA()
     RunControl::printExecutionTime(std::cout, std::chrono::duration<double>(algFinish - algStart).count());
 
     Tour best{ pop.getBestSolution() };
-    cout<<best<<endl;
+    cout << best << endl;
     RunControl::printFooter(std::cout, best);
     RunControl::printFooter(logFile, best);
 
@@ -193,4 +197,8 @@ void setParams(Arg& args)
     MutationCtrl::mutationRate = ((args.getOption(MUT_RATE).empty()) ? MutationCtrl::mutationRate : std::stoi(args.getOption(MUT_RATE)));
 
     MutationCtrl::InitialPopmutIterations = ((args.getOption(INIT_MUT).empty()) ? MutationCtrl::InitialPopmutIterations : std::stoi(args.getOption(INIT_MUT)));
+
+    Configs::withMutation = args.getOption(WITH_MUTATION).compare("true")==0 ? true : false;
+
+    Configs::initialPopMethod = (args.getOption(INITIAL_METHOD).empty() ? Configs::initialPopMethod : stoi(args.getOption(INITIAL_METHOD)));
 }

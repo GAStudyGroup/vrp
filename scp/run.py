@@ -11,14 +11,17 @@ for Set in configs.Sets:
         for run in range(configs.RUNS):
             for popSize in configs.SIZE:
                 for maxIt in configs.MAX_IT:
-                    fileArray = os.path.splitext(file)
-                    if(fileArray[1] == ".vrp"):
-                        if not os.path.exists(configs.logDir+fileArray[0]):
-                            os.makedirs(configs.logDir+fileArray[0])
-                        
-                        print("Starting "+ str(run) +" run of "+fileArray[0])
+                    for has_mutation in configs.WITH_MUTATION:
+                        for cross in configs.CROSS:
+                            for in_method in configs.INITIAL_METHOD:
+                                fileArray = os.path.splitext(file)
+                                if(fileArray[1] == ".vrp"):
+                                    if not os.path.exists(configs.logDir+fileArray[0]):
+                                        os.makedirs(configs.logDir+fileArray[0])
+                                    
+                                    print("Starting "+ str(run) +" run of "+fileArray[0])
 
-                        call(["./bin/VRP", "-name "+fileArray[0], "-trucks "+ut.getTrucks(file), "-size "+popSize, "-it "+maxIt, "-path "+str(Set), "-opt "+str(ut.getBest(file, Set)), "-log "+configs.logMode, "-run "+str(run)])
+                                    call(["./bin/VRP", "-name "+fileArray[0], "-trucks "+ut.getTrucks(file), "-size "+popSize, "-it "+maxIt, "-path "+str(Set), "-opt "+str(ut.getBest(file, Set)), "-log "+configs.logMode, "-run "+str(run), "-cx "+str(cross), "-inmethod "+str(in_method), "-mutation "+str(has_mutation)])
 
 '''
 import random

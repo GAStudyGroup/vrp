@@ -10,10 +10,58 @@
 
 Population GenerationCtrl::generation(Population& pop)
 {
-    return generationForFinalTests(pop);
+    switch (Configs::crossoverType) {
+    case 0:
+        return (Configs::withMutation ? FinalTests::generationOX_WithMutation(pop) : FinalTests::generationOX_WithoutMutation(pop));
+
+    case 1:
+        return (Configs::withMutation ? FinalTests::generationGPX_WithMutation(pop) : FinalTests::generationGPX_WithoutMutation(pop));
+    }
 }
 
-Population GenerationCtrl::generationForFinalTests(Population& pop) {
+Population FinalTests::generationOX_WithoutMutation(Population& pop)
+{
+    Crossover::crossoverOX_Elitism(pop);
+    Extra::applyRepair(pop);
+    Extra::applyRepairV4(pop);
+    Extra::applyOptInPop(pop);
+    return pop;
+}
+
+Population FinalTests::generationGPX_WithoutMutation(Population& pop)
+{
+    Crossover::crossoverGPX_5Best(pop);
+    Extra::fillPop(pop);
+    Extra::applyRepair(pop);
+    Extra::applyRepairV4(pop);
+    Extra::applyOptInPop(pop);
+    return pop;
+}
+
+Population FinalTests::generationOX_WithMutation(Population& pop)
+{
+    Crossover::crossoverOX_Elitism(pop);
+    Extra::applyRepair(pop);
+    Extra::applyRepairV4(pop);
+    Extra::applyMutation(pop);
+    Extra::applyOptInPop(pop);
+    return pop;
+}
+
+Population FinalTests::generationGPX_WithMutation(Population& pop)
+{
+    Crossover::crossoverGPX_5Best(pop);
+    Extra::fillPop(pop);
+    Extra::applyRepair(pop);
+    Extra::applyRepairV4(pop);
+    Extra::applyMutation(pop);
+    Extra::applyOptInPop(pop);
+    return pop;
+}
+
+/* OLD CODE */
+Population GenerationCtrl::generationForFinalTests(Population& pop)
+{
     Crossover::crossoverGPX_5Best(pop);
     Extra::fillPop(pop);
     pop.sortPop();
@@ -135,11 +183,25 @@ void RunControl::initAlg(Population& pop)
     // Setting the data
     ImportData vrpFile(Configs::pathToFile + Configs::file + ".vrp");
     Globals::customerMap = CustomerMap(vrpFile.getCustomerList(), vrpFile.getCapacity());
+
+    switch (Configs::initialPopMethod) {
+    case 0:
+        pop = InitialPop::InitialPopByMutation(Configs::popSize);
+        break;
+    case 1:
+        pop = InitialPop::InitialPopAdvanced(Configs::popSize);
+        break;
+    case 2: // random
+        pop = InitialPop::popGen(Configs::popSize);
+        break;
+    default:
+        pop = InitialPop::InitialPopAdvanced(Configs::popSize);
+    }
     // Generates a random pop and applies mutation
     // pop = InitialPop::InitialPopByMutation(Configs::popSize);
     // pop= InitialPop::InitialPopByKmeans(Configs::popSize);
     // pop=InitialPop::InitialPopRandom(Configs::popSize);
-    pop = InitialPop::InitialPopAdvanced(Configs::popSize);
+    // pop = InitialPop::InitialPopAdvanced(Configs::popSize);
     Fitness::initialBest = pop.getBestSolution().getDist();
 }
 
@@ -149,10 +211,10 @@ std::ofstream RunControl::initLogFile()
     if (Configs::logMethod == 0) {
         fileName = "log/" + Configs::file + "_Run_" + std::to_string(Configs::runId) + "_Cross_" + std::to_string(Configs::crossoverType) + "_Fitness_" + std::to_string(Configs::fitnessMode) + ".log";
     } else {
-        fileName = "log/" + Configs::file + "/" + Configs::file + "_Run_" + std::to_string(Configs::runId) + "_Cross_" + std::to_string(Configs::crossoverType) + "_Fitness_" + std::to_string(Configs::fitnessMode) + ".log";
+        fileName = "log/" + Configs::file + "/" + Configs::file + "_Run_" + std::to_string(Configs::runId) + "_Cross_" + (Configs::crossoverType==0?"OX":"GPX") + "_InitialMethod_" + std::to_string(Configs::initialPopMethod) + ".log";
     }
 
-    Globals::debugLogFile = new std::ofstream(fileName + ".debug.log");
+    //Globals::debugLogFile = new std::ofstream(fileName + ".debug.log");
     std::ofstream logFile(fileName);
     if (!logFile.is_open()) {
         std::cout << "Error openning log File: " << fileName << std::endl;
@@ -177,7 +239,9 @@ void RunControl::printHeader(std::ostream& out)
 
     out << "\n\tGA Configurations";
     out << "\n\t\tFitness Mode: " << Configs::fitnessMode;
-    out << "\n\t\tCrossover Method: " << Configs::crossoverType;
+    out << "\n\t\tCrossover Method: " << (Configs::crossoverType==0?"OX":"GPX");
+    out << "\n\t\tInitial Pop Method: " << Configs::initialPopMethod;
+    out << "\n\t\tWith Mutation? " << (Configs::withMutation?"Yes":"No");
 
     out << "\n\tMutation Configurations";
     out << "\n\t\tGeneral Rate: " << MutationCtrl::mutationRate << "%";

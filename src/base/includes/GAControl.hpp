@@ -18,6 +18,14 @@ namespace GenerationCtrl{
     Population generation(Population &pop);
 }
 
+namespace FinalTests {
+    Population generationOX_WithoutMutation(Population&);
+    Population generationGPX_WithoutMutation(Population&);
+
+    Population generationOX_WithMutation(Population&);
+    Population generationGPX_WithMutation(Population&);
+}
+
 /* Control Run */
 namespace RunControl {
     void initAlg(Population&);

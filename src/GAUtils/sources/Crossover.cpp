@@ -1,3 +1,4 @@
+#include <algorithm>
 #include "Crossover.hpp"
 #include "Configs.hpp"
 #include "Extra.hpp"
@@ -104,6 +105,26 @@ void Crossover::crossoverOX(Tour& parent1, Tour& parent2)
     parent1.getRoute() = tmp1;
     parent2.getRoute() = tmp2;
 }
+
+void Crossover::crossoverOX_Elitism(Population& pop) {
+    Population newPop;
+    pop.sortPop();
+    newPop.getPop().insert(newPop.getPop().end(), pop.getPop().begin(), pop.getPop().begin()+10);
+    std::shuffle(pop.getPop().begin(), pop.getPop().end(), Globals::urng);
+
+    for(unsigned i{0}; i<pop.getPop().size(); i++) {
+        if (i == pop.getPop().size() - 1) {
+            crossoverOX(pop.getPop()[i], pop.getPop()[0]);
+        } else {
+            crossoverOX(pop.getPop()[i], pop.getPop()[i + 1]);
+        }
+    }
+    pop.sortPop();
+    newPop.getPop().insert(newPop.getPop().end(), pop.getPop().begin(), pop.getPop().begin()+(Configs::popSize - 10));
+    pop = newPop;
+    pop.sortPop();
+}
+
 //OX functions
 void OXCrossover::swap(vector<int>& vector, const int a, const int b)
 {
