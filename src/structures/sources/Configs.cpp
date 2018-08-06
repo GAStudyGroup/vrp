@@ -1,4 +1,5 @@
 #include "Configs.hpp"
+#include "limits"
 
 
 /* Namespace Configs */
@@ -40,3 +41,9 @@ double Fitness::initialBest{0};
 
 //Kmeans
 int KmeansCfg::KmeansIterations{3000};
+
+
+// Convergency control
+unsigned Convergency::genWithoutChange{0};
+unsigned Convergency::limitGenWithouChange{20};
+unsigned Convergency::fitness{std::numeric_limits<int>::max()};

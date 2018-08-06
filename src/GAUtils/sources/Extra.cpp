@@ -7,27 +7,6 @@
 #include "TourRepairer.hpp"
 #include "Trim.hpp"
 
-/* void Extra::popReset(Population &pop){ // OLD
-    unsigned size{(unsigned) pop.getPop().size()};
-    unsigned nToKeep{(unsigned)std::round(((size)*ResetConfigs::nBestToKeep)/100)};
-    // std::cout << "NToKeep " << nToKeep << std::endl;  
-
-    Population aux;
-    aux.getPop().insert(aux.getPop().end(), pop.getPop().begin(), pop.getPop().begin()+nToKeep);
-
-    for(unsigned i{nToKeep}; i<size; i++) {
-        Tour t{InitialPop::tourGen()};
-        // std::cout << "==================== Gerado:======================== \n" << t << std::endl;
-        applyRepair(t);
-        // std::cout << "========================Reparado========================\n" << t << std::endl;
-        applyOptInSubs(t);
-        // std::cout << "========================OPT========================\n" << t << std::endl;
-        aux.addNewTour(t);
-    }
-    pop = aux;
-    pop.sortPop();
-}*/
-
 void Extra::popReset(Population& pop)
 { // NEW
     unsigned size{ (unsigned)pop.getPop().size() };
@@ -55,7 +34,7 @@ void Extra::popReset(Population& pop)
 
 void Extra::fillPop(Population& pop)
 {
-    unsigned size{ pop.getPop().size() };
+    unsigned size{ (unsigned)pop.getPop().size() };
     //unsigned nToKeep{ (unsigned)std::round(((size)*ResetConfigs::nBestToKeep) / 100) };
     Population newPop;
     newPop = InitialPop::InitialPopAdvanced(Configs::popSize - size);

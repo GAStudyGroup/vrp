@@ -87,4 +87,10 @@ namespace Globals {
     extern std::ofstream* debugLogFile;
 }
 
+namespace Convergency {
+    extern unsigned fitness;
+    extern unsigned genWithoutChange;
+    extern unsigned limitGenWithouChange;
+}
+
 #endif

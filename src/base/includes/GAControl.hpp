@@ -11,7 +11,6 @@ using std::vector;
 //GenerationCtrl
 namespace GenerationCtrl{
     Population generationForFinalTests(Population &pop);
-    Population newGeneration(Population& pop);
     Population basicGenerationGPX(Population &pop);
     Population basicGenerationOX(Population &pop);
     Population GenerationOXGPX(Population &pop);

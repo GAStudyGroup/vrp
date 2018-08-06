@@ -21,7 +21,7 @@ Population GenerationCtrl::generation(Population& pop)
 
 Population FinalTests::generationOX_WithoutMutation(Population& pop)
 {
-    
+
     Crossover::crossoverOX_Elitism(pop);
     Extra::applyRepair(pop);
     Extra::applyRepairV4(pop);
@@ -105,77 +105,6 @@ Population GenerationCtrl::basicGenerationGPX(Population& pop)
     Extra::applyTrim(pop);
     Extra::popReset(pop);
     return pop;
-}
-
-Population GenerationCtrl::newGeneration(Population& pop)
-{
-    *Globals::debugLogFile << "NewGen Start: " << pop.getBestSolution().getDist()
-                           << " isValid: " << pop.getBestSolution().isValid()
-                           << std::endl;
-
-    Crossover::crossoverGPX_OLD(pop);
-
-    *Globals::debugLogFile << "After GPX: " << pop.getBestSolution().getDist()
-                           << " isValid: " << pop.getBestSolution().isValid()
-                           << std::endl;
-
-    Extra::applyRepair(pop);
-
-    *Globals::debugLogFile << "After Repair: " << pop.getBestSolution().getDist()
-                           << " isValid: " << pop.getBestSolution().isValid()
-                           << std::endl;
-
-    Extra::applyMutation(pop);
-
-    *Globals::debugLogFile << "After Mutation: "
-                           << pop.getBestSolution().getDist()
-                           << " isValid: " << pop.getBestSolution().isValid()
-                           << std::endl;
-
-    Extra::applyCombined(pop);
-
-    *Globals::debugLogFile << "After Combined: "
-                           << pop.getBestSolution().getDist()
-                           << " isValid: " << pop.getBestSolution().isValid()
-                           << std::endl;
-
-    Extra::applyOptInPop(pop);
-
-    *Globals::debugLogFile << "After OptInPop: "
-                           << pop.getBestSolution().getDist()
-                           << " isValid: " << pop.getBestSolution().isValid()
-                           << std::endl;
-
-    Extra::popReset(pop);
-
-    *Globals::debugLogFile << "After Reset: " << pop.getBestSolution().getDist()
-                           << " isValid: " << pop.getBestSolution().isValid()
-                           << std::endl;
-
-    Extra::applyMutation(pop);
-
-    *Globals::debugLogFile << "After Reset-Mutation: "
-                           << pop.getBestSolution().getDist()
-                           << " isValid: " << pop.getBestSolution().isValid()
-                           << std::endl;
-
-    Extra::applyCombined(pop);
-
-    *Globals::debugLogFile << "After Reset-Combined: "
-                           << pop.getBestSolution().getDist()
-                           << " isValid: " << pop.getBestSolution().isValid()
-                           << std::endl;
-
-    Extra::applyOptInPop(pop);
-
-    *Globals::debugLogFile << "After Reset-optPop: "
-                           << pop.getBestSolution().getDist()
-                           << " isValid: " << pop.getBestSolution().isValid()
-                           << std::endl
-                           << std::endl
-                           << std::endl;
-
-    return (pop);
 }
 
 /* Run control */
@@ -262,7 +191,7 @@ void RunControl::printHeader(std::ostream& out)
 void RunControl::printFooter(std::ostream& out, Tour& t)
 {
     out << "\n\nBest Solution Known\n";
-    std::ifstream solFile{ Configs::pathToFile + Configs::file + ".sol" };
+    std::ifstream solFile { Configs::pathToFile + Configs::file + ".sol" };
 
     if (!solFile.is_open()) {
         exit(0);
@@ -290,14 +219,19 @@ void RunControl::printExecutionTime(std::ostream& out, double seconds)
 bool RunControl::stopAlg(Population& pop)
 {
     if (Configs::optimalValue != 0) {
-        Tour best{ pop.getBestSolution() };
-        if (best.getDist() <= Configs::optimalValue && best.isValid()) {
+        Tour best { pop.getBestSolution() };
+        unsigned dist { (unsigned)best.getDist() };
+        if (dist <= Configs::optimalValue && best.isValid()) {
             std::cout << "Best Solution found" << std::endl;
             return (false);
-            // Configs::maxIterations=Globals::currentIteration+10;
+        }
+        if (dist < Convergency::fitness) {
+            Convergency::fitness = dist;
+        } else {
+            Convergency::genWithoutChange++;
         }
     }
-    if (Globals::currentIteration < Configs::maxIterations) {
+    if (Globals::currentIteration < Configs::maxIterations || Convergency::genWithoutChange > Convergency::limitGenWithouChange) {
         return (true);
     } else {
         return (false);

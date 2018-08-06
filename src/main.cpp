@@ -11,10 +11,10 @@ using std::string;
 #include "Population.hpp"
 
 //Teste
-#include "Tour.hpp"
 #include "Extra.hpp"
 #include "ImportData.hpp"
 #include "InitialPop.hpp"
+#include "Tour.hpp"
 #include "TourRepairer.hpp"
 // #include "Trim.hpp"
 // #include "Mutation.hpp"
@@ -49,21 +49,21 @@ void setParams(Arg&);
 
 /* Global params code */
 /* Required args */
-string NAME{ "name|n" };
-string POP_SIZE{ "size|s" };
-string T_NUMBER{ "trucks|t" };
-string MAX_IT{ "it" };
+string NAME { "name|n" };
+string POP_SIZE { "size|s" };
+string T_NUMBER { "trucks|t" };
+string MAX_IT { "it" };
 /* Optional */
-string RUN{ "run" };
-string CROSS{ "cross|cx" };
-string PATH{ "path" };
-string FITNESS{ "fit" };
-string MUT_RATE{ "mrate" };
-string INIT_MUT{ "initm" };
-string OPT{ "opt" };
-string LOG{ "log" };
-string WITH_MUTATION{ "mutation" };
-string INITIAL_METHOD{ "inmethod" };
+string RUN { "run" };
+string CROSS { "cross|cx" };
+string PATH { "path" };
+string FITNESS { "fit" };
+string MUT_RATE { "mrate" };
+string INIT_MUT { "initm" };
+string OPT { "opt" };
+string LOG { "log" };
+string WITH_MUTATION { "mutation" };
+string INITIAL_METHOD { "inmethod" };
 
 // int main(){
 //     Configs::fitnessMode=1;
@@ -76,7 +76,7 @@ string INITIAL_METHOD{ "inmethod" };
 
 //     Population pop = InitialPop::InitialPopAdvanced(1);
 //     for (auto tour : pop.getPop()){
-//         cout<<tour<<endl;   
+//         cout<<tour<<endl;
 //         for(auto customer : tour.getRoute()){
 //             cout<< customer << " " ;
 //         }
@@ -127,12 +127,12 @@ void startGA()
 {
 
     Population pop;
-    std::ofstream logFile{ RunControl::initLogFile() };
+    std::ofstream logFile { RunControl::initLogFile() };
     RunControl::printHeader(logFile);
 
     auto algStart = std::chrono::high_resolution_clock::now();
     RunControl::initAlg(pop);
-    cout<< "MNV: "<<Globals::customerMap.getMnv()<<endl;
+    cout << "MNV: " << Globals::customerMap.getMnv() << endl;
     do {
         printGenInfo(std::cout, pop);
         printGenInfo(logFile, pop);
@@ -150,7 +150,7 @@ void startGA()
     RunControl::printExecutionTime(logFile, std::chrono::duration<double>(algFinish - algStart).count());
     RunControl::printExecutionTime(std::cout, std::chrono::duration<double>(algFinish - algStart).count());
 
-    Tour best{ pop.getBestSolution() };
+    Tour best { pop.getBestSolution() };
     cout << best << endl;
     RunControl::printFooter(std::cout, best);
     RunControl::printFooter(logFile, best);
@@ -159,9 +159,9 @@ void startGA()
 
 void printGenInfo(std::ostream& out, Population& pop)
 {
-    Tour bestSol{ pop.getBestSolution() };
-    bool isValid{ bestSol.isValid() };
-    int subTourUsed{ bestSol.subToursUsed() };
+    Tour bestSol { pop.getBestSolution() };
+    bool isValid { bestSol.isValid() };
+    int subTourUsed { bestSol.subToursUsed() };
 
     out << "\nGeneration: " << Globals::currentIteration;
     out << "\n\tValid solutions in Population: " << pop.totalToursValid() << "/" << pop.getPop().size();
@@ -182,7 +182,7 @@ void setParams(Arg& args)
 
     Configs::crossoverType = ((args.getOption(CROSS).empty()) ? Configs::crossoverType : std::stoi(args.getOption(CROSS)));
 
-    string path{ args.getOption(PATH) };
+    string path { args.getOption(PATH) };
     Configs::pathToFile = ((path.empty()) ? Configs::pathToFile : ((path[path.length() - 1] == '/') ? path : path += '/'));
 
     Configs::fitnessMode = ((args.getOption(FITNESS).empty()) ? Configs::fitnessMode : std::stoi(args.getOption(FITNESS)));
@@ -193,7 +193,7 @@ void setParams(Arg& args)
 
     MutationCtrl::InitialPopmutIterations = ((args.getOption(INIT_MUT).empty()) ? MutationCtrl::InitialPopmutIterations : std::stoi(args.getOption(INIT_MUT)));
 
-    Configs::withMutation = args.getOption(WITH_MUTATION).compare("true")==0 ? true : false;
+    Configs::withMutation = args.getOption(WITH_MUTATION).compare("true") == 0 ? true : false;
 
     Configs::initialPopMethod = (args.getOption(INITIAL_METHOD).empty() ? Configs::initialPopMethod : stoi(args.getOption(INITIAL_METHOD)));
 }
