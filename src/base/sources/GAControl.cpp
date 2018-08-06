@@ -218,20 +218,20 @@ void RunControl::printExecutionTime(std::ostream& out, double seconds)
 
 bool RunControl::stopAlg(Population& pop)
 {
+    Tour best { pop.getBestSolution() };
+    unsigned dist { (unsigned)best.getDist() };
     if (Configs::optimalValue != 0) {
-        Tour best { pop.getBestSolution() };
-        unsigned dist { (unsigned)best.getDist() };
         if (dist <= Configs::optimalValue && best.isValid()) {
             std::cout << "Best Solution found" << std::endl;
             return (false);
         }
-        if (dist < Convergency::fitness) {
-            Convergency::fitness = dist;
-        } else {
-            Convergency::genWithoutChange++;
-        }
     }
-    if (Globals::currentIteration < Configs::maxIterations || Convergency::genWithoutChange > Convergency::limitGenWithouChange) {
+    if (dist < Convergency::fitness) {
+        Convergency::fitness = dist;
+    } else {
+        Convergency::genWithoutChange++;
+    }
+    if (Globals::currentIteration < Configs::maxIterations && Convergency::genWithoutChange < Convergency::limitGenWithouChange) {
         return (true);
     } else {
         return (false);

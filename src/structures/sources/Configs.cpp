@@ -45,5 +45,5 @@ int KmeansCfg::KmeansIterations{3000};
 
 // Convergency control
 unsigned Convergency::genWithoutChange{0};
-unsigned Convergency::limitGenWithouChange{20};
+unsigned Convergency::limitGenWithouChange{10};
 unsigned Convergency::fitness{std::numeric_limits<int>::max()};
