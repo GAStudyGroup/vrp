@@ -84,7 +84,7 @@ vector<int> InitialPop::tourGen()
 void InitialPop::shuffleRoutes(Tour& tour)
 {
     vector<vector<int>> routes = tour.explodeSubTours();
-    int empty = Configs::truckNumber = routes.size();
+    int empty = Configs::truckNumber - routes.size();
     int depotId = Globals::customerMap.getDepotId();
     for (auto& route : routes) {
         std::shuffle(route.begin(), route.end(), Globals::urng);

@@ -1,4 +1,6 @@
 #include <algorithm>
+#include <random>
+using std::uniform_int_distribution;
 #include "Crossover.hpp"
 #include "Configs.hpp"
 #include "Extra.hpp"
@@ -64,47 +66,6 @@ Tour Crossover::crossoverGPX(Tour& red, Tour& blue)
     Tour offspring{ GPX2::crossover(parents.first, parents.second) };
     return (offspring);
 }
-void Crossover::crossoverOX(Population& pop)
-{
-    auto tours = OXCrossover::returnEletism(pop);
-    for (unsigned i = 0; i < pop.getPop().size(); i++) {
-        if (i == pop.getPop().size() - 1) {
-            crossoverOX(pop.getPop()[i], pop.getPop()[0]);
-        } else {
-            crossoverOX(pop.getPop()[i], pop.getPop()[i + 1]);
-        }
-    }
-    for (vector<int> i : tours) {
-        pop.getPop().push_back(i);
-    }
-}
-
-void Crossover::crossoverOX(Tour& parent1, Tour& parent2)
-{
-    vector<int> tmp1{ parent1.getRoute() }, tmp2{ parent2.getRoute() };
-    vector<int> aux1, aux2;
-    int cutPoint{ (int)parent1.getRoute().size() / 2 };
-    int infLimit{ (int)parent1.getRoute().size() };
-
-    if (parent1.getRoute().size() != parent2.getRoute().size()) {
-        cutPoint = ((parent1.getRoute().size() + parent2.getRoute().size()) / 4);
-        if (parent1.getRoute().size() > parent2.getRoute().size()) {
-            infLimit = parent2.getRoute().size();
-        }
-        if (infLimit < cutPoint) {
-            cutPoint = infLimit;
-        }
-    }
-
-    for (int i = cutPoint; i < infLimit; i++) {
-        OXCrossover::swap(tmp1, i, OXCrossover::findElement(tmp1, parent2.getRoute()[i]));
-        tmp1[i] = parent2.getRoute()[i];
-        OXCrossover::swap(tmp2, i, OXCrossover::findElement(tmp2, parent1.getRoute()[i]));
-        tmp2[i] = parent1.getRoute()[i];
-    }
-    parent1.getRoute() = tmp1;
-    parent2.getRoute() = tmp2;
-}
 
 void Crossover::crossoverOX_Elitism(Population& pop) {
     Population newPop;
@@ -114,9 +75,9 @@ void Crossover::crossoverOX_Elitism(Population& pop) {
 
     for(unsigned i{0}; i<pop.getPop().size(); i++) {
         if (i == pop.getPop().size() - 1) {
-            crossoverOX(pop.getPop()[i], pop.getPop()[0]);
+            OX::crossover(pop.getPop()[i], pop.getPop()[0]);
         } else {
-            crossoverOX(pop.getPop()[i], pop.getPop()[i + 1]);
+            OX::crossover(pop.getPop()[i], pop.getPop()[i + 1]);
         }
     }
     pop.sortPop();
@@ -126,33 +87,44 @@ void Crossover::crossoverOX_Elitism(Population& pop) {
 }
 
 //OX functions
-void OXCrossover::swap(vector<int>& vector, const int a, const int b)
-{
-    int tmp = vector[a];
-    vector[a] = vector[b];
-    vector[b] = tmp;
-}
+void OX::crossover(Tour t1, Tour t2){
+    uniform_int_distribution<int> dist(0,t1.getRoute().size()-1);
+    vector<int> tmp1,tmp2;
+    unsigned cut1, cut2;
+    
+    do{
+        cut1 = (unsigned)dist(Globals::urng);
+        cut2 = (unsigned)dist(Globals::urng);
+        if(cut2<cut1){
+            unsigned tmp{cut2};
+            cut2 = cut1;
+            cut1 = tmp;
+        }
+        // cout<<"cut1 "<<cut1<<" cut2 "<<cut2<<endl;
+    }while(cut1==cut2);
 
-int OXCrossover::findElement(vector<int>& vector, const int element)
-{
-    for (unsigned i = 0; i < vector.size(); i++) {
-        if (vector[i] == element)
-            return (i);
-    }
-    return (-1);
-}
 
-vector<vector<int>> OXCrossover::returnEletism(Population& pop)
-{
-    vector<vector<int>> elitismTours;
-    unsigned i = 0;
-    while (i != Configs::elitismNumber) {
-        //int bestPos = getBestTour(pop, map).first;
-        elitismTours.push_back(pop.getPop()[i].getRoute());
-        pop.getPop().erase(pop.getPop().begin() + i);
-        i++;
+    for (unsigned i{ cut1 }; i <= cut2; i++) {
+        tmp2.push_back(t1.getRoute()[i]);
+        tmp1.push_back(t2.getRoute()[i]);
     }
 
-    return (elitismTours);
-}
+
+    for(unsigned i=0;i<tmp1.size();i++){
+        t1.getRoute()[find(t1.getRoute().begin(),t1.getRoute().end(),tmp1[i]) - t1.getRoute().begin()] = -1;
+        t2.getRoute()[find(t2.getRoute().begin(),t2.getRoute().end(),tmp2[i]) - t2.getRoute().begin()] = -1;
+    }
+
+    for(unsigned i=0;i<t1.getRoute().size();i++){
+        if(t1.getRoute()[i]!=-1){
+            tmp1.push_back(t1.getRoute()[i]);
+        }
+        if(t2.getRoute()[i]!=-1){
+            tmp2.push_back(t2.getRoute()[i]);
+        }
+    }
+
+    t1 = tmp1;
+    t2 = tmp2;
+};
 //--------End OX Functions---------

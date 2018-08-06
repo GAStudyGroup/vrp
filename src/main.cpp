@@ -12,9 +12,10 @@ using std::string;
 
 //Teste
 #include "Tour.hpp"
-// #include "Extra.hpp"
+#include "Extra.hpp"
 #include "ImportData.hpp"
 #include "InitialPop.hpp"
+#include "TourRepairer.hpp"
 // #include "Trim.hpp"
 // #include "Mutation.hpp"
 #include "CapacitedKmeans.hpp"
@@ -69,23 +70,18 @@ string INITIAL_METHOD{ "inmethod" };
 //     std::random_device rng;
 //     Globals::urng.seed(rng());
 //     // ImportData file("vrp/E-Sets/E-n22-k4.vrp");
-//     ImportData file("vrp/small/P-n16-k8.vrp");
+//     ImportData file("vrp/P-Sets/P-n50-k8.vrp");
 //     Globals::customerMap= CustomerMap(file.getCustomerList(),file.getCapacity());
 //     Configs::truckNumber=8;
 
-//     cout<<"Generating random"<<endl;
-//     Population popRandom=InitialPop::InitialPopRandom(100);
-//     popRandom.printPopulationStats();
-//     cout<<endl;
-
-//     cout<<"Generating with mutation"<<endl;
-//     Population popMut=InitialPop::InitialPopByMutation(100);
-//     popMut.printPopulationStats();
-//     cout<<endl;
-
-//     cout<<"Generating with Kmeans"<<endl;
-//     Population pop = InitialPop::InitialPopAdvanced(100);
-//     pop.printPopulationStats();
+//     Population pop = InitialPop::InitialPopAdvanced(1);
+//     for (auto tour : pop.getPop()){
+//         cout<<tour<<endl;   
+//         for(auto customer : tour.getRoute()){
+//             cout<< customer << " " ;
+//         }
+//         cout<<endl;
+//     }
 // }
 
 int main(int argc, char* argv[])
@@ -136,7 +132,7 @@ void startGA()
 
     auto algStart = std::chrono::high_resolution_clock::now();
     RunControl::initAlg(pop);
-    //cout<< "MNV: "<<Globals::customerMap.getMnv()<<endl;
+    cout<< "MNV: "<<Globals::customerMap.getMnv()<<endl;
     do {
         printGenInfo(std::cout, pop);
         printGenInfo(logFile, pop);
@@ -158,7 +154,6 @@ void startGA()
     cout << best << endl;
     RunControl::printFooter(std::cout, best);
     RunControl::printFooter(logFile, best);
-
     logFile.close();
 }
 

@@ -23,8 +23,8 @@ Population FinalTests::generationOX_WithoutMutation(Population& pop)
 {
     
     Crossover::crossoverOX_Elitism(pop);
-    //Extra::applyRepair(pop);
-    //Extra::applyRepairV4(pop);
+    Extra::applyRepair(pop);
+    Extra::applyRepairV4(pop);
     Extra::applyOptInPop(pop);
     return pop;
 }
@@ -75,7 +75,7 @@ Population GenerationCtrl::generationForFinalTests(Population& pop)
 
 Population GenerationCtrl::GenerationOXGPX(Population& pop)
 {
-    Crossover::crossoverOX(pop);
+    // Crossover::crossoverOX(pop);
     pop.sortPop();
     Extra::applyRepair(pop);
     Crossover::crossoverGPX_OLD(pop);
@@ -89,7 +89,7 @@ Population GenerationCtrl::GenerationOXGPX(Population& pop)
 
 Population GenerationCtrl::basicGenerationOX(Population& pop)
 {
-    Crossover::crossoverOX(pop);
+    // Crossover::crossoverOX(pop);
     Extra::applyRepair(pop);
     Extra::applyMutation(pop);
     Extra::applyTrim(pop);

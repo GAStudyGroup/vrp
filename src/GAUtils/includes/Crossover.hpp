@@ -7,15 +7,11 @@ namespace Crossover{
     void crossoverGPX_OLD(Population&);
     void crossoverGPX_5Best(Population&);
 
-    void crossoverOX(Tour&, Tour&);
-    void crossoverOX(Population&);
     void crossoverOX_Elitism(Population&);
     
 }
 
-namespace OXCrossover{
-    int findElement(vector<int>& vector, const int element);
-    void swap(vector<int>& vector, const int a, const int b);
-    vector<vector<int>> returnEletism(Population& pop);
-}
+namespace OX{
+    void crossover(Tour  t1, Tour t2);
+};
 #endif
