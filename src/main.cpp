@@ -72,16 +72,15 @@ string INITIAL_METHOD{ "inmethod" };
 //     // ImportData file("vrp/E-Sets/E-n22-k4.vrp");
 //     ImportData file("vrp/P-Sets/P-n50-k8.vrp");
 //     Globals::customerMap= CustomerMap(file.getCustomerList(),file.getCapacity());
-//     Configs::truckNumber=1;
+//     Configs::truckNumber=8;
 
-//     for(int i = 0;i<200000;i++){
-//         Tour tour = InitialPop::tourGen();
-//         Tour aux = tour;
-//         Extra::applyRepairV4(tour);
-//         if(tour.getRoute().size()!=aux.getRoute().size()){
-//             cout<<aux<<endl;
-//             cout<<tour<<endl;
+//     Population pop = InitialPop::InitialPopAdvanced(1);
+//     for (auto tour : pop.getPop()){
+//         cout<<tour<<endl;   
+//         for(auto customer : tour.getRoute()){
+//             cout<< customer << " " ;
 //         }
+//         cout<<endl;
 //     }
 // }
 
