@@ -28,6 +28,7 @@ namespace FinalTests {
 
 /* Control Run */
 namespace RunControl {
+    Population generatePopulation(unsigned);
     void initAlg(Population&);
     std::ofstream initLogFile();
     void printHeader(std::ostream&);

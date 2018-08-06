@@ -21,9 +21,10 @@ Population GenerationCtrl::generation(Population& pop)
 
 Population FinalTests::generationOX_WithoutMutation(Population& pop)
 {
+    
     Crossover::crossoverOX_Elitism(pop);
-    Extra::applyRepair(pop);
-    Extra::applyRepairV4(pop);
+    //Extra::applyRepair(pop);
+    //Extra::applyRepairV4(pop);
     Extra::applyOptInPop(pop);
     return pop;
 }
@@ -184,19 +185,7 @@ void RunControl::initAlg(Population& pop)
     ImportData vrpFile(Configs::pathToFile + Configs::file + ".vrp");
     Globals::customerMap = CustomerMap(vrpFile.getCustomerList(), vrpFile.getCapacity());
 
-    switch (Configs::initialPopMethod) {
-    case 0:
-        pop = InitialPop::InitialPopByMutation(Configs::popSize);
-        break;
-    case 1:
-        pop = InitialPop::InitialPopAdvanced(Configs::popSize);
-        break;
-    case 2: // random
-        pop = InitialPop::popGen(Configs::popSize);
-        break;
-    default:
-        pop = InitialPop::InitialPopAdvanced(Configs::popSize);
-    }
+    pop = generatePopulation(Configs::popSize);
     // Generates a random pop and applies mutation
     // pop = InitialPop::InitialPopByMutation(Configs::popSize);
     // pop= InitialPop::InitialPopByKmeans(Configs::popSize);
@@ -205,13 +194,30 @@ void RunControl::initAlg(Population& pop)
     Fitness::initialBest = pop.getBestSolution().getDist();
 }
 
+Population RunControl::generatePopulation(unsigned size)
+{
+    switch (Configs::initialPopMethod) {
+    case 0:
+        return InitialPop::InitialPopByMutation(size);
+        break;
+    case 1:
+        return InitialPop::InitialPopAdvanced(size);
+        break;
+    case 2: // random
+        return InitialPop::popGen(size);
+        break;
+    default:
+        return InitialPop::InitialPopAdvanced(size);
+    }
+}
+
 std::ofstream RunControl::initLogFile()
 {
     string fileName;
     if (Configs::logMethod == 0) {
         fileName = "log/" + Configs::file + "_Run_" + std::to_string(Configs::runId) + "_Cross_" + std::to_string(Configs::crossoverType) + "_Fitness_" + std::to_string(Configs::fitnessMode) + ".log";
     } else {
-        fileName = "log/" + Configs::file + "/" + Configs::file + "_Run_" + std::to_string(Configs::runId) + "_Cross_" + (Configs::crossoverType==0?"OX":"GPX") + "_InitialMethod_" + std::to_string(Configs::initialPopMethod) + ".log";
+        fileName = "log/" + Configs::file + "/" + Configs::file + "_Run_" + std::to_string(Configs::runId) + "_Cross_" + (Configs::crossoverType == 0 ? "OX" : "GPX") + "_InitialMethod_" + std::to_string(Configs::initialPopMethod) + ".log";
     }
 
     //Globals::debugLogFile = new std::ofstream(fileName + ".debug.log");
@@ -239,9 +245,9 @@ void RunControl::printHeader(std::ostream& out)
 
     out << "\n\tGA Configurations";
     out << "\n\t\tFitness Mode: " << Configs::fitnessMode;
-    out << "\n\t\tCrossover Method: " << (Configs::crossoverType==0?"OX":"GPX");
+    out << "\n\t\tCrossover Method: " << (Configs::crossoverType == 0 ? "OX" : "GPX");
     out << "\n\t\tInitial Pop Method: " << Configs::initialPopMethod;
-    out << "\n\t\tWith Mutation? " << (Configs::withMutation?"Yes":"No");
+    out << "\n\t\tWith Mutation? " << (Configs::withMutation ? "Yes" : "No");
 
     out << "\n\tMutation Configurations";
     out << "\n\t\tGeneral Rate: " << MutationCtrl::mutationRate << "%";
