@@ -12,9 +12,10 @@ using std::string;
 
 //Teste
 #include "Tour.hpp"
-// #include "Extra.hpp"
+#include "Extra.hpp"
 #include "ImportData.hpp"
 #include "InitialPop.hpp"
+#include "TourRepairer.hpp"
 // #include "Trim.hpp"
 // #include "Mutation.hpp"
 #include "CapacitedKmeans.hpp"
@@ -64,68 +65,64 @@ string LOG{ "log" };
 string WITH_MUTATION{ "mutation" };
 string INITIAL_METHOD{ "inmethod" };
 
-// int main(){
-//     Configs::fitnessMode=1;
-//     std::random_device rng;
-//     Globals::urng.seed(rng());
-//     // ImportData file("vrp/E-Sets/E-n22-k4.vrp");
-//     ImportData file("vrp/small/P-n16-k8.vrp");
-//     Globals::customerMap= CustomerMap(file.getCustomerList(),file.getCapacity());
-//     Configs::truckNumber=8;
-
-//     cout<<"Generating random"<<endl;
-//     Population popRandom=InitialPop::InitialPopRandom(100);
-//     popRandom.printPopulationStats();
-//     cout<<endl;
-
-//     cout<<"Generating with mutation"<<endl;
-//     Population popMut=InitialPop::InitialPopByMutation(100);
-//     popMut.printPopulationStats();
-//     cout<<endl;
-
-//     cout<<"Generating with Kmeans"<<endl;
-//     Population pop = InitialPop::InitialPopAdvanced(100);
-//     pop.printPopulationStats();
-// }
-
-int main(int argc, char* argv[])
-{
+int main(){
+    Configs::fitnessMode=1;
     std::random_device rng;
     Globals::urng.seed(rng());
+    // ImportData file("vrp/E-Sets/E-n22-k4.vrp");
+    ImportData file("vrp/P-Sets/P-n50-k8.vrp");
+    Globals::customerMap= CustomerMap(file.getCustomerList(),file.getCapacity());
+    Configs::truckNumber=1;
 
-    Arg args(argc, argv);
-
-    args.setProgramName("Genetic Algorithm to Vehicle Routing Problem.");
-    args.setHelp();
-    args.newArgument(NAME, true, "Name of .vrp file");
-    args.newArgument(POP_SIZE, true, "Size of population");
-    args.newArgument(T_NUMBER, true, "Number of trucks");
-    args.newArgument(MAX_IT, true, "Maximum of iterations");
-    args.newArgument(RUN, false, "ID of run");
-    args.newArgument(CROSS, false, "Method of crossover");
-    args.newArgument(PATH, false, "Path of file");
-    args.newArgument(FITNESS, false, "Method to calculate fitness");
-    args.newArgument(MUT_RATE, false, "Rate of mutation in generation");
-    args.newArgument(INIT_MUT, false, "Total Iterations of Mutation in Initial pop");
-    args.newArgument(OPT, false, "Best known optimal value (with using the script, the best value will be founded in file and setted, if exists");
-    args.newArgument(LOG, false, "Method of log, default is in root log/");
-    args.newArgument(INITIAL_METHOD, false, "Method of pop initial");
-    args.newArgument(WITH_MUTATION, false, "The run has mutation?");
-
-    try {
-        args.validateArguments();
-    } catch (std::runtime_error e) {
-        std::cout << e.what() << std::endl;
-        return (0);
+    for(int i = 0;i<200000;i++){
+        Tour tour = InitialPop::tourGen();
+        Tour aux = tour;
+        Extra::applyRepairV4(tour);
+        if(tour.getRoute().size()!=aux.getRoute().size()){
+            cout<<aux<<endl;
+            cout<<tour<<endl;
+        }
     }
-
-    /* Setting configurations */
-    setParams(args);
-
-    startGA();
-    delete Globals::debugLogFile;
-    return (0);
 }
+
+// int main(int argc, char* argv[])
+// {
+//     std::random_device rng;
+//     Globals::urng.seed(rng());
+
+//     Arg args(argc, argv);
+
+//     args.setProgramName("Genetic Algorithm to Vehicle Routing Problem.");
+//     args.setHelp();
+//     args.newArgument(NAME, true, "Name of .vrp file");
+//     args.newArgument(POP_SIZE, true, "Size of population");
+//     args.newArgument(T_NUMBER, true, "Number of trucks");
+//     args.newArgument(MAX_IT, true, "Maximum of iterations");
+//     args.newArgument(RUN, false, "ID of run");
+//     args.newArgument(CROSS, false, "Method of crossover");
+//     args.newArgument(PATH, false, "Path of file");
+//     args.newArgument(FITNESS, false, "Method to calculate fitness");
+//     args.newArgument(MUT_RATE, false, "Rate of mutation in generation");
+//     args.newArgument(INIT_MUT, false, "Total Iterations of Mutation in Initial pop");
+//     args.newArgument(OPT, false, "Best known optimal value (with using the script, the best value will be founded in file and setted, if exists");
+//     args.newArgument(LOG, false, "Method of log, default is in root log/");
+//     args.newArgument(INITIAL_METHOD, false, "Method of pop initial");
+//     args.newArgument(WITH_MUTATION, false, "The run has mutation?");
+
+//     try {
+//         args.validateArguments();
+//     } catch (std::runtime_error e) {
+//         std::cout << e.what() << std::endl;
+//         return (0);
+//     }
+
+//     /* Setting configurations */
+//     setParams(args);
+
+//     startGA();
+//     delete Globals::debugLogFile;
+//     return (0);
+// }
 
 void startGA()
 {
