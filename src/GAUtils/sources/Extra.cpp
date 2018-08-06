@@ -96,7 +96,16 @@ void Extra::applyRepair(Population& pop)
 }
 void Extra::applyRepair(Tour& tour)
 {
+    Tour aux = tour;
+    auto sizeB = tour.getRoute().size();
     tour = TourRepairer::repairTourV3(tour);
+    auto sizeA = tour.getRoute().size();
+    if(sizeB!=sizeA){
+        std::cout<<aux<<std::endl;
+        std::cout<<"AAAAAAAAAAAAAAAAAAAAA quebrou AAAAAAAAAAAAAAAAAAAAAA"<<std::endl;
+        std::cout<<tour<<std::endl;
+        exit(-2);
+    }
 }
 
 void Extra::applyRepairV4(Population& pop)
@@ -108,7 +117,12 @@ void Extra::applyRepairV4(Population& pop)
 }
 void Extra::applyRepairV4(Tour& tour)
 {
+    // auto sizeB = tour.getRoute().size();
     tour = TourRepairer::repairTourV4(tour);
+    // auto sizeA = tour.getRoute().size();
+    // if(sizeB!=sizeA){
+    //     std::cout<<"AAAAAAAAAAAAAAAAAAAAA quebrou AAAAAAAAAAAAAAAAAAAAAA"<<std::endl;
+    // }
 }
 void Extra::applyCombined(Tour& tour)
 {

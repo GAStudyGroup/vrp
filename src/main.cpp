@@ -133,7 +133,7 @@ void startGA()
 
     auto algStart = std::chrono::high_resolution_clock::now();
     RunControl::initAlg(pop);
-    //cout<< "MNV: "<<Globals::customerMap.getMnv()<<endl;
+    cout<< "MNV: "<<Globals::customerMap.getMnv()<<endl;
     do {
         printGenInfo(std::cout, pop);
         printGenInfo(logFile, pop);
@@ -155,7 +155,6 @@ void startGA()
     cout << best << endl;
     RunControl::printFooter(std::cout, best);
     RunControl::printFooter(logFile, best);
-
     logFile.close();
 }
 
