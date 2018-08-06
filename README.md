@@ -1,34 +1,6 @@
-# Vehicle Routing Problem implementation using the Generalized Partition Crossover
+# Framework for algorithms aimed to solve the VRP (Vehicle Routing Problem)
 
-### Muito Importante
-
-- Função de balanceamento
-
-make && clear && ./bin/VRP -name M-n101-k10 -path vrp/M-Sets -trucks 10 -size 100 -it 20
-
-
-valgrind  --tool=memcheck --leak-check=yes --log-file=valgrind_output.txt -v ./bin/GA
---leak-check=full --show-leak-kinds=all
-
-### Necessário
-
-- Encontrar um método de perturbação mais eficiente (se houver)
-
-- Encontrar uma função de fitness mais eficiente
-
-### Adicional
-
-- Colocar os parametros
-
-- Colocar Threads quando for rodar a mutação
-
-- Ver o que dá pra otimizar dentro da  mutação
-
-# Idéias
-
-- Pop inicial: gerar completamente random, colocar a reparação e a mutação em seguida
-
-- Logs para comparar ações do GPX e da mutação, separadamente (igual para o OX)
+#### Inserir todos os parametros e colocar como ativar cada um.
 
 ## Arguments
 
@@ -45,12 +17,13 @@ valgrind  --tool=memcheck --leak-check=yes --log-file=valgrind_output.txt -v ./b
  `-mrate`  | -       | Mutation Rate (0-100          | **No**
  `-initm`  | -       | Initial Mutation It...(0-100) | **No**
  
+Check the Wiki page to know more about the available methods!
 
 
 ### Site 
 http://vrp.atd-lab.inf.puc-rio.br/index.php/en/
 
-### Instâncias de VRP
+### VRP Instances
 http://neo.lcc.uma.es/vrp/vrp-instances/capacitated-vrp-instances/
-### Melhores resultados
+### Know Best Results
 http://neo.lcc.uma.es/vrp/known-best-results/
