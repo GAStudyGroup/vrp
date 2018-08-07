@@ -1,4 +1,3 @@
-import configs as c
 import re
 
 def getTrucks(name):
@@ -9,7 +8,7 @@ def getTrucks(name):
 
 def getBest(name, path):
     try:
-        file = open(path+"/"+name, "r")
+        file = open(path+"/"+name+".vrp", "r")
     except OSError:
         pass
 
