@@ -128,3 +128,11 @@ void OX::crossover(Tour t1, Tour t2){
     t2 = tmp2;
 };
 //--------End OX Functions---------
+
+Tour RBX::crossover (Tour t1, Tour t2){
+    // Identificar todas as rotas válidas
+    // Realizar o merge de todas
+    // Remover os duplicados
+    // Inserir os que estão faltando
+    
+}

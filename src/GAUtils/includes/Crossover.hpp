@@ -13,5 +13,10 @@ namespace Crossover{
 
 namespace OX{
     void crossover(Tour  t1, Tour t2);
-};
+}
+
+namespace RBX{
+    Tour crossover(Tour t1, Tour t2);
+}
+
 #endif
