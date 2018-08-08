@@ -172,7 +172,7 @@ Tour RBX::crossover(Tour t1, Tour t2)
     removeDuplicated(merged, duplicated);
     /* Necessário agrupar rotas pequenas para que o número de rotas fique menor ou 
     igual ao numero de trucks */
-    
+    remerge(merged);
     // Identificar quais estão faltando 
     unassigned = getUnassgined(merged);
     vector<int> batata(unassigned.begin(),unassigned.end());
