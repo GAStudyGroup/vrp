@@ -14,7 +14,11 @@ namespace TourUtils{
     // return a distance used in route 
     double getSubDistance(vector<int>&);
     // return the max distance beetween to customers in tour
-    double getMaxDistance(vector<int>&);
+    double getMaxDistance(vector<int>&);   
+    // Checks if a route is valid
+    bool isRouteValid(vector<int>&);
+    // Print a route vector
+    void printRoute(vector<int>&);
 };
 
 #endif

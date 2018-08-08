@@ -11,11 +11,13 @@ using std::string;
 #include "Population.hpp"
 
 //Teste
+#include "Crossover.hpp"
 #include "Tour.hpp"
 #include "Extra.hpp"
 #include "ImportData.hpp"
 #include "InitialPop.hpp"
 #include "TourRepairer.hpp"
+#include "TourUtils.hpp"
 // #include "Trim.hpp"
 // #include "Mutation.hpp"
 #include "CapacitedKmeans.hpp"
@@ -75,13 +77,8 @@ int main(){
     Configs::truckNumber=8;
 
     // Population pop = InitialPop::InitialPopAdvanced(1);
-    // for (auto tour : pop.getPop()){
-    //     cout<<tour<<endl;   
-    //     for(auto customer : tour.getRoute()){
-    //         cout<< customer << " " ;
-    //     }
-    //     cout<<endl;
-    // }
+    Population pop = InitialPop::InitialPopRandom(2);
+    RBX::crossover(pop.getPop()[0],pop.getPop()[1]);
 }
 
 // int main(int argc, char* argv[])
