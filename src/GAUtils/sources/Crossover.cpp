@@ -151,11 +151,12 @@ void OX::crossover(Tour t1, Tour t2)
 };
 //--------End OX Functions---------
 
+//--------Start of RBX Crossover----
 Tour RBX::crossover(Tour t1, Tour t2)
 {
     set<int> assigned;
     set<int> duplicated;
-
+    set<int> unassigned;
     // Identificar todas as rotas válidas
     vector<vector<int>> validRoutes1 = getValidRoutes(t1);
     vector<vector<int>> validRoutes2 = getValidRoutes(t2);
@@ -169,8 +170,14 @@ Tour RBX::crossover(Tour t1, Tour t2)
     assigned = getAssigned(merged);
     // Remover os duplicados
     removeDuplicated(merged, duplicated);
-    // Inserir os que estão faltando
-
+    /* Necessário agrupar rotas pequenas para que o número de rotas fique menor ou 
+    igual ao numero de trucks */
+    
+    // Identificar quais estão faltando 
+    unassigned = getUnassgined(merged);
+    vector<int> batata(unassigned.begin(),unassigned.end());
+    std::cout <<"Nao Inseridos"<< std::endl;
+    TourUtils::printRoute(batata);
     // Inserir os que estão faltando
 
     // Reconstruir o tour
@@ -217,6 +224,7 @@ Tour RBX::rebuild(vector<vector<int>> routes)
         route.emplace(route.begin(), Globals::customerMap.getDepotId());
     }
     //Restore empty routes
+    //Finish the remerge fucntion before uncomment this code
     // auto empty = Configs::truckNumber - routes.size();
     // if(empty>0){
     //     vector<int> aux;
@@ -275,7 +283,7 @@ set<int> RBX::getDuplicated(vector<vector<int>> routes)
 }
 
 // Removes the first duplicated found, the heuristic can be improved in the future
-void RBX ::removeDuplicated(vector<vector<int>> &routes, set<int> &duplicated)
+void RBX::removeDuplicated(vector<vector<int>> &routes, set<int> &duplicated)
 {
     auto routesClone = routes;
     for (unsigned i = 0; i < routesClone.size(); i++)
@@ -291,3 +299,23 @@ void RBX ::removeDuplicated(vector<vector<int>> &routes, set<int> &duplicated)
         }
     }
 }
+
+// Get the unassigned customers
+set<int> RBX::getUnassgined(vector<vector<int>> routes){
+    auto assigned = getAssigned(routes);
+    set<int> unassigned;
+    for(auto customer : Globals::customerMap.getMap()){
+        if(customer.getId() != Globals::customerMap.getDepotId()){
+            if(assigned.find(customer.getId())==assigned.end()){
+                unassigned.insert(customer.getId());
+            }
+        }
+    }
+    return unassigned;
+}
+
+//Remerge routes until the number of routes be less  or equal the number of trucks
+void RBX::remerge(vector<vector<int>>){
+    // to be implemented
+}
+//--------End of RBX Crossover-----

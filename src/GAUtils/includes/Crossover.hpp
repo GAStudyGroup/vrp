@@ -28,7 +28,10 @@ namespace RBX{
 
     set<int> getDuplicated(vector<vector<int>>);
     set<int> getAssigned(vector<vector<int>>);
+    set<int> getUnassgined(vector<vector<int>>);
     void removeDuplicated(vector<vector<int>>& routes, set<int>& duplicated);
+    
+    void remerge(vector<vector<int>> routes);
 }
 
 #endif
