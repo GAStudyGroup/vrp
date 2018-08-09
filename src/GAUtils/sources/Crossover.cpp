@@ -300,20 +300,18 @@ set<int> RBX::getDuplicated(vector<vector<int>> routes)
     return duplicated;
 }
 
-// Removes the first duplicated found, the heuristic can be improved in the future
+// Removes the first duplicated found, removes the duplicated from the route that has the bigger distance
+// If they are in the same route remove the first one found
 void RBX::removeDuplicated(vector<vector<int>> &routes, set<int> &duplicated)
 {
-    auto routesClone = routes;
-    for (unsigned i = 0; i < routesClone.size(); i++)
-    {
-        for (auto el : routesClone[i])
-        {
-            auto dupPos = duplicated.find(el);
-            if (dupPos != duplicated.end())
-            {
-                duplicated.erase(dupPos);
-                routes[i].erase(std::find(routes[i].begin(), routes[i].end(), el));
-            }
+    for(auto dup : duplicated){
+        auto dupPos = findDuplicatedPos(routes,dup);
+        if(TourUtils::getSubDistance(routes[dupPos[0]]) > TourUtils::getSubDistance(routes[dupPos[1]])){
+            routes[dupPos[0]].erase(std::find(routes[dupPos[0]].begin(),routes[dupPos[0]].end(),
+            dup));
+        }else{
+            routes[dupPos[1]].erase(std::find(routes[dupPos[1]].begin(),routes[dupPos[1]].end(),
+            dup));
         }
     }
 }
@@ -337,6 +335,7 @@ set<int> RBX::getUnassgined(vector<vector<int>> routes)
 }
 
 //Remerge routes until the number of routes be less  or equal the number of trucks
+// The heuristic can be improved in the future
 void RBX::remerge(vector<vector<int>> &routes)
 {
     vector<vector<int>> routesAux;
@@ -416,7 +415,7 @@ vector<int> RBX::mergeRoutes(vector<int> route1, vector<int> route2)
     }
     return merged;
 }
-
+// Insert customers that were left unassigned, the heuristic can be improved in the future
 void RBX::insertUnassigned(vector<vector<int>> &routes, set<int> &unassigned)
 {
     vector<int> unassignedVect(unassigned.begin(),unassigned.end());
@@ -460,5 +459,15 @@ void RBX::insertUnassigned(vector<vector<int>> &routes, set<int> &unassigned)
             routes[0].push_back(un);
         }
     }
+}
+
+vector<int> RBX::findDuplicatedPos(vector<vector<int>>& routes, int duplicated){
+    vector<int> pos;
+    for(unsigned i = 0; i < routes.size();i++){
+        if(std::find(routes[i].begin(),routes[i].end(),duplicated) != routes[i].end()){
+            pos.push_back(i);
+        } 
+    }
+    return pos;
 }
 //--------End of RBX Crossover-----

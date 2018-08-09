@@ -34,6 +34,8 @@ namespace RBX{
     void remerge(vector<vector<int>>& routes);
     vector<int> mergeRoutes(vector<int> route1, vector<int> route2);
     void insertUnassigned(vector<vector<int>>& routes, set<int>& unassigned);
+
+    vector<int>  findDuplicatedPos(vector<vector<int>>& routes, int duplicated);
 }
 
 #endif
