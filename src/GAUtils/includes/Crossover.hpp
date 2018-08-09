@@ -13,7 +13,7 @@ namespace Crossover{
     void crossoverGPX_OLD(Population&);
     void crossoverGPX_5Best(Population&);
     void crossoverOX_Elitism(Population&);
-    
+    void crossoverRBX(Population&);    
 }
 
 namespace OX{

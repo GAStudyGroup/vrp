@@ -104,6 +104,23 @@ void Crossover::crossoverOX_Elitism(Population &pop)
     pop.sortPop();
 }
 
+void Crossover::crossoverRBX(Population& pop){
+    vector<Tour> newPopTemp;
+    for(auto tour: pop.getPop()){
+        for(auto tour2: pop.getPop()){
+            newPopTemp.push_back(RBX::crossover(tour,tour2));
+        }
+    }
+    std::sort(newPopTemp.begin(),newPopTemp.end(),[](Tour a, Tour b){
+        return a.getFitness() < b.getFitness();
+    });
+
+    vector<Tour> newPop;
+    for(unsigned  i=0;i<Configs::popSize;i++){
+        newPop.push_back(newPopTemp[i]);
+    }
+}
+
 //OX functions
 void OX::crossover(Tour t1, Tour t2)
 {
@@ -154,6 +171,9 @@ void OX::crossover(Tour t1, Tour t2)
 //--------End OX Functions---------
 
 //--------Start of RBX Crossover----
+bool compFunction(int a, int b){
+    return a > b;
+}
 Tour RBX::crossover(Tour t1, Tour t2)
 {
     set<int> assigned;
@@ -181,7 +201,6 @@ Tour RBX::crossover(Tour t1, Tour t2)
     insertUnassigned(merged, unassigned);
     // Reconstruir o tour
     Tour offSpring = rebuild(merged);
-    std::cout << offSpring << std::endl;
     return offSpring;
 }
 vector<vector<int>> RBX::getValidRoutes(Tour tour)
@@ -372,8 +391,15 @@ void RBX::remerge(vector<vector<int>> &routes)
     // If there are more routes than trucks
     if (routesAux.size() > Configs::truckNumber)
     {
-        cout << "Implementar esse caso!" << endl;
-        exit(404);
+        while(routesAux.size() > Configs::truckNumber){
+            std::sort(routes.begin(), routes.end(), [](vector<int> a, vector<int> b) {
+            return (TourUtils::getSubCharge(a) < TourUtils::getSubCharge(b));
+            });
+            routesAux[0] = mergeRoutes(routesAux[0],routesAux[1]);
+            routesAux.erase(routesAux.begin()+2); 
+        }
+        // cout << "Implementar esse caso!" << endl;
+        // exit(404);
     }
     routes = routesAux;
 }
@@ -393,6 +419,7 @@ vector<int> RBX::mergeRoutes(vector<int> route1, vector<int> route2)
 
 void RBX::insertUnassigned(vector<vector<int>> &routes, set<int> &unassigned)
 {
+    vector<int> unassignedVect(unassigned.begin(),unassigned.end());
     if(routes.size()< (unsigned)Globals::customerMap.getMnv()){
         vector<int> aux;
         int left =  Globals::customerMap.getMnv() - routes.size();
@@ -403,23 +430,26 @@ void RBX::insertUnassigned(vector<vector<int>> &routes, set<int> &unassigned)
     std::sort(routes.begin(), routes.end(), [](vector<int> a, vector<int> b) {
         return (TourUtils::getSubCharge(a) < TourUtils::getSubCharge(b));
     });
-    // std::sort(unassigned.begin(), unassigned.end(), [](int a, int b) {
-    //     return Globals::customerMap.getCustomer(a).getDemand() >
-    //            Globals::customerMap.getCustomer(b).getDemand();
-    // });
+    std::sort(unassignedVect.begin(), unassignedVect.end(), [](int a, int b) {
+        return Globals::customerMap.getCustomer(a).getDemand() >
+               Globals::customerMap.getCustomer(b).getDemand();
+    });
 
     for (auto &route : routes)
     {
-        for (auto un : unassigned)
+        for (auto un : unassignedVect)
         {
             if ((TourUtils::getSubCharge(route) +
                  Globals::customerMap.getCustomer(un).getDemand())
                   <= Globals::customerMap.getTruckCapacity())
             {
                 route.push_back(un);
-                unassigned.erase(unassigned.find(un));
+                if(unassigned.find(un) != unassigned.end()){
+                    unassigned.erase(unassigned.find(un));
+                }
             }
         }
+        unassignedVect = vector<int>(unassigned.begin(),unassigned.end());
     }
 
     if(unassigned.size()>0){

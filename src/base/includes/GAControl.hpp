@@ -10,6 +10,7 @@ using std::vector;
 
 //GenerationCtrl
 namespace GenerationCtrl{
+    Population generationRBX(Population &pop);
     Population generationForFinalTests(Population &pop);
     Population newGeneration(Population& pop);
     Population basicGenerationGPX(Population &pop);

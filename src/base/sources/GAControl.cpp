@@ -10,15 +10,23 @@
 
 Population GenerationCtrl::generation(Population& pop)
 {
-    switch (Configs::crossoverType) {
-    case 0:
-        return (Configs::withMutation ? FinalTests::generationOX_WithMutation(pop) : FinalTests::generationOX_WithoutMutation(pop));
+    return generationRBX(pop);
+    // switch (Configs::crossoverType) {
+    // case 0:
+    //     return (Configs::withMutation ? FinalTests::generationOX_WithMutation(pop) : FinalTests::generationOX_WithoutMutation(pop));
 
-    case 1:
-        return (Configs::withMutation ? FinalTests::generationGPX_WithMutation(pop) : FinalTests::generationGPX_WithoutMutation(pop));
-    }
+    // case 1:
+    //     return (Configs::withMutation ? FinalTests::generationGPX_WithMutation(pop) : FinalTests::generationGPX_WithoutMutation(pop));
+    // }
 }
-
+Population GenerationCtrl::generationRBX(Population& pop){
+    Extra::applyCombined(pop);
+    Crossover::crossoverRBX(pop);
+    Extra::applyOptInPop(pop);  
+    Extra::applyMutation(pop);
+    Extra::popReset(pop);
+    return pop;
+}
 Population FinalTests::generationOX_WithoutMutation(Population& pop)
 {
     
