@@ -74,7 +74,7 @@ int main(){
     ImportData file("vrp/E-Sets/E-n22-k4.vrp");
     // ImportData file("vrp/P-Sets/P-n50-k8.vrp");
     Globals::customerMap= CustomerMap(file.getCustomerList(),file.getCapacity());
-    Configs::truckNumber=8;
+    Configs::truckNumber=4;
 
     // Population pop = InitialPop::InitialPopAdvanced(1);
     Population pop = InitialPop::InitialPopRandom(2);

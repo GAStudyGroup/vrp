@@ -53,12 +53,14 @@ bool TourUtils::isRouteValid(vector<int> &tour)
     }
 }
 
-void TourUtils::printRoute(vector<int> &tour)
+void TourUtils::printRoute(vector<int> &tour, bool charge)
 {
     for (auto customer : tour)
     {
         std::cout << customer - 1<< " ";
     }
-    // std::cout<< "Load: "<< getSubCharge(tour);
+    if(charge){
+        std::cout<< "Load: "<< getSubCharge(tour);
+    }
     std::cout<<std::endl;
 }

@@ -31,7 +31,9 @@ namespace RBX{
     set<int> getUnassgined(vector<vector<int>>);
     void removeDuplicated(vector<vector<int>>& routes, set<int>& duplicated);
     
-    void remerge(vector<vector<int>> routes);
+    void remerge(vector<vector<int>>& routes);
+    vector<int> mergeRoutes(vector<int> route1, vector<int> route2);
+    void insertUnassigned(vector<vector<int>>& routes, set<int>& unassigned);
 }
 
 #endif

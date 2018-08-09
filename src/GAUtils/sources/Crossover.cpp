@@ -8,6 +8,8 @@
 #include <algorithm>
 
 #include <random>
+using std::cout;
+using std::endl;
 using std::uniform_int_distribution;
 
 void Crossover::crossoverGPX_5Best(Population &pop)
@@ -173,13 +175,10 @@ Tour RBX::crossover(Tour t1, Tour t2)
     /* Necessário agrupar rotas pequenas para que o número de rotas fique menor ou 
     igual ao numero de trucks */
     remerge(merged);
-    // Identificar quais estão faltando 
+    // Identificar quais estão faltando
     unassigned = getUnassgined(merged);
-    vector<int> batata(unassigned.begin(),unassigned.end());
-    std::cout <<"Nao Inseridos"<< std::endl;
-    TourUtils::printRoute(batata);
     // Inserir os que estão faltando
-
+    insertUnassigned(merged, unassigned);
     // Reconstruir o tour
     Tour offSpring = rebuild(merged);
     std::cout << offSpring << std::endl;
@@ -301,12 +300,16 @@ void RBX::removeDuplicated(vector<vector<int>> &routes, set<int> &duplicated)
 }
 
 // Get the unassigned customers
-set<int> RBX::getUnassgined(vector<vector<int>> routes){
+set<int> RBX::getUnassgined(vector<vector<int>> routes)
+{
     auto assigned = getAssigned(routes);
     set<int> unassigned;
-    for(auto customer : Globals::customerMap.getMap()){
-        if(customer.getId() != Globals::customerMap.getDepotId()){
-            if(assigned.find(customer.getId())==assigned.end()){
+    for (auto customer : Globals::customerMap.getMap())
+    {
+        if (customer.getId() != Globals::customerMap.getDepotId())
+        {
+            if (assigned.find(customer.getId()) == assigned.end())
+            {
                 unassigned.insert(customer.getId());
             }
         }
@@ -315,7 +318,117 @@ set<int> RBX::getUnassgined(vector<vector<int>> routes){
 }
 
 //Remerge routes until the number of routes be less  or equal the number of trucks
-void RBX::remerge(vector<vector<int>>){
-    // to be implemented
+void RBX::remerge(vector<vector<int>> &routes)
+{
+    vector<vector<int>> routesAux;
+    vector<bool> merged;
+
+    for (unsigned i = 0; i < routes.size(); i++)
+    {
+        merged.push_back(false);
+    }
+    std::sort(routes.begin(), routes.end(), [](vector<int> a, vector<int> b) {
+        return (TourUtils::getSubCharge(a) < TourUtils::getSubCharge(b));
+    });
+    // for (auto route : routes)
+    // {
+    //     TourUtils::printRoute(route, true);
+    // }
+    //Merge routes that can be valid
+    for (unsigned i = 0; i < routes.size(); i++)
+    {
+        for (unsigned j = 0; j < routes.size(); j++)
+        {
+            // cout <<"I"<<i<<"J"<<j<<endl;
+            if (i == j)
+            {
+                continue;
+            }
+            if (merged[i] || merged[j])
+            {
+                continue;
+            }
+            auto mergedRoute = mergeRoutes(routes[i], routes[j]);
+            if (TourUtils::isRouteValid(mergedRoute))
+            {
+                merged[i] = true;
+                merged[j] = true;
+                // cout<<"caiu"<<endl;
+                routesAux.push_back(mergedRoute);
+            }
+        }
+    }
+    // for(auto m : merged){
+    //     cout<< m <<endl;
+    // }
+    // Finish adding the routes that left
+    for (unsigned i = 0; i < merged.size(); i++)
+    {
+        if (!merged[i])
+        {
+            routesAux.push_back(routes[i]);
+        }
+    }
+    // If there are more routes than trucks
+    if (routesAux.size() > Configs::truckNumber)
+    {
+        cout << "Implementar esse caso!" << endl;
+        exit(404);
+    }
+    routes = routesAux;
+}
+vector<int> RBX::mergeRoutes(vector<int> route1, vector<int> route2)
+{
+    vector<int> merged;
+    for (int el : route1)
+    {
+        merged.push_back(el);
+    }
+    for (int el : route2)
+    {
+        merged.push_back(el);
+    }
+    return merged;
+}
+
+void RBX::insertUnassigned(vector<vector<int>> &routes, set<int> &unassigned)
+{
+    if(routes.size()< (unsigned)Globals::customerMap.getMnv()){
+        vector<int> aux;
+        int left =  Globals::customerMap.getMnv() - routes.size();
+        for(int i = 0 ; i < left; i++){
+            routes.push_back(aux);
+        }
+    }
+    std::sort(routes.begin(), routes.end(), [](vector<int> a, vector<int> b) {
+        return (TourUtils::getSubCharge(a) < TourUtils::getSubCharge(b));
+    });
+    // std::sort(unassigned.begin(), unassigned.end(), [](int a, int b) {
+    //     return Globals::customerMap.getCustomer(a).getDemand() >
+    //            Globals::customerMap.getCustomer(b).getDemand();
+    // });
+
+    for (auto &route : routes)
+    {
+        for (auto un : unassigned)
+        {
+            if ((TourUtils::getSubCharge(route) +
+                 Globals::customerMap.getCustomer(un).getDemand())
+                  <= Globals::customerMap.getTruckCapacity())
+            {
+                route.push_back(un);
+                unassigned.erase(unassigned.find(un));
+            }
+        }
+    }
+
+    if(unassigned.size()>0){
+        std::sort(routes.begin(), routes.end(), [](vector<int> a, vector<int> b) {
+        return (TourUtils::getSubCharge(a) < TourUtils::getSubCharge(b));
+        });
+        for(auto un : unassigned){
+            routes[0].push_back(un);
+        }
+    }
 }
 //--------End of RBX Crossover-----

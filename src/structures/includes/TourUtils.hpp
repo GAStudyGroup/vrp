@@ -18,7 +18,7 @@ namespace TourUtils{
     // Checks if a route is valid
     bool isRouteValid(vector<int>&);
     // Print a route vector
-    void printRoute(vector<int>&);
+    void printRoute(vector<int>&,bool);
 };
 
 #endif
