@@ -22,9 +22,10 @@ Population GenerationCtrl::generation(Population& pop)
 Population GenerationCtrl::generationRBX(Population& pop){
     Extra::applyCombined(pop);
     Crossover::crossoverRBX(pop);
+    Crossover::crossoverGPX_5Best(pop);
+    Extra::fillPop(pop);
     Extra::applyOptInPop(pop);  
     Extra::applyMutation(pop);
-    Extra::popReset(pop);
     return pop;
 }
 Population FinalTests::generationOX_WithoutMutation(Population& pop)
