@@ -16,9 +16,12 @@ for DIR, INSTANCES in cfg.DATASETS.items():
 
                                 if not os.path.exists(cfg.LOG_DIR+instance):
                                     os.makedirs(cfg.LOG_DIR+instance)
+                                    os.makedirs(cfg.LOG_DIR+instance+"/data")
 
                                 print("Starting "+str(run)+" run of "+instance+" with cross "+str(cross))
 
                                 trucks = ut.getTrucks(instance)
                                 best = ut.getBest(instance, "vrp/"+DIR)
                                 call(["./bin/VRP", "-name "+instance, "-trucks "+str(trucks), "-size "+str(popSize), "-it "+str(maxIt), "-path vrp/"+DIR, "-log "+str(cfg.LOG_MODE), "-run "+str(run), "-cx "+str(cross), "-inmethod "+str(in_method), "-mutation "+str(has_mut), "-opt "+str(best)])
+        
+        open(cfg.LOG_DIR+instance+"/data/finish", "w")

@@ -128,6 +128,7 @@ void startGA()
 
     Population pop;
     std::ofstream logFile { RunControl::initLogFile() };
+    std::ofstream dataFile { RunControl::initDataFile() };
     RunControl::printHeader(logFile);
 
     auto algStart = std::chrono::high_resolution_clock::now();
@@ -151,9 +152,11 @@ void startGA()
 
     Tour best { pop.getBestSolution() };
     cout << best << endl;
+    dataFile << best.getDist() << endl;
     RunControl::printFooter(std::cout, best);
     RunControl::printFooter(logFile, best);
     logFile.close();
+    dataFile.close();
 }
 
 void printGenInfo(std::ostream& out, Population& pop)
@@ -164,7 +167,8 @@ void printGenInfo(std::ostream& out, Population& pop)
 
     out << "\nGeneration: " << Globals::currentIteration;
     out << "\n\tValid solutions in Population: " << pop.totalToursValid() << "/" << pop.getPop().size();
-    out << "\n\tBestSolution Fitness: " << bestSol.getFitness() << "\n\tBestSolution Distance: " << bestSol.getDist() << "\n\t" << (isValid ? "Valid solution." : "Not a Valid solution.") << "\n\t" << "SubTours used: " << subTourUsed << std::endl;
+    out << "\n\tBestSolution Fitness: " << bestSol.getFitness() << "\n\tBestSolution Distance: " << bestSol.getDist() << "\n\t" << (isValid ? "Valid solution." : "Not a Valid solution.") << "\n\t"
+        << "SubTours used: " << subTourUsed << std::endl;
 }
 
 void setParams(Arg& args)

@@ -10,8 +10,8 @@ LOG_MODE = "1"
 
 # Parameters of run
 TOTAL_RUNS = 10
-POP_SIZE = [50, 100, 200]
-MAX_IT = [50]
+POP_SIZE = [10]#[50, 100, 200]
+MAX_IT = [5]#[50]
 WITH_MUTATION = ["false", "true"] # mutation will be used during run
 '''
     0 - Initial pop only using mutation
@@ -29,8 +29,8 @@ CROSS = [0, 1]
 # the .vrp is not necessary
 setsVector = ["A-Sets", "B-Sets", "F-Sets", "M-Sets"]
 DATASETS = {
-    setsVector[0] : ["A-n32-k5"],
-    setsVector[1] : [""],
-    setsVector[2] : [""],
-    setsVector[3] : [""]
+    setsVector[0] : ["A-n34-k5", "E-n22-k4"]
+    # setsVector[1] : [""],
+    # setsVector[2] : [""],
+    # setsVector[3] : [""]
 }

@@ -146,7 +146,7 @@ std::ofstream RunControl::initLogFile()
     if (Configs::logMethod == 0) {
         fileName = "log/" + Configs::file + "_Run_" + std::to_string(Configs::runId) + "_Cross_" + std::to_string(Configs::crossoverType) + "_Fitness_" + std::to_string(Configs::fitnessMode) + ".log";
     } else {
-        fileName = "log/" + Configs::file + "/" + Configs::file + "_Run_" + std::to_string(Configs::runId) + "_Cross_" + (Configs::crossoverType == 0 ? "OX" : "GPX") + "_InitialMethod_" + std::to_string(Configs::initialPopMethod) + ".log";
+        fileName = "log/" + Configs::file + "/" + Configs::file + "_Run_" + std::to_string(Configs::runId) + "_Cross_" + (Configs::crossoverType == 0 ? "OX" : "GPX") + "_InitialMethod_" + std::to_string(Configs::initialPopMethod) + "_Mutation_" + (Configs::withMutation ? "Yes" : "No") + ".log";
     }
 
     //Globals::debugLogFile = new std::ofstream(fileName + ".debug.log");
@@ -236,4 +236,29 @@ bool RunControl::stopAlg(Population& pop)
     } else {
         return (false);
     }
+}
+
+std::ofstream RunControl::initDataFile()
+{
+    string fileName;
+
+    fileName = "log/" + Configs::file + "/data/" + "Cross_" + (Configs::crossoverType == 0 ? "OX" : "GPX") + "_InitialMethod_" + std::to_string(Configs::initialPopMethod) + "_Mutation_" + (Configs::withMutation ? "Yes" : "No") + ".data";
+
+    std::ifstream infile(fileName);
+    if (infile.good()) {
+        return std::ofstream(fileName, std::ios_base::app);
+    }
+    std::ofstream file = std::ofstream(fileName);
+    file << "Dataset: " << Configs::file << "\n";
+    file << "Best: " << Configs::optimalValue << "\n";
+    file << "Trucks: " << Configs::truckNumber << "\n";
+    file << "Iterations: " << Configs::maxIterations << "\n";
+    file << "Cross: " << (Configs::crossoverType == 0 ? "OX" : "GPX") << "\n";
+    file << "Fitness: " << Configs::fitnessMode << "\n";
+    file << "InitialMethod: " << Configs::initialPopMethod << "\n";
+    file << "Mutation: " << (Configs::withMutation ? "Yes" : "No") << "\n";
+    file << "\nInit Alg\n"
+         << std::endl;
+
+    return (file);
 }

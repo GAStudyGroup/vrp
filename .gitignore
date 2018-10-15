@@ -43,3 +43,4 @@ scp/__pycache__/
 *.txt
 node_modules/
 package-lock.json
+oldLogs/
